@@ -36,4 +36,9 @@ public class HistoryCommand extends Command {
         requireNonNull(history);
         this.history = history;
     }
+
+    @Override
+    public int getPrivilegeLevel(){
+        return PRIVILEGE_LEVEL;
+    }
 }

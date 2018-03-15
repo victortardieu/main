@@ -67,4 +67,9 @@ public class DeleteCommand extends UndoableCommand {
                 && this.targetIndex.equals(((DeleteCommand) other).targetIndex) // state check
                 && Objects.equals(this.personToDelete, ((DeleteCommand) other).personToDelete));
     }
+
+    @Override
+    public int getPrivilegeLevel(){
+        return PRIVILEGE_LEVEL;
+    }
 }

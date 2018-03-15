@@ -15,8 +15,6 @@ import seedu.address.model.ReadOnlyAddressBook;
 public abstract class UndoableCommand extends Command {
     private ReadOnlyAddressBook previousAddressBook;
 
-    public static final int PRIVILEGE_LEVEL = Model.PRIVILEGE_LEVEL_GUEST;
-
     protected abstract CommandResult executeUndoableCommand() throws CommandException;
 
     /**

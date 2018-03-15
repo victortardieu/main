@@ -133,6 +133,11 @@ public class EditCommand extends UndoableCommand {
                 && Objects.equals(personToEdit, e.personToEdit);
     }
 
+    @Override
+    public int getPrivilegeLevel(){
+        return PRIVILEGE_LEVEL;
+    }
+
     /**
      * Stores the details to edit the person with. Each non-empty field value will replace the
      * corresponding field value of the person.
@@ -235,5 +240,7 @@ public class EditCommand extends UndoableCommand {
                     && getAddress().equals(e.getAddress())
                     && getTags().equals(e.getTags());
         }
+
+
     }
 }

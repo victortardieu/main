@@ -19,4 +19,9 @@ public class LogoutCommand extends Command{
         model.logout();
         return new CommandResult(MESSAGE_LOGGED_OUT);
     }
+
+    @Override
+    public int getPrivilegeLevel(){
+        return PRIVILEGE_LEVEL;
+    }
 }

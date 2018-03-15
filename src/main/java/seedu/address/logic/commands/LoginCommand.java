@@ -39,4 +39,9 @@ public class LoginCommand extends Command{
                 return new CommandResult(MESSAGE_NOT_LOGGED_IN);
         }
     }
+
+    @Override
+    public int getPrivilegeLevel(){
+        return PRIVILEGE_LEVEL;
+    }
 }

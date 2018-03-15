@@ -52,4 +52,9 @@ public class SelectCommand extends Command {
                 || (other instanceof SelectCommand // instanceof handles nulls
                 && this.targetIndex.equals(((SelectCommand) other).targetIndex)); // state check
     }
+
+    @Override
+    public int getPrivilegeLevel(){
+        return PRIVILEGE_LEVEL;
+    }
 }

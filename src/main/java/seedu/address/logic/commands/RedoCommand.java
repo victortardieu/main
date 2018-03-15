@@ -35,4 +35,9 @@ public class RedoCommand extends Command {
         this.model = model;
         this.undoRedoStack = undoRedoStack;
     }
+
+    @Override
+    public int getPrivilegeLevel(){
+        return PRIVILEGE_LEVEL;
+    }
 }

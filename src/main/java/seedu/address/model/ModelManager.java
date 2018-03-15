@@ -129,7 +129,7 @@ public class ModelManager extends ComponentManager implements Model {
 
     private boolean isStudent(String username, String password) {
         //This is temporary before we add in account database
-        if (username == "student" && password == "student"){
+        if (username.equals("student") && password.equals("student")){
             return true;
         }
         else{
@@ -139,7 +139,7 @@ public class ModelManager extends ComponentManager implements Model {
 
     private boolean isLibrarian(String username, String password) {
         //This is temporary before we add in account database
-        if (username == "admin" && password == "admin"){
+        if (username.equals("admin") && password.equals("admin")){
             return true;
         }
         else{

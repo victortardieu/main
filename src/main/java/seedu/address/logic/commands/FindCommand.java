@@ -1,5 +1,6 @@
 package seedu.address.logic.commands;
 
+import seedu.address.model.Model;
 import seedu.address.model.person.NameContainsKeywordsPredicate;
 
 /**
@@ -14,6 +15,8 @@ public class FindCommand extends Command {
             + "the specified keywords (case-sensitive) and displays them as a list with index numbers.\n"
             + "Parameters: KEYWORD [MORE_KEYWORDS]...\n"
             + "Example: " + COMMAND_WORD + " alice bob charlie";
+
+    public static final int PRIVILEGE_LEVEL = Model.PRIVILEGE_LEVEL_GUEST;
 
     private final NameContainsKeywordsPredicate predicate;
 

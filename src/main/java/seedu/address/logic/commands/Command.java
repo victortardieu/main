@@ -43,5 +43,5 @@ public abstract class Command {
         this.model = model;
     }
 
-    public abstract int getPrivilegeLevel();
+    public int getPrivilegeLevel(){ return Model.PRIVILEGE_LEVEL_GUEST; };
 }

@@ -38,6 +38,5 @@ public class LoginCommand extends Command{
             default:
                 return new CommandResult(MESSAGE_NOT_LOGGED_IN);
         }
-
     }
 }

@@ -792,23 +792,40 @@ See this https://github.com/se-edu/addressbook-level4/pull/599[PR] for the step-
 
 [appendix]
 == User Stories
+As a librarian, I can add new book titles into the database
+As a librarian, I can delete book titles in the database
+As a librarian, I want confirmation in notification before deleting a book
+As a librarian, I can find a book title using the database
+As a librarian, I can view the history of borrowed books from each borrower
+As a student, I can find a book title in the database by it's name
+As a student, I can find a book in the database by it's tag
+As a student, I can check for the availability of the book
+As a student, I can loan an available book
+As a student, I can renew existing loaned book
+As a student, I can reserve a book that is on on loan by someone else and not available in the library currently
+As a student, I will receive notification when my current book loan duration is coming to an end
+As a guest, I can find a book title in the database
+As a guest, I can check for the availability of the book
 
 Priorities: High (must have) - `* * \*`, Medium (nice to have) - `* \*`, Low (unlikely to have) - `*`
 
 [width="59%",cols="22%,<23%,<25%,<30%",options="header",]
 |=======================================================================
 |Priority |As a ... |I want to ... |So that I can...
-|`* * *` |new user |see usage instructions |refer to instructions when I forget how to use the App
-
-|`* * *` |user |add a new person |
-
-|`* * *` |user |delete a person |remove entries that I no longer need
-
-|`* * *` |user |find a person by name |locate details of persons without having to go through the entire list
-
-|`* *` |user |hide <<private-contact-detail,private contact details>> by default |minimize chance of someone else seeing them by accident
-
-|`*` |user with many persons in the address book |sort persons by name |locate a person easily
+|`* * *` |As a librarian |I want to add a new book title into the database |So that I can constantly update the database for borrowers
+|`* * *` |As a librarian |I want to delete a book title from the database |So that I can constantly update the database for borrowers
+|`* * *` |As a librarian |I want to confirmation in notification before deleting a book |So that I will not accidentally delete the wrong book title
+|`* * *` |As a librarian |I want to find a book title in the database |So that I can see the status of the book
+|`* * ` |As a librarian |I want to view the history of borrowed books from each borrower |So that I can keep track of books availability
+|`* * *` |As a student |I want to find a book title in the database by it's name |So I can facilitate my search process
+|`* * *` |As a student |I want to find a book title in the database by it's tag |So that I can facilitate my search process
+|`* * *` |As a student |I want to check for the availability of the book |So that I can know it' loan status
+|`* * *` |As a student |I want to loan a book  |So that I can use the book for higher learning
+|`* *` |As a student |I want to renew existing loaned book |So that I have more time to finish the book
+|`* *` |As a student |I want to reserve a book currently being loaned |So that I will be able to loan the book as soon as it is available
+|`* * *` |As a student |I want to receive notification when my current book is due soon |So that I will not miss the due date
+|`* * *` |As a guest |I want to find a book title in the database |So that I can see the status of the book
+|`* * *` |As a guest |I want to check for the availability of the book |So that I can see it's loan status
 |=======================================================================
 
 _{More to be added}_

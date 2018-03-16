@@ -46,7 +46,7 @@ Responsibilities: Dev Ops + Threading
 '''
 
 === Wong Khia Yi
-image::khiayi.jpg[width="150", align="left"]
+image::khiayi.png[width="150", align="left"]
 {empty}[https://github.com/khiayi[github]] [<<wongkhiayi#, portfolio>>]
 
 Role: Developer +

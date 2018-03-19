@@ -1,4 +1,10 @@
 package seedu.address.model.book;
 
-public class DuplicateBookException {
+import seedu.address.commons.exceptions.DuplicateDataException;
+
+public class DuplicateBookException extends DuplicateDataException {
+    public DuplicateBookException() {
+        super("Operation would result in duplicate book");
+    }
 }
+

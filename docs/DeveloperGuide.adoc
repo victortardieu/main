@@ -780,6 +780,36 @@ See this https://github.com/se-edu/addressbook-level4/pull/599[PR] for the step-
 [appendix]
 == Product Scope
 
+* Feature Contribution *
+
+Victor:
+
+    Major Enhancement:
+
+       An important feature for a librarian or a student is to be able to find a book easily. In order to do that, the
+       books need to be ordered in a logical way. The first way that comes to mind is order by title. This will mean
+       that books starting with A will print out first and the ones starting with Z will print out last.
+       The second part of this enhancement is about print out the books that meet specific requirements. In other words,
+       the librarian/student should be able to only see the books that are about a specific subject, that have a word in
+       their title or that are from a given author.
+
+       The list command will therefore be able to make the difference between list without argument after and list with
+       argument.
+       Example 1: Input: list
+                  Output: Gone with the wind
+                          Harry Potter 1
+                          Harry Potter 2
+                          Life of Steve Jobs
+
+       Example 2: Input: list JK Rowling
+                  Output: Harry Potter 1
+                          Harry Potter 2
+
+    Minor Enhancement:
+
+        The tags should have a different color each time they are created. We need to make sure that the colors don't
+        repeat themselves.
+
 *Target user profile*:
 
 * has a need to manage a significant number of contacts

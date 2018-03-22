@@ -10,9 +10,9 @@ import seedu.address.model.book.Book;
 /**
  * An UI component that displays information of a {@code Book}.
  */
-public class PersonCard extends UiPart<Region> {
+public class BookCard extends UiPart<Region> {
 
-    private static final String FXML = "PersonListCard.fxml";
+    private static final String FXML = "BookListCard.fxml";
 
     /**
      * Note: Certain keywords such as "location" and "resources" are reserved keywords in JavaFX.
@@ -39,7 +39,7 @@ public class PersonCard extends UiPart<Region> {
     @FXML
     private FlowPane tags;
 
-    public PersonCard(Book book, int displayedIndex) {
+    public BookCard(Book book, int displayedIndex) {
         super(FXML);
         this.book = book;
         id.setText(displayedIndex + ". ");
@@ -58,12 +58,12 @@ public class PersonCard extends UiPart<Region> {
         }
 
         // instanceof handles nulls
-        if (!(other instanceof PersonCard)) {
+        if (!(other instanceof BookCard)) {
             return false;
         }
 
         // state check
-        PersonCard card = (PersonCard) other;
+        BookCard card = (BookCard) other;
         return id.getText().equals(card.id.getText())
                 && book.equals(card.book);
     }

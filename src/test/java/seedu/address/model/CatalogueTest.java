@@ -1,8 +1,8 @@
 package seedu.address.model;
 
 import static org.junit.Assert.assertEquals;
-import static seedu.address.testutil.TypicalPersons.ALICE;
-import static seedu.address.testutil.TypicalPersons.getTypicalCatalogue;
+import static seedu.address.testutil.TypicalBooks.ALICE;
+import static seedu.address.testutil.TypicalBooks.getTypicalCatalogue;
 
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -28,7 +28,7 @@ public class CatalogueTest {
 
     @Test
     public void constructor() {
-        assertEquals(Collections.emptyList(), catalogue.getPersonList());
+        assertEquals(Collections.emptyList(), catalogue.getBookList());
         assertEquals(Collections.emptyList(), catalogue.getTagList());
     }
 
@@ -46,7 +46,7 @@ public class CatalogueTest {
     }
 
     @Test
-    public void resetData_withDuplicatePersons_throwsAssertionError() {
+    public void resetData_withDuplicateBooks_throwsAssertionError() {
         // Repeat ALICE twice
         List<Book> newBooks = Arrays.asList(ALICE, ALICE);
         List<Tag> newTags = new ArrayList<>(ALICE.getTags());
@@ -57,9 +57,9 @@ public class CatalogueTest {
     }
 
     @Test
-    public void getPersonList_modifyList_throwsUnsupportedOperationException() {
+    public void getBookList_modifyList_throwsUnsupportedOperationException() {
         thrown.expect(UnsupportedOperationException.class);
-        catalogue.getPersonList().remove(0);
+        catalogue.getBookList().remove(0);
     }
 
     @Test
@@ -81,7 +81,7 @@ public class CatalogueTest {
         }
 
         @Override
-        public ObservableList<Book> getPersonList() {
+        public ObservableList<Book> getBookList() {
             return books;
         }
 

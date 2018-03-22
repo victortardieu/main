@@ -21,8 +21,8 @@ import seedu.address.model.Catalogue;
 import seedu.address.model.Model;
 import seedu.address.model.book.Book;
 import seedu.address.model.book.NameContainsKeywordsPredicate;
-import seedu.address.model.book.exceptions.PersonNotFoundException;
-import seedu.address.testutil.EditPersonDescriptorBuilder;
+import seedu.address.model.book.exceptions.BookNotFoundException;
+import seedu.address.testutil.EditBookDescriptorBuilder;
 
 /**
  * Contains helper methods for testing commands.
@@ -60,14 +60,14 @@ public class CommandTestUtil {
     public static final String PREAMBLE_WHITESPACE = "\t  \r  \n";
     public static final String PREAMBLE_NON_EMPTY = "NonEmptyPreamble";
 
-    public static final EditCommand.EditPersonDescriptor DESC_AMY;
-    public static final EditCommand.EditPersonDescriptor DESC_BOB;
+    public static final EditCommand.EditBookDescriptor DESC_AMY;
+    public static final EditCommand.EditBookDescriptor DESC_BOB;
 
     static {
-        DESC_AMY = new EditPersonDescriptorBuilder().withName(VALID_NAME_AMY)
+        DESC_AMY = new EditBookDescriptorBuilder().withName(VALID_NAME_AMY)
                 .withPhone(VALID_PHONE_AMY).withEmail(VALID_EMAIL_AMY).withAddress(VALID_ADDRESS_AMY)
                 .withTags(VALID_TAG_FRIEND).build();
-        DESC_BOB = new EditPersonDescriptorBuilder().withName(VALID_NAME_BOB)
+        DESC_BOB = new EditBookDescriptorBuilder().withName(VALID_NAME_BOB)
                 .withPhone(VALID_PHONE_BOB).withEmail(VALID_EMAIL_BOB).withAddress(VALID_ADDRESS_BOB)
                 .withTags(VALID_TAG_HUSBAND, VALID_TAG_FRIEND).build();
     }
@@ -98,7 +98,7 @@ public class CommandTestUtil {
         // we are unable to defensively copy the model for comparison later, so we can
         // only do so by copying its components.
         Catalogue expectedCatalogue = new Catalogue(actualModel.getCatalogue());
-        List<Book> expectedFilteredList = new ArrayList<>(actualModel.getFilteredPersonList());
+        List<Book> expectedFilteredList = new ArrayList<>(actualModel.getFilteredBookList());
 
         try {
             command.execute();
@@ -106,7 +106,7 @@ public class CommandTestUtil {
         } catch (CommandException e) {
             assertEquals(expectedMessage, e.getMessage());
             assertEquals(expectedCatalogue, actualModel.getCatalogue());
-            assertEquals(expectedFilteredList, actualModel.getFilteredPersonList());
+            assertEquals(expectedFilteredList, actualModel.getFilteredBookList());
         }
     }
 
@@ -114,24 +114,24 @@ public class CommandTestUtil {
      * Updates {@code model}'s filtered list to show only the book at the given {@code targetIndex} in the
      * {@code model}'s catalogue.
      */
-    public static void showPersonAtIndex(Model model, Index targetIndex) {
-        assertTrue(targetIndex.getZeroBased() < model.getFilteredPersonList().size());
+    public static void showBookAtIndex(Model model, Index targetIndex) {
+        assertTrue(targetIndex.getZeroBased() < model.getFilteredBookList().size());
 
-        Book book = model.getFilteredPersonList().get(targetIndex.getZeroBased());
+        Book book = model.getFilteredBookList().get(targetIndex.getZeroBased());
         final String[] splitName = book.getName().fullName.split("\\s+");
-        model.updateFilteredPersonList(new NameContainsKeywordsPredicate(Arrays.asList(splitName[0])));
+        model.updateFilteredBookList(new NameContainsKeywordsPredicate(Arrays.asList(splitName[0])));
 
-        assertEquals(1, model.getFilteredPersonList().size());
+        assertEquals(1, model.getFilteredBookList().size());
     }
 
     /**
      * Deletes the first book in {@code model}'s filtered list from {@code model}'s catalogue.
      */
-    public static void deleteFirstPerson(Model model) {
-        Book firstBook = model.getFilteredPersonList().get(0);
+    public static void deleteFirstBook(Model model) {
+        Book firstBook = model.getFilteredBookList().get(0);
         try {
-            model.deletePerson(firstBook);
-        } catch (PersonNotFoundException pnfe) {
+            model.deleteBook(firstBook);
+        } catch (BookNotFoundException pnfe) {
             throw new AssertionError("Book in filtered list must exist in model.", pnfe);
         }
     }

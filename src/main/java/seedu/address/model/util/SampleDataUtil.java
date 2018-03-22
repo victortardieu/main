@@ -10,14 +10,14 @@ import seedu.address.model.book.Book;
 import seedu.address.model.book.Email;
 import seedu.address.model.book.Name;
 import seedu.address.model.book.Phone;
-import seedu.address.model.book.exceptions.DuplicatePersonException;
+import seedu.address.model.book.exceptions.DuplicateBookException;
 import seedu.address.model.tag.Tag;
 
 /**
  * Contains utility methods for populating {@code Catalogue} with sample data.
  */
 public class SampleDataUtil {
-    public static Book[] getSamplePersons() {
+    public static Book[] getSampleBooks() {
         return new Book[] {
             new Book(new Name("Alex Yeoh"), new Phone("87438807"), new Email("alexyeoh@example.com"),
                 new Address("Blk 30 Geylang Street 29, #06-40"),
@@ -43,12 +43,12 @@ public class SampleDataUtil {
     public static ReadOnlyCatalogue getSampleCatalogue() {
         try {
             Catalogue sampleAb = new Catalogue();
-            for (Book sampleBook : getSamplePersons()) {
-                sampleAb.addPerson(sampleBook);
+            for (Book sampleBook : getSampleBooks()) {
+                sampleAb.addBook(sampleBook);
             }
             return sampleAb;
-        } catch (DuplicatePersonException e) {
-            throw new AssertionError("sample data cannot contain duplicate persons", e);
+        } catch (DuplicateBookException e) {
+            throw new AssertionError("sample data cannot contain duplicate books", e);
         }
     }
 

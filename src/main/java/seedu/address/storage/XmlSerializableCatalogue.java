@@ -18,7 +18,7 @@ import seedu.address.model.ReadOnlyCatalogue;
 public class XmlSerializableCatalogue {
 
     @XmlElement
-    private List<XmlAdaptedPerson> persons;
+    private List<XmlAdaptedBook> books;
     @XmlElement
     private List<XmlAdaptedTag> tags;
 
@@ -27,7 +27,7 @@ public class XmlSerializableCatalogue {
      * This empty constructor is required for marshalling.
      */
     public XmlSerializableCatalogue() {
-        persons = new ArrayList<>();
+        books = new ArrayList<>();
         tags = new ArrayList<>();
     }
 
@@ -36,7 +36,7 @@ public class XmlSerializableCatalogue {
      */
     public XmlSerializableCatalogue(ReadOnlyCatalogue src) {
         this();
-        persons.addAll(src.getPersonList().stream().map(XmlAdaptedPerson::new).collect(Collectors.toList()));
+        books.addAll(src.getBookList().stream().map(XmlAdaptedBook::new).collect(Collectors.toList()));
         tags.addAll(src.getTagList().stream().map(XmlAdaptedTag::new).collect(Collectors.toList()));
     }
 
@@ -44,15 +44,15 @@ public class XmlSerializableCatalogue {
      * Converts this catalogue into the model's {@code Catalogue} object.
      *
      * @throws IllegalValueException if there were any data constraints violated or duplicates in the
-     * {@code XmlAdaptedPerson} or {@code XmlAdaptedTag}.
+     * {@code XmlAdaptedBook} or {@code XmlAdaptedTag}.
      */
     public Catalogue toModelType() throws IllegalValueException {
         Catalogue catalogue = new Catalogue();
         for (XmlAdaptedTag t : tags) {
             catalogue.addTag(t.toModelType());
         }
-        for (XmlAdaptedPerson p : persons) {
-            catalogue.addPerson(p.toModelType());
+        for (XmlAdaptedBook p : books) {
+            catalogue.addBook(p.toModelType());
         }
         return catalogue;
     }
@@ -68,6 +68,6 @@ public class XmlSerializableCatalogue {
         }
 
         XmlSerializableCatalogue otherAb = (XmlSerializableCatalogue) other;
-        return persons.equals(otherAb.persons) && tags.equals(otherAb.tags);
+        return books.equals(otherAb.books) && tags.equals(otherAb.tags);
     }
 }

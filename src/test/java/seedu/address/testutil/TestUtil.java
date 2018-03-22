@@ -35,20 +35,20 @@ public class TestUtil {
      * Returns the middle index of the book in the {@code model}'s book list.
      */
     public static Index getMidIndex(Model model) {
-        return Index.fromOneBased(model.getCatalogue().getPersonList().size() / 2);
+        return Index.fromOneBased(model.getCatalogue().getBookList().size() / 2);
     }
 
     /**
      * Returns the last index of the book in the {@code model}'s book list.
      */
     public static Index getLastIndex(Model model) {
-        return Index.fromOneBased(model.getCatalogue().getPersonList().size());
+        return Index.fromOneBased(model.getCatalogue().getBookList().size());
     }
 
     /**
      * Returns the book in the {@code model}'s book list at {@code index}.
      */
-    public static Book getPerson(Model model, Index index) {
-        return model.getCatalogue().getPersonList().get(index.getZeroBased());
+    public static Book getBook(Model model, Index index) {
+        return model.getCatalogue().getBookList().get(index.getZeroBased());
     }
 }

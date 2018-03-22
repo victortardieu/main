@@ -13,8 +13,8 @@ import seedu.address.commons.core.ComponentManager;
 import seedu.address.commons.core.LogsCenter;
 import seedu.address.commons.events.model.CatalogueChangedEvent;
 import seedu.address.model.book.Book;
-import seedu.address.model.book.exceptions.DuplicatePersonException;
-import seedu.address.model.book.exceptions.PersonNotFoundException;
+import seedu.address.model.book.exceptions.DuplicateBookException;
+import seedu.address.model.book.exceptions.BookNotFoundException;
 
 /**
  * Represents the in-memory model of the catalogue data.
@@ -36,7 +36,7 @@ public class ModelManager extends ComponentManager implements Model {
         logger.fine("Initializing with catalogue: " + catalogue + " and user prefs " + userPrefs);
 
         this.catalogue = new Catalogue(catalogue);
-        filteredBooks = new FilteredList<>(this.catalogue.getPersonList());
+        filteredBooks = new FilteredList<>(this.catalogue.getBookList());
     }
 
     public ModelManager() {
@@ -60,24 +60,24 @@ public class ModelManager extends ComponentManager implements Model {
     }
 
     @Override
-    public synchronized void deletePerson(Book target) throws PersonNotFoundException {
-        catalogue.removePerson(target);
+    public synchronized void deleteBook(Book target) throws BookNotFoundException {
+        catalogue.removeBook(target);
         indicateCatalogueChanged();
     }
 
     @Override
-    public synchronized void addPerson(Book book) throws DuplicatePersonException {
-        catalogue.addPerson(book);
-        updateFilteredPersonList(PREDICATE_SHOW_ALL_PERSONS);
+    public synchronized void addBook(Book book) throws DuplicateBookException {
+        catalogue.addBook(book);
+        updateFilteredBookList(PREDICATE_SHOW_ALL_BOOKS);
         indicateCatalogueChanged();
     }
 
     @Override
-    public void updatePerson(Book target, Book editedBook)
-            throws DuplicatePersonException, PersonNotFoundException {
+    public void updateBook(Book target, Book editedBook)
+            throws DuplicateBookException, BookNotFoundException {
         requireAllNonNull(target, editedBook);
 
-        catalogue.updatePerson(target, editedBook);
+        catalogue.updateBook(target, editedBook);
         indicateCatalogueChanged();
     }
 
@@ -88,12 +88,12 @@ public class ModelManager extends ComponentManager implements Model {
      * {@code catalogue}
      */
     @Override
-    public ObservableList<Book> getFilteredPersonList() {
+    public ObservableList<Book> getFilteredBookList() {
         return FXCollections.unmodifiableObservableList(filteredBooks);
     }
 
     @Override
-    public void updateFilteredPersonList(Predicate<Book> predicate) {
+    public void updateFilteredBookList(Predicate<Book> predicate) {
         requireNonNull(predicate);
         filteredBooks.setPredicate(predicate);
     }

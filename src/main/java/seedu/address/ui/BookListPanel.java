@@ -14,50 +14,50 @@ import javafx.scene.control.ListView;
 import javafx.scene.layout.Region;
 import seedu.address.commons.core.LogsCenter;
 import seedu.address.commons.events.ui.JumpToListRequestEvent;
-import seedu.address.commons.events.ui.PersonPanelSelectionChangedEvent;
+import seedu.address.commons.events.ui.BookPanelSelectionChangedEvent;
 import seedu.address.model.book.Book;
 
 /**
- * Panel containing the list of persons.
+ * Panel containing the list of books.
  */
-public class PersonListPanel extends UiPart<Region> {
-    private static final String FXML = "PersonListPanel.fxml";
-    private final Logger logger = LogsCenter.getLogger(PersonListPanel.class);
+public class BookListPanel extends UiPart<Region> {
+    private static final String FXML = "BookListPanel.fxml";
+    private final Logger logger = LogsCenter.getLogger(BookListPanel.class);
 
     @FXML
-    private ListView<PersonCard> personListView;
+    private ListView<BookCard> bookListView;
 
-    public PersonListPanel(ObservableList<Book> bookList) {
+    public BookListPanel(ObservableList<Book> bookList) {
         super(FXML);
         setConnections(bookList);
         registerAsAnEventHandler(this);
     }
 
     private void setConnections(ObservableList<Book> bookList) {
-        ObservableList<PersonCard> mappedList = EasyBind.map(
-                bookList, (person) -> new PersonCard(person, bookList.indexOf(person) + 1));
-        personListView.setItems(mappedList);
-        personListView.setCellFactory(listView -> new PersonListViewCell());
+        ObservableList<BookCard> mappedList = EasyBind.map(
+                bookList, (book) -> new BookCard(book, bookList.indexOf(book) + 1));
+        bookListView.setItems(mappedList);
+        bookListView.setCellFactory(listView -> new BookListViewCell());
         setEventHandlerForSelectionChangeEvent();
     }
 
     private void setEventHandlerForSelectionChangeEvent() {
-        personListView.getSelectionModel().selectedItemProperty()
+        bookListView.getSelectionModel().selectedItemProperty()
                 .addListener((observable, oldValue, newValue) -> {
                     if (newValue != null) {
                         logger.fine("Selection in book list panel changed to : '" + newValue + "'");
-                        raise(new PersonPanelSelectionChangedEvent(newValue));
+                        raise(new BookPanelSelectionChangedEvent(newValue));
                     }
                 });
     }
 
     /**
-     * Scrolls to the {@code PersonCard} at the {@code index} and selects it.
+     * Scrolls to the {@code BookCard} at the {@code index} and selects it.
      */
     private void scrollTo(int index) {
         Platform.runLater(() -> {
-            personListView.scrollTo(index);
-            personListView.getSelectionModel().clearAndSelect(index);
+            bookListView.scrollTo(index);
+            bookListView.getSelectionModel().clearAndSelect(index);
         });
     }
 
@@ -68,19 +68,19 @@ public class PersonListPanel extends UiPart<Region> {
     }
 
     /**
-     * Custom {@code ListCell} that displays the graphics of a {@code PersonCard}.
+     * Custom {@code ListCell} that displays the graphics of a {@code BookCard}.
      */
-    class PersonListViewCell extends ListCell<PersonCard> {
+    class BookListViewCell extends ListCell<BookCard> {
 
         @Override
-        protected void updateItem(PersonCard person, boolean empty) {
-            super.updateItem(person, empty);
+        protected void updateItem(BookCard book, boolean empty) {
+            super.updateItem(book, empty);
 
-            if (empty || person == null) {
+            if (empty || book == null) {
                 setGraphic(null);
                 setText(null);
             } else {
-                setGraphic(person.getRoot());
+                setGraphic(book.getRoot());
             }
         }
     }

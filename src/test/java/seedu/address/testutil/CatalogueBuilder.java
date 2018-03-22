@@ -3,13 +3,13 @@ package seedu.address.testutil;
 import seedu.address.commons.exceptions.IllegalValueException;
 import seedu.address.model.Catalogue;
 import seedu.address.model.book.Book;
-import seedu.address.model.book.exceptions.DuplicatePersonException;
+import seedu.address.model.book.exceptions.DuplicateBookException;
 import seedu.address.model.tag.Tag;
 
 /**
  * A utility class to help with building Catalogue objects.
  * Example usage: <br>
- *     {@code Catalogue ab = new CatalogueBuilder().withPerson("John", "Doe").withTag("Friend").build();}
+ *     {@code Catalogue ab = new CatalogueBuilder().withBook("John", "Doe").withTag("Friend").build();}
  */
 public class CatalogueBuilder {
 
@@ -26,10 +26,10 @@ public class CatalogueBuilder {
     /**
      * Adds a new {@code Book} to the {@code Catalogue} that we are building.
      */
-    public CatalogueBuilder withPerson(Book book) {
+    public CatalogueBuilder withBook(Book book) {
         try {
-            catalogue.addPerson(book);
-        } catch (DuplicatePersonException dpe) {
+            catalogue.addBook(book);
+        } catch (DuplicateBookException dpe) {
             throw new IllegalArgumentException("book is expected to be unique.");
         }
         return this;

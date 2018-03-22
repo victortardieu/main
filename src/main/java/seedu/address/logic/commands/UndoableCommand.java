@@ -2,7 +2,7 @@ package seedu.address.logic.commands;
 
 import static java.util.Objects.requireNonNull;
 import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
-import static seedu.address.model.Model.PREDICATE_SHOW_ALL_PERSONS;
+import static seedu.address.model.Model.PREDICATE_SHOW_ALL_BOOKS;
 
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Catalogue;
@@ -33,17 +33,17 @@ public abstract class UndoableCommand extends Command {
     /**
      * Reverts the Catalogue to the state before this command
      * was executed and updates the filtered book list to
-     * show all persons.
+     * show all books.
      */
     protected final void undo() {
         requireAllNonNull(model, previousCatalogue);
         model.resetData(previousCatalogue);
-        model.updateFilteredPersonList(PREDICATE_SHOW_ALL_PERSONS);
+        model.updateFilteredBookList(PREDICATE_SHOW_ALL_BOOKS);
     }
 
     /**
      * Executes the command and updates the filtered book
-     * list to show all persons.
+     * list to show all books.
      */
     protected final void redo() {
         requireNonNull(model);
@@ -53,7 +53,7 @@ public abstract class UndoableCommand extends Command {
             throw new AssertionError("The command has been successfully executed previously; "
                     + "it should not fail now");
         }
-        model.updateFilteredPersonList(PREDICATE_SHOW_ALL_PERSONS);
+        model.updateFilteredBookList(PREDICATE_SHOW_ALL_BOOKS);
     }
 
     @Override

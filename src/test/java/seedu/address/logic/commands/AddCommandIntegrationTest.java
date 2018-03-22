@@ -2,7 +2,7 @@ package seedu.address.logic.commands;
 
 import static seedu.address.logic.commands.CommandTestUtil.assertCommandFailure;
 import static seedu.address.logic.commands.CommandTestUtil.assertCommandSuccess;
-import static seedu.address.testutil.TypicalPersons.getTypicalCatalogue;
+import static seedu.address.testutil.TypicalBooks.getTypicalCatalogue;
 
 import org.junit.Before;
 import org.junit.Test;
@@ -13,7 +13,7 @@ import seedu.address.model.Model;
 import seedu.address.model.ModelManager;
 import seedu.address.model.UserPrefs;
 import seedu.address.model.book.Book;
-import seedu.address.testutil.PersonBuilder;
+import seedu.address.testutil.BookBuilder;
 
 /**
  * Contains integration tests (interaction with the Model) for {@code AddCommand}.
@@ -28,20 +28,20 @@ public class AddCommandIntegrationTest {
     }
 
     @Test
-    public void execute_newPerson_success() throws Exception {
-        Book validBook = new PersonBuilder().build();
+    public void execute_newBook_success() throws Exception {
+        Book validBook = new BookBuilder().build();
 
         Model expectedModel = new ModelManager(model.getCatalogue(), new UserPrefs());
-        expectedModel.addPerson(validBook);
+        expectedModel.addBook(validBook);
 
         assertCommandSuccess(prepareCommand(validBook, model), model,
                 String.format(AddCommand.MESSAGE_SUCCESS, validBook), expectedModel);
     }
 
     @Test
-    public void execute_duplicatePerson_throwsCommandException() {
-        Book bookInList = model.getCatalogue().getPersonList().get(0);
-        assertCommandFailure(prepareCommand(bookInList, model), model, AddCommand.MESSAGE_DUPLICATE_PERSON);
+    public void execute_duplicateBook_throwsCommandException() {
+        Book bookInList = model.getCatalogue().getBookList().get(0);
+        assertCommandFailure(prepareCommand(bookInList, model), model, AddCommand.MESSAGE_DUPLICATE_BOOK);
     }
 
     /**

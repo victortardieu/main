@@ -12,30 +12,30 @@ import seedu.address.commons.exceptions.IllegalValueException;
 import seedu.address.commons.util.FileUtil;
 import seedu.address.commons.util.XmlUtil;
 import seedu.address.model.Catalogue;
-import seedu.address.testutil.TypicalPersons;
+import seedu.address.testutil.TypicalBooks;
 
 public class XmlSerializableCatalogueTest {
 
     private static final String TEST_DATA_FOLDER = FileUtil.getPath("src/test/data/XmlSerializableCatalogueTest/");
-    private static final File TYPICAL_PERSONS_FILE = new File(TEST_DATA_FOLDER + "typicalPersonsCatalogue.xml");
-    private static final File INVALID_PERSON_FILE = new File(TEST_DATA_FOLDER + "invalidPersonCatalogue.xml");
+    private static final File TYPICAL_BOOKS_FILE = new File(TEST_DATA_FOLDER + "typicalBooksCatalogue.xml");
+    private static final File INVALID_BOOK_FILE = new File(TEST_DATA_FOLDER + "invalidBookCatalogue.xml");
     private static final File INVALID_TAG_FILE = new File(TEST_DATA_FOLDER + "invalidTagCatalogue.xml");
 
     @Rule
     public ExpectedException thrown = ExpectedException.none();
 
     @Test
-    public void toModelType_typicalPersonsFile_success() throws Exception {
-        XmlSerializableCatalogue dataFromFile = XmlUtil.getDataFromFile(TYPICAL_PERSONS_FILE,
+    public void toModelType_typicalBooksFile_success() throws Exception {
+        XmlSerializableCatalogue dataFromFile = XmlUtil.getDataFromFile(TYPICAL_BOOKS_FILE,
                 XmlSerializableCatalogue.class);
         Catalogue catalogueFromFile = dataFromFile.toModelType();
-        Catalogue typicalPersonsCatalogue = TypicalPersons.getTypicalCatalogue();
-        assertEquals(catalogueFromFile, typicalPersonsCatalogue);
+        Catalogue typicalBooksCatalogue = TypicalBooks.getTypicalCatalogue();
+        assertEquals(catalogueFromFile, typicalBooksCatalogue);
     }
 
     @Test
-    public void toModelType_invalidPersonFile_throwsIllegalValueException() throws Exception {
-        XmlSerializableCatalogue dataFromFile = XmlUtil.getDataFromFile(INVALID_PERSON_FILE,
+    public void toModelType_invalidBookFile_throwsIllegalValueException() throws Exception {
+        XmlSerializableCatalogue dataFromFile = XmlUtil.getDataFromFile(INVALID_BOOK_FILE,
                 XmlSerializableCatalogue.class);
         thrown.expect(IllegalValueException.class);
         dataFromFile.toModelType();

@@ -9,7 +9,7 @@ import seedu.address.commons.core.Messages;
 import seedu.address.commons.core.index.Index;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.book.Book;
-import seedu.address.model.book.exceptions.PersonNotFoundException;
+import seedu.address.model.book.exceptions.BookNotFoundException;
 
 /**
  * Deletes a book identified using it's last displayed index from the catalogue.
@@ -23,7 +23,7 @@ public class DeleteCommand extends UndoableCommand {
             + "Parameters: INDEX (must be a positive integer)\n"
             + "Example: " + COMMAND_WORD + " 1";
 
-    public static final String MESSAGE_DELETE_PERSON_SUCCESS = "Deleted Book: %1$s";
+    public static final String MESSAGE_DELETE_BOOK_SUCCESS = "Deleted Book: %1$s";
 
     private final Index targetIndex;
 
@@ -38,20 +38,20 @@ public class DeleteCommand extends UndoableCommand {
     public CommandResult executeUndoableCommand() {
         requireNonNull(bookToDelete);
         try {
-            model.deletePerson(bookToDelete);
-        } catch (PersonNotFoundException pnfe) {
+            model.deleteBook(bookToDelete);
+        } catch (BookNotFoundException pnfe) {
             throw new AssertionError("The target book cannot be missing");
         }
 
-        return new CommandResult(String.format(MESSAGE_DELETE_PERSON_SUCCESS, bookToDelete));
+        return new CommandResult(String.format(MESSAGE_DELETE_BOOK_SUCCESS, bookToDelete));
     }
 
     @Override
     protected void preprocessUndoableCommand() throws CommandException {
-        List<Book> lastShownList = model.getFilteredPersonList();
+        List<Book> lastShownList = model.getFilteredBookList();
 
         if (targetIndex.getZeroBased() >= lastShownList.size()) {
-            throw new CommandException(Messages.MESSAGE_INVALID_PERSON_DISPLAYED_INDEX);
+            throw new CommandException(Messages.MESSAGE_INVALID_BOOK_DISPLAYED_INDEX);
         }
 
         bookToDelete = lastShownList.get(targetIndex.getZeroBased());

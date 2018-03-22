@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <!-- Catalogue save file which contains the same Book values as in
-{@code TypicalPersons#getTypicalCatalogue()}-->
+{@code TypicalBooks#getTypicalCatalogue()}-->
 <catalogue>
     <books>
         <name>Alice Pauline</name>

@@ -45,7 +45,7 @@ public class SampleDataTest extends CatalogueSystemTest {
 
     @Test
     public void catalogue_dataFileDoesNotExist_loadSampleData() {
-        Book[] expectedList = SampleDataUtil.getSamplePersons();
-        assertListMatching(getPersonListPanel(), expectedList);
+        Book[] expectedList = SampleDataUtil.getSampleBooks();
+        assertListMatching(getBookListPanel(), expectedList);
     }
 }

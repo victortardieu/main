@@ -22,9 +22,9 @@ import seedu.address.model.Catalogue;
 import seedu.address.model.Model;
 import seedu.address.model.ReadOnlyCatalogue;
 import seedu.address.model.book.Book;
-import seedu.address.model.book.exceptions.DuplicatePersonException;
-import seedu.address.model.book.exceptions.PersonNotFoundException;
-import seedu.address.testutil.PersonBuilder;
+import seedu.address.model.book.exceptions.DuplicateBookException;
+import seedu.address.model.book.exceptions.BookNotFoundException;
+import seedu.address.testutil.BookBuilder;
 
 public class AddCommandTest {
 
@@ -32,37 +32,37 @@ public class AddCommandTest {
     public ExpectedException thrown = ExpectedException.none();
 
     @Test
-    public void constructor_nullPerson_throwsNullPointerException() {
+    public void constructor_nullBook_throwsNullPointerException() {
         thrown.expect(NullPointerException.class);
         new AddCommand(null);
     }
 
     @Test
-    public void execute_personAcceptedByModel_addSuccessful() throws Exception {
-        ModelStubAcceptingPersonAdded modelStub = new ModelStubAcceptingPersonAdded();
-        Book validBook = new PersonBuilder().build();
+    public void execute_bookAcceptedByModel_addSuccessful() throws Exception {
+        ModelStubAcceptingBookAdded modelStub = new ModelStubAcceptingBookAdded();
+        Book validBook = new BookBuilder().build();
 
-        CommandResult commandResult = getAddCommandForPerson(validBook, modelStub).execute();
+        CommandResult commandResult = getAddCommandForBook(validBook, modelStub).execute();
 
         assertEquals(String.format(AddCommand.MESSAGE_SUCCESS, validBook), commandResult.feedbackToUser);
-        assertEquals(Arrays.asList(validBook), modelStub.personsAdded);
+        assertEquals(Arrays.asList(validBook), modelStub.booksAdded);
     }
 
     @Test
-    public void execute_duplicatePerson_throwsCommandException() throws Exception {
-        ModelStub modelStub = new ModelStubThrowingDuplicatePersonException();
-        Book validBook = new PersonBuilder().build();
+    public void execute_duplicateBook_throwsCommandException() throws Exception {
+        ModelStub modelStub = new ModelStubThrowingDuplicateBookException();
+        Book validBook = new BookBuilder().build();
 
         thrown.expect(CommandException.class);
-        thrown.expectMessage(AddCommand.MESSAGE_DUPLICATE_PERSON);
+        thrown.expectMessage(AddCommand.MESSAGE_DUPLICATE_BOOK);
 
-        getAddCommandForPerson(validBook, modelStub).execute();
+        getAddCommandForBook(validBook, modelStub).execute();
     }
 
     @Test
     public void equals() {
-        Book alice = new PersonBuilder().withName("Alice").build();
-        Book bob = new PersonBuilder().withName("Bob").build();
+        Book alice = new BookBuilder().withName("Alice").build();
+        Book bob = new BookBuilder().withName("Bob").build();
         AddCommand addAliceCommand = new AddCommand(alice);
         AddCommand addBobCommand = new AddCommand(bob);
 
@@ -86,7 +86,7 @@ public class AddCommandTest {
     /**
      * Generates a new AddCommand with the details of the given book.
      */
-    private AddCommand getAddCommandForPerson(Book book, Model model) {
+    private AddCommand getAddCommandForBook(Book book, Model model) {
         AddCommand command = new AddCommand(book);
         command.setData(model, new CommandHistory(), new UndoRedoStack());
         return command;
@@ -97,7 +97,7 @@ public class AddCommandTest {
      */
     private class ModelStub implements Model {
         @Override
-        public void addPerson(Book book) throws DuplicatePersonException {
+        public void addBook(Book book) throws DuplicateBookException {
             fail("This method should not be called.");
         }
 
@@ -113,35 +113,35 @@ public class AddCommandTest {
         }
 
         @Override
-        public void deletePerson(Book target) throws PersonNotFoundException {
+        public void deleteBook(Book target) throws BookNotFoundException {
             fail("This method should not be called.");
         }
 
         @Override
-        public void updatePerson(Book target, Book editedBook)
-                throws DuplicatePersonException {
+        public void updateBook(Book target, Book editedBook)
+                throws DuplicateBookException {
             fail("This method should not be called.");
         }
 
         @Override
-        public ObservableList<Book> getFilteredPersonList() {
+        public ObservableList<Book> getFilteredBookList() {
             fail("This method should not be called.");
             return null;
         }
 
         @Override
-        public void updateFilteredPersonList(Predicate<Book> predicate) {
+        public void updateFilteredBookList(Predicate<Book> predicate) {
             fail("This method should not be called.");
         }
     }
 
     /**
-     * A Model stub that always throw a DuplicatePersonException when trying to add a book.
+     * A Model stub that always throw a DuplicateBookException when trying to add a book.
      */
-    private class ModelStubThrowingDuplicatePersonException extends ModelStub {
+    private class ModelStubThrowingDuplicateBookException extends ModelStub {
         @Override
-        public void addPerson(Book book) throws DuplicatePersonException {
-            throw new DuplicatePersonException();
+        public void addBook(Book book) throws DuplicateBookException {
+            throw new DuplicateBookException();
         }
 
         @Override
@@ -153,13 +153,13 @@ public class AddCommandTest {
     /**
      * A Model stub that always accept the book being added.
      */
-    private class ModelStubAcceptingPersonAdded extends ModelStub {
-        final ArrayList<Book> personsAdded = new ArrayList<>();
+    private class ModelStubAcceptingBookAdded extends ModelStub {
+        final ArrayList<Book> booksAdded = new ArrayList<>();
 
         @Override
-        public void addPerson(Book book) throws DuplicatePersonException {
+        public void addBook(Book book) throws DuplicateBookException {
             requireNonNull(book);
-            personsAdded.add(book);
+            booksAdded.add(book);
         }
 
         @Override

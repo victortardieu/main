@@ -6,7 +6,7 @@ import static seedu.address.logic.parser.CliSyntax.PREFIX_EMAIL;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_PHONE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_TAG;
-import static seedu.address.model.Model.PREDICATE_SHOW_ALL_PERSONS;
+import static seedu.address.model.Model.PREDICATE_SHOW_ALL_BOOKS;
 
 import java.util.Collections;
 import java.util.HashSet;
@@ -24,8 +24,8 @@ import seedu.address.model.book.Book;
 import seedu.address.model.book.Email;
 import seedu.address.model.book.Name;
 import seedu.address.model.book.Phone;
-import seedu.address.model.book.exceptions.DuplicatePersonException;
-import seedu.address.model.book.exceptions.PersonNotFoundException;
+import seedu.address.model.book.exceptions.DuplicateBookException;
+import seedu.address.model.book.exceptions.BookNotFoundException;
 import seedu.address.model.tag.Tag;
 
 /**
@@ -48,65 +48,65 @@ public class EditCommand extends UndoableCommand {
             + PREFIX_PHONE + "91234567 "
             + PREFIX_EMAIL + "johndoe@example.com";
 
-    public static final String MESSAGE_EDIT_PERSON_SUCCESS = "Edited Book: %1$s";
+    public static final String MESSAGE_EDIT_BOOK_SUCCESS = "Edited Book: %1$s";
     public static final String MESSAGE_NOT_EDITED = "At least one field to edit must be provided.";
-    public static final String MESSAGE_DUPLICATE_PERSON = "This book already exists in the catalogue.";
+    public static final String MESSAGE_DUPLICATE_BOOK = "This book already exists in the catalogue.";
 
     private final Index index;
-    private final EditPersonDescriptor editPersonDescriptor;
+    private final EditBookDescriptor editBookDescriptor;
 
     private Book bookToEdit;
     private Book editedBook;
 
     /**
      * @param index of the book in the filtered book list to edit
-     * @param editPersonDescriptor details to edit the book with
+     * @param editBookDescriptor details to edit the book with
      */
-    public EditCommand(Index index, EditPersonDescriptor editPersonDescriptor) {
+    public EditCommand(Index index, EditBookDescriptor editBookDescriptor) {
         requireNonNull(index);
-        requireNonNull(editPersonDescriptor);
+        requireNonNull(editBookDescriptor);
 
         this.index = index;
-        this.editPersonDescriptor = new EditPersonDescriptor(editPersonDescriptor);
+        this.editBookDescriptor = new EditBookDescriptor(editBookDescriptor);
     }
 
     @Override
     public CommandResult executeUndoableCommand() throws CommandException {
         try {
-            model.updatePerson(bookToEdit, editedBook);
-        } catch (DuplicatePersonException dpe) {
-            throw new CommandException(MESSAGE_DUPLICATE_PERSON);
-        } catch (PersonNotFoundException pnfe) {
+            model.updateBook(bookToEdit, editedBook);
+        } catch (DuplicateBookException dpe) {
+            throw new CommandException(MESSAGE_DUPLICATE_BOOK);
+        } catch (BookNotFoundException pnfe) {
             throw new AssertionError("The target book cannot be missing");
         }
-        model.updateFilteredPersonList(PREDICATE_SHOW_ALL_PERSONS);
-        return new CommandResult(String.format(MESSAGE_EDIT_PERSON_SUCCESS, editedBook));
+        model.updateFilteredBookList(PREDICATE_SHOW_ALL_BOOKS);
+        return new CommandResult(String.format(MESSAGE_EDIT_BOOK_SUCCESS, editedBook));
     }
 
     @Override
     protected void preprocessUndoableCommand() throws CommandException {
-        List<Book> lastShownList = model.getFilteredPersonList();
+        List<Book> lastShownList = model.getFilteredBookList();
 
         if (index.getZeroBased() >= lastShownList.size()) {
-            throw new CommandException(Messages.MESSAGE_INVALID_PERSON_DISPLAYED_INDEX);
+            throw new CommandException(Messages.MESSAGE_INVALID_BOOK_DISPLAYED_INDEX);
         }
 
         bookToEdit = lastShownList.get(index.getZeroBased());
-        editedBook = createEditedPerson(bookToEdit, editPersonDescriptor);
+        editedBook = createEditedBook(bookToEdit, editBookDescriptor);
     }
 
     /**
      * Creates and returns a {@code Book} with the details of {@code bookToEdit}
-     * edited with {@code editPersonDescriptor}.
+     * edited with {@code editBookDescriptor}.
      */
-    private static Book createEditedPerson(Book bookToEdit, EditPersonDescriptor editPersonDescriptor) {
+    private static Book createEditedBook(Book bookToEdit, EditBookDescriptor editBookDescriptor) {
         assert bookToEdit != null;
 
-        Name updatedName = editPersonDescriptor.getName().orElse(bookToEdit.getName());
-        Phone updatedPhone = editPersonDescriptor.getPhone().orElse(bookToEdit.getPhone());
-        Email updatedEmail = editPersonDescriptor.getEmail().orElse(bookToEdit.getEmail());
-        Address updatedAddress = editPersonDescriptor.getAddress().orElse(bookToEdit.getAddress());
-        Set<Tag> updatedTags = editPersonDescriptor.getTags().orElse(bookToEdit.getTags());
+        Name updatedName = editBookDescriptor.getName().orElse(bookToEdit.getName());
+        Phone updatedPhone = editBookDescriptor.getPhone().orElse(bookToEdit.getPhone());
+        Email updatedEmail = editBookDescriptor.getEmail().orElse(bookToEdit.getEmail());
+        Address updatedAddress = editBookDescriptor.getAddress().orElse(bookToEdit.getAddress());
+        Set<Tag> updatedTags = editBookDescriptor.getTags().orElse(bookToEdit.getTags());
 
         return new Book(updatedName, updatedPhone, updatedEmail, updatedAddress, updatedTags);
     }
@@ -126,7 +126,7 @@ public class EditCommand extends UndoableCommand {
         // state check
         EditCommand e = (EditCommand) other;
         return index.equals(e.index)
-                && editPersonDescriptor.equals(e.editPersonDescriptor)
+                && editBookDescriptor.equals(e.editBookDescriptor)
                 && Objects.equals(bookToEdit, e.bookToEdit);
     }
 
@@ -134,20 +134,20 @@ public class EditCommand extends UndoableCommand {
      * Stores the details to edit the book with. Each non-empty field value will replace the
      * corresponding field value of the book.
      */
-    public static class EditPersonDescriptor {
+    public static class EditBookDescriptor {
         private Name name;
         private Phone phone;
         private Email email;
         private Address address;
         private Set<Tag> tags;
 
-        public EditPersonDescriptor() {}
+        public EditBookDescriptor() {}
 
         /**
          * Copy constructor.
          * A defensive copy of {@code tags} is used internally.
          */
-        public EditPersonDescriptor(EditPersonDescriptor toCopy) {
+        public EditBookDescriptor(EditBookDescriptor toCopy) {
             setName(toCopy.name);
             setPhone(toCopy.phone);
             setEmail(toCopy.email);
@@ -219,12 +219,12 @@ public class EditCommand extends UndoableCommand {
             }
 
             // instanceof handles nulls
-            if (!(other instanceof EditPersonDescriptor)) {
+            if (!(other instanceof EditBookDescriptor)) {
                 return false;
             }
 
             // state check
-            EditPersonDescriptor e = (EditPersonDescriptor) other;
+            EditBookDescriptor e = (EditBookDescriptor) other;
 
             return getName().equals(e.getName())
                     && getPhone().equals(e.getPhone())

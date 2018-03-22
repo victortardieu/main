@@ -9,7 +9,7 @@ import static seedu.address.logic.parser.CliSyntax.PREFIX_TAG;
 
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.book.Book;
-import seedu.address.model.book.exceptions.DuplicatePersonException;
+import seedu.address.model.book.exceptions.DuplicateBookException;
 
 /**
  * Adds a book to the catalogue.
@@ -34,7 +34,7 @@ public class AddCommand extends UndoableCommand {
             + PREFIX_TAG + "owesMoney";
 
     public static final String MESSAGE_SUCCESS = "New book added: %1$s";
-    public static final String MESSAGE_DUPLICATE_PERSON = "This book already exists in the catalogue";
+    public static final String MESSAGE_DUPLICATE_BOOK = "This book already exists in the catalogue";
 
     private final Book toAdd;
 
@@ -50,10 +50,10 @@ public class AddCommand extends UndoableCommand {
     public CommandResult executeUndoableCommand() throws CommandException {
         requireNonNull(model);
         try {
-            model.addPerson(toAdd);
+            model.addBook(toAdd);
             return new CommandResult(String.format(MESSAGE_SUCCESS, toAdd));
-        } catch (DuplicatePersonException e) {
-            throw new CommandException(MESSAGE_DUPLICATE_PERSON);
+        } catch (DuplicateBookException e) {
+            throw new CommandException(MESSAGE_DUPLICATE_BOOK);
         }
 
     }

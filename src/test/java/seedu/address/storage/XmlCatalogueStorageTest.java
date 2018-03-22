@@ -2,10 +2,10 @@ package seedu.address.storage;
 
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertFalse;
-import static seedu.address.testutil.TypicalPersons.ALICE;
-import static seedu.address.testutil.TypicalPersons.HOON;
-import static seedu.address.testutil.TypicalPersons.IDA;
-import static seedu.address.testutil.TypicalPersons.getTypicalCatalogue;
+import static seedu.address.testutil.TypicalBooks.ALICE;
+import static seedu.address.testutil.TypicalBooks.HOON;
+import static seedu.address.testutil.TypicalBooks.IDA;
+import static seedu.address.testutil.TypicalBooks.getTypicalCatalogue;
 
 import java.io.IOException;
 
@@ -61,15 +61,15 @@ public class XmlCatalogueStorageTest {
     }
 
     @Test
-    public void readCatalogue_invalidPersonCatalogue_throwDataConversionException() throws Exception {
+    public void readCatalogue_invalidBookCatalogue_throwDataConversionException() throws Exception {
         thrown.expect(DataConversionException.class);
-        readCatalogue("invalidPersonCatalogue.xml");
+        readCatalogue("invalidBookCatalogue.xml");
     }
 
     @Test
-    public void readCatalogue_invalidAndValidPersonCatalogue_throwDataConversionException() throws Exception {
+    public void readCatalogue_invalidAndValidBookCatalogue_throwDataConversionException() throws Exception {
         thrown.expect(DataConversionException.class);
-        readCatalogue("invalidAndValidPersonCatalogue.xml");
+        readCatalogue("invalidAndValidBookCatalogue.xml");
     }
 
     @Test
@@ -84,14 +84,14 @@ public class XmlCatalogueStorageTest {
         assertEquals(original, new Catalogue(readBack));
 
         //Modify data, overwrite exiting file, and read back
-        original.addPerson(HOON);
-        original.removePerson(ALICE);
+        original.addBook(HOON);
+        original.removeBook(ALICE);
         xmlCatalogueStorage.saveCatalogue(original, filePath);
         readBack = xmlCatalogueStorage.readCatalogue(filePath).get();
         assertEquals(original, new Catalogue(readBack));
 
         //Save and read without specifying file path
-        original.addPerson(IDA);
+        original.addBook(IDA);
         xmlCatalogueStorage.saveCatalogue(original); //file path not specified
         readBack = xmlCatalogueStorage.readCatalogue().get(); //file path not specified
         assertEquals(original, new Catalogue(readBack));

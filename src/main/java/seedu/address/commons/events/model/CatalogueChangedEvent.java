@@ -14,6 +14,6 @@ public class CatalogueChangedEvent extends BaseEvent {
 
     @Override
     public String toString() {
-        return "number of persons " + data.getPersonList().size() + ", number of tags " + data.getTagList().size();
+        return "number of books " + data.getBookList().size() + ", number of tags " + data.getTagList().size();
     }
 }

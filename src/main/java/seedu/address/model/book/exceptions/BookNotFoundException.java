@@ -3,4 +3,4 @@ package seedu.address.model.book.exceptions;
 /**
  * Signals that the operation is unable to find the specified book.
  */
-public class PersonNotFoundException extends Exception {}
+public class BookNotFoundException extends Exception {}

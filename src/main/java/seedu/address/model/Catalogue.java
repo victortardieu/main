@@ -12,9 +12,9 @@ import java.util.stream.Collectors;
 
 import javafx.collections.ObservableList;
 import seedu.address.model.book.Book;
-import seedu.address.model.book.UniquePersonList;
-import seedu.address.model.book.exceptions.DuplicatePersonException;
-import seedu.address.model.book.exceptions.PersonNotFoundException;
+import seedu.address.model.book.UniqueBookList;
+import seedu.address.model.book.exceptions.DuplicateBookException;
+import seedu.address.model.book.exceptions.BookNotFoundException;
 import seedu.address.model.tag.Tag;
 import seedu.address.model.tag.UniqueTagList;
 
@@ -24,7 +24,7 @@ import seedu.address.model.tag.UniqueTagList;
  */
 public class Catalogue implements ReadOnlyCatalogue {
 
-    private final UniquePersonList persons;
+    private final UniqueBookList books;
     private final UniqueTagList tags;
 
     /*
@@ -35,14 +35,14 @@ public class Catalogue implements ReadOnlyCatalogue {
      *   among constructors.
      */
     {
-        persons = new UniquePersonList();
+        books = new UniqueBookList();
         tags = new UniqueTagList();
     }
 
     public Catalogue() {}
 
     /**
-     * Creates an Catalogue using the Persons and Tags in the {@code toBeCopied}
+     * Creates an Catalogue using the Books and Tags in the {@code toBeCopied}
      */
     public Catalogue(ReadOnlyCatalogue toBeCopied) {
         this();
@@ -51,8 +51,8 @@ public class Catalogue implements ReadOnlyCatalogue {
 
     //// list overwrite operations
 
-    public void setPersons(List<Book> books) throws DuplicatePersonException {
-        this.persons.setPersons(books);
+    public void setBooks(List<Book> books) throws DuplicateBookException {
+        this.books.setBooks(books);
     }
 
     public void setTags(Set<Tag> tags) {
@@ -65,14 +65,14 @@ public class Catalogue implements ReadOnlyCatalogue {
     public void resetData(ReadOnlyCatalogue newData) {
         requireNonNull(newData);
         setTags(new HashSet<>(newData.getTagList()));
-        List<Book> syncedBookList = newData.getPersonList().stream()
+        List<Book> syncedBookList = newData.getBookList().stream()
                 .map(this::syncWithMasterTagList)
                 .collect(Collectors.toList());
 
         try {
-            setPersons(syncedBookList);
-        } catch (DuplicatePersonException e) {
-            throw new AssertionError("Catalogue should not have duplicate persons");
+            setBooks(syncedBookList);
+        } catch (DuplicateBookException e) {
+            throw new AssertionError("Catalogue should not have duplicate books");
         }
     }
 
@@ -83,35 +83,35 @@ public class Catalogue implements ReadOnlyCatalogue {
      * Also checks the new book's tags and updates {@link #tags} with any new tags found,
      * and updates the Tag objects in the book to point to those in {@link #tags}.
      *
-     * @throws DuplicatePersonException if an equivalent book already exists.
+     * @throws DuplicateBookException if an equivalent book already exists.
      */
-    public void addPerson(Book p) throws DuplicatePersonException {
+    public void addBook(Book p) throws DuplicateBookException {
         Book book = syncWithMasterTagList(p);
         // TODO: the tags master list will be updated even though the below line fails.
         // This can cause the tags master list to have additional tags that are not tagged to any book
         // in the book list.
-        persons.add(book);
+        books.add(book);
     }
 
     /**
-     * Replaces the given book {@code target} in the list with {@code editedPerson}.
-     * {@code Catalogue}'s tag list will be updated with the tags of {@code editedPerson}.
+     * Replaces the given book {@code target} in the list with {@code editedBook}.
+     * {@code Catalogue}'s tag list will be updated with the tags of {@code editedBook}.
      *
-     * @throws DuplicatePersonException if updating the book's details causes the book to be equivalent to
+     * @throws DuplicateBookException if updating the book's details causes the book to be equivalent to
      *      another existing book in the list.
-     * @throws PersonNotFoundException if {@code target} could not be found in the list.
+     * @throws BookNotFoundException if {@code target} could not be found in the list.
      *
      * @see #syncWithMasterTagList(Book)
      */
-    public void updatePerson(Book target, Book editedBook)
-            throws DuplicatePersonException, PersonNotFoundException {
+    public void updateBook(Book target, Book editedBook)
+            throws DuplicateBookException, BookNotFoundException {
         requireNonNull(editedBook);
 
         Book syncedEditedBook = syncWithMasterTagList(editedBook);
         // TODO: the tags master list will be updated even though the below line fails.
         // This can cause the tags master list to have additional tags that are not tagged to any book
         // in the book list.
-        persons.setPerson(target, syncedEditedBook);
+        books.setBook(target, syncedEditedBook);
     }
 
     /**
@@ -120,8 +120,8 @@ public class Catalogue implements ReadOnlyCatalogue {
      *  list.
      */
     private Book syncWithMasterTagList(Book book) {
-        final UniqueTagList personTags = new UniqueTagList(book.getTags());
-        tags.mergeFrom(personTags);
+        final UniqueTagList bookTags = new UniqueTagList(book.getTags());
+        tags.mergeFrom(bookTags);
 
         // Create map with values = tag object references in the master list
         // used for checking book tag references
@@ -130,20 +130,20 @@ public class Catalogue implements ReadOnlyCatalogue {
 
         // Rebuild the list of book tags to point to the relevant tags in the master tag list.
         final Set<Tag> correctTagReferences = new HashSet<>();
-        personTags.forEach(tag -> correctTagReferences.add(masterTagObjects.get(tag)));
+        bookTags.forEach(tag -> correctTagReferences.add(masterTagObjects.get(tag)));
         return new Book(
                 book.getName(), book.getPhone(), book.getEmail(), book.getAddress(), correctTagReferences);
     }
 
     /**
      * Removes {@code key} from this {@code Catalogue}.
-     * @throws PersonNotFoundException if the {@code key} is not in this {@code Catalogue}.
+     * @throws BookNotFoundException if the {@code key} is not in this {@code Catalogue}.
      */
-    public boolean removePerson(Book key) throws PersonNotFoundException {
-        if (persons.remove(key)) {
+    public boolean removeBook(Book key) throws BookNotFoundException {
+        if (books.remove(key)) {
             return true;
         } else {
-            throw new PersonNotFoundException();
+            throw new BookNotFoundException();
         }
     }
 
@@ -157,13 +157,13 @@ public class Catalogue implements ReadOnlyCatalogue {
 
     @Override
     public String toString() {
-        return persons.asObservableList().size() + " persons, " + tags.asObservableList().size() +  " tags";
+        return books.asObservableList().size() + " books, " + tags.asObservableList().size() +  " tags";
         // TODO: refine later
     }
 
     @Override
-    public ObservableList<Book> getPersonList() {
-        return persons.asObservableList();
+    public ObservableList<Book> getBookList() {
+        return books.asObservableList();
     }
 
     @Override
@@ -175,13 +175,13 @@ public class Catalogue implements ReadOnlyCatalogue {
     public boolean equals(Object other) {
         return other == this // short circuit if same object
                 || (other instanceof Catalogue // instanceof handles nulls
-                && this.persons.equals(((Catalogue) other).persons)
+                && this.books.equals(((Catalogue) other).books)
                 && this.tags.equalsOrderInsensitive(((Catalogue) other).tags));
     }
 
     @Override
     public int hashCode() {
         // use this method for custom fields hashing instead of implementing your own
-        return Objects.hash(persons, tags);
+        return Objects.hash(books, tags);
     }
 }

@@ -2,10 +2,10 @@ package seedu.address.logic.commands;
 
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.fail;
-import static seedu.address.logic.commands.CommandTestUtil.deleteFirstPerson;
-import static seedu.address.logic.commands.CommandTestUtil.showPersonAtIndex;
-import static seedu.address.testutil.TypicalIndexes.INDEX_FIRST_PERSON;
-import static seedu.address.testutil.TypicalPersons.getTypicalCatalogue;
+import static seedu.address.logic.commands.CommandTestUtil.deleteFirstBook;
+import static seedu.address.logic.commands.CommandTestUtil.showBookAtIndex;
+import static seedu.address.testutil.TypicalIndexes.INDEX_FIRST_BOOK;
+import static seedu.address.testutil.TypicalBooks.getTypicalCatalogue;
 
 import org.junit.Test;
 
@@ -14,7 +14,7 @@ import seedu.address.model.Model;
 import seedu.address.model.ModelManager;
 import seedu.address.model.UserPrefs;
 import seedu.address.model.book.Book;
-import seedu.address.model.book.exceptions.PersonNotFoundException;
+import seedu.address.model.book.exceptions.BookNotFoundException;
 
 public class UndoableCommandTest {
     private final Model model = new ModelManager(getTypicalCatalogue(), new UserPrefs());
@@ -25,12 +25,12 @@ public class UndoableCommandTest {
     @Test
     public void executeUndo() throws Exception {
         dummyCommand.execute();
-        deleteFirstPerson(expectedModel);
+        deleteFirstBook(expectedModel);
         assertEquals(expectedModel, model);
 
-        showPersonAtIndex(model, INDEX_FIRST_PERSON);
+        showBookAtIndex(model, INDEX_FIRST_BOOK);
 
-        // undo() should cause the model's filtered list to show all persons
+        // undo() should cause the model's filtered list to show all books
         dummyCommand.undo();
         expectedModel = new ModelManager(getTypicalCatalogue(), new UserPrefs());
         assertEquals(expectedModel, model);
@@ -38,11 +38,11 @@ public class UndoableCommandTest {
 
     @Test
     public void redo() {
-        showPersonAtIndex(model, INDEX_FIRST_PERSON);
+        showBookAtIndex(model, INDEX_FIRST_BOOK);
 
-        // redo() should cause the model's filtered list to show all persons
+        // redo() should cause the model's filtered list to show all books
         dummyCommand.redo();
-        deleteFirstPerson(expectedModel);
+        deleteFirstBook(expectedModel);
         assertEquals(expectedModel, model);
     }
 
@@ -56,10 +56,10 @@ public class UndoableCommandTest {
 
         @Override
         public CommandResult executeUndoableCommand() throws CommandException {
-            Book bookToDelete = model.getFilteredPersonList().get(0);
+            Book bookToDelete = model.getFilteredBookList().get(0);
             try {
-                model.deletePerson(bookToDelete);
-            } catch (PersonNotFoundException pnfe) {
+                model.deleteBook(bookToDelete);
+            } catch (BookNotFoundException pnfe) {
                 fail("Impossible: bookToDelete was retrieved from model.");
             }
             return new CommandResult("");

@@ -135,7 +135,7 @@ public class FindCommandSystemTest extends CatalogueSystemTest {
         /* Case: find while a book is selected -> selected card deselected */
         showAllBooks();
         selectBook(Index.fromOneBased(1));
-        assertFalse(getBookListPanel().getHandleToSelectedCard().getName().equals(DANIEL.getName().fullName));
+        assertFalse(getBookListPanel().getHandleToSelectedCard().getName().equals(DANIEL.getTitle().fullTitle));
         command = FindCommand.COMMAND_WORD + " Daniel";
         ModelHelper.setFilteredList(expectedModel, DANIEL);
         assertCommandSuccess(command, expectedModel);

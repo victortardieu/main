@@ -40,7 +40,7 @@ public class BrowserPanelTest extends GuiUnitTest {
 
         // associated web page of a book
         postNow(selectionChangedEventStub);
-        URL expectedBookUrl = new URL(BrowserPanel.SEARCH_PAGE_URL + ALICE.getName().fullName.replaceAll(" ", "%20"));
+        URL expectedBookUrl = new URL(BrowserPanel.SEARCH_PAGE_URL + ALICE.getTitle().fullTitle.replaceAll(" ", "%20"));
 
         waitUntilBrowserLoaded(browserPanelHandle);
         assertEquals(expectedBookUrl, browserPanelHandle.getLoadedUrl());

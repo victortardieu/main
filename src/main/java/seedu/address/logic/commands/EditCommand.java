@@ -3,7 +3,7 @@ package seedu.address.logic.commands;
 import static java.util.Objects.requireNonNull;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_ADDRESS;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_EMAIL;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_TITLE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_PHONE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_TAG;
 import static seedu.address.model.Model.PREDICATE_SHOW_ALL_BOOKS;
@@ -22,7 +22,7 @@ import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.book.Address;
 import seedu.address.model.book.Book;
 import seedu.address.model.book.Email;
-import seedu.address.model.book.Name;
+import seedu.address.model.book.Title;
 import seedu.address.model.book.Phone;
 import seedu.address.model.book.exceptions.DuplicateBookException;
 import seedu.address.model.book.exceptions.BookNotFoundException;
@@ -39,7 +39,7 @@ public class EditCommand extends UndoableCommand {
             + "by the index number used in the last book listing. "
             + "Existing values will be overwritten by the input values.\n"
             + "Parameters: INDEX (must be a positive integer) "
-            + "[" + PREFIX_NAME + "NAME] "
+            + "[" + PREFIX_TITLE + "TITLE] "
             + "[" + PREFIX_PHONE + "PHONE] "
             + "[" + PREFIX_EMAIL + "EMAIL] "
             + "[" + PREFIX_ADDRESS + "ADDRESS] "
@@ -102,13 +102,13 @@ public class EditCommand extends UndoableCommand {
     private static Book createEditedBook(Book bookToEdit, EditBookDescriptor editBookDescriptor) {
         assert bookToEdit != null;
 
-        Name updatedName = editBookDescriptor.getName().orElse(bookToEdit.getName());
+        Title updatedTitle = editBookDescriptor.getTitle().orElse(bookToEdit.getTitle());
         Phone updatedPhone = editBookDescriptor.getPhone().orElse(bookToEdit.getPhone());
         Email updatedEmail = editBookDescriptor.getEmail().orElse(bookToEdit.getEmail());
         Address updatedAddress = editBookDescriptor.getAddress().orElse(bookToEdit.getAddress());
         Set<Tag> updatedTags = editBookDescriptor.getTags().orElse(bookToEdit.getTags());
 
-        return new Book(updatedName, updatedPhone, updatedEmail, updatedAddress, updatedTags);
+        return new Book(updatedTitle, updatedPhone, updatedEmail, updatedAddress, updatedTags);
     }
 
     @Override
@@ -135,7 +135,7 @@ public class EditCommand extends UndoableCommand {
      * corresponding field value of the book.
      */
     public static class EditBookDescriptor {
-        private Name name;
+        private Title title;
         private Phone phone;
         private Email email;
         private Address address;
@@ -148,7 +148,7 @@ public class EditCommand extends UndoableCommand {
          * A defensive copy of {@code tags} is used internally.
          */
         public EditBookDescriptor(EditBookDescriptor toCopy) {
-            setName(toCopy.name);
+            setTitle(toCopy.title);
             setPhone(toCopy.phone);
             setEmail(toCopy.email);
             setAddress(toCopy.address);
@@ -159,15 +159,15 @@ public class EditCommand extends UndoableCommand {
          * Returns true if at least one field is edited.
          */
         public boolean isAnyFieldEdited() {
-            return CollectionUtil.isAnyNonNull(this.name, this.phone, this.email, this.address, this.tags);
+            return CollectionUtil.isAnyNonNull(this.title, this.phone, this.email, this.address, this.tags);
         }
 
-        public void setName(Name name) {
-            this.name = name;
+        public void setTitle(Title title) {
+            this.title = title;
         }
 
-        public Optional<Name> getName() {
-            return Optional.ofNullable(name);
+        public Optional<Title> getTitle() {
+            return Optional.ofNullable(title);
         }
 
         public void setPhone(Phone phone) {
@@ -226,7 +226,7 @@ public class EditCommand extends UndoableCommand {
             // state check
             EditBookDescriptor e = (EditBookDescriptor) other;
 
-            return getName().equals(e.getName())
+            return getTitle().equals(e.getTitle())
                     && getPhone().equals(e.getPhone())
                     && getEmail().equals(e.getEmail())
                     && getAddress().equals(e.getAddress())

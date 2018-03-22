@@ -830,7 +830,7 @@ As a librarian, I can delete book titles in the database
 As a librarian, I want confirmation in notification before deleting a book
 As a librarian, I can find a book title using the database
 As a librarian, I can view the history of borrowed books from each borrower
-As a student, I can find a book title in the database by it's name
+As a student, I can find a book title in the database by it's title
 As a student, I can find a book in the database by it's tag
 As a student, I can check for the availability of the book
 As a student, I can loan an available book
@@ -850,7 +850,7 @@ Priorities: High (must have) - `* * \*`, Medium (nice to have) - `* \*`, Low (un
 |`* * *` |As a librarian |I want to confirmation in notification before deleting a book |So that I will not accidentally delete the wrong book title
 |`* * *` |As a librarian |I want to find a book title in the database |So that I can see the status of the book
 |`* * ` |As a librarian |I want to view the history of borrowed books from each borrower |So that I can keep track of books availability
-|`* * *` |As a student |I want to find a book title in the database by it's name |So I can facilitate my search process
+|`* * *` |As a student |I want to find a book title in the database by it's title |So I can facilitate my search process
 |`* * *` |As a student |I want to find a book title in the database by it's tag |So that I can facilitate my search process
 |`* * *` |As a student |I want to check for the availability of the book |So that I can know it' loan status
 |`* * *` |As a student |I want to loan a book  |So that I can use the book for higher learning

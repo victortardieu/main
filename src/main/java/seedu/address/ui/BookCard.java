@@ -27,7 +27,7 @@ public class BookCard extends UiPart<Region> {
     @FXML
     private HBox cardPane;
     @FXML
-    private Label name;
+    private Label title;
     @FXML
     private Label id;
     @FXML
@@ -43,7 +43,7 @@ public class BookCard extends UiPart<Region> {
         super(FXML);
         this.book = book;
         id.setText(displayedIndex + ". ");
-        name.setText(book.getName().fullName);
+        title.setText(book.getTitle().fullTitle);
         phone.setText(book.getPhone().value);
         address.setText(book.getAddress().value);
         email.setText(book.getEmail().value);

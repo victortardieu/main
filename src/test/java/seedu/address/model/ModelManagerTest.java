@@ -12,7 +12,7 @@ import org.junit.Rule;
 import org.junit.Test;
 import org.junit.rules.ExpectedException;
 
-import seedu.address.model.book.NameContainsKeywordsPredicate;
+import seedu.address.model.book.TitleContainsKeywordsPredicate;
 import seedu.address.testutil.CatalogueBuilder;
 
 public class ModelManagerTest {
@@ -50,8 +50,8 @@ public class ModelManagerTest {
         assertFalse(modelManager.equals(new ModelManager(differentCatalogue, userPrefs)));
 
         // different filteredList -> returns false
-        String[] keywords = ALICE.getName().fullName.split("\\s+");
-        modelManager.updateFilteredBookList(new NameContainsKeywordsPredicate(Arrays.asList(keywords)));
+        String[] keywords = ALICE.getTitle().fullTitle.split("\\s+");
+        modelManager.updateFilteredBookList(new TitleContainsKeywordsPredicate(Arrays.asList(keywords)));
         assertFalse(modelManager.equals(new ModelManager(catalogue, userPrefs)));
 
         // resets modelManager to initial state for upcoming tests
@@ -59,7 +59,7 @@ public class ModelManagerTest {
 
         // different userPrefs -> returns true
         UserPrefs differentUserPrefs = new UserPrefs();
-        differentUserPrefs.setCatalogueBookName("differentName");
+        differentUserPrefs.setCatalogueBookTitle("differentName");
         assertTrue(modelManager.equals(new ModelManager(catalogue, differentUserPrefs)));
     }
 }

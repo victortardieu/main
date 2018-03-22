@@ -3,14 +3,14 @@
 {@code TypicalBooks#getTypicalCatalogue()}-->
 <catalogue>
     <books>
-        <name>Alice Pauline</name>
+        <title>Alice Pauline</title>
         <phone>85355255</phone>
         <email>alice@example.com</email>
         <address>123, Jurong West Ave 6, #08-111</address>
         <tagged>friends</tagged>
     </books>
     <books>
-        <name>Benson Meier</name>
+        <title>Benson Meier</title>
         <phone>98765432</phone>
         <email>johnd@example.com</email>
         <address>311, Clementi Ave 2, #02-25</address>
@@ -18,31 +18,31 @@
         <tagged>friends</tagged>
     </books>
     <books>
-        <name>Carl Kurz</name>
+        <title>Carl Kurz</title>
         <phone>95352563</phone>
         <email>heinz@example.com</email>
         <address>wall street</address>
     </books>
     <books>
-        <name>Daniel Meier</name>
+        <title>Daniel Meier</title>
         <phone>87652533</phone>
         <email>cornelia@example.com</email>
         <address>10th street</address>
     </books>
     <books>
-        <name>Elle Meyer</name>
+        <title>Elle Meyer</title>
         <phone>9482224</phone>
         <email>werner@example.com</email>
         <address>michegan ave</address>
     </books>
     <books>
-        <name>Fiona Kunz</name>
+        <title>Fiona Kunz</title>
         <phone>9482427</phone>
         <email>lydia@example.com</email>
         <address>little tokyo</address>
     </books>
     <books>
-        <name>George Best</name>
+        <title>George Best</title>
         <phone>9482442</phone>
         <email>anna@example.com</email>
         <address>4th street</address>

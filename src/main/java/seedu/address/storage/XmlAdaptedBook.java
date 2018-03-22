@@ -12,7 +12,7 @@ import seedu.address.commons.exceptions.IllegalValueException;
 import seedu.address.model.book.Address;
 import seedu.address.model.book.Book;
 import seedu.address.model.book.Email;
-import seedu.address.model.book.Name;
+import seedu.address.model.book.Title;
 import seedu.address.model.book.Phone;
 import seedu.address.model.tag.Tag;
 
@@ -24,7 +24,7 @@ public class XmlAdaptedBook {
     public static final String MISSING_FIELD_MESSAGE_FORMAT = "Book's %s field is missing!";
 
     @XmlElement(required = true)
-    private String name;
+    private String title;
     @XmlElement(required = true)
     private String phone;
     @XmlElement(required = true)
@@ -44,8 +44,8 @@ public class XmlAdaptedBook {
     /**
      * Constructs an {@code XmlAdaptedBook} with the given book details.
      */
-    public XmlAdaptedBook(String name, String phone, String email, String address, List<XmlAdaptedTag> tagged) {
-        this.name = name;
+    public XmlAdaptedBook(String title, String phone, String email, String address, List<XmlAdaptedTag> tagged) {
+        this.title = title;
         this.phone = phone;
         this.email = email;
         this.address = address;
@@ -60,7 +60,7 @@ public class XmlAdaptedBook {
      * @param source future changes to this will not affect the created XmlAdaptedBook
      */
     public XmlAdaptedBook(Book source) {
-        name = source.getName().fullName;
+        title = source.getTitle().fullTitle;
         phone = source.getPhone().value;
         email = source.getEmail().value;
         address = source.getAddress().value;
@@ -81,13 +81,13 @@ public class XmlAdaptedBook {
             bookTags.add(tag.toModelType());
         }
 
-        if (this.name == null) {
-            throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT, Name.class.getSimpleName()));
+        if (this.title == null) {
+            throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT, Title.class.getSimpleName()));
         }
-        if (!Name.isValidName(this.name)) {
-            throw new IllegalValueException(Name.MESSAGE_NAME_CONSTRAINTS);
+        if (!Title.isValidTitle(this.title)) {
+            throw new IllegalValueException(Title.MESSAGE_TITLE_CONSTRAINTS);
         }
-        final Name name = new Name(this.name);
+        final Title title = new Title(this.title);
 
         if (this.phone == null) {
             throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT, Phone.class.getSimpleName()));
@@ -114,7 +114,7 @@ public class XmlAdaptedBook {
         final Address address = new Address(this.address);
 
         final Set<Tag> tags = new HashSet<>(bookTags);
-        return new Book(name, phone, email, address, tags);
+        return new Book(title, phone, email, address, tags);
     }
 
     @Override
@@ -128,7 +128,7 @@ public class XmlAdaptedBook {
         }
 
         XmlAdaptedBook otherBook = (XmlAdaptedBook) other;
-        return Objects.equals(name, otherBook.name)
+        return Objects.equals(title, otherBook.title)
                 && Objects.equals(phone, otherBook.phone)
                 && Objects.equals(email, otherBook.email)
                 && Objects.equals(address, otherBook.address)

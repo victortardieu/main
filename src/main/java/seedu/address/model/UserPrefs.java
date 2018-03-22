@@ -11,7 +11,7 @@ public class UserPrefs {
 
     private GuiSettings guiSettings;
     private String catalogueFilePath = "data/catalogue.xml";
-    private String catalogueBookName = "MyCatalogue";
+    private String catalogueBookTitle = "MyCatalogue";
 
     public UserPrefs() {
         this.setGuiSettings(500, 500, 0, 0);
@@ -37,12 +37,12 @@ public class UserPrefs {
         this.catalogueFilePath = catalogueFilePath;
     }
 
-    public String getCatalogueBookName() {
-        return catalogueBookName;
+    public String getCatalogueBookTitle() {
+        return catalogueBookTitle;
     }
 
-    public void setCatalogueBookName(String catalogueBookName) {
-        this.catalogueBookName = catalogueBookName;
+    public void setCatalogueBookTitle(String catalogueBookTitle) {
+        this.catalogueBookTitle = catalogueBookTitle;
     }
 
     @Override
@@ -58,12 +58,12 @@ public class UserPrefs {
 
         return Objects.equals(guiSettings, o.guiSettings)
                 && Objects.equals(catalogueFilePath, o.catalogueFilePath)
-                && Objects.equals(catalogueBookName, o.catalogueBookName);
+                && Objects.equals(catalogueBookTitle, o.catalogueBookTitle);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(guiSettings, catalogueFilePath, catalogueBookName);
+        return Objects.hash(guiSettings, catalogueFilePath, catalogueBookTitle);
     }
 
     @Override
@@ -71,7 +71,7 @@ public class UserPrefs {
         StringBuilder sb = new StringBuilder();
         sb.append("Gui Settings : " + guiSettings.toString());
         sb.append("\nLocal data file location : " + catalogueFilePath);
-        sb.append("\nCatalogue name : " + catalogueBookName);
+        sb.append("\nCatalogue name : " + catalogueBookTitle);
         return sb.toString();
     }
 

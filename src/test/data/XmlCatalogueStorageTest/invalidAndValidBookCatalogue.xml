@@ -2,14 +2,14 @@
 <catalogue>
     <!-- Valid Book -->
     <books>
-        <name>Hans Muster</name>
+        <title>Hans Muster</title>
         <phone isPrivate="false">9482424</phone>
         <email isPrivate="false">hans@example.com</email>
         <address isPrivate="false">4th street</address>
     </books>
     <!-- Book with invalid phone field -->
     <books>
-        <name>Hans Muster</name>
+        <title>Hans Muster</title>
         <phone isPrivate="false">948asdf2424</phone>
         <email isPrivate="false">hans@example.com</email>
         <address isPrivate="false">4th street</address>

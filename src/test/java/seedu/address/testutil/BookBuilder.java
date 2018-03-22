@@ -6,7 +6,7 @@ import java.util.Set;
 import seedu.address.model.book.Address;
 import seedu.address.model.book.Book;
 import seedu.address.model.book.Email;
-import seedu.address.model.book.Name;
+import seedu.address.model.book.Title;
 import seedu.address.model.book.Phone;
 import seedu.address.model.tag.Tag;
 import seedu.address.model.util.SampleDataUtil;
@@ -16,20 +16,20 @@ import seedu.address.model.util.SampleDataUtil;
  */
 public class BookBuilder {
 
-    public static final String DEFAULT_NAME = "Alice Pauline";
+    public static final String DEFAULT_TITLE = "Alice Pauline";
     public static final String DEFAULT_PHONE = "85355255";
     public static final String DEFAULT_EMAIL = "alice@gmail.com";
     public static final String DEFAULT_ADDRESS = "123, Jurong West Ave 6, #08-111";
     public static final String DEFAULT_TAGS = "friends";
 
-    private Name name;
+    private Title title;
     private Phone phone;
     private Email email;
     private Address address;
     private Set<Tag> tags;
 
     public BookBuilder() {
-        name = new Name(DEFAULT_NAME);
+        title = new Title(DEFAULT_TITLE);
         phone = new Phone(DEFAULT_PHONE);
         email = new Email(DEFAULT_EMAIL);
         address = new Address(DEFAULT_ADDRESS);
@@ -40,7 +40,7 @@ public class BookBuilder {
      * Initializes the BookBuilder with the data of {@code bookToCopy}.
      */
     public BookBuilder(Book bookToCopy) {
-        name = bookToCopy.getName();
+        title = bookToCopy.getTitle();
         phone = bookToCopy.getPhone();
         email = bookToCopy.getEmail();
         address = bookToCopy.getAddress();
@@ -48,10 +48,10 @@ public class BookBuilder {
     }
 
     /**
-     * Sets the {@code Name} of the {@code Book} that we are building.
+     * Sets the {@code Title} of the {@code Book} that we are building.
      */
     public BookBuilder withName(String name) {
-        this.name = new Name(name);
+        this.title = new Title(name);
         return this;
     }
 
@@ -88,7 +88,7 @@ public class BookBuilder {
     }
 
     public Book build() {
-        return new Book(name, phone, email, address, tags);
+        return new Book(title, phone, email, address, tags);
     }
 
 }

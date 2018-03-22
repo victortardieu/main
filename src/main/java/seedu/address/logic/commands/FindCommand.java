@@ -1,23 +1,23 @@
 package seedu.address.logic.commands;
 
-import seedu.address.model.book.NameContainsKeywordsPredicate;
+import seedu.address.model.book.TitleContainsKeywordsPredicate;
 
 /**
- * Finds and lists all books in catalogue whose name contains any of the argument keywords.
+ * Finds and lists all books in catalogue whose title contains any of the argument keywords.
  * Keyword matching is case sensitive.
  */
 public class FindCommand extends Command {
 
     public static final String COMMAND_WORD = "find";
 
-    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Finds all books whose names contain any of "
+    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Finds all books whose titles contain any of "
             + "the specified keywords (case-sensitive) and displays them as a list with index numbers.\n"
             + "Parameters: KEYWORD [MORE_KEYWORDS]...\n"
             + "Example: " + COMMAND_WORD + " alice bob charlie";
 
-    private final NameContainsKeywordsPredicate predicate;
+    private final TitleContainsKeywordsPredicate predicate;
 
-    public FindCommand(NameContainsKeywordsPredicate predicate) {
+    public FindCommand(TitleContainsKeywordsPredicate predicate) {
         this.predicate = predicate;
     }
 

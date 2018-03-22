@@ -1,55 +1,55 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <catalogue>
     <books>
-        <name>Hans Muster</name>
+        <title>Hans Muster</title>
         <phone isPrivate="false">9482424</phone>
         <email isPrivate="false">hans@example.com</email>
         <address isPrivate="false">4th street</address>
     </books>
     <books>
-        <name>Ruth Mueller</name>
+        <title>Ruth Mueller</title>
         <phone isPrivate="false">87249245</phone>
         <email isPrivate="false">ruth@example.com</email>
         <address isPrivate="false">81th street</address>
     </books>
     <books>
-        <name>Heinz Kurz</name>
+        <title>Heinz Kurz</title>
         <phone isPrivate="false">95352563</phone>
         <email isPrivate="false">heinz@example.com</email>
         <address isPrivate="false">wall street</address>
     </books>
     <books>
-        <name>Cornelia Meier</name>
+        <title>Cornelia Meier</title>
         <phone isPrivate="false">87652533</phone>
         <email isPrivate="false">cornelia@example.com</email>
         <address isPrivate="false">10th street</address>
     </books>
     <books>
-        <name>Werner Meyer</name>
+        <title>Werner Meyer</title>
         <phone isPrivate="false">9482224</phone>
         <email isPrivate="false">werner@example.com</email>
         <address isPrivate="false">michegan ave</address>
     </books>
     <books>
-        <name>Lydia Kunz</name>
+        <title>Lydia Kunz</title>
         <phone isPrivate="false">9482427</phone>
         <email isPrivate="false">lydia@example.com</email>
         <address isPrivate="false">little tokyo</address>
     </books>
     <books>
-        <name>Anna Best</name>
+        <title>Anna Best</title>
         <phone isPrivate="false">9482442</phone>
         <email isPrivate="false">anna@example.com</email>
         <address isPrivate="false">4th street</address>
     </books>
     <books>
-        <name>Stefan Meier</name>
+        <title>Stefan Meier</title>
         <phone isPrivate="false">8482424</phone>
         <email isPrivate="false">stefan@example.com</email>
         <address isPrivate="false">little india</address>
     </books>
     <books>
-        <name>Martin Mueller</name>
+        <title>Martin Mueller</title>
         <phone isPrivate="false">8482131</phone>
         <email isPrivate="false">hans@example.com</email>
         <address isPrivate="false">chicago ave</address>

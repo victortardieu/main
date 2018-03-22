@@ -15,7 +15,7 @@ import seedu.address.model.tag.UniqueTagList;
  */
 public class Book {
 
-    private final Name name;
+    private final Title title;
 
     private final Phone phone;
     private final Email email;
@@ -26,9 +26,9 @@ public class Book {
     /**
      * Every field must be present and not null.
      */
-    public Book(Name name, Phone phone, Email email, Address address, Set<Tag> tags) {
-        requireAllNonNull(name, phone, email, address, tags);
-        this.name = name;
+    public Book(Title title, Phone phone, Email email, Address address, Set<Tag> tags) {
+        requireAllNonNull(title, phone, email, address, tags);
+        this.title = title;
         this.phone = phone;
         this.email = email;
         this.address = address;
@@ -36,8 +36,8 @@ public class Book {
         this.tags = new UniqueTagList(tags);
     }
 
-    public Name getName() {
-        return name;
+    public Title getTitle() {
+        return title;
     }
 
     public Phone getPhone() {
@@ -71,7 +71,7 @@ public class Book {
         }
 
         Book otherBook = (Book) other;
-        return otherBook.getName().equals(this.getName())
+        return otherBook.getTitle().equals(this.getTitle())
                 && otherBook.getPhone().equals(this.getPhone())
                 && otherBook.getEmail().equals(this.getEmail())
                 && otherBook.getAddress().equals(this.getAddress());
@@ -80,13 +80,13 @@ public class Book {
     @Override
     public int hashCode() {
         // use this method for custom fields hashing instead of implementing your own
-        return Objects.hash(name, phone, email, address, tags);
+        return Objects.hash(title, phone, email, address, tags);
     }
 
     @Override
     public String toString() {
         final StringBuilder builder = new StringBuilder();
-        builder.append(getName())
+        builder.append(getTitle())
                 .append(" Phone: ")
                 .append(getPhone())
                 .append(" Email: ")

@@ -12,10 +12,10 @@ import seedu.address.commons.core.LogsCenter;
 import seedu.address.commons.exceptions.DataConversionException;
 import seedu.address.commons.exceptions.IllegalValueException;
 import seedu.address.commons.util.FileUtil;
-import seedu.address.model.ReadOnlyAddressBook;
+import seedu.address.model.ReadOnlyCatalogue;
 
 /**
- * A class to access AddressBook data stored as an xml file on the hard disk.
+ * A class to access Catalogue data stored as an xml file on the hard disk.
  */
 public class XmlCatalogueStorage implements CatalogueStorage {
 
@@ -27,56 +27,56 @@ public class XmlCatalogueStorage implements CatalogueStorage {
         this.filePath = filePath;
     }
 
-    public String getAddressBookFilePath() {
+    public String getCatalogueFilePath() {
         return filePath;
     }
 
     @Override
-    public Optional<ReadOnlyAddressBook> readAddressBook() throws DataConversionException, IOException {
-        return readAddressBook(filePath);
+    public Optional<ReadOnlyCatalogue> readCatalogue() throws DataConversionException, IOException {
+        return readCatalogue(filePath);
     }
 
     /**
-     * Similar to {@link #readAddressBook()}
+     * Similar to {@link #readCatalogue()}
      * @param filePath location of the data. Cannot be null
      * @throws DataConversionException if the file is not in the correct format.
      */
-    public Optional<ReadOnlyAddressBook> readAddressBook(String filePath) throws DataConversionException,
+    public Optional<ReadOnlyCatalogue> readCatalogue(String filePath) throws DataConversionException,
                                                                                  FileNotFoundException {
         requireNonNull(filePath);
 
-        File addressBookFile = new File(filePath);
+        File catalogueFile = new File(filePath);
 
-        if (!addressBookFile.exists()) {
-            logger.info("AddressBook file "  + addressBookFile + " not found");
+        if (!catalogueFile.exists()) {
+            logger.info("Catalogue file "  + catalogueFile + " not found");
             return Optional.empty();
         }
 
-        XmlSerializableAddressBook xmlAddressBook = XmlFileStorage.loadDataFromSaveFile(new File(filePath));
+        XmlSerializableCatalogue xmlCatalogue = XmlFileStorage.loadDataFromSaveFile(new File(filePath));
         try {
-            return Optional.of(xmlAddressBook.toModelType());
+            return Optional.of(xmlCatalogue.toModelType());
         } catch (IllegalValueException ive) {
-            logger.info("Illegal values found in " + addressBookFile + ": " + ive.getMessage());
+            logger.info("Illegal values found in " + catalogueFile + ": " + ive.getMessage());
             throw new DataConversionException(ive);
         }
     }
 
     @Override
-    public void saveAddressBook(ReadOnlyAddressBook addressBook) throws IOException {
-        saveAddressBook(addressBook, filePath);
+    public void saveCatalogue(ReadOnlyCatalogue catalogue) throws IOException {
+        saveCatalogue(catalogue, filePath);
     }
 
     /**
-     * Similar to {@link #saveAddressBook(ReadOnlyAddressBook)}
+     * Similar to {@link #saveCatalogue(ReadOnlyCatalogue)}
      * @param filePath location of the data. Cannot be null
      */
-    public void saveAddressBook(ReadOnlyAddressBook addressBook, String filePath) throws IOException {
-        requireNonNull(addressBook);
+    public void saveCatalogue(ReadOnlyCatalogue catalogue, String filePath) throws IOException {
+        requireNonNull(catalogue);
         requireNonNull(filePath);
 
         File file = new File(filePath);
         FileUtil.createIfMissing(file);
-        XmlFileStorage.saveDataToFile(file, new XmlSerializableAddressBook(addressBook));
+        XmlFileStorage.saveDataToFile(file, new XmlSerializableCatalogue(catalogue));
     }
 
 }

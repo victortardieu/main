@@ -26,6 +26,14 @@ public class LoginCommand extends Command{
     }
 
     @Override
+    public boolean equals(Object other) {
+        return other == this // short circuit if same object
+                || (other instanceof LoginCommand // instanceof handles nulls
+                && username.equals(((LoginCommand) other).username)
+                && password.equals(((LoginCommand) other).password));
+    }
+
+    @Override
     public CommandResult execute() {
         int newPrivilegeLevel = model.authenticate(username,password);
         switch (newPrivilegeLevel){

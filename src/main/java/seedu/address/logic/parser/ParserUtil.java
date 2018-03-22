@@ -11,7 +11,7 @@ import seedu.address.commons.core.index.Index;
 import seedu.address.commons.exceptions.IllegalValueException;
 import seedu.address.commons.util.StringUtil;
 import seedu.address.model.book.Address;
-import seedu.address.model.book.Email;
+import seedu.address.model.book.Availability;
 import seedu.address.model.book.Title;
 import seedu.address.model.book.Phone;
 import seedu.address.model.tag.Tag;
@@ -116,27 +116,27 @@ public class ParserUtil {
     }
 
     /**
-     * Parses a {@code String email} into an {@code Email}.
+     * Parses a {@code String availability} into an {@code Availability}.
      * Leading and trailing whitespaces will be trimmed.
      *
-     * @throws IllegalValueException if the given {@code email} is invalid.
+     * @throws IllegalValueException if the given {@code availability} is invalid.
      */
-    public static Email parseEmail(String email) throws IllegalValueException {
-        requireNonNull(email);
-        String trimmedEmail = email.trim();
-        if (!Email.isValidEmail(trimmedEmail)) {
-            throw new IllegalValueException(Email.MESSAGE_EMAIL_CONSTRAINTS);
+    public static Availability parseAvailability(String availability) throws IllegalValueException {
+        requireNonNull(availability);
+        String trimmedAvailability = availability.trim();
+        if (!Availability.isValidAvailability(trimmedAvailability)) {
+            throw new IllegalValueException(Availability.MESSAGE_AVAILABILITY_CONSTRAINTS);
         }
-        return new Email(trimmedEmail);
+        return new Availability(trimmedAvailability);
     }
 
     /**
-     * Parses a {@code Optional<String> email} into an {@code Optional<Email>} if {@code email} is present.
+     * Parses a {@code Optional<String> availability} into an {@code Optional<Availability>} if {@code availability} is present.
      * See header comment of this class regarding the use of {@code Optional} parameters.
      */
-    public static Optional<Email> parseEmail(Optional<String> email) throws IllegalValueException {
-        requireNonNull(email);
-        return email.isPresent() ? Optional.of(parseEmail(email.get())) : Optional.empty();
+    public static Optional<Availability> parseAvailability(Optional<String> availability) throws IllegalValueException {
+        requireNonNull(availability);
+        return availability.isPresent() ? Optional.of(parseAvailability(availability.get())) : Optional.empty();
     }
 
     /**

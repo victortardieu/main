@@ -2,8 +2,8 @@ package seedu.address.testutil;
 
 import static seedu.address.logic.commands.CommandTestUtil.VALID_ADDRESS_AMY;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_ADDRESS_BOB;
-import static seedu.address.logic.commands.CommandTestUtil.VALID_EMAIL_AMY;
-import static seedu.address.logic.commands.CommandTestUtil.VALID_EMAIL_BOB;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_AVAILIABILITY_AMY;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_AVAILIABILITY_BOB;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_TITLE_AMY;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_TITLE_BOB;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_PHONE_AMY;
@@ -25,35 +25,35 @@ import seedu.address.model.book.exceptions.DuplicateBookException;
 public class TypicalBooks {
 
     public static final Book ALICE = new BookBuilder().withName("Alice Pauline")
-            .withAddress("123, Jurong West Ave 6, #08-111").withEmail("alice@example.com")
+            .withAddress("123, Jurong West Ave 6, #08-111").withAvailability("Available")
             .withPhone("85355255")
             .withTags("friends").build();
     public static final Book BENSON = new BookBuilder().withName("Benson Meier")
             .withAddress("311, Clementi Ave 2, #02-25")
-            .withEmail("johnd@example.com").withPhone("98765432")
+            .withAvailability("Available").withPhone("98765432")
             .withTags("owesMoney", "friends").build();
     public static final Book CARL = new BookBuilder().withName("Carl Kurz").withPhone("95352563")
-            .withEmail("heinz@example.com").withAddress("wall street").build();
+            .withAvailability("Borrowed").withAddress("wall street").build();
     public static final Book DANIEL = new BookBuilder().withName("Daniel Meier").withPhone("87652533")
-            .withEmail("cornelia@example.com").withAddress("10th street").build();
+            .withAvailability("Borrowed").withAddress("10th street").build();
     public static final Book ELLE = new BookBuilder().withName("Elle Meyer").withPhone("9482224")
-            .withEmail("werner@example.com").withAddress("michegan ave").build();
+            .withAvailability("Reserved").withAddress("michegan ave").build();
     public static final Book FIONA = new BookBuilder().withName("Fiona Kunz").withPhone("9482427")
-            .withEmail("lydia@example.com").withAddress("little tokyo").build();
+            .withAvailability("Reserved").withAddress("little tokyo").build();
     public static final Book GEORGE = new BookBuilder().withName("George Best").withPhone("9482442")
-            .withEmail("anna@example.com").withAddress("4th street").build();
+            .withAvailability("Reserved").withAddress("4th street").build();
 
     // Manually added
     public static final Book HOON = new BookBuilder().withName("Hoon Meier").withPhone("8482424")
-            .withEmail("stefan@example.com").withAddress("little india").build();
+            .withAvailability("Reserved").withAddress("little india").build();
     public static final Book IDA = new BookBuilder().withName("Ida Mueller").withPhone("8482131")
-            .withEmail("hans@example.com").withAddress("chicago ave").build();
+            .withAvailability("Reserved").withAddress("chicago ave").build();
 
     // Manually added - Book's details found in {@code CommandTestUtil}
     public static final Book AMY = new BookBuilder().withName(VALID_TITLE_AMY).withPhone(VALID_PHONE_AMY)
-            .withEmail(VALID_EMAIL_AMY).withAddress(VALID_ADDRESS_AMY).withTags(VALID_TAG_FRIEND).build();
+            .withAvailability(VALID_AVAILIABILITY_AMY).withAddress(VALID_ADDRESS_AMY).withTags(VALID_TAG_FRIEND).build();
     public static final Book BOB = new BookBuilder().withName(VALID_TITLE_BOB).withPhone(VALID_PHONE_BOB)
-            .withEmail(VALID_EMAIL_BOB).withAddress(VALID_ADDRESS_BOB).withTags(VALID_TAG_HUSBAND, VALID_TAG_FRIEND)
+            .withAvailability(VALID_AVAILIABILITY_BOB).withAddress(VALID_ADDRESS_BOB).withTags(VALID_TAG_HUSBAND, VALID_TAG_FRIEND)
             .build();
 
     public static final String KEYWORD_MATCHING_MEIER = "Meier"; // A keyword that matches MEIER

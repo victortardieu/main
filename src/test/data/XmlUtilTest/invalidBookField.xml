@@ -3,7 +3,7 @@
 <book>
     <title>Hans Muster</title>
     <phone>9482asf424</phone>
-    <email>hans@example</email>
+    <availability>Reserved</availability>
     <address>4th street</address>
     <tagged>friends</tagged>
 </book>

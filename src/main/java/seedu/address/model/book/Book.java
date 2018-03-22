@@ -18,7 +18,7 @@ public class Book {
     private final Title title;
 
     private final Phone phone;
-    private final Email email;
+    private final Availability availability;
     private final Address address;
 
     private final UniqueTagList tags;
@@ -26,11 +26,11 @@ public class Book {
     /**
      * Every field must be present and not null.
      */
-    public Book(Title title, Phone phone, Email email, Address address, Set<Tag> tags) {
-        requireAllNonNull(title, phone, email, address, tags);
+    public Book(Title title, Phone phone, Availability availability, Address address, Set<Tag> tags) {
+        requireAllNonNull(title, phone, availability, address, tags);
         this.title = title;
         this.phone = phone;
-        this.email = email;
+        this.availability = availability;
         this.address = address;
         // protect internal tags from changes in the arg list
         this.tags = new UniqueTagList(tags);
@@ -44,8 +44,8 @@ public class Book {
         return phone;
     }
 
-    public Email getEmail() {
-        return email;
+    public Availability getAvailability() {
+        return availability;
     }
 
     public Address getAddress() {
@@ -73,14 +73,14 @@ public class Book {
         Book otherBook = (Book) other;
         return otherBook.getTitle().equals(this.getTitle())
                 && otherBook.getPhone().equals(this.getPhone())
-                && otherBook.getEmail().equals(this.getEmail())
+                && otherBook.getAvailability().equals(this.getAvailability())
                 && otherBook.getAddress().equals(this.getAddress());
     }
 
     @Override
     public int hashCode() {
         // use this method for custom fields hashing instead of implementing your own
-        return Objects.hash(title, phone, email, address, tags);
+        return Objects.hash(title, phone, availability, address, tags);
     }
 
     @Override
@@ -89,8 +89,8 @@ public class Book {
         builder.append(getTitle())
                 .append(" Phone: ")
                 .append(getPhone())
-                .append(" Email: ")
-                .append(getEmail())
+                .append(" Availability: ")
+                .append(getAvailability())
                 .append(" Address: ")
                 .append(getAddress())
                 .append(" Tags: ");

@@ -35,7 +35,7 @@ public class BookCard extends UiPart<Region> {
     @FXML
     private Label address;
     @FXML
-    private Label email;
+    private Label availability;
     @FXML
     private FlowPane tags;
 
@@ -46,7 +46,7 @@ public class BookCard extends UiPart<Region> {
         title.setText(book.getTitle().fullTitle);
         phone.setText(book.getPhone().value);
         address.setText(book.getAddress().value);
-        email.setText(book.getEmail().value);
+        availability.setText(book.getAvailability().value);
         book.getTags().forEach(tag -> tags.getChildren().add(new Label(tag.tagName)));
     }
 

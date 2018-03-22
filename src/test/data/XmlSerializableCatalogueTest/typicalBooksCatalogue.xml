@@ -5,14 +5,14 @@
     <books>
         <title>Alice Pauline</title>
         <phone>85355255</phone>
-        <email>alice@example.com</email>
+        <availability>Available</availability>
         <address>123, Jurong West Ave 6, #08-111</address>
         <tagged>friends</tagged>
     </books>
     <books>
         <title>Benson Meier</title>
         <phone>98765432</phone>
-        <email>johnd@example.com</email>
+        <availability>Available</availability>
         <address>311, Clementi Ave 2, #02-25</address>
         <tagged>owesMoney</tagged>
         <tagged>friends</tagged>
@@ -20,31 +20,31 @@
     <books>
         <title>Carl Kurz</title>
         <phone>95352563</phone>
-        <email>heinz@example.com</email>
+        <availability>Available</availability>
         <address>wall street</address>
     </books>
     <books>
         <title>Daniel Meier</title>
         <phone>87652533</phone>
-        <email>cornelia@example.com</email>
+        <availability>Available</availability>
         <address>10th street</address>
     </books>
     <books>
         <title>Elle Meyer</title>
         <phone>9482224</phone>
-        <email>werner@example.com</email>
+        <availability>Available</availability>
         <address>michegan ave</address>
     </books>
     <books>
         <title>Fiona Kunz</title>
         <phone>9482427</phone>
-        <email>lydia@example.com</email>
+        <availability>Available</availability>
         <address>little tokyo</address>
     </books>
     <books>
         <title>George Best</title>
         <phone>9482442</phone>
-        <email>anna@example.com</email>
+        <availability>Available</availability>
         <address>4th street</address>
     </books>
     <tags>friends</tags>

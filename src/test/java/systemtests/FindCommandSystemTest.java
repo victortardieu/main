@@ -121,8 +121,8 @@ public class FindCommandSystemTest extends CatalogueSystemTest {
         assertCommandSuccess(command, expectedModel);
         assertSelectedCardUnchanged();
 
-        /* Case: find email of book in catalogue -> 0 books found */
-        command = FindCommand.COMMAND_WORD + " " + DANIEL.getEmail().value;
+        /* Case: find availability of book in catalogue -> 0 books found */
+        command = FindCommand.COMMAND_WORD + " " + DANIEL.getAvailability().value;
         assertCommandSuccess(command, expectedModel);
         assertSelectedCardUnchanged();
 

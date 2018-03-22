@@ -4,8 +4,8 @@ import java.util.HashSet;
 import java.util.Set;
 
 import seedu.address.model.book.Address;
+import seedu.address.model.book.Availability;
 import seedu.address.model.book.Book;
-import seedu.address.model.book.Email;
 import seedu.address.model.book.Title;
 import seedu.address.model.book.Phone;
 import seedu.address.model.tag.Tag;
@@ -18,20 +18,20 @@ public class BookBuilder {
 
     public static final String DEFAULT_TITLE = "Alice Pauline";
     public static final String DEFAULT_PHONE = "85355255";
-    public static final String DEFAULT_EMAIL = "alice@gmail.com";
+    public static final String DEFAULT_AVAILABILITY = "Borrowed";
     public static final String DEFAULT_ADDRESS = "123, Jurong West Ave 6, #08-111";
     public static final String DEFAULT_TAGS = "friends";
 
     private Title title;
     private Phone phone;
-    private Email email;
+    private Availability availability;
     private Address address;
     private Set<Tag> tags;
 
     public BookBuilder() {
         title = new Title(DEFAULT_TITLE);
         phone = new Phone(DEFAULT_PHONE);
-        email = new Email(DEFAULT_EMAIL);
+        availability = new Availability(DEFAULT_AVAILABILITY);
         address = new Address(DEFAULT_ADDRESS);
         tags = SampleDataUtil.getTagSet(DEFAULT_TAGS);
     }
@@ -42,7 +42,7 @@ public class BookBuilder {
     public BookBuilder(Book bookToCopy) {
         title = bookToCopy.getTitle();
         phone = bookToCopy.getPhone();
-        email = bookToCopy.getEmail();
+        availability = bookToCopy.getAvailability();
         address = bookToCopy.getAddress();
         tags = new HashSet<>(bookToCopy.getTags());
     }
@@ -80,15 +80,15 @@ public class BookBuilder {
     }
 
     /**
-     * Sets the {@code Email} of the {@code Book} that we are building.
+     * Sets the {@code Availability} of the {@code Book} that we are building.
      */
-    public BookBuilder withEmail(String email) {
-        this.email = new Email(email);
+    public BookBuilder withAvailability(String availability) {
+        this.availability = new Availability(availability);
         return this;
     }
 
     public Book build() {
-        return new Book(title, phone, email, address, tags);
+        return new Book(title, phone, availability, address, tags);
     }
 
 }

@@ -28,15 +28,19 @@ public class LogicManagerTest {
 
     @Test
     public void execute_invalidCommandFormat_throwsParseException() {
+        String loginCommand = "login admin admin";
         String invalidCommand = "uicfhmowqewca";
+
+        assertCommandSuccess(loginCommand, LoginCommand.MESSAGE_LOGGED_IN_AS_LIBRARIAN, model);
         assertParseException(invalidCommand, MESSAGE_UNKNOWN_COMMAND);
-        assertHistoryCorrect(invalidCommand);
+        assertHistoryCorrect(invalidCommand, loginCommand);
     }
 
     @Test
     public void execute_commandExecutionError_throwsCommandException() {
-        String deleteCommand = "delete 9";
         String loginCommand = "login admin admin";
+        String deleteCommand = "delete 9";
+
         assertCommandSuccess(loginCommand, LoginCommand.MESSAGE_LOGGED_IN_AS_LIBRARIAN, model);
         assertCommandException(deleteCommand, MESSAGE_INVALID_PERSON_DISPLAYED_INDEX);
         assertHistoryCorrect(deleteCommand, loginCommand);
@@ -44,9 +48,12 @@ public class LogicManagerTest {
 
     @Test
     public void execute_validCommand_success() {
+        String loginCommand = "login admin admin";
         String listCommand = ListCommand.COMMAND_WORD;
+
+        assertCommandSuccess(loginCommand, LoginCommand.MESSAGE_LOGGED_IN_AS_LIBRARIAN, model);
         assertCommandSuccess(listCommand, ListCommand.MESSAGE_SUCCESS, model);
-        assertHistoryCorrect(listCommand);
+        assertHistoryCorrect(listCommand, loginCommand);
     }
 
     @Test

@@ -20,13 +20,13 @@ import seedu.address.model.UserPrefs;
 public class StorageManager extends ComponentManager implements Storage {
 
     private static final Logger logger = LogsCenter.getLogger(StorageManager.class);
-    private AddressBookStorage addressBookStorage;
+    private CatalogueStorage catalogueStorage;
     private UserPrefsStorage userPrefsStorage;
 
 
-    public StorageManager(AddressBookStorage addressBookStorage, UserPrefsStorage userPrefsStorage) {
+    public StorageManager(CatalogueStorage catalogueStorage, UserPrefsStorage userPrefsStorage) {
         super();
-        this.addressBookStorage = addressBookStorage;
+        this.catalogueStorage = catalogueStorage;
         this.userPrefsStorage = userPrefsStorage;
     }
 
@@ -52,29 +52,29 @@ public class StorageManager extends ComponentManager implements Storage {
 
     @Override
     public String getAddressBookFilePath() {
-        return addressBookStorage.getAddressBookFilePath();
+        return catalogueStorage.getAddressBookFilePath();
     }
 
     @Override
     public Optional<ReadOnlyAddressBook> readAddressBook() throws DataConversionException, IOException {
-        return readAddressBook(addressBookStorage.getAddressBookFilePath());
+        return readAddressBook(catalogueStorage.getAddressBookFilePath());
     }
 
     @Override
     public Optional<ReadOnlyAddressBook> readAddressBook(String filePath) throws DataConversionException, IOException {
         logger.fine("Attempting to read data from file: " + filePath);
-        return addressBookStorage.readAddressBook(filePath);
+        return catalogueStorage.readAddressBook(filePath);
     }
 
     @Override
     public void saveAddressBook(ReadOnlyAddressBook addressBook) throws IOException {
-        saveAddressBook(addressBook, addressBookStorage.getAddressBookFilePath());
+        saveAddressBook(addressBook, catalogueStorage.getAddressBookFilePath());
     }
 
     @Override
     public void saveAddressBook(ReadOnlyAddressBook addressBook, String filePath) throws IOException {
         logger.fine("Attempting to write to data file: " + filePath);
-        addressBookStorage.saveAddressBook(addressBook, filePath);
+        catalogueStorage.saveAddressBook(addressBook, filePath);
     }
 
 

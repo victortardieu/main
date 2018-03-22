@@ -33,21 +33,21 @@ public class TypicalBooks {
             .withAvailability("Available").withPhone("98765432")
             .withTags("owesMoney", "friends").build();
     public static final Book CARL = new BookBuilder().withName("Carl Kurz").withPhone("95352563")
-            .withAvailability("Borrowed").withAddress("wall street").build();
+            .withAvailability("Available").withAddress("wall street").build();
     public static final Book DANIEL = new BookBuilder().withName("Daniel Meier").withPhone("87652533")
-            .withAvailability("Borrowed").withAddress("10th street").build();
+            .withAvailability("Available").withAddress("10th street").build();
     public static final Book ELLE = new BookBuilder().withName("Elle Meyer").withPhone("9482224")
-            .withAvailability("Reserved").withAddress("michegan ave").build();
+            .withAvailability("Available").withAddress("michegan ave").build();
     public static final Book FIONA = new BookBuilder().withName("Fiona Kunz").withPhone("9482427")
-            .withAvailability("Reserved").withAddress("little tokyo").build();
+            .withAvailability("Available").withAddress("little tokyo").build();
     public static final Book GEORGE = new BookBuilder().withName("George Best").withPhone("9482442")
-            .withAvailability("Reserved").withAddress("4th street").build();
+            .withAvailability("Available").withAddress("4th street").build();
 
     // Manually added
     public static final Book HOON = new BookBuilder().withName("Hoon Meier").withPhone("8482424")
-            .withAvailability("Reserved").withAddress("little india").build();
+            .withAvailability("Available").withAddress("little india").build();
     public static final Book IDA = new BookBuilder().withName("Ida Mueller").withPhone("8482131")
-            .withAvailability("Reserved").withAddress("chicago ave").build();
+            .withAvailability("Available").withAddress("chicago ave").build();
 
     // Manually added - Book's details found in {@code CommandTestUtil}
     public static final Book AMY = new BookBuilder().withName(VALID_TITLE_AMY).withPhone(VALID_PHONE_AMY)

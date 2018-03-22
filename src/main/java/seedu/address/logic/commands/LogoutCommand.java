@@ -24,4 +24,10 @@ public class LogoutCommand extends Command{
     public int getPrivilegeLevel(){
         return PRIVILEGE_LEVEL;
     }
+
+    @Override
+    public boolean equals(Object other) {
+        return other == this // short circuit if same object
+                || (other instanceof LogoutCommand);
+    }
 }

@@ -39,7 +39,7 @@ public class LogicManagerTest {
         String loginCommand = "login admin admin";
         assertCommandSuccess(loginCommand, LoginCommand.MESSAGE_LOGGED_IN_AS_LIBRARIAN, model);
         assertCommandException(deleteCommand, MESSAGE_INVALID_PERSON_DISPLAYED_INDEX);
-        assertHistoryCorrect(deleteCommand,loginCommand);
+        assertHistoryCorrect(deleteCommand, loginCommand);
     }
 
     @Test

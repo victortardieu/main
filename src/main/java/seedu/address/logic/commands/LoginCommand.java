@@ -1,5 +1,6 @@
 package seedu.address.logic.commands;
 
+import static java.util.Objects.requireNonNull;
 import seedu.address.model.Model;
 import seedu.address.model.person.NameContainsKeywordsPredicate;
 
@@ -21,6 +22,8 @@ public class LoginCommand extends Command{
 
 
     public LoginCommand(String username, String password) {
+        requireNonNull(username);
+        requireNonNull(password);
         this.username = username;
         this.password = password;
     }

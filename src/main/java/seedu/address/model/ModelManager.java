@@ -104,11 +104,11 @@ public class ModelManager extends ComponentManager implements Model {
 
     @Override
     public int authenticate(String username, String password) {
-        if (isStudent(username,password)){
+        if (isStudent(username, password)) {
             setPrivilegeLevel(PRIVILEGE_LEVEL_STUDENT);
             return PRIVILEGE_LEVEL_STUDENT;
         }
-        if (isLibrarian(username,password)){
+        if (isLibrarian(username, password)) {
             setPrivilegeLevel(PRIVILEGE_LEVEL_LIBRARIAN);
             return PRIVILEGE_LEVEL_LIBRARIAN;
         }
@@ -126,23 +126,26 @@ public class ModelManager extends ComponentManager implements Model {
         return this.privilegeLevel;
     }
 
-
+    /**
+     * Returns a boolean indicating whether the username and password correspond to a student
+     */
     private boolean isStudent(String username, String password) {
         //This is temporary before we add in account database
-        if (username.equals("student") && password.equals("student")){
+        if (username.equals("student") && password.equals("student")) {
             return true;
-        }
-        else{
+        } else {
             return false;
         }
     }
 
+    /**
+     * Returns a boolean indicating whether the username and password correspond to a librarian
+     */
     private boolean isLibrarian(String username, String password) {
         //This is temporary before we add in account database
-        if (username.equals("admin") && password.equals("admin")){
+        if (username.equals("admin") && password.equals("admin")) {
             return true;
-        }
-        else{
+        } else {
             return false;
         }
     }

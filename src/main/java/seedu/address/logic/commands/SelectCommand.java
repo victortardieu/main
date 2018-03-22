@@ -54,7 +54,7 @@ public class SelectCommand extends Command {
     }
 
     @Override
-    public int getPrivilegeLevel(){
+    public int getPrivilegeLevel() {
         return PRIVILEGE_LEVEL;
     }
 }

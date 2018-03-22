@@ -36,7 +36,7 @@ public class LogicManager extends ComponentManager implements Logic {
         logger.info("----------------[USER COMMAND][" + commandText + "]");
         try {
             Command command = addressBookParser.parseCommand(commandText);
-            if (!isPrivileged(command)){
+            if (!isPrivileged(command)) {
                 return new CommandResult(Command.MESSAGE_UNPRIVILEGED);
             }
             command.setData(model, history, undoRedoStack);
@@ -58,7 +58,7 @@ public class LogicManager extends ComponentManager implements Logic {
         return new ListElementPointer(history.getHistory());
     }
 
-    protected boolean isPrivileged(Command command){
+    protected boolean isPrivileged(Command command) {
         return command.getPrivilegeLevel() <= model.getPrivilegeLevel();
     }
 }

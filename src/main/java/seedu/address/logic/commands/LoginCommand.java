@@ -2,9 +2,12 @@ package seedu.address.logic.commands;
 
 import static java.util.Objects.requireNonNull;
 import seedu.address.model.Model;
-import seedu.address.model.person.NameContainsKeywordsPredicate;
 
-public class LoginCommand extends Command{
+
+/**
+ * Logs in as student or librarian.
+ */
+public class LoginCommand extends Command {
     public static final String COMMAND_WORD = "login";
 
     public static final String MESSAGE_USAGE = COMMAND_WORD + ": Login as student or librarian.\n"
@@ -38,21 +41,21 @@ public class LoginCommand extends Command{
 
     @Override
     public CommandResult execute() {
-        int newPrivilegeLevel = model.authenticate(username,password);
+        int newPrivilegeLevel = model.authenticate(username, password);
         switch (newPrivilegeLevel){
-            case Model.PRIVILEGE_LEVEL_GUEST:
-                return new CommandResult(MESSAGE_NOT_LOGGED_IN);
-            case Model.PRIVILEGE_LEVEL_STUDENT:
-                return new CommandResult(MESSAGE_LOGGED_IN_AS_STUTENT);
-            case Model.PRIVILEGE_LEVEL_LIBRARIAN:
-                return new CommandResult(MESSAGE_LOGGED_IN_AS_LIBRARIAN);
-            default:
-                return new CommandResult(MESSAGE_NOT_LOGGED_IN);
+        case Model.PRIVILEGE_LEVEL_GUEST:
+            return new CommandResult(MESSAGE_NOT_LOGGED_IN);
+        case Model.PRIVILEGE_LEVEL_STUDENT:
+            return new CommandResult(MESSAGE_LOGGED_IN_AS_STUTENT);
+        case Model.PRIVILEGE_LEVEL_LIBRARIAN:
+            return new CommandResult(MESSAGE_LOGGED_IN_AS_LIBRARIAN);
+        default:
+            return new CommandResult(MESSAGE_NOT_LOGGED_IN);
         }
     }
 
     @Override
-    public int getPrivilegeLevel(){
+    public int getPrivilegeLevel() {
         return PRIVILEGE_LEVEL;
     }
 }

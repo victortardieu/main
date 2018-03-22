@@ -22,7 +22,7 @@ public class ClearCommand extends UndoableCommand {
     }
 
     @Override
-    public int getPrivilegeLevel(){
+    public int getPrivilegeLevel() {
         return PRIVILEGE_LEVEL;
     }
 }

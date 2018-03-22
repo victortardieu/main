@@ -1,10 +1,12 @@
 package seedu.address.logic.commands;
 
-import seedu.address.logic.commands.Command;
-import seedu.address.logic.commands.CommandResult;
 import seedu.address.model.Model;
 
-public class LogoutCommand extends Command{
+/**
+ * Logs out as student or librarian.
+ */
+
+public class LogoutCommand extends Command {
     public static final String COMMAND_WORD = "logout";
 
     public static final String MESSAGE_USAGE = COMMAND_WORD + ": Logout as student or librarian.\n"
@@ -21,7 +23,7 @@ public class LogoutCommand extends Command{
     }
 
     @Override
-    public int getPrivilegeLevel(){
+    public int getPrivilegeLevel() {
         return PRIVILEGE_LEVEL;
     }
 

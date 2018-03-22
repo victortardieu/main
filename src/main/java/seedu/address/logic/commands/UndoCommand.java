@@ -37,7 +37,7 @@ public class UndoCommand extends Command {
     }
 
     @Override
-    public int getPrivilegeLevel(){
+    public int getPrivilegeLevel() {
         return PRIVILEGE_LEVEL;
     }
 }

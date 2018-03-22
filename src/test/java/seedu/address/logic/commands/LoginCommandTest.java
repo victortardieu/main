@@ -7,9 +7,8 @@ import org.junit.Rule;
 import org.junit.Test;
 import org.junit.rules.ExpectedException;
 import seedu.address.model.ModelManager;
+
 import seedu.address.model.Model;
-
-
 
 public class LoginCommandTest {
 

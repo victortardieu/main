@@ -2,8 +2,8 @@ package seedu.address.testutil;
 
 import seedu.address.commons.exceptions.IllegalValueException;
 import seedu.address.model.Catalogue;
-import seedu.address.model.person.Person;
-import seedu.address.model.person.exceptions.DuplicatePersonException;
+import seedu.address.model.book.Book;
+import seedu.address.model.book.exceptions.DuplicatePersonException;
 import seedu.address.model.tag.Tag;
 
 /**
@@ -24,13 +24,13 @@ public class CatalogueBuilder {
     }
 
     /**
-     * Adds a new {@code Person} to the {@code Catalogue} that we are building.
+     * Adds a new {@code Book} to the {@code Catalogue} that we are building.
      */
-    public CatalogueBuilder withPerson(Person person) {
+    public CatalogueBuilder withPerson(Book book) {
         try {
-            catalogue.addPerson(person);
+            catalogue.addPerson(book);
         } catch (DuplicatePersonException dpe) {
-            throw new IllegalArgumentException("person is expected to be unique.");
+            throw new IllegalArgumentException("book is expected to be unique.");
         }
         return this;
     }

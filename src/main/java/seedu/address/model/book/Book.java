@@ -1,4 +1,4 @@
-package seedu.address.model.person;
+package seedu.address.model.book;
 
 import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
 
@@ -10,12 +10,13 @@ import seedu.address.model.tag.Tag;
 import seedu.address.model.tag.UniqueTagList;
 
 /**
- * Represents a Person in the address book.
+ * Represents a Book in the catalogue.
  * Guarantees: details are present and not null, field values are validated, immutable.
  */
-public class Person {
+public class Book {
 
     private final Name name;
+
     private final Phone phone;
     private final Email email;
     private final Address address;
@@ -25,7 +26,7 @@ public class Person {
     /**
      * Every field must be present and not null.
      */
-    public Person(Name name, Phone phone, Email email, Address address, Set<Tag> tags) {
+    public Book(Name name, Phone phone, Email email, Address address, Set<Tag> tags) {
         requireAllNonNull(name, phone, email, address, tags);
         this.name = name;
         this.phone = phone;
@@ -65,15 +66,15 @@ public class Person {
             return true;
         }
 
-        if (!(other instanceof Person)) {
+        if (!(other instanceof Book)) {
             return false;
         }
 
-        Person otherPerson = (Person) other;
-        return otherPerson.getName().equals(this.getName())
-                && otherPerson.getPhone().equals(this.getPhone())
-                && otherPerson.getEmail().equals(this.getEmail())
-                && otherPerson.getAddress().equals(this.getAddress());
+        Book otherBook = (Book) other;
+        return otherBook.getName().equals(this.getName())
+                && otherBook.getPhone().equals(this.getPhone())
+                && otherBook.getEmail().equals(this.getEmail())
+                && otherBook.getAddress().equals(this.getAddress());
     }
 
     @Override

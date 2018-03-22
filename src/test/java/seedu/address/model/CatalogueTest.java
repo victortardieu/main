@@ -16,7 +16,7 @@ import org.junit.rules.ExpectedException;
 
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
-import seedu.address.model.person.Person;
+import seedu.address.model.book.Book;
 import seedu.address.model.tag.Tag;
 
 public class CatalogueTest {
@@ -48,9 +48,9 @@ public class CatalogueTest {
     @Test
     public void resetData_withDuplicatePersons_throwsAssertionError() {
         // Repeat ALICE twice
-        List<Person> newPersons = Arrays.asList(ALICE, ALICE);
+        List<Book> newBooks = Arrays.asList(ALICE, ALICE);
         List<Tag> newTags = new ArrayList<>(ALICE.getTags());
-        CatalogueStub newData = new CatalogueStub(newPersons, newTags);
+        CatalogueStub newData = new CatalogueStub(newBooks, newTags);
 
         thrown.expect(AssertionError.class);
         catalogue.resetData(newData);
@@ -69,20 +69,20 @@ public class CatalogueTest {
     }
 
     /**
-     * A stub ReadOnlyCatalogue whose persons and tags lists can violate interface constraints.
+     * A stub ReadOnlyCatalogue whose books and tags lists can violate interface constraints.
      */
     private static class CatalogueStub implements ReadOnlyCatalogue {
-        private final ObservableList<Person> persons = FXCollections.observableArrayList();
+        private final ObservableList<Book> books = FXCollections.observableArrayList();
         private final ObservableList<Tag> tags = FXCollections.observableArrayList();
 
-        CatalogueStub(Collection<Person> persons, Collection<? extends Tag> tags) {
-            this.persons.setAll(persons);
+        CatalogueStub(Collection<Book> books, Collection<? extends Tag> tags) {
+            this.books.setAll(books);
             this.tags.setAll(tags);
         }
 
         @Override
-        public ObservableList<Person> getPersonList() {
-            return persons;
+        public ObservableList<Book> getPersonList() {
+            return books;
         }
 
         @Override

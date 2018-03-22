@@ -12,7 +12,7 @@ import seedu.address.logic.UndoRedoStack;
 import seedu.address.model.Model;
 import seedu.address.model.ModelManager;
 import seedu.address.model.UserPrefs;
-import seedu.address.model.person.Person;
+import seedu.address.model.book.Book;
 import seedu.address.testutil.PersonBuilder;
 
 /**
@@ -29,26 +29,26 @@ public class AddCommandIntegrationTest {
 
     @Test
     public void execute_newPerson_success() throws Exception {
-        Person validPerson = new PersonBuilder().build();
+        Book validBook = new PersonBuilder().build();
 
         Model expectedModel = new ModelManager(model.getCatalogue(), new UserPrefs());
-        expectedModel.addPerson(validPerson);
+        expectedModel.addPerson(validBook);
 
-        assertCommandSuccess(prepareCommand(validPerson, model), model,
-                String.format(AddCommand.MESSAGE_SUCCESS, validPerson), expectedModel);
+        assertCommandSuccess(prepareCommand(validBook, model), model,
+                String.format(AddCommand.MESSAGE_SUCCESS, validBook), expectedModel);
     }
 
     @Test
     public void execute_duplicatePerson_throwsCommandException() {
-        Person personInList = model.getCatalogue().getPersonList().get(0);
-        assertCommandFailure(prepareCommand(personInList, model), model, AddCommand.MESSAGE_DUPLICATE_PERSON);
+        Book bookInList = model.getCatalogue().getPersonList().get(0);
+        assertCommandFailure(prepareCommand(bookInList, model), model, AddCommand.MESSAGE_DUPLICATE_PERSON);
     }
 
     /**
-     * Generates a new {@code AddCommand} which upon execution, adds {@code person} into the {@code model}.
+     * Generates a new {@code AddCommand} which upon execution, adds {@code book} into the {@code model}.
      */
-    private AddCommand prepareCommand(Person person, Model model) {
-        AddCommand command = new AddCommand(person);
+    private AddCommand prepareCommand(Book book, Model model) {
+        AddCommand command = new AddCommand(book);
         command.setData(model, new CommandHistory(), new UndoRedoStack());
         return command;
     }

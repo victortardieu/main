@@ -30,7 +30,7 @@ public interface Storage extends CatalogueStorage, UserPrefsStorage {
     void saveCatalogue(ReadOnlyCatalogue catalogue) throws IOException;
 
     /**
-     * Saves the current version of the Address Book to the hard disk.
+     * Saves the current version of the Catalogue to the hard disk.
      *   Creates the data file if it is missing.
      * Raises {@link DataSavingExceptionEvent} if there was an error during saving.
      */

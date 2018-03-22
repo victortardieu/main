@@ -18,10 +18,10 @@ import org.junit.Test;
 import org.junit.rules.ExpectedException;
 
 import seedu.address.commons.exceptions.IllegalValueException;
-import seedu.address.model.person.Address;
-import seedu.address.model.person.Email;
-import seedu.address.model.person.Name;
-import seedu.address.model.person.Phone;
+import seedu.address.model.book.Address;
+import seedu.address.model.book.Email;
+import seedu.address.model.book.Name;
+import seedu.address.model.book.Phone;
 import seedu.address.model.tag.Tag;
 import seedu.address.testutil.Assert;
 

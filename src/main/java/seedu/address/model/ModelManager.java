@@ -12,19 +12,19 @@ import javafx.collections.transformation.FilteredList;
 import seedu.address.commons.core.ComponentManager;
 import seedu.address.commons.core.LogsCenter;
 import seedu.address.commons.events.model.CatalogueChangedEvent;
-import seedu.address.model.person.Person;
-import seedu.address.model.person.exceptions.DuplicatePersonException;
-import seedu.address.model.person.exceptions.PersonNotFoundException;
+import seedu.address.model.book.Book;
+import seedu.address.model.book.exceptions.DuplicatePersonException;
+import seedu.address.model.book.exceptions.PersonNotFoundException;
 
 /**
- * Represents the in-memory model of the address book data.
+ * Represents the in-memory model of the catalogue data.
  * All changes to any model should be synchronized.
  */
 public class ModelManager extends ComponentManager implements Model {
     private static final Logger logger = LogsCenter.getLogger(ModelManager.class);
 
     private final Catalogue catalogue;
-    private final FilteredList<Person> filteredPersons;
+    private final FilteredList<Book> filteredBooks;
 
     /**
      * Initializes a ModelManager with the given catalogue and userPrefs.
@@ -33,10 +33,10 @@ public class ModelManager extends ComponentManager implements Model {
         super();
         requireAllNonNull(catalogue, userPrefs);
 
-        logger.fine("Initializing with address book: " + catalogue + " and user prefs " + userPrefs);
+        logger.fine("Initializing with catalogue: " + catalogue + " and user prefs " + userPrefs);
 
         this.catalogue = new Catalogue(catalogue);
-        filteredPersons = new FilteredList<>(this.catalogue.getPersonList());
+        filteredBooks = new FilteredList<>(this.catalogue.getPersonList());
     }
 
     public ModelManager() {
@@ -60,42 +60,42 @@ public class ModelManager extends ComponentManager implements Model {
     }
 
     @Override
-    public synchronized void deletePerson(Person target) throws PersonNotFoundException {
+    public synchronized void deletePerson(Book target) throws PersonNotFoundException {
         catalogue.removePerson(target);
         indicateCatalogueChanged();
     }
 
     @Override
-    public synchronized void addPerson(Person person) throws DuplicatePersonException {
-        catalogue.addPerson(person);
+    public synchronized void addPerson(Book book) throws DuplicatePersonException {
+        catalogue.addPerson(book);
         updateFilteredPersonList(PREDICATE_SHOW_ALL_PERSONS);
         indicateCatalogueChanged();
     }
 
     @Override
-    public void updatePerson(Person target, Person editedPerson)
+    public void updatePerson(Book target, Book editedBook)
             throws DuplicatePersonException, PersonNotFoundException {
-        requireAllNonNull(target, editedPerson);
+        requireAllNonNull(target, editedBook);
 
-        catalogue.updatePerson(target, editedPerson);
+        catalogue.updatePerson(target, editedBook);
         indicateCatalogueChanged();
     }
 
-    //=========== Filtered Person List Accessors =============================================================
+    //=========== Filtered Book List Accessors =============================================================
 
     /**
-     * Returns an unmodifiable view of the list of {@code Person} backed by the internal list of
+     * Returns an unmodifiable view of the list of {@code Book} backed by the internal list of
      * {@code catalogue}
      */
     @Override
-    public ObservableList<Person> getFilteredPersonList() {
-        return FXCollections.unmodifiableObservableList(filteredPersons);
+    public ObservableList<Book> getFilteredPersonList() {
+        return FXCollections.unmodifiableObservableList(filteredBooks);
     }
 
     @Override
-    public void updateFilteredPersonList(Predicate<Person> predicate) {
+    public void updateFilteredPersonList(Predicate<Book> predicate) {
         requireNonNull(predicate);
-        filteredPersons.setPredicate(predicate);
+        filteredBooks.setPredicate(predicate);
     }
 
     @Override
@@ -113,7 +113,7 @@ public class ModelManager extends ComponentManager implements Model {
         // state check
         ModelManager other = (ModelManager) obj;
         return catalogue.equals(other.catalogue)
-                && filteredPersons.equals(other.filteredPersons);
+                && filteredBooks.equals(other.filteredBooks);
     }
 
 }

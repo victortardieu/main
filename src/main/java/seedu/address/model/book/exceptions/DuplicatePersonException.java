@@ -1,9 +1,9 @@
-package seedu.address.model.person.exceptions;
+package seedu.address.model.book.exceptions;
 
 import seedu.address.commons.exceptions.DuplicateDataException;
 
 /**
- * Signals that the operation will result in duplicate Person objects.
+ * Signals that the operation will result in duplicate Book objects.
  */
 public class DuplicatePersonException extends DuplicateDataException {
     public DuplicatePersonException() {

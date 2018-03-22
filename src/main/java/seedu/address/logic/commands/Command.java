@@ -14,8 +14,8 @@ public abstract class Command {
     protected CommandHistory history;
     protected UndoRedoStack undoRedoStack;
 
-    public final static String MESSAGE_UNPRIVILEGED = "You are not allowed to execute this command,"+
-                                                        " login and try again";
+    public static final String MESSAGE_UNPRIVILEGED = "You are not allowed to execute this command,"
+                                                    + " login and try again";
 
     /**
      * Constructs a feedback message to summarise an operation that displayed a listing of persons.

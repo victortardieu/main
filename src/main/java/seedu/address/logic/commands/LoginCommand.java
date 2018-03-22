@@ -1,6 +1,7 @@
 package seedu.address.logic.commands;
 
 import static java.util.Objects.requireNonNull;
+
 import seedu.address.model.Model;
 
 
@@ -42,7 +43,7 @@ public class LoginCommand extends Command {
     @Override
     public CommandResult execute() {
         int newPrivilegeLevel = model.authenticate(username, password);
-        switch (newPrivilegeLevel){
+        switch (newPrivilegeLevel) {
         case Model.PRIVILEGE_LEVEL_GUEST:
             return new CommandResult(MESSAGE_NOT_LOGGED_IN);
         case Model.PRIVILEGE_LEVEL_STUDENT:

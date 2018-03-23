@@ -8,7 +8,6 @@ import org.junit.Test;
 import seedu.address.testutil.Assert;
 
 public class AvailTest {
-    
 
     @Test
     public void constructor_null_throwsNullPointerException() {
@@ -33,7 +32,7 @@ public class AvailTest {
         // valid avail
         assertTrue(Avail.isValidAvail("Reserved"));  // Reserved
         assertTrue(Avail.isValidAvail("Borrowed"));  // Borrowed
-        assertTrue(Avail.isValidAvail("Available"));   // Available
+        assertTrue(Avail.isValidAvail("Available"));  // Available
         assertTrue(Avail.isValidAvail("Borrowed and Reserved")); // Borrowed and Reserved
     }
 }

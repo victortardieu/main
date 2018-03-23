@@ -10,7 +10,7 @@ import java.util.Set;
 import seedu.address.commons.core.index.Index;
 import seedu.address.commons.exceptions.IllegalValueException;
 import seedu.address.commons.util.StringUtil;
-import seedu.address.model.book.Address;
+import seedu.address.model.book.Author;
 import seedu.address.model.book.Avail;
 import seedu.address.model.book.Phone;
 import seedu.address.model.book.Title;
@@ -92,27 +92,27 @@ public class ParserUtil {
     }
 
     /**
-     * Parses a {@code String address} into an {@code Address}.
+     * Parses a {@code String address} into an {@code Author}.
      * Leading and trailing whitespaces will be trimmed.
      *
      * @throws IllegalValueException if the given {@code address} is invalid.
      */
-    public static Address parseAddress(String address) throws IllegalValueException {
+    public static Author parseAuthor(String address) throws IllegalValueException {
         requireNonNull(address);
-        String trimmedAddress = address.trim();
-        if (!Address.isValidAddress(trimmedAddress)) {
-            throw new IllegalValueException(Address.MESSAGE_ADDRESS_CONSTRAINTS);
+        String trimmedAuthor = address.trim();
+        if (!Author.isValidAuthor(trimmedAuthor)) {
+            throw new IllegalValueException(Author.MESSAGE_AUTHOR_CONSTRAINTS);
         }
-        return new Address(trimmedAddress);
+        return new Author(trimmedAuthor);
     }
 
     /**
-     * Parses a {@code Optional<String> address} into an {@code Optional<Address>} if {@code address} is present.
+     * Parses a {@code Optional<String> author} into an {@code Optional<Author>} if {@code author} is present.
      * See header comment of this class regarding the use of {@code Optional} parameters.
      */
-    public static Optional<Address> parseAddress(Optional<String> address) throws IllegalValueException {
-        requireNonNull(address);
-        return address.isPresent() ? Optional.of(parseAddress(address.get())) : Optional.empty();
+    public static Optional<Author> parseAuthor(Optional<String> author) throws IllegalValueException {
+        requireNonNull(author);
+        return author.isPresent() ? Optional.of(parseAuthor(author.get())) : Optional.empty();
     }
 
     /**

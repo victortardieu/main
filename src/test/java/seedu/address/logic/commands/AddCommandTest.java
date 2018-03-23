@@ -60,8 +60,8 @@ public class AddCommandTest {
 
     @Test
     public void equals() {
-        Book alice = new BookBuilder().withName("Alice").build();
-        Book bob = new BookBuilder().withName("Bob").build();
+        Book alice = new BookBuilder().withTitle("Alice").build();
+        Book bob = new BookBuilder().withTitle("Bob").build();
         AddCommand addAliceCommand = new AddCommand(alice);
         AddCommand addBobCommand = new AddCommand(bob);
 
@@ -143,6 +143,7 @@ public class AddCommandTest {
         }
 
         @Override
+
         public ReadOnlyCatalogue getCatalogue() {
             return new Catalogue();
         }

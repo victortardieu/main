@@ -19,9 +19,9 @@ public class GuiTestAssert {
      */
     public static void assertCardEquals(BookCardHandle expectedCard, BookCardHandle actualCard) {
         assertEquals(expectedCard.getId(), actualCard.getId());
-        assertEquals(expectedCard.getAddress(), actualCard.getAddress());
+        assertEquals(expectedCard.getAuthor(), actualCard.getAuthor());
         assertEquals(expectedCard.getAvail(), actualCard.getAvail());
-        assertEquals(expectedCard.getName(), actualCard.getName());
+        assertEquals(expectedCard.getTitle(), actualCard.getTitle());
         assertEquals(expectedCard.getPhone(), actualCard.getPhone());
         assertEquals(expectedCard.getTags(), actualCard.getTags());
     }
@@ -30,10 +30,10 @@ public class GuiTestAssert {
      * Asserts that {@code actualCard} displays the details of {@code expectedBook}.
      */
     public static void assertCardDisplaysBook(Book expectedBook, BookCardHandle actualCard) {
-        assertEquals(expectedBook.getTitle().fullTitle, actualCard.getName());
+        assertEquals(expectedBook.getTitle().fullTitle, actualCard.getTitle());
         assertEquals(expectedBook.getPhone().value, actualCard.getPhone());
         assertEquals(expectedBook.getAvail().value, actualCard.getAvail());
-        assertEquals(expectedBook.getAddress().value, actualCard.getAddress());
+        assertEquals(expectedBook.getAuthor().value, actualCard.getAuthor());
         assertEquals(expectedBook.getTags().stream().map(tag -> tag.tagName).collect(Collectors.toList()),
                 actualCard.getTags());
     }

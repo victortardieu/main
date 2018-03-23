@@ -23,7 +23,7 @@ public class Avail {
     /**
      * Constructs an {@code Avail}.
      *
-     * @param avail A valid avail address.
+     * @param avail A valid availability .
      */
     public Avail(String avail) {
         requireNonNull(avail);
@@ -35,7 +35,8 @@ public class Avail {
      * Returns if a given string is a valid book avail.
      */
     public static boolean isValidAvail(String test) {
-        return test.equals(AVAILABLE) || test.equals(BORROWED)
+        return test.equals(AVAILABLE)
+                || test.equals(BORROWED)
                 || test.equals(RESERVED) || test.equals(BORROWED_AND_RESERVED);
     }
 

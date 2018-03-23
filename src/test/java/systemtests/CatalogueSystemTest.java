@@ -211,7 +211,7 @@ public abstract class CatalogueSystemTest {
      * @see BookListPanelHandle#isSelectedBookCardChanged()
      */
     protected void assertSelectedCardChanged(Index expectedSelectedCardIndex) {
-        String selectedCardName = getBookListPanel().getHandleToSelectedCard().getName();
+        String selectedCardName = getBookListPanel().getHandleToSelectedCard().getTitle();
         URL expectedUrl;
         try {
             expectedUrl = new URL(BrowserPanel.SEARCH_PAGE_URL + selectedCardName.replaceAll(" ", "%20"));

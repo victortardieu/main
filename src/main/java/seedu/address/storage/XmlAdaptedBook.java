@@ -9,7 +9,7 @@ import java.util.Set;
 import javax.xml.bind.annotation.XmlElement;
 
 import seedu.address.commons.exceptions.IllegalValueException;
-import seedu.address.model.book.Address;
+import seedu.address.model.book.Author;
 import seedu.address.model.book.Avail;
 import seedu.address.model.book.Book;
 import seedu.address.model.book.Phone;
@@ -27,11 +27,11 @@ public class XmlAdaptedBook {
     @XmlElement(required = true)
     private String title;
     @XmlElement(required = true)
+    private String author;
+    @XmlElement(required = true)
     private String phone;
     @XmlElement(required = true)
     private String avail;
-    @XmlElement(required = true)
-    private String address;
 
     @XmlElement
     private List<XmlAdaptedTag> tagged = new ArrayList<>();
@@ -45,11 +45,11 @@ public class XmlAdaptedBook {
     /**
      * Constructs an {@code XmlAdaptedBook} with the given book details.
      */
-    public XmlAdaptedBook(String title, String phone, String avail, String address, List<XmlAdaptedTag> tagged) {
+    public XmlAdaptedBook(String title, String author, String phone, String avail, List<XmlAdaptedTag> tagged) {
         this.title = title;
+        this.author = author;
         this.phone = phone;
         this.avail = avail;
-        this.address = address;
         if (tagged != null) {
             this.tagged = new ArrayList<>(tagged);
         }
@@ -62,9 +62,9 @@ public class XmlAdaptedBook {
      */
     public XmlAdaptedBook(Book source) {
         title = source.getTitle().fullTitle;
+        author = source.getAuthor().value;
         phone = source.getPhone().value;
         avail = source.getAvail().value;
-        address = source.getAddress().value;
         tagged = new ArrayList<>();
         for (Tag tag : source.getTags()) {
             tagged.add(new XmlAdaptedTag(tag));
@@ -90,6 +90,14 @@ public class XmlAdaptedBook {
         }
         final Title title = new Title(this.title);
 
+        if (this.author == null) {
+            throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT, Author.class.getSimpleName()));
+        }
+        if (!Author.isValidAuthor(this.author)) {
+            throw new IllegalValueException(Author.MESSAGE_AUTHOR_CONSTRAINTS);
+        }
+        final Author author = new Author(this.author);
+
         if (this.phone == null) {
             throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT, Phone.class.getSimpleName()));
         }
@@ -107,16 +115,8 @@ public class XmlAdaptedBook {
         }
         final Avail avail = new Avail(this.avail);
 
-        if (this.address == null) {
-            throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT, Address.class.getSimpleName()));
-        }
-        if (!Address.isValidAddress(this.address)) {
-            throw new IllegalValueException(Address.MESSAGE_ADDRESS_CONSTRAINTS);
-        }
-        final Address address = new Address(this.address);
-
         final Set<Tag> tags = new HashSet<>(bookTags);
-        return new Book(title, phone, avail, address, tags);
+        return new Book(title, author, phone, avail, tags);
     }
 
     @Override
@@ -131,9 +131,9 @@ public class XmlAdaptedBook {
 
         XmlAdaptedBook otherBook = (XmlAdaptedBook) other;
         return Objects.equals(title, otherBook.title)
+                && Objects.equals(author, otherBook.author)
                 && Objects.equals(phone, otherBook.phone)
                 && Objects.equals(avail, otherBook.avail)
-                && Objects.equals(address, otherBook.address)
                 && tagged.equals(otherBook.tagged);
     }
 }

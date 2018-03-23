@@ -3,8 +3,8 @@
     <!-- Book with invalid title field -->
     <books>
         <title>Ha!ns Mu@ster</title>
+        <author isPrivate="false">Muster Hans</author>
         <phone isPrivate="false">9482424</phone>
         <avail isPrivate="false">Available</avail>
-        <address isPrivate="false">4th street</address>
     </books>
 </catalogue>

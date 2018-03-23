@@ -63,7 +63,7 @@ Format: `help`
 === Adding a book: `add`
 
 Adds a book to the catalogue +
-Format: `add n/TITLE p/PHONE_NUMBER e/AVAIL a/ADDRESS [t/TAG]...`
+Format: `add n/TITLE p/PHONE_NUMBER e/AVAIL a/AUTHOR [t/TAG]...`
 
 [TIP]
 A book can have any number of tags (including 0)
@@ -81,7 +81,7 @@ Format: `list`
 === Editing a book : `edit`
 
 Edits an existing book in the catalogue. +
-Format: `edit INDEX [n/TITLE] [p/PHONE] [e/AVAIL] [a/ADDRESS] [t/TAG]...`
+Format: `edit INDEX [n/TITLE] [p/PHONE] [e/AVAIL] [a/AUTHOR] [t/TAG]...`
 
 ****
 * Edits the book at the specified `INDEX`. The index refers to the index number shown in the last book listing. The index *must be a positive integer* 1, 2, 3, ...
@@ -94,7 +94,7 @@ Format: `edit INDEX [n/TITLE] [p/PHONE] [e/AVAIL] [a/ADDRESS] [t/TAG]...`
 Examples:
 
 * `edit 1 p/91234567 e/Borrowed and Reserved` +
-Edits the phone number and availability address of the 1st book to be `91234567` and `Available` respectively.
+Edits the phone number and availability author of the 1st book to be `91234567` and `Available` respectively.
 * `edit 2 n/Betsy Crower t/` +
 Edits the title of the 2nd book to be `Betsy Crower` and clears all existing tags.
 
@@ -246,12 +246,12 @@ _{explain how the user can enable/disable data encryption}_
 
 == Command Summary
 
-* *Add* `add n/TITLE p/PHONE_NUMBER e/AVAIL a/ADDRESS [t/TAG]...` +
+* *Add* `add n/TITLE p/PHONE_NUMBER e/AVAIL a/AUTHOR [t/TAG]...` +
 e.g. `add n/James Ho p/22224444 e/Available a/123, Clementi Rd, 1234665 t/friend t/colleague`
 * *Clear* : `clear`
 * *Delete* : `delete INDEX` +
 e.g. `delete 3`
-* *Edit* : `edit INDEX [n/TITLE] [p/PHONE_NUMBER] [e/AVAIL] [a/ADDRESS] [t/TAG]...` +
+* *Edit* : `edit INDEX [n/TITLE] [p/PHONE_NUMBER] [e/AVAIL] [a/AUTHOR] [t/TAG]...` +
 e.g. `edit 2 n/James Lee e/Available`
 * *Find* : `find KEYWORD [MORE_KEYWORDS]` +
 e.g. `find James Jake`

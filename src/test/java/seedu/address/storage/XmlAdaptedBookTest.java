@@ -11,7 +11,7 @@ import java.util.stream.Collectors;
 import org.junit.Test;
 
 import seedu.address.commons.exceptions.IllegalValueException;
-import seedu.address.model.book.Address;
+import seedu.address.model.book.Author;
 import seedu.address.model.book.Avail;
 import seedu.address.model.book.Phone;
 import seedu.address.model.book.Title;
@@ -19,15 +19,15 @@ import seedu.address.testutil.Assert;
 
 public class XmlAdaptedBookTest {
     private static final String INVALID_TITLE = "R@chel";
+    private static final String INVALID_AUTHOR = "!!!!";
     private static final String INVALID_PHONE = "+651234";
-    private static final String INVALID_ADDRESS = " ";
     private static final String INVALID_AVAIL = "not sure";
     private static final String INVALID_TAG = "#friend";
 
     private static final String VALID_TITLE = BENSON.getTitle().toString();
+    private static final String VALID_AUTHOR = BENSON.getAuthor().toString();
     private static final String VALID_PHONE = BENSON.getPhone().toString();
     private static final String VALID_AVAIL = BENSON.getAvail().toString();
-    private static final String VALID_ADDRESS = BENSON.getAddress().toString();
     private static final List<XmlAdaptedTag> VALID_TAGS = BENSON.getTags().stream()
             .map(XmlAdaptedTag::new)
             .collect(Collectors.toList());
@@ -41,14 +41,14 @@ public class XmlAdaptedBookTest {
     @Test
     public void toModelType_invalidName_throwsIllegalValueException() {
         XmlAdaptedBook book =
-                new XmlAdaptedBook(INVALID_TITLE, VALID_PHONE, VALID_AVAIL, VALID_ADDRESS, VALID_TAGS);
+                new XmlAdaptedBook(INVALID_TITLE, VALID_AUTHOR, VALID_PHONE, VALID_AVAIL, VALID_TAGS);
         String expectedMessage = Title.MESSAGE_TITLE_CONSTRAINTS;
         Assert.assertThrows(IllegalValueException.class, expectedMessage, book::toModelType);
     }
 
     @Test
     public void toModelType_nullName_throwsIllegalValueException() {
-        XmlAdaptedBook book = new XmlAdaptedBook(null, VALID_PHONE, VALID_AVAIL, VALID_ADDRESS, VALID_TAGS);
+        XmlAdaptedBook book = new XmlAdaptedBook(null, VALID_AUTHOR, VALID_PHONE, VALID_AVAIL, VALID_TAGS);
         String expectedMessage = String.format(MISSING_FIELD_MESSAGE_FORMAT, Title.class.getSimpleName());
         Assert.assertThrows(IllegalValueException.class, expectedMessage, book::toModelType);
     }
@@ -56,14 +56,14 @@ public class XmlAdaptedBookTest {
     @Test
     public void toModelType_invalidPhone_throwsIllegalValueException() {
         XmlAdaptedBook book =
-                new XmlAdaptedBook(VALID_TITLE, INVALID_PHONE, VALID_AVAIL, VALID_ADDRESS, VALID_TAGS);
+                new XmlAdaptedBook(VALID_TITLE, VALID_AUTHOR, INVALID_PHONE, VALID_AVAIL, VALID_TAGS);
         String expectedMessage = Phone.MESSAGE_PHONE_CONSTRAINTS;
         Assert.assertThrows(IllegalValueException.class, expectedMessage, book::toModelType);
     }
 
     @Test
     public void toModelType_nullPhone_throwsIllegalValueException() {
-        XmlAdaptedBook book = new XmlAdaptedBook(VALID_TITLE, null, VALID_AVAIL, VALID_ADDRESS, VALID_TAGS);
+        XmlAdaptedBook book = new XmlAdaptedBook(VALID_TITLE, VALID_AUTHOR, null, VALID_AVAIL, VALID_TAGS);
         String expectedMessage = String.format(MISSING_FIELD_MESSAGE_FORMAT, Phone.class.getSimpleName());
         Assert.assertThrows(IllegalValueException.class, expectedMessage, book::toModelType);
     }
@@ -71,30 +71,30 @@ public class XmlAdaptedBookTest {
     @Test
     public void toModelType_invalidAvail_throwsIllegalValueException() {
         XmlAdaptedBook book =
-                new XmlAdaptedBook(VALID_TITLE, VALID_PHONE, INVALID_AVAIL, VALID_ADDRESS, VALID_TAGS);
+                new XmlAdaptedBook(VALID_TITLE, VALID_AUTHOR, VALID_PHONE, INVALID_AVAIL, VALID_TAGS);
         String expectedMessage = Avail.MESSAGE_AVAIL_CONSTRAINTS;
         Assert.assertThrows(IllegalValueException.class, expectedMessage, book::toModelType);
     }
 
     @Test
     public void toModelType_nullAvail_throwsIllegalValueException() {
-        XmlAdaptedBook book = new XmlAdaptedBook(VALID_TITLE, VALID_PHONE, null, VALID_ADDRESS, VALID_TAGS);
+        XmlAdaptedBook book = new XmlAdaptedBook(VALID_TITLE, VALID_AUTHOR, VALID_PHONE, null, VALID_TAGS);
         String expectedMessage = String.format(MISSING_FIELD_MESSAGE_FORMAT, Avail.class.getSimpleName());
         Assert.assertThrows(IllegalValueException.class, expectedMessage, book::toModelType);
     }
 
     @Test
-    public void toModelType_invalidAddress_throwsIllegalValueException() {
+    public void toModelType_invalidAuthor_throwsIllegalValueException() {
         XmlAdaptedBook book =
-                new XmlAdaptedBook(VALID_TITLE, VALID_PHONE, VALID_AVAIL, INVALID_ADDRESS, VALID_TAGS);
-        String expectedMessage = Address.MESSAGE_ADDRESS_CONSTRAINTS;
+                new XmlAdaptedBook(VALID_TITLE, INVALID_AUTHOR, VALID_PHONE, VALID_AVAIL, VALID_TAGS);
+        String expectedMessage = Author.MESSAGE_AUTHOR_CONSTRAINTS;
         Assert.assertThrows(IllegalValueException.class, expectedMessage, book::toModelType);
     }
 
     @Test
-    public void toModelType_nullAddress_throwsIllegalValueException() {
-        XmlAdaptedBook book = new XmlAdaptedBook(VALID_TITLE, VALID_PHONE, VALID_AVAIL, null, VALID_TAGS);
-        String expectedMessage = String.format(MISSING_FIELD_MESSAGE_FORMAT, Address.class.getSimpleName());
+    public void toModelType_nullAuthor_throwsIllegalValueException() {
+        XmlAdaptedBook book = new XmlAdaptedBook(VALID_TITLE, null, VALID_PHONE, VALID_AVAIL, VALID_TAGS);
+        String expectedMessage = String.format(MISSING_FIELD_MESSAGE_FORMAT, Author.class.getSimpleName());
         Assert.assertThrows(IllegalValueException.class, expectedMessage, book::toModelType);
     }
 
@@ -103,7 +103,7 @@ public class XmlAdaptedBookTest {
         List<XmlAdaptedTag> invalidTags = new ArrayList<>(VALID_TAGS);
         invalidTags.add(new XmlAdaptedTag(INVALID_TAG));
         XmlAdaptedBook book =
-                new XmlAdaptedBook(VALID_TITLE, VALID_PHONE, VALID_AVAIL, VALID_ADDRESS, invalidTags);
+                new XmlAdaptedBook(VALID_TITLE, VALID_AUTHOR, VALID_PHONE, VALID_AVAIL, invalidTags);
         Assert.assertThrows(IllegalValueException.class, book::toModelType);
     }
 

@@ -2,56 +2,57 @@
 <catalogue>
     <books>
         <title>Hans Muster</title>
+        <author isPrivate="false">Muster Hans</author>
         <phone isPrivate="false">9482424</phone>
         <avail isPrivate="false">Available</avail>
-        <address isPrivate="false">4th street</address>
     </books>
     <books>
         <title>Ruth Mueller</title>
+        <author isPrivate="false">Mueller Ruth</author>
         <phone isPrivate="false">87249245</phone>
         <avail isPrivate="false">Available</avail>
-        <address isPrivate="false">81th street</address>
     </books>
     <books>
         <title>Heinz Kurz</title>
+        <author isPrivate="false">Kurz Heinz</author>
         <phone isPrivate="false">95352563</phone>
         <avail isPrivate="false">Borrowed</avail>
-        <address isPrivate="false">wall street</address>
     </books>
     <books>
         <title>Cornelia Meier</title>
+        <author isPrivate="false">Meier Cornerlia</author>
         <phone isPrivate="false">87652533</phone>
         <avail isPrivate="false">Borrowed</avail>
-        <address isPrivate="false">10th street</address>
     </books>
     <books>
         <title>Werner Meyer</title>
+        <author isPrivate="false">Meyer Werner</author>
         <phone isPrivate="false">9482224</phone>
         <avail isPrivate="false">Reserved</avail>
-        <address isPrivate="false">michegan ave</address>
     </books>
     <books>
         <title>Lydia Kunz</title>
+        <author isPrivate="false">Kunz Lydia</author>
         <phone isPrivate="false">9482427</phone>
         <avail isPrivate="false">Reserved</avail>
-        <address isPrivate="false">little tokyo</address>
+
     </books>
     <books>
         <title>Anna Best</title>
+        <author isPrivate="false">Best Anna</author>
         <phone isPrivate="false">9482442</phone>
         <avail isPrivate="false">Reserved</avail>
-        <address isPrivate="false">4th street</address>
     </books>
     <books>
         <title>Stefan Meier</title>
+        <author isPrivate="false">Stefan Meier</author>
         <phone isPrivate="false">8482424</phone>
         <avail isPrivate="false">Borrowed and Reserved</avail>
-        <address isPrivate="false">little india</address>
     </books>
     <books>
         <title>Martin Mueller</title>
+        <author isPrivate="false">chicago ave</author>
         <phone isPrivate="false">8482131</phone>
         <avail isPrivate="false">Borrowed and Reserved</avail>
-        <address isPrivate="false">chicago ave</address>
     </books>
 </catalogue>

@@ -38,7 +38,7 @@ public class XmlUtilTest {
     private static final String VALID_NAME = "Hans Muster";
     private static final String VALID_PHONE = "9482424";
     private static final String VALID_AVAIL = "Borrowed";
-    private static final String VALID_ADDRESS = "4th street";
+    private static final String VALID_AUTHOR = "Muster Hans";
     private static final List<XmlAdaptedTag> VALID_TAGS = Collections.singletonList(new XmlAdaptedTag("friends"));
 
     @Rule
@@ -80,7 +80,7 @@ public class XmlUtilTest {
         XmlAdaptedBook actualBook = XmlUtil.getDataFromFile(
                 MISSING_BOOK_FIELD_FILE, XmlAdaptedBookWithRootElement.class);
         XmlAdaptedBook expectedBook = new XmlAdaptedBook(
-                null, VALID_PHONE, VALID_AVAIL, VALID_ADDRESS, VALID_TAGS);
+                null, VALID_AUTHOR, VALID_PHONE, VALID_AVAIL, VALID_TAGS);
         assertEquals(expectedBook, actualBook);
     }
 
@@ -89,7 +89,7 @@ public class XmlUtilTest {
         XmlAdaptedBook actualBook = XmlUtil.getDataFromFile(
                 INVALID_BOOK_FIELD_FILE, XmlAdaptedBookWithRootElement.class);
         XmlAdaptedBook expectedBook = new XmlAdaptedBook(
-                VALID_NAME, INVALID_PHONE, VALID_AVAIL, VALID_ADDRESS, VALID_TAGS);
+                VALID_NAME, VALID_AUTHOR, INVALID_PHONE, VALID_AVAIL, VALID_TAGS);
         assertEquals(expectedBook, actualBook);
     }
 
@@ -98,7 +98,7 @@ public class XmlUtilTest {
         XmlAdaptedBook actualBook = XmlUtil.getDataFromFile(
                 VALID_BOOK_FILE, XmlAdaptedBookWithRootElement.class);
         XmlAdaptedBook expectedBook = new XmlAdaptedBook(
-                VALID_NAME, VALID_PHONE, VALID_AVAIL, VALID_ADDRESS, VALID_TAGS);
+                VALID_NAME, VALID_AUTHOR, VALID_PHONE, VALID_AVAIL, VALID_TAGS);
         assertEquals(expectedBook, actualBook);
     }
 

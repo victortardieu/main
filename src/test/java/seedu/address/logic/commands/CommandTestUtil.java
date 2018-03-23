@@ -3,7 +3,7 @@ package seedu.address.logic.commands;
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertTrue;
 import static org.junit.Assert.fail;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_ADDRESS;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_AUTHOR;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_AVAIL;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_PHONE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_TAG;
@@ -35,8 +35,8 @@ public class CommandTestUtil {
     public static final String VALID_PHONE_BOB = "22222222";
     public static final String VALID_AVAIL_AMY = "Borrowed and Reserved";
     public static final String VALID_AVAIL_BOB = "Borrowed";
-    public static final String VALID_ADDRESS_AMY = "Block 312, Amy Street 1";
-    public static final String VALID_ADDRESS_BOB = "Block 123, Bobby Street 3";
+    public static final String VALID_AUTHOR_AMY = "Bee Amy";
+    public static final String VALID_AUTHOR_BOB = "Choo Bob";
     public static final String VALID_TAG_HUSBAND = "husband";
     public static final String VALID_TAG_FRIEND = "friend";
 
@@ -46,15 +46,15 @@ public class CommandTestUtil {
     public static final String PHONE_DESC_BOB = " " + PREFIX_PHONE + VALID_PHONE_BOB;
     public static final String AVAIL_DESC_AMY = " " + PREFIX_AVAIL + VALID_AVAIL_AMY;
     public static final String AVAIL_DESC_BOB = " " + PREFIX_AVAIL + VALID_AVAIL_BOB;
-    public static final String ADDRESS_DESC_AMY = " " + PREFIX_ADDRESS + VALID_ADDRESS_AMY;
-    public static final String ADDRESS_DESC_BOB = " " + PREFIX_ADDRESS + VALID_ADDRESS_BOB;
+    public static final String AUTHOR_DESC_AMY = " " + PREFIX_AUTHOR + VALID_AUTHOR_AMY;
+    public static final String AUTHOR_DESC_BOB = " " + PREFIX_AUTHOR + VALID_AUTHOR_BOB;
     public static final String TAG_DESC_FRIEND = " " + PREFIX_TAG + VALID_TAG_FRIEND;
     public static final String TAG_DESC_HUSBAND = " " + PREFIX_TAG + VALID_TAG_HUSBAND;
 
     public static final String INVALID_TITLE_DESC = " " + PREFIX_TITLE + "James&"; // '&' not allowed in titles
+    public static final String INVALID_AUTHOR_DESC = " " + PREFIX_AUTHOR + "^"; // ^ not allowed for author
     public static final String INVALID_PHONE_DESC = " " + PREFIX_PHONE + "911a"; // 'a' not allowed in phones
     public static final String INVALID_AVAIL_DESC = " " + PREFIX_AVAIL + "not sure"; // must be as stated
-    public static final String INVALID_ADDRESS_DESC = " " + PREFIX_ADDRESS; // empty string not allowed for addresses
     public static final String INVALID_TAG_DESC = " " + PREFIX_TAG + "hubby*"; // '*' not allowed in tags
 
     public static final String PREAMBLE_WHITESPACE = "\t  \r  \n";
@@ -64,11 +64,11 @@ public class CommandTestUtil {
     public static final EditCommand.EditBookDescriptor DESC_BOB;
 
     static {
-        DESC_AMY = new EditBookDescriptorBuilder().withName(VALID_TITLE_AMY)
-                .withPhone(VALID_PHONE_AMY).withAvail(VALID_AVAIL_AMY).withAddress(VALID_ADDRESS_AMY)
+        DESC_AMY = new EditBookDescriptorBuilder().withName(VALID_TITLE_AMY).withAuthor(VALID_AUTHOR_AMY)
+                .withPhone(VALID_PHONE_AMY).withAvail(VALID_AVAIL_AMY)
                 .withTags(VALID_TAG_FRIEND).build();
-        DESC_BOB = new EditBookDescriptorBuilder().withName(VALID_TITLE_BOB)
-                .withPhone(VALID_PHONE_BOB).withAvail(VALID_AVAIL_BOB).withAddress(VALID_ADDRESS_BOB)
+        DESC_BOB = new EditBookDescriptorBuilder().withName(VALID_TITLE_BOB).withAuthor(VALID_AUTHOR_BOB)
+                .withPhone(VALID_PHONE_BOB).withAvail(VALID_AVAIL_BOB)
                 .withTags(VALID_TAG_HUSBAND, VALID_TAG_FRIEND).build();
     }
 

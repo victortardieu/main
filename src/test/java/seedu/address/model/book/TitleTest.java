@@ -15,13 +15,13 @@ public class TitleTest {
     }
 
     @Test
-    public void constructor_invalidName_throwsIllegalArgumentException() {
-        String invalidName = "";
-        Assert.assertThrows(IllegalArgumentException.class, () -> new Title(invalidName));
+    public void constructor_invalidTitle_throwsIllegalArgumentException() {
+        String invalidTitle = "";
+        Assert.assertThrows(IllegalArgumentException.class, () -> new Title(invalidTitle));
     }
 
     @Test
-    public void isValidName() {
+    public void isValidTitle() {
         // null name
         Assert.assertThrows(NullPointerException.class, () -> Title.isValidTitle(null));
 

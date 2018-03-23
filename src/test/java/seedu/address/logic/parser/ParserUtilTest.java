@@ -18,7 +18,7 @@ import org.junit.Test;
 import org.junit.rules.ExpectedException;
 
 import seedu.address.commons.exceptions.IllegalValueException;
-import seedu.address.model.book.Address;
+import seedu.address.model.book.Author;
 import seedu.address.model.book.Avail;
 import seedu.address.model.book.Phone;
 import seedu.address.model.book.Title;
@@ -28,13 +28,13 @@ import seedu.address.testutil.Assert;
 public class ParserUtilTest {
     private static final String INVALID_TITLE = "R@chel";
     private static final String INVALID_PHONE = "+651234";
-    private static final String INVALID_ADDRESS = " ";
+    private static final String INVALID_AUTHOR = " ";
     private static final String INVALID_AVAIL = "NOT SURE";
     private static final String INVALID_TAG = "#friend";
 
     private static final String VALID_TITLE = "Rachel Walker";
     private static final String VALID_PHONE = "123456";
-    private static final String VALID_ADDRESS = "123 Main Street #0505";
+    private static final String VALID_AUTHOR = "Walker Rachel";
     private static final String VALID_AVAIL = "Borrowed";
     private static final String VALID_TAG_1 = "friend";
     private static final String VALID_TAG_2 = "neighbour";
@@ -99,6 +99,38 @@ public class ParserUtilTest {
     }
 
     @Test
+    public void parseAuthor_null_throwsNullPointerException() {
+        Assert.assertThrows(NullPointerException.class, () -> ParserUtil.parseAuthor((String) null));
+        Assert.assertThrows(NullPointerException.class, () -> ParserUtil.parseAuthor((Optional<String>) null));
+    }
+
+    @Test
+    public void parseAuthor_invalidValue_throwsIllegalValueException() {
+        Assert.assertThrows(IllegalValueException.class, () -> ParserUtil.parseAuthor(INVALID_AUTHOR));
+        Assert.assertThrows(IllegalValueException.class, () -> ParserUtil.parseAuthor(Optional.of(INVALID_AUTHOR)));
+    }
+
+    @Test
+    public void parseAuthor_optionalEmpty_returnsOptionalEmpty() throws Exception {
+        assertFalse(ParserUtil.parseAuthor(Optional.empty()).isPresent());
+    }
+
+    @Test
+    public void parseAuthor_validValueWithoutWhitespace_returnsAuthor() throws Exception {
+        Author expectedAuthor = new Author(VALID_AUTHOR);
+        assertEquals(expectedAuthor, ParserUtil.parseAuthor(VALID_AUTHOR));
+        assertEquals(Optional.of(expectedAuthor), ParserUtil.parseAuthor(Optional.of(VALID_AUTHOR)));
+    }
+
+    @Test
+    public void parseAuthor_validValueWithWhitespace_returnsTrimmedAuthor() throws Exception {
+        String authorWithWhitespace = WHITESPACE + VALID_AUTHOR + WHITESPACE;
+        Author expectedAuthor = new Author(VALID_AUTHOR);
+        assertEquals(expectedAuthor, ParserUtil.parseAuthor(authorWithWhitespace));
+        assertEquals(Optional.of(expectedAuthor), ParserUtil.parseAuthor(Optional.of(authorWithWhitespace)));
+    }
+
+    @Test
     public void parsePhone_null_throwsNullPointerException() {
         Assert.assertThrows(NullPointerException.class, () -> ParserUtil.parsePhone((String) null));
         Assert.assertThrows(NullPointerException.class, () -> ParserUtil.parsePhone((Optional<String>) null));
@@ -128,38 +160,7 @@ public class ParserUtilTest {
         Phone expectedPhone = new Phone(VALID_PHONE);
         assertEquals(expectedPhone, ParserUtil.parsePhone(phoneWithWhitespace));
         assertEquals(Optional.of(expectedPhone), ParserUtil.parsePhone(Optional.of(phoneWithWhitespace)));
-    }
 
-    @Test
-    public void parseAddress_null_throwsNullPointerException() {
-        Assert.assertThrows(NullPointerException.class, () -> ParserUtil.parseAddress((String) null));
-        Assert.assertThrows(NullPointerException.class, () -> ParserUtil.parseAddress((Optional<String>) null));
-    }
-
-    @Test
-    public void parseAddress_invalidValue_throwsIllegalValueException() {
-        Assert.assertThrows(IllegalValueException.class, () -> ParserUtil.parseAddress(INVALID_ADDRESS));
-        Assert.assertThrows(IllegalValueException.class, () -> ParserUtil.parseAddress(Optional.of(INVALID_ADDRESS)));
-    }
-
-    @Test
-    public void parseAddress_optionalEmpty_returnsOptionalEmpty() throws Exception {
-        assertFalse(ParserUtil.parseAddress(Optional.empty()).isPresent());
-    }
-
-    @Test
-    public void parseAddress_validValueWithoutWhitespace_returnsAddress() throws Exception {
-        Address expectedAddress = new Address(VALID_ADDRESS);
-        assertEquals(expectedAddress, ParserUtil.parseAddress(VALID_ADDRESS));
-        assertEquals(Optional.of(expectedAddress), ParserUtil.parseAddress(Optional.of(VALID_ADDRESS)));
-    }
-
-    @Test
-    public void parseAddress_validValueWithWhitespace_returnsTrimmedAddress() throws Exception {
-        String addressWithWhitespace = WHITESPACE + VALID_ADDRESS + WHITESPACE;
-        Address expectedAddress = new Address(VALID_ADDRESS);
-        assertEquals(expectedAddress, ParserUtil.parseAddress(addressWithWhitespace));
-        assertEquals(Optional.of(expectedAddress), ParserUtil.parseAddress(Optional.of(addressWithWhitespace)));
     }
 
     @Test

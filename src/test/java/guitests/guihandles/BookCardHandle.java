@@ -13,14 +13,14 @@ import javafx.scene.layout.Region;
 public class BookCardHandle extends NodeHandle<Node> {
     private static final String ID_FIELD_ID = "#id";
     private static final String TITLE_FIELD_ID = "#title";
-    private static final String ADDRESS_FIELD_ID = "#address";
+    private static final String AUTHOR_FIELD_ID = "#author";
     private static final String PHONE_FIELD_ID = "#phone";
     private static final String AVAIL_FIELD_ID = "#avail";
     private static final String TAGS_FIELD_ID = "#tags";
 
     private final Label idLabel;
     private final Label titleLabel;
-    private final Label addressLabel;
+    private final Label authorLabel;
     private final Label phoneLabel;
     private final Label availLabel;
     private final List<Label> tagLabels;
@@ -30,7 +30,7 @@ public class BookCardHandle extends NodeHandle<Node> {
 
         this.idLabel = getChildNode(ID_FIELD_ID);
         this.titleLabel = getChildNode(TITLE_FIELD_ID);
-        this.addressLabel = getChildNode(ADDRESS_FIELD_ID);
+        this.authorLabel = getChildNode(AUTHOR_FIELD_ID);
         this.phoneLabel = getChildNode(PHONE_FIELD_ID);
         this.availLabel = getChildNode(AVAIL_FIELD_ID);
 
@@ -46,12 +46,12 @@ public class BookCardHandle extends NodeHandle<Node> {
         return idLabel.getText();
     }
 
-    public String getName() {
+    public String getTitle() {
         return titleLabel.getText();
     }
 
-    public String getAddress() {
-        return addressLabel.getText();
+    public String getAuthor() {
+        return authorLabel.getText();
     }
 
     public String getPhone() {

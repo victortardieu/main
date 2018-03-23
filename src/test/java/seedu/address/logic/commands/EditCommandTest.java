@@ -59,7 +59,7 @@ public class EditCommandTest {
         Book lastBook = model.getFilteredBookList().get(indexLastBook.getZeroBased());
 
         BookBuilder bookInList = new BookBuilder(lastBook);
-        Book editedBook = bookInList.withName(VALID_TITLE_BOB).withPhone(VALID_PHONE_BOB)
+        Book editedBook = bookInList.withTitle(VALID_TITLE_BOB).withPhone(VALID_PHONE_BOB)
                 .withTags(VALID_TAG_HUSBAND).build();
 
         EditBookDescriptor descriptor = new EditBookDescriptorBuilder().withName(VALID_TITLE_BOB)
@@ -91,7 +91,7 @@ public class EditCommandTest {
         showBookAtIndex(model, INDEX_FIRST_BOOK);
 
         Book bookInFilteredList = model.getFilteredBookList().get(INDEX_FIRST_BOOK.getZeroBased());
-        Book editedBook = new BookBuilder(bookInFilteredList).withName(VALID_TITLE_BOB).build();
+        Book editedBook = new BookBuilder(bookInFilteredList).withTitle(VALID_TITLE_BOB).build();
         EditCommand editCommand = prepareCommand(INDEX_FIRST_BOOK,
                 new EditBookDescriptorBuilder().withName(VALID_TITLE_BOB).build());
 

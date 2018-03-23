@@ -20,7 +20,7 @@ import seedu.address.model.tag.Tag;
 import seedu.address.model.tag.UniqueTagList;
 
 /**
- * Wraps all data at the address-book level
+ * Wraps all data at the catalogue level
  * Duplicates are not allowed (by .equals comparison)
  */
 public class Catalogue implements ReadOnlyCatalogue {
@@ -133,7 +133,7 @@ public class Catalogue implements ReadOnlyCatalogue {
         final Set<Tag> correctTagReferences = new HashSet<>();
         bookTags.forEach(tag -> correctTagReferences.add(masterTagObjects.get(tag)));
         return new Book(
-                book.getTitle(), book.getPhone(), book.getAvail(), book.getAddress(), correctTagReferences);
+                book.getTitle(), book.getAuthor(), book.getPhone(), book.getAvail(), correctTagReferences);
     }
 
     /**

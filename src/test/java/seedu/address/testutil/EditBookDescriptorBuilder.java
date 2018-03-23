@@ -5,7 +5,7 @@ import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
 import seedu.address.logic.commands.EditCommand.EditBookDescriptor;
-import seedu.address.model.book.Address;
+import seedu.address.model.book.Author;
 import seedu.address.model.book.Avail;
 import seedu.address.model.book.Book;
 import seedu.address.model.book.Phone;
@@ -35,7 +35,7 @@ public class EditBookDescriptorBuilder {
         descriptor.setTitle(book.getTitle());
         descriptor.setPhone(book.getPhone());
         descriptor.setAvail(book.getAvail());
-        descriptor.setAddress(book.getAddress());
+        descriptor.setAuthor(book.getAuthor());
         descriptor.setTags(book.getTags());
     }
 
@@ -64,10 +64,10 @@ public class EditBookDescriptorBuilder {
     }
 
     /**
-     * Sets the {@code Address} of the {@code EditBookDescriptor} that we are building.
+     * Sets the {@code Author} of the {@code EditBookDescriptor} that we are building.
      */
-    public EditBookDescriptorBuilder withAddress(String address) {
-        descriptor.setAddress(new Address(address));
+    public EditBookDescriptorBuilder withAuthor(String author) {
+        descriptor.setAuthor(new Author(author));
         return this;
     }
 

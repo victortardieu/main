@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <book>
     <title>Hans Muster</title>
+    <author>Muster Hans</author>
     <phone>9482424</phone>
     <avail>Borrowed</avail>
-    <address>4th street</address>
     <tagged>friends</tagged>
 </book>

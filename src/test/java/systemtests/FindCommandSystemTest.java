@@ -111,13 +111,25 @@ public class FindCommandSystemTest extends CatalogueSystemTest {
         assertCommandSuccess(command, expectedModel);
         assertSelectedCardUnchanged();
 
-        /* Case: find phone number of book in catalogue -> 0 books found */
-        command = FindCommand.COMMAND_WORD + " " + DANIEL.getPhone().value;
+        /* Case: find book in catalogue, keyword is substring of author -> 0 books found */
+        command = FindCommand.COMMAND_WORD + " Mei";
+        ModelHelper.setFilteredList(expectedModel);
         assertCommandSuccess(command, expectedModel);
         assertSelectedCardUnchanged();
 
-        /* Case: find address of book in catalogue -> 0 books found */
-        command = FindCommand.COMMAND_WORD + " " + DANIEL.getAddress().value;
+        /* Case: find book in catalogue, author is substring of keyword -> 0 books found */
+        command = FindCommand.COMMAND_WORD + " Meiers";
+        ModelHelper.setFilteredList(expectedModel);
+        assertCommandSuccess(command, expectedModel);
+        assertSelectedCardUnchanged();
+
+        /* Case: find book not in catalogue, author not in catalogue -> 0 books found */
+        command = FindCommand.COMMAND_WORD + " Mark";
+        assertCommandSuccess(command, expectedModel);
+        assertSelectedCardUnchanged();
+
+        /* Case: find phone number of book in catalogue -> 0 books found */
+        command = FindCommand.COMMAND_WORD + " " + DANIEL.getPhone().value;
         assertCommandSuccess(command, expectedModel);
         assertSelectedCardUnchanged();
 
@@ -135,7 +147,7 @@ public class FindCommandSystemTest extends CatalogueSystemTest {
         /* Case: find while a book is selected -> selected card deselected */
         showAllBooks();
         selectBook(Index.fromOneBased(1));
-        assertFalse(getBookListPanel().getHandleToSelectedCard().getName().equals(DANIEL.getTitle().fullTitle));
+        assertFalse(getBookListPanel().getHandleToSelectedCard().getTitle().equals(DANIEL.getTitle().fullTitle));
         command = FindCommand.COMMAND_WORD + " Daniel";
         ModelHelper.setFilteredList(expectedModel, DANIEL);
         assertCommandSuccess(command, expectedModel);

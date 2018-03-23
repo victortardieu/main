@@ -4,48 +4,48 @@
 <catalogue>
     <books>
         <title>Alice Pauline</title>
+        <author>Pauline Alice</author>
         <phone>85355255</phone>
         <avail>Available</avail>
-        <address>123, Jurong West Ave 6, #08-111</address>
         <tagged>friends</tagged>
     </books>
     <books>
         <title>Benson Meier</title>
+        <author>Meier Benson</author>
         <phone>98765432</phone>
         <avail>Available</avail>
-        <address>311, Clementi Ave 2, #02-25</address>
         <tagged>owesMoney</tagged>
         <tagged>friends</tagged>
     </books>
     <books>
         <title>Carl Kurz</title>
+        <author>Kurz Carl</author>
         <phone>95352563</phone>
         <avail>Available</avail>
-        <address>wall street</address>
     </books>
     <books>
         <title>Daniel Meier</title>
+        <author>Meier Daniel</author>
         <phone>87652533</phone>
         <avail>Available</avail>
-        <address>10th street</address>
     </books>
     <books>
         <title>Elle Meyer</title>
+        <author>Meyer Elle</author>
         <phone>9482224</phone>
         <avail>Available</avail>
-        <address>michegan ave</address>
     </books>
     <books>
         <title>Fiona Kunz</title>
+        <author>Kunz Fiona</author>
         <phone>9482427</phone>
         <avail>Available</avail>
-        <address>little tokyo</address>
     </books>
     <books>
         <title>George Best</title>
+        <author>Best George</author>
         <phone>9482442</phone>
         <avail>Available</avail>
-        <address>4th street</address>
     </books>
     <tags>friends</tags>
     <tags>owesMoney</tags>

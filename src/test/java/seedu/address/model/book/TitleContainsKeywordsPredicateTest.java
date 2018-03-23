@@ -44,34 +44,34 @@ public class TitleContainsKeywordsPredicateTest {
         // One keyword
         TitleContainsKeywordsPredicate predicate;
         predicate = new TitleContainsKeywordsPredicate(Collections.singletonList("Alice"));
-        assertTrue(predicate.test(new BookBuilder().withName("Alice Bob").build()));
+        assertTrue(predicate.test(new BookBuilder().withTitle("Alice Bob").build()));
 
         // Multiple keywords
         predicate = new TitleContainsKeywordsPredicate(Arrays.asList("Alice", "Bob"));
-        assertTrue(predicate.test(new BookBuilder().withName("Alice Bob").build()));
+        assertTrue(predicate.test(new BookBuilder().withTitle("Alice Bob").build()));
 
         // Only one matching keyword
         predicate = new TitleContainsKeywordsPredicate(Arrays.asList("Bob", "Carol"));
-        assertTrue(predicate.test(new BookBuilder().withName("Alice Carol").build()));
+        assertTrue(predicate.test(new BookBuilder().withTitle("Alice Carol").build()));
 
         // Mixed-case keywords
         predicate = new TitleContainsKeywordsPredicate(Arrays.asList("aLIce", "bOB"));
-        assertTrue(predicate.test(new BookBuilder().withName("Alice Bob").build()));
+        assertTrue(predicate.test(new BookBuilder().withTitle("Alice Bob").build()));
     }
 
     @Test
     public void test_nameDoesNotContainKeywords_returnsFalse() {
         // Zero keywords
         TitleContainsKeywordsPredicate predicate = new TitleContainsKeywordsPredicate(Collections.emptyList());
-        assertFalse(predicate.test(new BookBuilder().withName("Alice").build()));
+        assertFalse(predicate.test(new BookBuilder().withTitle("Alice").build()));
 
         // Non-matching keyword
         predicate = new TitleContainsKeywordsPredicate(Arrays.asList("Carol"));
-        assertFalse(predicate.test(new BookBuilder().withName("Alice Bob").build()));
+        assertFalse(predicate.test(new BookBuilder().withTitle("Alice Bob").build()));
 
         // Keywords match phone, avail and address, but does not match name
         predicate = new TitleContainsKeywordsPredicate(Arrays.asList("12345", "Borrowed", "Main", "Street"));
-        assertFalse(predicate.test(new BookBuilder().withName("Alice").withPhone("12345")
-                .withAvail("Borrowed").withAddress("Main Street").build()));
+        assertFalse(predicate.test(new BookBuilder().withTitle("Alice").withPhone("12345")
+                .withAvail("Borrowed").withAuthor("Main Street").build()));
     }
 }

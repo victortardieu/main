@@ -29,11 +29,11 @@ public class BookCard extends UiPart<Region> {
     @FXML
     private Label title;
     @FXML
+    private Label author;
+    @FXML
     private Label id;
     @FXML
     private Label phone;
-    @FXML
-    private Label address;
     @FXML
     private Label avail;
     @FXML
@@ -44,8 +44,8 @@ public class BookCard extends UiPart<Region> {
         this.book = book;
         id.setText(displayedIndex + ". ");
         title.setText(book.getTitle().fullTitle);
+        author.setText(book.getAuthor().value);
         phone.setText(book.getPhone().value);
-        address.setText(book.getAddress().value);
         avail.setText(book.getAvail().value);
         book.getTags().forEach(tag -> tags.getChildren().add(new Label(tag.tagName)));
     }

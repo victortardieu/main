@@ -3,8 +3,8 @@
     <!-- Book with invalid avail field -->
     <books>
         <title>Hans Muster</title>
+        <author isPrivate="false">Muster Hans</author>
         <phone isPrivate="false">9482424</phone>
         <avail isPrivate="false">not sure</avail>
-        <address isPrivate="false">4th street</address>
     </books>
 </catalogue>

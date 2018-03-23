@@ -1,7 +1,7 @@
 package seedu.address.testutil;
 
-import static seedu.address.logic.commands.CommandTestUtil.VALID_ADDRESS_AMY;
-import static seedu.address.logic.commands.CommandTestUtil.VALID_ADDRESS_BOB;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_AUTHOR_AMY;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_AUTHOR_BOB;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_AVAIL_AMY;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_AVAIL_BOB;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_PHONE_AMY;
@@ -24,36 +24,58 @@ import seedu.address.model.book.exceptions.DuplicateBookException;
  */
 public class TypicalBooks {
 
-    public static final Book ALICE = new BookBuilder().withName("Alice Pauline")
-            .withAddress("123, Jurong West Ave 6, #08-111").withAvail("Available")
+    public static final Book ALICE = new BookBuilder().withTitle("Alice Pauline")
+            .withAuthor("Pauline Alice")
+            .withAvail("Available")
             .withPhone("85355255")
             .withTags("friends").build();
-    public static final Book BENSON = new BookBuilder().withName("Benson Meier")
-            .withAddress("311, Clementi Ave 2, #02-25")
-            .withAvail("Available").withPhone("98765432")
+    public static final Book BENSON = new BookBuilder().withTitle("Benson Meier")
+            .withAuthor("Meier Benson")
+            .withAvail("Available")
+            .withPhone("98765432")
             .withTags("owesMoney", "friends").build();
-    public static final Book CARL = new BookBuilder().withName("Carl Kurz").withPhone("95352563")
-            .withAvail("Available").withAddress("wall street").build();
-    public static final Book DANIEL = new BookBuilder().withName("Daniel Meier").withPhone("87652533")
-            .withAvail("Available").withAddress("10th street").build();
-    public static final Book ELLE = new BookBuilder().withName("Elle Meyer").withPhone("9482224")
-            .withAvail("Available").withAddress("michegan ave").build();
-    public static final Book FIONA = new BookBuilder().withName("Fiona Kunz").withPhone("9482427")
-            .withAvail("Available").withAddress("little tokyo").build();
-    public static final Book GEORGE = new BookBuilder().withName("George Best").withPhone("9482442")
-            .withAvail("Available").withAddress("4th street").build();
+    public static final Book CARL = new BookBuilder().withTitle("Carl Kurz")
+            .withAuthor("Kurz Carl")
+            .withPhone("95352563")
+            .withAvail("Available").build();
+    public static final Book DANIEL = new BookBuilder().withTitle("Daniel Meier")
+            .withAuthor("Meier Daniel")
+            .withPhone("87652533")
+            .withAvail("Available").build();
+    public static final Book ELLE = new BookBuilder().withTitle("Elle Meyer")
+            .withAuthor("Meyer Elle")
+            .withPhone("9482224")
+            .withAvail("Available").build();
+    public static final Book FIONA = new BookBuilder().withTitle("Fiona Kunz")
+            .withAuthor("Kunz Fiona")
+            .withPhone("9482427")
+            .withAvail("Available").build();
+    public static final Book GEORGE = new BookBuilder().withTitle("George Best")
+            .withAuthor("Best George")
+            .withPhone("9482442")
+            .withAvail("Available").build();
 
     // Manually added
-    public static final Book HOON = new BookBuilder().withName("Hoon Meier").withPhone("8482424")
-            .withAvail("Available").withAddress("little india").build();
-    public static final Book IDA = new BookBuilder().withName("Ida Mueller").withPhone("8482131")
-            .withAvail("Available").withAddress("chicago ave").build();
+    public static final Book HOON = new BookBuilder().withTitle("Hoon Meier")
+            .withAuthor("Meier Hoon")
+            .withPhone("8482424")
+            .withAvail("Available").build();
+    public static final Book IDA = new BookBuilder().withTitle("Ida Mueller")
+            .withAuthor("Mueller Ida")
+            .withPhone("8482131")
+            .withAvail("Available").build();
 
     // Manually added - Book's details found in {@code CommandTestUtil}
-    public static final Book AMY = new BookBuilder().withName(VALID_TITLE_AMY).withPhone(VALID_PHONE_AMY)
-            .withAvail(VALID_AVAIL_AMY).withAddress(VALID_ADDRESS_AMY).withTags(VALID_TAG_FRIEND).build();
-    public static final Book BOB = new BookBuilder().withName(VALID_TITLE_BOB).withPhone(VALID_PHONE_BOB)
-            .withAvail(VALID_AVAIL_BOB).withAddress(VALID_ADDRESS_BOB).withTags(VALID_TAG_HUSBAND, VALID_TAG_FRIEND)
+    public static final Book AMY = new BookBuilder().withTitle(VALID_TITLE_AMY)
+            .withAuthor(VALID_AUTHOR_AMY)
+            .withPhone(VALID_PHONE_AMY)
+            .withAvail(VALID_AVAIL_AMY)
+            .withTags(VALID_TAG_FRIEND).build();
+    public static final Book BOB = new BookBuilder().withTitle(VALID_TITLE_BOB)
+            .withAuthor(VALID_AUTHOR_BOB)
+            .withPhone(VALID_PHONE_BOB)
+            .withAvail(VALID_AVAIL_BOB)
+            .withTags(VALID_TAG_HUSBAND, VALID_TAG_FRIEND)
             .build();
 
     public static final String KEYWORD_MATCHING_MEIER = "Meier"; // A keyword that matches MEIER

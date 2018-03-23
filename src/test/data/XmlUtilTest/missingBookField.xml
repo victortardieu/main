@@ -2,7 +2,7 @@
 <!-- Book with missing title field -->
 <book>
     <phone>9482424</phone>
+    <author>Muster Hans</author>
     <avail>Borrowed</avail>
-    <address>4th street</address>
     <tagged>friends</tagged>
 </book>

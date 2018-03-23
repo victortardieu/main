@@ -3,15 +3,15 @@
     <!-- Valid Book -->
     <books>
         <title>Hans Muster</title>
+        <author isPrivate="false">Muster Hans</author>
         <phone isPrivate="false">9482424</phone>
         <avail isPrivate="false">Available</avail>
-        <address isPrivate="false">4th street</address>
     </books>
     <!-- Book with invalid phone field -->
     <books>
         <title>Hans Muster</title>
+        <author isPrivate="false">Muster HAns</author>
         <phone isPrivate="false">948asdf2424</phone>
         <avail isPrivate="false">Available</avail>
-        <address isPrivate="false">4th street</address>
     </books>
 </catalogue>

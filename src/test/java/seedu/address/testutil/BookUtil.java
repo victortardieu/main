@@ -1,6 +1,6 @@
 package seedu.address.testutil;
 
-import static seedu.address.logic.parser.CliSyntax.PREFIX_ADDRESS;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_AUTHOR;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_AVAIL;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_PHONE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_TAG;
@@ -29,7 +29,7 @@ public class BookUtil {
         sb.append(PREFIX_TITLE + book.getTitle().fullTitle + " ");
         sb.append(PREFIX_PHONE + book.getPhone().value + " ");
         sb.append(PREFIX_AVAIL + book.getAvail().value + " ");
-        sb.append(PREFIX_ADDRESS + book.getAddress().value + " ");
+        sb.append(PREFIX_AUTHOR + book.getAuthor().value + " ");
         book.getTags().stream().forEach(
             s -> sb.append(PREFIX_TAG + s.tagName + " ")
         );

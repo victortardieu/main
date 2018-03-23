@@ -16,7 +16,7 @@ public class BookCardTest extends GuiUnitTest {
     @Test
     public void display() {
         // no tags
-        Book bookWithNoTags = new BookBuilder().withTags(new String[0]).build();
+        Book bookWithNoTags = new BookBuilder().withTags().build();
         BookCard bookCard = new BookCard(bookWithNoTags, 1);
         uiPartRule.setUiPart(bookCard);
         assertCardDisplay(bookCard, bookWithNoTags, 1);

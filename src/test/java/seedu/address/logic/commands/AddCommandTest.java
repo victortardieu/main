@@ -113,13 +113,12 @@ public class AddCommandTest {
         }
 
         @Override
-        public void deleteBook(Book target) throws BookNotFoundException {
+        public void deleteBook(Book target) {
             fail("This method should not be called.");
         }
 
         @Override
-        public void updateBook(Book target, Book editedBook)
-                throws DuplicateBookException {
+        public void updateBook(Book target, Book editedBook) {
             fail("This method should not be called.");
         }
 
@@ -157,7 +156,7 @@ public class AddCommandTest {
         final ArrayList<Book> booksAdded = new ArrayList<>();
 
         @Override
-        public void addBook(Book book) throws DuplicateBookException {
+        public void addBook(Book book) {
             requireNonNull(book);
             booksAdded.add(book);
         }

@@ -74,7 +74,7 @@ public abstract class CatalogueSystemTest {
     }
 
     @After
-    public void tearDown() throws Exception {
+    public void tearDown() {
         setupHelper.tearDownStage();
         EventsCenter.clearSubscribers();
     }

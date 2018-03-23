@@ -55,7 +55,7 @@ public class UndoableCommandTest {
         }
 
         @Override
-        public CommandResult executeUndoableCommand() throws CommandException {
+        public CommandResult executeUndoableCommand() {
             Book bookToDelete = model.getFilteredBookList().get(0);
             try {
                 model.deleteBook(bookToDelete);

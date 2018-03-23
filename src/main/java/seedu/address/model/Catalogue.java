@@ -13,8 +13,9 @@ import java.util.stream.Collectors;
 import javafx.collections.ObservableList;
 import seedu.address.model.book.Book;
 import seedu.address.model.book.UniqueBookList;
-import seedu.address.model.book.exceptions.DuplicateBookException;
 import seedu.address.model.book.exceptions.BookNotFoundException;
+import seedu.address.model.book.exceptions.DuplicateBookException;
+
 import seedu.address.model.tag.Tag;
 import seedu.address.model.tag.UniqueTagList;
 

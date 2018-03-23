@@ -12,8 +12,9 @@ import seedu.address.commons.exceptions.IllegalValueException;
 import seedu.address.model.book.Address;
 import seedu.address.model.book.Availability;
 import seedu.address.model.book.Book;
-import seedu.address.model.book.Title;
 import seedu.address.model.book.Phone;
+import seedu.address.model.book.Title;
+
 import seedu.address.model.tag.Tag;
 
 /**

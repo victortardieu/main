@@ -116,7 +116,7 @@ public class XmlCatalogueStorageTest {
     }
 
     @Test
-    public void saveCatalogue_nullFilePath_throwsNullPointerException() throws IOException {
+    public void saveCatalogue_nullFilePath_throwsNullPointerException() {
         thrown.expect(NullPointerException.class);
         saveCatalogue(new Catalogue(), null);
     }

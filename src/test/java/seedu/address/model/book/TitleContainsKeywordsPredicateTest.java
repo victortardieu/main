@@ -25,7 +25,8 @@ public class TitleContainsKeywordsPredicateTest {
         assertTrue(firstPredicate.equals(firstPredicate));
 
         // same values -> returns true
-        TitleContainsKeywordsPredicate firstPredicateCopy = new TitleContainsKeywordsPredicate(firstPredicateKeywordList);
+        TitleContainsKeywordsPredicate firstPredicateCopy;
+        firstPredicateCopy = new TitleContainsKeywordsPredicate(firstPredicateKeywordList);
         assertTrue(firstPredicate.equals(firstPredicateCopy));
 
         // different types -> returns false
@@ -41,7 +42,8 @@ public class TitleContainsKeywordsPredicateTest {
     @Test
     public void test_nameContainsKeywords_returnsTrue() {
         // One keyword
-        TitleContainsKeywordsPredicate predicate = new TitleContainsKeywordsPredicate(Collections.singletonList("Alice"));
+        TitleContainsKeywordsPredicate predicate;
+        predicate = new TitleContainsKeywordsPredicate(Collections.singletonList("Alice"));
         assertTrue(predicate.test(new BookBuilder().withName("Alice Bob").build()));
 
         // Multiple keywords
@@ -67,9 +69,9 @@ public class TitleContainsKeywordsPredicateTest {
         predicate = new TitleContainsKeywordsPredicate(Arrays.asList("Carol"));
         assertFalse(predicate.test(new BookBuilder().withName("Alice Bob").build()));
 
-        // Keywords match phone, availability and address, but does not match name
+        // Keywords match phone, avail and address, but does not match name
         predicate = new TitleContainsKeywordsPredicate(Arrays.asList("12345", "Borrowed", "Main", "Street"));
         assertFalse(predicate.test(new BookBuilder().withName("Alice").withPhone("12345")
-                .withAvailability("Borrowed").withAddress("Main Street").build()));
+                .withAvail("Borrowed").withAddress("Main Street").build()));
     }
 }

@@ -7,32 +7,32 @@ import org.junit.Test;
 
 import seedu.address.testutil.Assert;
 
-public class AvailabilityTest {
+public class AvailTest {
 
     @Test
     public void constructor_null_throwsNullPointerException() {
-        Assert.assertThrows(NullPointerException.class, () -> new Availability(null));
+        Assert.assertThrows(NullPointerException.class, () -> new Avail(null));
     }
 
     @Test
-    public void constructor_invalidAvailability_throwsIllegalArgumentException() {
-        String invalidAvailability = "";
-        Assert.assertThrows(IllegalArgumentException.class, () -> new Availability(invalidAvailability));
+    public void constructor_invalidAvail_throwsIllegalArgumentException() {
+        String invalidAvail = "";
+        Assert.assertThrows(IllegalArgumentException.class, () -> new Avail(invalidAvail));
     }
 
     @Test
-    public void isValidAvailability() {
-        // null availability
-        Assert.assertThrows(NullPointerException.class, () -> Availability.isValidAvailability(null));
+    public void isValidAvail() {
+        // null avail
+        Assert.assertThrows(NullPointerException.class, () -> Avail.isValidAvail(null));
 
-        // blank availability
-        assertFalse(Availability.isValidAvailability("")); // empty string
-        assertFalse(Availability.isValidAvailability(" ")); // spaces only
+        // blank avail
+        assertFalse(Avail.isValidAvail("")); // empty string
+        assertFalse(Avail.isValidAvail(" ")); // spaces only
 
-        // valid availability
-        assertTrue(Availability.isValidAvailability("Reserved"));  // Reserved
-        assertTrue(Availability.isValidAvailability("Borrowed"));  // Borrowed
-        assertTrue(Availability.isValidAvailability("Available"));   // Available
-        assertTrue(Availability.isValidAvailability("Borrowed and Reserved")); // Borrowed and Reserved
+        // valid avail
+        assertTrue(Avail.isValidAvail("Reserved"));  // Reserved
+        assertTrue(Avail.isValidAvail("Borrowed"));  // Borrowed
+        assertTrue(Avail.isValidAvail("Available"));   // Available
+        assertTrue(Avail.isValidAvail("Borrowed and Reserved")); // Borrowed and Reserved
     }
 }

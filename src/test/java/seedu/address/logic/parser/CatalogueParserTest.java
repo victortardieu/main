@@ -31,9 +31,10 @@ import seedu.address.logic.commands.UndoCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.book.Book;
 import seedu.address.model.book.TitleContainsKeywordsPredicate;
-import seedu.address.testutil.EditBookDescriptorBuilder;
 import seedu.address.testutil.BookBuilder;
 import seedu.address.testutil.BookUtil;
+import seedu.address.testutil.EditBookDescriptorBuilder;
+
 
 public class CatalogueParserTest {
     @Rule

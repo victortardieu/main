@@ -5,10 +5,10 @@ import static org.junit.Assert.assertTrue;
 import static seedu.address.logic.commands.CommandTestUtil.DESC_AMY;
 import static seedu.address.logic.commands.CommandTestUtil.DESC_BOB;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_ADDRESS_BOB;
-import static seedu.address.logic.commands.CommandTestUtil.VALID_AVAILIABILITY_BOB;
-import static seedu.address.logic.commands.CommandTestUtil.VALID_TITLE_BOB;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_AVAIL_BOB;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_PHONE_BOB;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_TAG_HUSBAND;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_TITLE_BOB;
 
 import org.junit.Test;
 
@@ -44,7 +44,7 @@ public class EditBookDescriptorTest {
         assertFalse(DESC_AMY.equals(editedAmy));
 
         // different availability -> returns false
-        editedAmy = new EditBookDescriptorBuilder(DESC_AMY).withAvailability(VALID_AVAILIABILITY_BOB).build();
+        editedAmy = new EditBookDescriptorBuilder(DESC_AMY).withAvail(VALID_AVAIL_BOB).build();
         assertFalse(DESC_AMY.equals(editedAmy));
 
         // different address -> returns false

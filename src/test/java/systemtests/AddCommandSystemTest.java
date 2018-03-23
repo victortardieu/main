@@ -3,28 +3,28 @@ package systemtests;
 import static seedu.address.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
 import static seedu.address.logic.commands.CommandTestUtil.ADDRESS_DESC_AMY;
 import static seedu.address.logic.commands.CommandTestUtil.ADDRESS_DESC_BOB;
-import static seedu.address.logic.commands.CommandTestUtil.AVAILIABILITY_DESC_AMY;
-import static seedu.address.logic.commands.CommandTestUtil.AVAILIABILITY_DESC_BOB;
+import static seedu.address.logic.commands.CommandTestUtil.AVAIL_DESC_AMY;
+import static seedu.address.logic.commands.CommandTestUtil.AVAIL_DESC_BOB;
 import static seedu.address.logic.commands.CommandTestUtil.INVALID_ADDRESS_DESC;
-import static seedu.address.logic.commands.CommandTestUtil.INVALID_AVAILIABILITY_DESC;
-import static seedu.address.logic.commands.CommandTestUtil.INVALID_TITLE_DESC;
+import static seedu.address.logic.commands.CommandTestUtil.INVALID_AVAIL_DESC;
 import static seedu.address.logic.commands.CommandTestUtil.INVALID_PHONE_DESC;
 import static seedu.address.logic.commands.CommandTestUtil.INVALID_TAG_DESC;
-import static seedu.address.logic.commands.CommandTestUtil.TITLE_DESC_AMY;
-import static seedu.address.logic.commands.CommandTestUtil.TITLE_DESC_BOB;
+import static seedu.address.logic.commands.CommandTestUtil.INVALID_TITLE_DESC;
 import static seedu.address.logic.commands.CommandTestUtil.PHONE_DESC_AMY;
 import static seedu.address.logic.commands.CommandTestUtil.PHONE_DESC_BOB;
 import static seedu.address.logic.commands.CommandTestUtil.TAG_DESC_FRIEND;
 import static seedu.address.logic.commands.CommandTestUtil.TAG_DESC_HUSBAND;
+import static seedu.address.logic.commands.CommandTestUtil.TITLE_DESC_AMY;
+import static seedu.address.logic.commands.CommandTestUtil.TITLE_DESC_BOB;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_ADDRESS_AMY;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_ADDRESS_BOB;
-import static seedu.address.logic.commands.CommandTestUtil.VALID_AVAILIABILITY_AMY;
-import static seedu.address.logic.commands.CommandTestUtil.VALID_AVAILIABILITY_BOB;
-import static seedu.address.logic.commands.CommandTestUtil.VALID_TITLE_AMY;
-import static seedu.address.logic.commands.CommandTestUtil.VALID_TITLE_BOB;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_AVAIL_AMY;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_AVAIL_BOB;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_PHONE_AMY;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_PHONE_BOB;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_TAG_FRIEND;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_TITLE_AMY;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_TITLE_BOB;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_TAG;
 import static seedu.address.testutil.TypicalBooks.ALICE;
 import static seedu.address.testutil.TypicalBooks.AMY;
@@ -43,10 +43,10 @@ import seedu.address.logic.commands.RedoCommand;
 import seedu.address.logic.commands.UndoCommand;
 import seedu.address.model.Model;
 import seedu.address.model.book.Address;
+import seedu.address.model.book.Avail;
 import seedu.address.model.book.Book;
-import seedu.address.model.book.Availability;
-import seedu.address.model.book.Title;
 import seedu.address.model.book.Phone;
+import seedu.address.model.book.Title;
 import seedu.address.model.book.exceptions.DuplicateBookException;
 import seedu.address.model.tag.Tag;
 import seedu.address.testutil.BookBuilder;
@@ -65,7 +65,7 @@ public class AddCommandSystemTest extends CatalogueSystemTest {
          */
         Book toAdd = AMY;
         String command = "   " + AddCommand.COMMAND_WORD + "  " + TITLE_DESC_AMY + "  " + PHONE_DESC_AMY + " "
-                + AVAILIABILITY_DESC_AMY + "   " + ADDRESS_DESC_AMY + "   " + TAG_DESC_FRIEND + " ";
+                + AVAIL_DESC_AMY + "   " + ADDRESS_DESC_AMY + "   " + TAG_DESC_FRIEND + " ";
         assertCommandSuccess(command, toAdd);
 
         /* Case: undo adding Amy to the list -> Amy deleted */
@@ -80,30 +80,30 @@ public class AddCommandSystemTest extends CatalogueSystemTest {
         assertCommandSuccess(command, model, expectedResultMessage);
 
         /* Case: add a book with all fields same as another book in the catalogue except name -> added */
-        toAdd = new BookBuilder().withName(VALID_TITLE_BOB).withPhone(VALID_PHONE_AMY).withAvailability(VALID_AVAILIABILITY_AMY)
+        toAdd = new BookBuilder().withName(VALID_TITLE_BOB).withPhone(VALID_PHONE_AMY).withAvail(VALID_AVAIL_AMY)
                 .withAddress(VALID_ADDRESS_AMY).withTags(VALID_TAG_FRIEND).build();
-        command = AddCommand.COMMAND_WORD + TITLE_DESC_BOB + PHONE_DESC_AMY + AVAILIABILITY_DESC_AMY + ADDRESS_DESC_AMY
+        command = AddCommand.COMMAND_WORD + TITLE_DESC_BOB + PHONE_DESC_AMY + AVAIL_DESC_AMY + ADDRESS_DESC_AMY
                 + TAG_DESC_FRIEND;
         assertCommandSuccess(command, toAdd);
 
         /* Case: add a book with all fields same as another book in the catalogue except phone -> added */
-        toAdd = new BookBuilder().withName(VALID_TITLE_AMY).withPhone(VALID_PHONE_BOB).withAvailability(VALID_AVAILIABILITY_AMY)
+        toAdd = new BookBuilder().withName(VALID_TITLE_AMY).withPhone(VALID_PHONE_BOB).withAvail(VALID_AVAIL_AMY)
                 .withAddress(VALID_ADDRESS_AMY).withTags(VALID_TAG_FRIEND).build();
-        command = AddCommand.COMMAND_WORD + TITLE_DESC_AMY + PHONE_DESC_BOB + AVAILIABILITY_DESC_AMY + ADDRESS_DESC_AMY
+        command = AddCommand.COMMAND_WORD + TITLE_DESC_AMY + PHONE_DESC_BOB + AVAIL_DESC_AMY + ADDRESS_DESC_AMY
                 + TAG_DESC_FRIEND;
         assertCommandSuccess(command, toAdd);
 
-        /* Case: add a book with all fields same as another book in the catalogue except availability -> added */
-        toAdd = new BookBuilder().withName(VALID_TITLE_AMY).withPhone(VALID_PHONE_AMY).withAvailability(VALID_AVAILIABILITY_BOB)
+        /* Case: add a book with all fields same as another book in the catalogue except avail -> added */
+        toAdd = new BookBuilder().withName(VALID_TITLE_AMY).withPhone(VALID_PHONE_AMY).withAvail(VALID_AVAIL_BOB)
                 .withAddress(VALID_ADDRESS_AMY).withTags(VALID_TAG_FRIEND).build();
-        command = AddCommand.COMMAND_WORD + TITLE_DESC_AMY + PHONE_DESC_AMY + AVAILIABILITY_DESC_BOB + ADDRESS_DESC_AMY
+        command = AddCommand.COMMAND_WORD + TITLE_DESC_AMY + PHONE_DESC_AMY + AVAIL_DESC_BOB + ADDRESS_DESC_AMY
                 + TAG_DESC_FRIEND;
         assertCommandSuccess(command, toAdd);
 
         /* Case: add a book with all fields same as another book in the catalogue except address -> added */
-        toAdd = new BookBuilder().withName(VALID_TITLE_AMY).withPhone(VALID_PHONE_AMY).withAvailability(VALID_AVAILIABILITY_AMY)
+        toAdd = new BookBuilder().withName(VALID_TITLE_AMY).withPhone(VALID_PHONE_AMY).withAvail(VALID_AVAIL_AMY)
                 .withAddress(VALID_ADDRESS_BOB).withTags(VALID_TAG_FRIEND).build();
-        command = AddCommand.COMMAND_WORD + TITLE_DESC_AMY + PHONE_DESC_AMY + AVAILIABILITY_DESC_AMY + ADDRESS_DESC_BOB
+        command = AddCommand.COMMAND_WORD + TITLE_DESC_AMY + PHONE_DESC_AMY + AVAIL_DESC_AMY + ADDRESS_DESC_BOB
                 + TAG_DESC_FRIEND;
         assertCommandSuccess(command, toAdd);
 
@@ -114,7 +114,7 @@ public class AddCommandSystemTest extends CatalogueSystemTest {
         /* Case: add a book with tags, command with parameters in random order -> added */
         toAdd = BOB;
         command = AddCommand.COMMAND_WORD + TAG_DESC_FRIEND + PHONE_DESC_BOB + ADDRESS_DESC_BOB + TITLE_DESC_BOB
-                + TAG_DESC_HUSBAND + AVAILIABILITY_DESC_BOB;
+                + TAG_DESC_HUSBAND + AVAIL_DESC_BOB;
         assertCommandSuccess(command, toAdd);
 
         /* Case: add a book, missing tags -> added */
@@ -146,19 +146,19 @@ public class AddCommandSystemTest extends CatalogueSystemTest {
         assertCommandFailure(command, AddCommand.MESSAGE_DUPLICATE_BOOK);
 
         /* Case: missing name -> rejected */
-        command = AddCommand.COMMAND_WORD + PHONE_DESC_AMY + AVAILIABILITY_DESC_AMY + ADDRESS_DESC_AMY;
+        command = AddCommand.COMMAND_WORD + PHONE_DESC_AMY + AVAIL_DESC_AMY + ADDRESS_DESC_AMY;
         assertCommandFailure(command, String.format(MESSAGE_INVALID_COMMAND_FORMAT, AddCommand.MESSAGE_USAGE));
 
         /* Case: missing phone -> rejected */
-        command = AddCommand.COMMAND_WORD + TITLE_DESC_AMY + AVAILIABILITY_DESC_AMY + ADDRESS_DESC_AMY;
+        command = AddCommand.COMMAND_WORD + TITLE_DESC_AMY + AVAIL_DESC_AMY + ADDRESS_DESC_AMY;
         assertCommandFailure(command, String.format(MESSAGE_INVALID_COMMAND_FORMAT, AddCommand.MESSAGE_USAGE));
 
-        /* Case: missing availability -> rejected */
+        /* Case: missing avail -> rejected */
         command = AddCommand.COMMAND_WORD + TITLE_DESC_AMY + PHONE_DESC_AMY + ADDRESS_DESC_AMY;
         assertCommandFailure(command, String.format(MESSAGE_INVALID_COMMAND_FORMAT, AddCommand.MESSAGE_USAGE));
 
         /* Case: missing address -> rejected */
-        command = AddCommand.COMMAND_WORD + TITLE_DESC_AMY + PHONE_DESC_AMY + AVAILIABILITY_DESC_AMY;
+        command = AddCommand.COMMAND_WORD + TITLE_DESC_AMY + PHONE_DESC_AMY + AVAIL_DESC_AMY;
         assertCommandFailure(command, String.format(MESSAGE_INVALID_COMMAND_FORMAT, AddCommand.MESSAGE_USAGE));
 
         /* Case: invalid keyword -> rejected */
@@ -166,23 +166,23 @@ public class AddCommandSystemTest extends CatalogueSystemTest {
         assertCommandFailure(command, Messages.MESSAGE_UNKNOWN_COMMAND);
 
         /* Case: invalid name -> rejected */
-        command = AddCommand.COMMAND_WORD + INVALID_TITLE_DESC + PHONE_DESC_AMY + AVAILIABILITY_DESC_AMY + ADDRESS_DESC_AMY;
+        command = AddCommand.COMMAND_WORD + INVALID_TITLE_DESC + PHONE_DESC_AMY + AVAIL_DESC_AMY + ADDRESS_DESC_AMY;
         assertCommandFailure(command, Title.MESSAGE_TITLE_CONSTRAINTS);
 
         /* Case: invalid phone -> rejected */
-        command = AddCommand.COMMAND_WORD + TITLE_DESC_AMY + INVALID_PHONE_DESC + AVAILIABILITY_DESC_AMY + ADDRESS_DESC_AMY;
+        command = AddCommand.COMMAND_WORD + TITLE_DESC_AMY + INVALID_PHONE_DESC + AVAIL_DESC_AMY + ADDRESS_DESC_AMY;
         assertCommandFailure(command, Phone.MESSAGE_PHONE_CONSTRAINTS);
 
-        /* Case: invalid availability -> rejected */
-        command = AddCommand.COMMAND_WORD + TITLE_DESC_AMY + PHONE_DESC_AMY + INVALID_AVAILIABILITY_DESC + ADDRESS_DESC_AMY;
-        assertCommandFailure(command, Availability.MESSAGE_AVAILABILITY_CONSTRAINTS);
+        /* Case: invalid avail -> rejected */
+        command = AddCommand.COMMAND_WORD + TITLE_DESC_AMY + PHONE_DESC_AMY + INVALID_AVAIL_DESC + ADDRESS_DESC_AMY;
+        assertCommandFailure(command, Avail.MESSAGE_AVAIL_CONSTRAINTS);
 
         /* Case: invalid address -> rejected */
-        command = AddCommand.COMMAND_WORD + TITLE_DESC_AMY + PHONE_DESC_AMY + AVAILIABILITY_DESC_AMY + INVALID_ADDRESS_DESC;
+        command = AddCommand.COMMAND_WORD + TITLE_DESC_AMY + PHONE_DESC_AMY + AVAIL_DESC_AMY + INVALID_ADDRESS_DESC;
         assertCommandFailure(command, Address.MESSAGE_ADDRESS_CONSTRAINTS);
 
         /* Case: invalid tag -> rejected */
-        command = AddCommand.COMMAND_WORD + TITLE_DESC_AMY + PHONE_DESC_AMY + AVAILIABILITY_DESC_AMY + ADDRESS_DESC_AMY
+        command = AddCommand.COMMAND_WORD + TITLE_DESC_AMY + PHONE_DESC_AMY + AVAIL_DESC_AMY + ADDRESS_DESC_AMY
                 + INVALID_TAG_DESC;
         assertCommandFailure(command, Tag.MESSAGE_TAG_CONSTRAINTS);
     }

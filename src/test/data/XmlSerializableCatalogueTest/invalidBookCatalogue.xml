@@ -1,10 +1,10 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <catalogue>
-    <!-- Book with invalid availability field -->
+    <!-- Book with invalid avail field -->
     <books>
         <title>Hans Muster</title>
         <phone isPrivate="false">9482424</phone>
-        <availability isPrivate="false">not sure</availability>
+        <avail isPrivate="false">not sure</avail>
         <address isPrivate="false">4th street</address>
     </books>
 </catalogue>

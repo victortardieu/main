@@ -21,8 +21,9 @@ import seedu.address.model.Catalogue;
 import seedu.address.model.Model;
 import seedu.address.model.ModelManager;
 import seedu.address.model.UserPrefs;
-import seedu.address.model.book.TitleContainsKeywordsPredicate;
 import seedu.address.model.book.Book;
+import seedu.address.model.book.TitleContainsKeywordsPredicate;
+
 
 /**
  * Contains integration tests (interaction with the Model) for {@code FindCommand}.

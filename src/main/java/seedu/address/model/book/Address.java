@@ -32,7 +32,7 @@ public class Address {
     }
 
     /**
-     * Returns true if a given string is a valid book availability.
+     * Returns true if a given string is a valid book avail.
      */
     public static boolean isValidAddress(String test) {
         return test.matches(ADDRESS_VALIDATION_REGEX);

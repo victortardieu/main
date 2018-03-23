@@ -23,7 +23,6 @@ import seedu.address.model.Model;
 import seedu.address.model.ReadOnlyCatalogue;
 import seedu.address.model.book.Book;
 import seedu.address.model.book.exceptions.DuplicateBookException;
-import seedu.address.model.book.exceptions.BookNotFoundException;
 import seedu.address.testutil.BookBuilder;
 
 public class AddCommandTest {

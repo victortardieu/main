@@ -4,14 +4,14 @@
     <books>
         <title>Hans Muster</title>
         <phone isPrivate="false">9482424</phone>
-        <availability isPrivate="false">Available</availability>
+        <avail isPrivate="false">Available</avail>
         <address isPrivate="false">4th street</address>
     </books>
     <!-- Book with invalid phone field -->
     <books>
         <title>Hans Muster</title>
         <phone isPrivate="false">948asdf2424</phone>
-        <availability isPrivate="false">Available</availability>
+        <avail isPrivate="false">Available</avail>
         <address isPrivate="false">4th street</address>
     </books>
 </catalogue>

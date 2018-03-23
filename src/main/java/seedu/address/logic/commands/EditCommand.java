@@ -2,7 +2,7 @@ package seedu.address.logic.commands;
 
 import static java.util.Objects.requireNonNull;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_ADDRESS;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_AVAILABILITY;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_AVAIL;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_PHONE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_TAG;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_TITLE;
@@ -20,12 +20,13 @@ import seedu.address.commons.core.index.Index;
 import seedu.address.commons.util.CollectionUtil;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.book.Address;
-import seedu.address.model.book.Availability;
+import seedu.address.model.book.Avail;
 import seedu.address.model.book.Book;
-import seedu.address.model.book.Title;
 import seedu.address.model.book.Phone;
-import seedu.address.model.book.exceptions.DuplicateBookException;
+import seedu.address.model.book.Title;
 import seedu.address.model.book.exceptions.BookNotFoundException;
+import seedu.address.model.book.exceptions.DuplicateBookException;
+
 import seedu.address.model.tag.Tag;
 
 /**
@@ -41,12 +42,12 @@ public class EditCommand extends UndoableCommand {
             + "Parameters: INDEX (must be a positive integer) "
             + "[" + PREFIX_TITLE + "TITLE] "
             + "[" + PREFIX_PHONE + "PHONE] "
-            + "[" + PREFIX_AVAILABILITY + "AVAILABILITY] "
+            + "[" + PREFIX_AVAIL + "AVAIL] "
             + "[" + PREFIX_ADDRESS + "ADDRESS] "
             + "[" + PREFIX_TAG + "TAG]...\n"
             + "Example: " + COMMAND_WORD + " 1 "
             + PREFIX_PHONE + "91234567 "
-            + PREFIX_AVAILABILITY + "Borrowed";
+            + PREFIX_AVAIL + "Borrowed";
 
     public static final String MESSAGE_EDIT_BOOK_SUCCESS = "Edited Book: %1$s";
     public static final String MESSAGE_NOT_EDITED = "At least one field to edit must be provided.";
@@ -104,11 +105,11 @@ public class EditCommand extends UndoableCommand {
 
         Title updatedTitle = editBookDescriptor.getTitle().orElse(bookToEdit.getTitle());
         Phone updatedPhone = editBookDescriptor.getPhone().orElse(bookToEdit.getPhone());
-        Availability updatedAvailability = editBookDescriptor.getAvailability().orElse(bookToEdit.getAvailability());
+        Avail updatedAvail = editBookDescriptor.getAvail().orElse(bookToEdit.getAvail());
         Address updatedAddress = editBookDescriptor.getAddress().orElse(bookToEdit.getAddress());
         Set<Tag> updatedTags = editBookDescriptor.getTags().orElse(bookToEdit.getTags());
 
-        return new Book(updatedTitle, updatedPhone, updatedAvailability, updatedAddress, updatedTags);
+        return new Book(updatedTitle, updatedPhone, updatedAvail, updatedAddress, updatedTags);
     }
 
     @Override
@@ -137,7 +138,7 @@ public class EditCommand extends UndoableCommand {
     public static class EditBookDescriptor {
         private Title title;
         private Phone phone;
-        private Availability availability;
+        private Avail avail;
         private Address address;
         private Set<Tag> tags;
 
@@ -150,7 +151,7 @@ public class EditCommand extends UndoableCommand {
         public EditBookDescriptor(EditBookDescriptor toCopy) {
             setTitle(toCopy.title);
             setPhone(toCopy.phone);
-            setAvailability(toCopy.availability);
+            setAvail(toCopy.avail);
             setAddress(toCopy.address);
             setTags(toCopy.tags);
         }
@@ -159,7 +160,7 @@ public class EditCommand extends UndoableCommand {
          * Returns true if at least one field is edited.
          */
         public boolean isAnyFieldEdited() {
-            return CollectionUtil.isAnyNonNull(this.title, this.phone, this.availability, this.address, this.tags);
+            return CollectionUtil.isAnyNonNull(this.title, this.phone, this.avail, this.address, this.tags);
         }
 
         public void setTitle(Title title) {
@@ -178,12 +179,12 @@ public class EditCommand extends UndoableCommand {
             return Optional.ofNullable(phone);
         }
 
-        public void setAvailability(Availability availability) {
-            this.availability = availability;
+        public void setAvail(Avail avail) {
+            this.avail = avail;
         }
 
-        public Optional<Availability> getAvailability() {
-            return Optional.ofNullable(availability);
+        public Optional<Avail> getAvail() {
+            return Optional.ofNullable(avail);
         }
 
         public void setAddress(Address address) {
@@ -228,7 +229,7 @@ public class EditCommand extends UndoableCommand {
 
             return getTitle().equals(e.getTitle())
                     && getPhone().equals(e.getPhone())
-                    && getAvailability().equals(e.getAvailability())
+                    && getAvail().equals(e.getAvail())
                     && getAddress().equals(e.getAddress())
                     && getTags().equals(e.getTags());
         }

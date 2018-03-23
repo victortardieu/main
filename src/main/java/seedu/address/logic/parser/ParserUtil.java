@@ -11,9 +11,9 @@ import seedu.address.commons.core.index.Index;
 import seedu.address.commons.exceptions.IllegalValueException;
 import seedu.address.commons.util.StringUtil;
 import seedu.address.model.book.Address;
-import seedu.address.model.book.Availability;
-import seedu.address.model.book.Title;
+import seedu.address.model.book.Avail;
 import seedu.address.model.book.Phone;
+import seedu.address.model.book.Title;
 import seedu.address.model.tag.Tag;
 
 /**
@@ -116,27 +116,27 @@ public class ParserUtil {
     }
 
     /**
-     * Parses a {@code String availability} into an {@code Availability}.
+     * Parses a {@code String avail} into an {@code Avail}.
      * Leading and trailing whitespaces will be trimmed.
      *
-     * @throws IllegalValueException if the given {@code availability} is invalid.
+     * @throws IllegalValueException if the given {@code avail} is invalid.
      */
-    public static Availability parseAvailability(String availability) throws IllegalValueException {
-        requireNonNull(availability);
-        String trimmedAvailability = availability.trim();
-        if (!Availability.isValidAvailability(trimmedAvailability)) {
-            throw new IllegalValueException(Availability.MESSAGE_AVAILABILITY_CONSTRAINTS);
+    public static Avail parseAvail(String avail) throws IllegalValueException {
+        requireNonNull(avail);
+        String trimmedAvail = avail.trim();
+        if (!Avail.isValidAvail(trimmedAvail)) {
+            throw new IllegalValueException(Avail.MESSAGE_AVAIL_CONSTRAINTS);
         }
-        return new Availability(trimmedAvailability);
+        return new Avail(trimmedAvail);
     }
 
     /**
-     * Parses a {@code Optional<String> availability} into an {@code Optional<Availability>} if {@code availability} is present.
+     * Parses a {@code Optional<String> avail} into an {@code Optional<Avail>} if {@code avail} is present.
      * See header comment of this class regarding the use of {@code Optional} parameters.
      */
-    public static Optional<Availability> parseAvailability(Optional<String> availability) throws IllegalValueException {
-        requireNonNull(availability);
-        return availability.isPresent() ? Optional.of(parseAvailability(availability.get())) : Optional.empty();
+    public static Optional<Avail> parseAvail(Optional<String> avail) throws IllegalValueException {
+        requireNonNull(avail);
+        return avail.isPresent() ? Optional.of(parseAvail(avail.get())) : Optional.empty();
     }
 
     /**

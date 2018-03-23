@@ -122,7 +122,7 @@ public class FindCommandSystemTest extends CatalogueSystemTest {
         assertSelectedCardUnchanged();
 
         /* Case: find availability of book in catalogue -> 0 books found */
-        command = FindCommand.COMMAND_WORD + " " + DANIEL.getAvailability().value;
+        command = FindCommand.COMMAND_WORD + " " + DANIEL.getAvail().value;
         assertCommandSuccess(command, expectedModel);
         assertSelectedCardUnchanged();
 

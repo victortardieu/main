@@ -6,14 +6,14 @@ import org.junit.rules.ExpectedException;
 
 import seedu.address.model.book.UniqueBookList;
 
-public class uniqueBookListTest {
+public class UniqueBookListTest {
     @Rule
     public ExpectedException thrown = ExpectedException.none();
 
     @Test
     public void asObservableList_modifyList_throwsUnsupportedOperationException() {
-        UniqueBookList UniqueBookList = new UniqueBookList();
+        UniqueBookList uniqueBookList = new UniqueBookList();
         thrown.expect(UnsupportedOperationException.class);
-        UniqueBookList.asObservableList().remove(0);
+        uniqueBookList.asObservableList().remove(0);
     }
 }

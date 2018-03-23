@@ -4,10 +4,10 @@ import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertTrue;
 import static org.junit.Assert.fail;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_ADDRESS;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_AVAILABILITY;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_TITLE;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_AVAIL;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_PHONE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_TAG;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_TITLE;
 
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -33,8 +33,8 @@ public class CommandTestUtil {
     public static final String VALID_TITLE_BOB = "Bob Choo";
     public static final String VALID_PHONE_AMY = "11111111";
     public static final String VALID_PHONE_BOB = "22222222";
-    public static final String VALID_AVAILIABILITY_AMY = "Borrowed and Reserved";
-    public static final String VALID_AVAILIABILITY_BOB = "Borrowed";
+    public static final String VALID_AVAIL_AMY = "Borrowed and Reserved";
+    public static final String VALID_AVAIL_BOB = "Borrowed";
     public static final String VALID_ADDRESS_AMY = "Block 312, Amy Street 1";
     public static final String VALID_ADDRESS_BOB = "Block 123, Bobby Street 3";
     public static final String VALID_TAG_HUSBAND = "husband";
@@ -44,8 +44,8 @@ public class CommandTestUtil {
     public static final String TITLE_DESC_BOB = " " + PREFIX_TITLE + VALID_TITLE_BOB;
     public static final String PHONE_DESC_AMY = " " + PREFIX_PHONE + VALID_PHONE_AMY;
     public static final String PHONE_DESC_BOB = " " + PREFIX_PHONE + VALID_PHONE_BOB;
-    public static final String AVAILIABILITY_DESC_AMY = " " + PREFIX_AVAILABILITY + VALID_AVAILIABILITY_AMY;
-    public static final String AVAILIABILITY_DESC_BOB = " " + PREFIX_AVAILABILITY + VALID_AVAILIABILITY_BOB;
+    public static final String AVAIL_DESC_AMY = " " + PREFIX_AVAIL + VALID_AVAIL_AMY;
+    public static final String AVAIL_DESC_BOB = " " + PREFIX_AVAIL + VALID_AVAIL_BOB;
     public static final String ADDRESS_DESC_AMY = " " + PREFIX_ADDRESS + VALID_ADDRESS_AMY;
     public static final String ADDRESS_DESC_BOB = " " + PREFIX_ADDRESS + VALID_ADDRESS_BOB;
     public static final String TAG_DESC_FRIEND = " " + PREFIX_TAG + VALID_TAG_FRIEND;
@@ -53,7 +53,7 @@ public class CommandTestUtil {
 
     public static final String INVALID_TITLE_DESC = " " + PREFIX_TITLE + "James&"; // '&' not allowed in titles
     public static final String INVALID_PHONE_DESC = " " + PREFIX_PHONE + "911a"; // 'a' not allowed in phones
-    public static final String INVALID_AVAILIABILITY_DESC = " " + PREFIX_AVAILABILITY + "not sure"; // must be as stated
+    public static final String INVALID_AVAIL_DESC = " " + PREFIX_AVAIL + "not sure"; // must be as stated
     public static final String INVALID_ADDRESS_DESC = " " + PREFIX_ADDRESS; // empty string not allowed for addresses
     public static final String INVALID_TAG_DESC = " " + PREFIX_TAG + "hubby*"; // '*' not allowed in tags
 
@@ -65,10 +65,10 @@ public class CommandTestUtil {
 
     static {
         DESC_AMY = new EditBookDescriptorBuilder().withName(VALID_TITLE_AMY)
-                .withPhone(VALID_PHONE_AMY).withAvailability(VALID_AVAILIABILITY_AMY).withAddress(VALID_ADDRESS_AMY)
+                .withPhone(VALID_PHONE_AMY).withAvail(VALID_AVAIL_AMY).withAddress(VALID_ADDRESS_AMY)
                 .withTags(VALID_TAG_FRIEND).build();
         DESC_BOB = new EditBookDescriptorBuilder().withName(VALID_TITLE_BOB)
-                .withPhone(VALID_PHONE_BOB).withAvailability(VALID_AVAILIABILITY_BOB).withAddress(VALID_ADDRESS_BOB)
+                .withPhone(VALID_PHONE_BOB).withAvail(VALID_AVAIL_BOB).withAddress(VALID_ADDRESS_BOB)
                 .withTags(VALID_TAG_HUSBAND, VALID_TAG_FRIEND).build();
     }
 

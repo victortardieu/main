@@ -3,7 +3,7 @@ package seedu.address.logic.commands;
 import static java.util.Objects.requireNonNull;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_AUTHOR;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_AVAIL;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_PHONE;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_ISBN;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_TAG;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_TITLE;
 
@@ -22,13 +22,13 @@ public class AddCommand extends UndoableCommand {
             + "Parameters: "
             + PREFIX_TITLE + "TITLE "
             + PREFIX_AUTHOR + "AUTHOR "
-            + PREFIX_PHONE + "PHONE "
+            + PREFIX_ISBN + "ISBN "
             + PREFIX_AVAIL + "AVAIL "
             + "[" + PREFIX_TAG + "TAG]...\n"
             + "Example: " + COMMAND_WORD + " "
             + PREFIX_TITLE + "John Doe "
             + PREFIX_AUTHOR + "Doe John "
-            + PREFIX_PHONE + "98765432 "
+            + PREFIX_ISBN + "98765432 "
             + PREFIX_AVAIL + "Borrowed "
             + PREFIX_TAG + "friends "
             + PREFIX_TAG + "owesMoney";

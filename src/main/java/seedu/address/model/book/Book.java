@@ -17,7 +17,7 @@ public class Book {
 
     private final Title title;
     private final Author author;
-    private final Phone phone;
+    private final Isbn isbn;
     private final Avail avail;
 
     private final UniqueTagList tags;
@@ -25,11 +25,11 @@ public class Book {
     /**
      * Every field must be present and not null.
      */
-    public Book(Title title, Author author, Phone phone, Avail avail, Set<Tag> tags) {
-        requireAllNonNull(title, author, phone, avail, tags);
+    public Book(Title title, Author author, Isbn isbn, Avail avail, Set<Tag> tags) {
+        requireAllNonNull(title, author, isbn, avail, tags);
         this.title = title;
         this.author = author;
-        this.phone = phone;
+        this.isbn = isbn;
         this.avail = avail;
         // protect internal tags from changes in the arg list
         this.tags = new UniqueTagList(tags);
@@ -43,8 +43,8 @@ public class Book {
         return author;
     }
 
-    public Phone getPhone() {
-        return phone;
+    public Isbn getIsbn() {
+        return isbn;
     }
 
     public Avail getAvail() {
@@ -74,14 +74,14 @@ public class Book {
         Book otherBook = (Book) other;
         return otherBook.getTitle().equals(this.getTitle())
                 && otherBook.getAuthor().equals(this.getAuthor())
-                && otherBook.getPhone().equals(this.getPhone())
+                && otherBook.getIsbn().equals(this.getIsbn())
                 && otherBook.getAvail().equals(this.getAvail());
     }
 
     @Override
     public int hashCode() {
         // use this method for custom fields hashing instead of implementing your own
-        return Objects.hash(title, author, phone, avail, tags);
+        return Objects.hash(title, author, isbn, avail, tags);
     }
 
     @Override
@@ -90,8 +90,8 @@ public class Book {
         builder.append(getTitle())
                 .append(" Author: ")
                 .append(getAuthor())
-                .append(" Phone: ")
-                .append(getPhone())
+                .append(" Isbn: ")
+                .append(getIsbn())
                 .append(" Avail: ")
                 .append(getAvail())
                 .append(" Tags: ");

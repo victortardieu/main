@@ -3,7 +3,7 @@ package seedu.address.logic.commands;
 import static java.util.Objects.requireNonNull;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_AUTHOR;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_AVAIL;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_PHONE;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_ISBN;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_TAG;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_TITLE;
 import static seedu.address.model.Model.PREDICATE_SHOW_ALL_BOOKS;
@@ -22,7 +22,7 @@ import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.book.Author;
 import seedu.address.model.book.Avail;
 import seedu.address.model.book.Book;
-import seedu.address.model.book.Phone;
+import seedu.address.model.book.Isbn;
 import seedu.address.model.book.Title;
 import seedu.address.model.book.exceptions.BookNotFoundException;
 import seedu.address.model.book.exceptions.DuplicateBookException;
@@ -42,11 +42,11 @@ public class EditCommand extends UndoableCommand {
             + "Parameters: INDEX (must be a positive integer) "
             + "[" + PREFIX_TITLE + "TITLE] "
             + "[" + PREFIX_AUTHOR + "AUTHOR] "
-            + "[" + PREFIX_PHONE + "PHONE] "
+            + "[" + PREFIX_ISBN + "ISBN] "
             + "[" + PREFIX_AVAIL + "AVAIL] "
             + "[" + PREFIX_TAG + "TAG]...\n"
             + "Example: " + COMMAND_WORD + " 1 "
-            + PREFIX_PHONE + "91234567 "
+            + PREFIX_ISBN + "91234567 "
             + PREFIX_AVAIL + "Borrowed";
 
     public static final String MESSAGE_EDIT_BOOK_SUCCESS = "Edited Book: %1$s";
@@ -104,12 +104,12 @@ public class EditCommand extends UndoableCommand {
         assert bookToEdit != null;
 
         Title updatedTitle = editBookDescriptor.getTitle().orElse(bookToEdit.getTitle());
-        Phone updatedPhone = editBookDescriptor.getPhone().orElse(bookToEdit.getPhone());
+        Isbn updatedIsbn = editBookDescriptor.getIsbn().orElse(bookToEdit.getIsbn());
         Avail updatedAvail = editBookDescriptor.getAvail().orElse(bookToEdit.getAvail());
         Author updatedAuthor = editBookDescriptor.getAuthor().orElse(bookToEdit.getAuthor());
         Set<Tag> updatedTags = editBookDescriptor.getTags().orElse(bookToEdit.getTags());
 
-        return new Book(updatedTitle, updatedAuthor, updatedPhone, updatedAvail, updatedTags);
+        return new Book(updatedTitle, updatedAuthor, updatedIsbn, updatedAvail, updatedTags);
     }
 
     @Override
@@ -138,7 +138,7 @@ public class EditCommand extends UndoableCommand {
     public static class EditBookDescriptor {
         private Title title;
         private Author author;
-        private Phone phone;
+        private Isbn isbn;
         private Avail avail;
         private Set<Tag> tags;
 
@@ -151,7 +151,7 @@ public class EditCommand extends UndoableCommand {
         public EditBookDescriptor(EditBookDescriptor toCopy) {
             setTitle(toCopy.title);
             setAuthor(toCopy.author);
-            setPhone(toCopy.phone);
+            setIsbn(toCopy.isbn);
             setAvail(toCopy.avail);
             setTags(toCopy.tags);
         }
@@ -160,7 +160,7 @@ public class EditCommand extends UndoableCommand {
          * Returns true if at least one field is edited.
          */
         public boolean isAnyFieldEdited() {
-            return CollectionUtil.isAnyNonNull(this.title, this.author, this.phone, this.avail, this.tags);
+            return CollectionUtil.isAnyNonNull(this.title, this.author, this.isbn, this.avail, this.tags);
         }
 
         public void setTitle(Title title) {
@@ -179,12 +179,12 @@ public class EditCommand extends UndoableCommand {
             return Optional.ofNullable(author);
         }
 
-        public void setPhone(Phone phone) {
-            this.phone = phone;
+        public void setIsbn(Isbn isbn) {
+            this.isbn = isbn;
         }
 
-        public Optional<Phone> getPhone() {
-            return Optional.ofNullable(phone);
+        public Optional<Isbn> getIsbn() {
+            return Optional.ofNullable(isbn);
         }
 
         public void setAvail(Avail avail) {
@@ -229,7 +229,7 @@ public class EditCommand extends UndoableCommand {
 
             return getTitle().equals(e.getTitle())
                     && getAuthor().equals(e.getAuthor())
-                    && getPhone().equals(e.getPhone())
+                    && getIsbn().equals(e.getIsbn())
                     && getAvail().equals(e.getAvail())
                     && getTags().equals(e.getTags());
         }

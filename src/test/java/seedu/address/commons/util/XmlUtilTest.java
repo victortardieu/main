@@ -33,10 +33,10 @@ public class XmlUtilTest {
     private static final File VALID_BOOK_FILE = new File(TEST_DATA_FOLDER + "validBook.xml");
     private static final File TEMP_FILE = new File(TestUtil.getFilePathInSandboxFolder("tempCatalogue.xml"));
 
-    private static final String INVALID_PHONE = "9482asf424";
+    private static final String INVALID_ISBN = "9482asf424";
 
     private static final String VALID_NAME = "Hans Muster";
-    private static final String VALID_PHONE = "9482424";
+    private static final String VALID_ISBN = "9482424";
     private static final String VALID_AVAIL = "Borrowed";
     private static final String VALID_AUTHOR = "Muster Hans";
     private static final List<XmlAdaptedTag> VALID_TAGS = Collections.singletonList(new XmlAdaptedTag("friends"));
@@ -80,7 +80,7 @@ public class XmlUtilTest {
         XmlAdaptedBook actualBook = XmlUtil.getDataFromFile(
                 MISSING_BOOK_FIELD_FILE, XmlAdaptedBookWithRootElement.class);
         XmlAdaptedBook expectedBook = new XmlAdaptedBook(
-                null, VALID_AUTHOR, VALID_PHONE, VALID_AVAIL, VALID_TAGS);
+                null, VALID_AUTHOR, VALID_ISBN, VALID_AVAIL, VALID_TAGS);
         assertEquals(expectedBook, actualBook);
     }
 
@@ -89,7 +89,7 @@ public class XmlUtilTest {
         XmlAdaptedBook actualBook = XmlUtil.getDataFromFile(
                 INVALID_BOOK_FIELD_FILE, XmlAdaptedBookWithRootElement.class);
         XmlAdaptedBook expectedBook = new XmlAdaptedBook(
-                VALID_NAME, VALID_AUTHOR, INVALID_PHONE, VALID_AVAIL, VALID_TAGS);
+                VALID_NAME, VALID_AUTHOR, INVALID_ISBN, VALID_AVAIL, VALID_TAGS);
         assertEquals(expectedBook, actualBook);
     }
 
@@ -98,7 +98,7 @@ public class XmlUtilTest {
         XmlAdaptedBook actualBook = XmlUtil.getDataFromFile(
                 VALID_BOOK_FILE, XmlAdaptedBookWithRootElement.class);
         XmlAdaptedBook expectedBook = new XmlAdaptedBook(
-                VALID_NAME, VALID_AUTHOR, VALID_PHONE, VALID_AVAIL, VALID_TAGS);
+                VALID_NAME, VALID_AUTHOR, VALID_ISBN, VALID_AVAIL, VALID_TAGS);
         assertEquals(expectedBook, actualBook);
     }
 

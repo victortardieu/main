@@ -8,7 +8,7 @@ import seedu.address.logic.commands.EditCommand.EditBookDescriptor;
 import seedu.address.model.book.Author;
 import seedu.address.model.book.Avail;
 import seedu.address.model.book.Book;
-import seedu.address.model.book.Phone;
+import seedu.address.model.book.Isbn;
 import seedu.address.model.book.Title;
 import seedu.address.model.tag.Tag;
 
@@ -33,7 +33,7 @@ public class EditBookDescriptorBuilder {
     public EditBookDescriptorBuilder(Book book) {
         descriptor = new EditBookDescriptor();
         descriptor.setTitle(book.getTitle());
-        descriptor.setPhone(book.getPhone());
+        descriptor.setIsbn(book.getIsbn());
         descriptor.setAvail(book.getAvail());
         descriptor.setAuthor(book.getAuthor());
         descriptor.setTags(book.getTags());
@@ -48,10 +48,10 @@ public class EditBookDescriptorBuilder {
     }
 
     /**
-     * Sets the {@code Phone} of the {@code EditBookDescriptor} that we are building.
+     * Sets the {@code Isbn} of the {@code EditBookDescriptor} that we are building.
      */
-    public EditBookDescriptorBuilder withPhone(String phone) {
-        descriptor.setPhone(new Phone(phone));
+    public EditBookDescriptorBuilder withIsbn(String isbn) {
+        descriptor.setIsbn(new Isbn(isbn));
         return this;
     }
 

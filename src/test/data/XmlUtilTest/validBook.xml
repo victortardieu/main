@@ -2,7 +2,7 @@
 <book>
     <title>Hans Muster</title>
     <author>Muster Hans</author>
-    <phone>9482424</phone>
+    <isbn>9482424</isbn>
     <avail>Borrowed</avail>
     <tagged>friends</tagged>
 </book>

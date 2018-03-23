@@ -133,7 +133,7 @@ public class Catalogue implements ReadOnlyCatalogue {
         final Set<Tag> correctTagReferences = new HashSet<>();
         bookTags.forEach(tag -> correctTagReferences.add(masterTagObjects.get(tag)));
         return new Book(
-                book.getTitle(), book.getAuthor(), book.getPhone(), book.getAvail(), correctTagReferences);
+                book.getTitle(), book.getAuthor(), book.getIsbn(), book.getAvail(), correctTagReferences);
     }
 
     /**

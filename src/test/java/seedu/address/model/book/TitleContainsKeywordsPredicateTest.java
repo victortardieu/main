@@ -69,9 +69,9 @@ public class TitleContainsKeywordsPredicateTest {
         predicate = new TitleContainsKeywordsPredicate(Arrays.asList("Carol"));
         assertFalse(predicate.test(new BookBuilder().withTitle("Alice Bob").build()));
 
-        // Keywords match phone, avail and address, but does not match name
+        // Keywords match isbn, avail and address, but does not match name
         predicate = new TitleContainsKeywordsPredicate(Arrays.asList("12345", "Borrowed", "Main", "Street"));
-        assertFalse(predicate.test(new BookBuilder().withTitle("Alice").withPhone("12345")
+        assertFalse(predicate.test(new BookBuilder().withTitle("Alice").withIsbn("12345")
                 .withAvail("Borrowed").withAuthor("Main Street").build()));
     }
 }

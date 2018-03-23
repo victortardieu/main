@@ -12,7 +12,7 @@ import seedu.address.commons.exceptions.IllegalValueException;
 import seedu.address.model.book.Author;
 import seedu.address.model.book.Avail;
 import seedu.address.model.book.Book;
-import seedu.address.model.book.Phone;
+import seedu.address.model.book.Isbn;
 import seedu.address.model.book.Title;
 
 import seedu.address.model.tag.Tag;
@@ -29,7 +29,7 @@ public class XmlAdaptedBook {
     @XmlElement(required = true)
     private String author;
     @XmlElement(required = true)
-    private String phone;
+    private String isbn;
     @XmlElement(required = true)
     private String avail;
 
@@ -45,10 +45,10 @@ public class XmlAdaptedBook {
     /**
      * Constructs an {@code XmlAdaptedBook} with the given book details.
      */
-    public XmlAdaptedBook(String title, String author, String phone, String avail, List<XmlAdaptedTag> tagged) {
+    public XmlAdaptedBook(String title, String author, String isbn, String avail, List<XmlAdaptedTag> tagged) {
         this.title = title;
         this.author = author;
-        this.phone = phone;
+        this.isbn = isbn;
         this.avail = avail;
         if (tagged != null) {
             this.tagged = new ArrayList<>(tagged);
@@ -63,7 +63,7 @@ public class XmlAdaptedBook {
     public XmlAdaptedBook(Book source) {
         title = source.getTitle().fullTitle;
         author = source.getAuthor().value;
-        phone = source.getPhone().value;
+        isbn = source.getIsbn().value;
         avail = source.getAvail().value;
         tagged = new ArrayList<>();
         for (Tag tag : source.getTags()) {
@@ -98,13 +98,13 @@ public class XmlAdaptedBook {
         }
         final Author author = new Author(this.author);
 
-        if (this.phone == null) {
-            throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT, Phone.class.getSimpleName()));
+        if (this.isbn == null) {
+            throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT, Isbn.class.getSimpleName()));
         }
-        if (!Phone.isValidPhone(this.phone)) {
-            throw new IllegalValueException(Phone.MESSAGE_PHONE_CONSTRAINTS);
+        if (!Isbn.isValidIsbn(this.isbn)) {
+            throw new IllegalValueException(Isbn.MESSAGE_ISBN_CONSTRAINTS);
         }
-        final Phone phone = new Phone(this.phone);
+        final Isbn isbn = new Isbn(this.isbn);
 
         if (this.avail == null) {
             throw new IllegalValueException(
@@ -116,7 +116,7 @@ public class XmlAdaptedBook {
         final Avail avail = new Avail(this.avail);
 
         final Set<Tag> tags = new HashSet<>(bookTags);
-        return new Book(title, author, phone, avail, tags);
+        return new Book(title, author, isbn, avail, tags);
     }
 
     @Override
@@ -132,7 +132,7 @@ public class XmlAdaptedBook {
         XmlAdaptedBook otherBook = (XmlAdaptedBook) other;
         return Objects.equals(title, otherBook.title)
                 && Objects.equals(author, otherBook.author)
-                && Objects.equals(phone, otherBook.phone)
+                && Objects.equals(isbn, otherBook.isbn)
                 && Objects.equals(avail, otherBook.avail)
                 && tagged.equals(otherBook.tagged);
     }

@@ -12,7 +12,7 @@ import seedu.address.commons.exceptions.IllegalValueException;
 import seedu.address.commons.util.StringUtil;
 import seedu.address.model.book.Author;
 import seedu.address.model.book.Avail;
-import seedu.address.model.book.Phone;
+import seedu.address.model.book.Isbn;
 import seedu.address.model.book.Title;
 import seedu.address.model.tag.Tag;
 
@@ -68,27 +68,27 @@ public class ParserUtil {
     }
 
     /**
-     * Parses a {@code String phone} into a {@code Phone}.
+     * Parses a {@code String isbn} into a {@code Isbn}.
      * Leading and trailing whitespaces will be trimmed.
      *
-     * @throws IllegalValueException if the given {@code phone} is invalid.
+     * @throws IllegalValueException if the given {@code isbn} is invalid.
      */
-    public static Phone parsePhone(String phone) throws IllegalValueException {
-        requireNonNull(phone);
-        String trimmedPhone = phone.trim();
-        if (!Phone.isValidPhone(trimmedPhone)) {
-            throw new IllegalValueException(Phone.MESSAGE_PHONE_CONSTRAINTS);
+    public static Isbn parseIsbn(String isbn) throws IllegalValueException {
+        requireNonNull(isbn);
+        String trimmedIsbn = isbn.trim();
+        if (!Isbn.isValidIsbn(trimmedIsbn)) {
+            throw new IllegalValueException(Isbn.MESSAGE_ISBN_CONSTRAINTS);
         }
-        return new Phone(trimmedPhone);
+        return new Isbn(trimmedIsbn);
     }
 
     /**
-     * Parses a {@code Optional<String> phone} into an {@code Optional<Phone>} if {@code phone} is present.
+     * Parses a {@code Optional<String> isbn} into an {@code Optional<Isbn>} if {@code isbn} is present.
      * See header comment of this class regarding the use of {@code Optional} parameters.
      */
-    public static Optional<Phone> parsePhone(Optional<String> phone) throws IllegalValueException {
-        requireNonNull(phone);
-        return phone.isPresent() ? Optional.of(parsePhone(phone.get())) : Optional.empty();
+    public static Optional<Isbn> parseIsbn(Optional<String> isbn) throws IllegalValueException {
+        requireNonNull(isbn);
+        return isbn.isPresent() ? Optional.of(parseIsbn(isbn.get())) : Optional.empty();
     }
 
     /**

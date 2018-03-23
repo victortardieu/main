@@ -14,14 +14,14 @@ public class BookCardHandle extends NodeHandle<Node> {
     private static final String ID_FIELD_ID = "#id";
     private static final String TITLE_FIELD_ID = "#title";
     private static final String AUTHOR_FIELD_ID = "#author";
-    private static final String PHONE_FIELD_ID = "#phone";
+    private static final String ISBN_FIELD_ID = "#isbn";
     private static final String AVAIL_FIELD_ID = "#avail";
     private static final String TAGS_FIELD_ID = "#tags";
 
     private final Label idLabel;
     private final Label titleLabel;
     private final Label authorLabel;
-    private final Label phoneLabel;
+    private final Label isbnLabel;
     private final Label availLabel;
     private final List<Label> tagLabels;
 
@@ -31,7 +31,7 @@ public class BookCardHandle extends NodeHandle<Node> {
         this.idLabel = getChildNode(ID_FIELD_ID);
         this.titleLabel = getChildNode(TITLE_FIELD_ID);
         this.authorLabel = getChildNode(AUTHOR_FIELD_ID);
-        this.phoneLabel = getChildNode(PHONE_FIELD_ID);
+        this.isbnLabel = getChildNode(ISBN_FIELD_ID);
         this.availLabel = getChildNode(AVAIL_FIELD_ID);
 
         Region tagsContainer = getChildNode(TAGS_FIELD_ID);
@@ -54,8 +54,8 @@ public class BookCardHandle extends NodeHandle<Node> {
         return authorLabel.getText();
     }
 
-    public String getPhone() {
-        return phoneLabel.getText();
+    public String getIsbn() {
+        return isbnLabel.getText();
     }
 
     public String getAvail() {

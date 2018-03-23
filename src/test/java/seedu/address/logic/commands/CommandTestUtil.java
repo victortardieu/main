@@ -5,7 +5,7 @@ import static org.junit.Assert.assertTrue;
 import static org.junit.Assert.fail;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_AUTHOR;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_AVAIL;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_PHONE;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_ISBN;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_TAG;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_TITLE;
 
@@ -31,8 +31,8 @@ public class CommandTestUtil {
 
     public static final String VALID_TITLE_AMY = "Amy Bee";
     public static final String VALID_TITLE_BOB = "Bob Choo";
-    public static final String VALID_PHONE_AMY = "11111111";
-    public static final String VALID_PHONE_BOB = "22222222";
+    public static final String VALID_ISBN_AMY = "11111111";
+    public static final String VALID_ISBN_BOB = "22222222";
     public static final String VALID_AVAIL_AMY = "Borrowed and Reserved";
     public static final String VALID_AVAIL_BOB = "Borrowed";
     public static final String VALID_AUTHOR_AMY = "Bee Amy";
@@ -42,8 +42,8 @@ public class CommandTestUtil {
 
     public static final String TITLE_DESC_AMY = " " + PREFIX_TITLE + VALID_TITLE_AMY;
     public static final String TITLE_DESC_BOB = " " + PREFIX_TITLE + VALID_TITLE_BOB;
-    public static final String PHONE_DESC_AMY = " " + PREFIX_PHONE + VALID_PHONE_AMY;
-    public static final String PHONE_DESC_BOB = " " + PREFIX_PHONE + VALID_PHONE_BOB;
+    public static final String ISBN_DESC_AMY = " " + PREFIX_ISBN + VALID_ISBN_AMY;
+    public static final String ISBN_DESC_BOB = " " + PREFIX_ISBN + VALID_ISBN_BOB;
     public static final String AVAIL_DESC_AMY = " " + PREFIX_AVAIL + VALID_AVAIL_AMY;
     public static final String AVAIL_DESC_BOB = " " + PREFIX_AVAIL + VALID_AVAIL_BOB;
     public static final String AUTHOR_DESC_AMY = " " + PREFIX_AUTHOR + VALID_AUTHOR_AMY;
@@ -53,7 +53,7 @@ public class CommandTestUtil {
 
     public static final String INVALID_TITLE_DESC = " " + PREFIX_TITLE + "James&"; // '&' not allowed in titles
     public static final String INVALID_AUTHOR_DESC = " " + PREFIX_AUTHOR + "^"; // ^ not allowed for author
-    public static final String INVALID_PHONE_DESC = " " + PREFIX_PHONE + "911a"; // 'a' not allowed in phones
+    public static final String INVALID_ISBN_DESC = " " + PREFIX_ISBN + "911a"; // 'a' not allowed in isbns
     public static final String INVALID_AVAIL_DESC = " " + PREFIX_AVAIL + "not sure"; // must be as stated
     public static final String INVALID_TAG_DESC = " " + PREFIX_TAG + "hubby*"; // '*' not allowed in tags
 
@@ -65,10 +65,10 @@ public class CommandTestUtil {
 
     static {
         DESC_AMY = new EditBookDescriptorBuilder().withName(VALID_TITLE_AMY).withAuthor(VALID_AUTHOR_AMY)
-                .withPhone(VALID_PHONE_AMY).withAvail(VALID_AVAIL_AMY)
+                .withIsbn(VALID_ISBN_AMY).withAvail(VALID_AVAIL_AMY)
                 .withTags(VALID_TAG_FRIEND).build();
         DESC_BOB = new EditBookDescriptorBuilder().withName(VALID_TITLE_BOB).withAuthor(VALID_AUTHOR_BOB)
-                .withPhone(VALID_PHONE_BOB).withAvail(VALID_AVAIL_BOB)
+                .withIsbn(VALID_ISBN_BOB).withAvail(VALID_AVAIL_BOB)
                 .withTags(VALID_TAG_HUSBAND, VALID_TAG_FRIEND).build();
     }
 

@@ -4,7 +4,7 @@ import static java.util.Objects.requireNonNull;
 import static seedu.address.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_AUTHOR;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_AVAIL;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_PHONE;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_ISBN;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_TAG;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_TITLE;
 
@@ -33,7 +33,7 @@ public class EditCommandParser implements Parser<EditCommand> {
     public EditCommand parse(String args) throws ParseException {
         requireNonNull(args);
         ArgumentMultimap argMultimap =
-                ArgumentTokenizer.tokenize(args, PREFIX_TITLE, PREFIX_PHONE, PREFIX_AVAIL, PREFIX_AUTHOR, PREFIX_TAG);
+                ArgumentTokenizer.tokenize(args, PREFIX_TITLE, PREFIX_ISBN, PREFIX_AVAIL, PREFIX_AUTHOR, PREFIX_TAG);
 
         Index index;
 
@@ -46,7 +46,7 @@ public class EditCommandParser implements Parser<EditCommand> {
         EditBookDescriptor editBookDescriptor = new EditBookDescriptor();
         try {
             ParserUtil.parseTitle(argMultimap.getValue(PREFIX_TITLE)).ifPresent(editBookDescriptor::setTitle);
-            ParserUtil.parsePhone(argMultimap.getValue(PREFIX_PHONE)).ifPresent(editBookDescriptor::setPhone);
+            ParserUtil.parseIsbn(argMultimap.getValue(PREFIX_ISBN)).ifPresent(editBookDescriptor::setIsbn);
             ParserUtil.parseAvail(argMultimap.getValue(PREFIX_AVAIL)).ifPresent(editBookDescriptor::setAvail);
             ParserUtil.parseAuthor(argMultimap.getValue(PREFIX_AUTHOR)).ifPresent(editBookDescriptor::setAuthor);
             parseTagsForEdit(argMultimap.getAllValues(PREFIX_TAG)).ifPresent(editBookDescriptor::setTags);

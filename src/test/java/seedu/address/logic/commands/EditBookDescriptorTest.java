@@ -6,7 +6,7 @@ import static seedu.address.logic.commands.CommandTestUtil.DESC_AMY;
 import static seedu.address.logic.commands.CommandTestUtil.DESC_BOB;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_AUTHOR_BOB;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_AVAIL_BOB;
-import static seedu.address.logic.commands.CommandTestUtil.VALID_PHONE_BOB;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_ISBN_BOB;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_TAG_HUSBAND;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_TITLE_BOB;
 
@@ -39,8 +39,8 @@ public class EditBookDescriptorTest {
         EditBookDescriptor editedAmy = new EditBookDescriptorBuilder(DESC_AMY).withName(VALID_TITLE_BOB).build();
         assertFalse(DESC_AMY.equals(editedAmy));
 
-        // different phone -> returns false
-        editedAmy = new EditBookDescriptorBuilder(DESC_AMY).withPhone(VALID_PHONE_BOB).build();
+        // different isbn -> returns false
+        editedAmy = new EditBookDescriptorBuilder(DESC_AMY).withIsbn(VALID_ISBN_BOB).build();
         assertFalse(DESC_AMY.equals(editedAmy));
 
         // different availability -> returns false

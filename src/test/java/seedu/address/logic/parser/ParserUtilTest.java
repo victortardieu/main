@@ -20,20 +20,20 @@ import org.junit.rules.ExpectedException;
 import seedu.address.commons.exceptions.IllegalValueException;
 import seedu.address.model.book.Author;
 import seedu.address.model.book.Avail;
-import seedu.address.model.book.Phone;
+import seedu.address.model.book.Isbn;
 import seedu.address.model.book.Title;
 import seedu.address.model.tag.Tag;
 import seedu.address.testutil.Assert;
 
 public class ParserUtilTest {
     private static final String INVALID_TITLE = "R@chel";
-    private static final String INVALID_PHONE = "+651234";
+    private static final String INVALID_ISBN = "+651234";
     private static final String INVALID_AUTHOR = " ";
     private static final String INVALID_AVAIL = "NOT SURE";
     private static final String INVALID_TAG = "#friend";
 
     private static final String VALID_TITLE = "Rachel Walker";
-    private static final String VALID_PHONE = "123456";
+    private static final String VALID_ISBN = "123456";
     private static final String VALID_AUTHOR = "Walker Rachel";
     private static final String VALID_AVAIL = "Borrowed";
     private static final String VALID_TAG_1 = "friend";
@@ -131,35 +131,35 @@ public class ParserUtilTest {
     }
 
     @Test
-    public void parsePhone_null_throwsNullPointerException() {
-        Assert.assertThrows(NullPointerException.class, () -> ParserUtil.parsePhone((String) null));
-        Assert.assertThrows(NullPointerException.class, () -> ParserUtil.parsePhone((Optional<String>) null));
+    public void parseIsbn_null_throwsNullPointerException() {
+        Assert.assertThrows(NullPointerException.class, () -> ParserUtil.parseIsbn((String) null));
+        Assert.assertThrows(NullPointerException.class, () -> ParserUtil.parseIsbn((Optional<String>) null));
     }
 
     @Test
-    public void parsePhone_invalidValue_throwsIllegalValueException() {
-        Assert.assertThrows(IllegalValueException.class, () -> ParserUtil.parsePhone(INVALID_PHONE));
-        Assert.assertThrows(IllegalValueException.class, () -> ParserUtil.parsePhone(Optional.of(INVALID_PHONE)));
+    public void parseIsbn_invalidValue_throwsIllegalValueException() {
+        Assert.assertThrows(IllegalValueException.class, () -> ParserUtil.parseIsbn(INVALID_ISBN));
+        Assert.assertThrows(IllegalValueException.class, () -> ParserUtil.parseIsbn(Optional.of(INVALID_ISBN)));
     }
 
     @Test
-    public void parsePhone_optionalEmpty_returnsOptionalEmpty() throws Exception {
-        assertFalse(ParserUtil.parsePhone(Optional.empty()).isPresent());
+    public void parseIsbn_optionalEmpty_returnsOptionalEmpty() throws Exception {
+        assertFalse(ParserUtil.parseIsbn(Optional.empty()).isPresent());
     }
 
     @Test
-    public void parsePhone_validValueWithoutWhitespace_returnsPhone() throws Exception {
-        Phone expectedPhone = new Phone(VALID_PHONE);
-        assertEquals(expectedPhone, ParserUtil.parsePhone(VALID_PHONE));
-        assertEquals(Optional.of(expectedPhone), ParserUtil.parsePhone(Optional.of(VALID_PHONE)));
+    public void parseIsbn_validValueWithoutWhitespace_returnsIsbn() throws Exception {
+        Isbn expectedIsbn = new Isbn(VALID_ISBN);
+        assertEquals(expectedIsbn, ParserUtil.parseIsbn(VALID_ISBN));
+        assertEquals(Optional.of(expectedIsbn), ParserUtil.parseIsbn(Optional.of(VALID_ISBN)));
     }
 
     @Test
-    public void parsePhone_validValueWithWhitespace_returnsTrimmedPhone() throws Exception {
-        String phoneWithWhitespace = WHITESPACE + VALID_PHONE + WHITESPACE;
-        Phone expectedPhone = new Phone(VALID_PHONE);
-        assertEquals(expectedPhone, ParserUtil.parsePhone(phoneWithWhitespace));
-        assertEquals(Optional.of(expectedPhone), ParserUtil.parsePhone(Optional.of(phoneWithWhitespace)));
+    public void parseIsbn_validValueWithWhitespace_returnsTrimmedIsbn() throws Exception {
+        String isbnWithWhitespace = WHITESPACE + VALID_ISBN + WHITESPACE;
+        Isbn expectedIsbn = new Isbn(VALID_ISBN);
+        assertEquals(expectedIsbn, ParserUtil.parseIsbn(isbnWithWhitespace));
+        assertEquals(Optional.of(expectedIsbn), ParserUtil.parseIsbn(Optional.of(isbnWithWhitespace)));
 
     }
 

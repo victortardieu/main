@@ -6,7 +6,7 @@ import java.util.Set;
 import seedu.address.model.book.Author;
 import seedu.address.model.book.Avail;
 import seedu.address.model.book.Book;
-import seedu.address.model.book.Phone;
+import seedu.address.model.book.Isbn;
 import seedu.address.model.book.Title;
 import seedu.address.model.tag.Tag;
 import seedu.address.model.util.SampleDataUtil;
@@ -18,12 +18,12 @@ public class BookBuilder {
 
     public static final String DEFAULT_TITLE = "Alice Pauline";
     public static final String DEFAULT_AUTHOR = "Pauline Alice";
-    public static final String DEFAULT_PHONE = "85355255";
+    public static final String DEFAULT_ISBN = "85355255";
     public static final String DEFAULT_AVAIL = "Borrowed";
     public static final String DEFAULT_TAGS = "friends";
 
     private Title title;
-    private Phone phone;
+    private Isbn isbn;
     private Avail avail;
     private Author author;
     private Set<Tag> tags;
@@ -31,7 +31,7 @@ public class BookBuilder {
     public BookBuilder() {
         title = new Title(DEFAULT_TITLE);
         author = new Author(DEFAULT_AUTHOR);
-        phone = new Phone(DEFAULT_PHONE);
+        isbn = new Isbn(DEFAULT_ISBN);
         avail = new Avail(DEFAULT_AVAIL);
         tags = SampleDataUtil.getTagSet(DEFAULT_TAGS);
     }
@@ -42,7 +42,7 @@ public class BookBuilder {
     public BookBuilder(Book bookToCopy) {
         title = bookToCopy.getTitle();
         author = bookToCopy.getAuthor();
-        phone = bookToCopy.getPhone();
+        isbn = bookToCopy.getIsbn();
         avail = bookToCopy.getAvail();
         tags = new HashSet<>(bookToCopy.getTags());
     }
@@ -72,10 +72,10 @@ public class BookBuilder {
     }
 
     /**
-     * Sets the {@code Phone} of the {@code Book} that we are building.
+     * Sets the {@code Isbn} of the {@code Book} that we are building.
      */
-    public BookBuilder withPhone(String phone) {
-        this.phone = new Phone(phone);
+    public BookBuilder withIsbn(String isbn) {
+        this.isbn = new Isbn(isbn);
         return this;
     }
 
@@ -88,7 +88,7 @@ public class BookBuilder {
     }
 
     public Book build() {
-        return new Book(title, author, phone, avail, tags);
+        return new Book(title, author, isbn, avail, tags);
     }
 
 }

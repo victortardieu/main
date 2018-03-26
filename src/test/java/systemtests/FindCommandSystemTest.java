@@ -27,7 +27,6 @@ public class FindCommandSystemTest extends CatalogueSystemTest {
     public void find() {
 
         executeCommand("login admin admin");
-        
         /* Case: find multiple books in catalogue, command with leading spaces and trailing spaces
          * -> 2 books found
          */

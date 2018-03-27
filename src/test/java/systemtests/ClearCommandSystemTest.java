@@ -18,6 +18,9 @@ public class ClearCommandSystemTest extends CatalogueSystemTest {
     public void clear() {
         final Model defaultModel = getModel();
 
+        //Log in first
+        executeCommand("login admin admin");
+
         /* Case: clear non-empty catalogue, command with leading spaces and trailing alphanumeric characters and
          * spaces -> cleared
          */

@@ -10,6 +10,9 @@ import seedu.address.model.Model;
  * Represents a command with hidden internal logic and the ability to be executed.
  */
 public abstract class Command {
+    public static final String MESSAGE_UNPRIVILEGED = "You are not allowed to execute this command,"
+            + " login and try again";
+
     protected Model model;
     protected CommandHistory history;
     protected UndoRedoStack undoRedoStack;
@@ -30,6 +33,7 @@ public abstract class Command {
      * @return feedback message of the operation result for display
      * @throws CommandException If an error occurs during command execution.
      */
+
     public abstract CommandResult execute() throws CommandException;
 
     /**
@@ -39,5 +43,9 @@ public abstract class Command {
      */
     public void setData(Model model, CommandHistory history, UndoRedoStack undoRedoStack) {
         this.model = model;
+    }
+
+    public int getPrivilegeLevel() {
+        return Model.PRIVILEGE_LEVEL_GUEST;
     }
 }

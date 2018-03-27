@@ -39,6 +39,7 @@ import org.junit.Test;
 import seedu.address.commons.core.Messages;
 import seedu.address.commons.core.index.Index;
 import seedu.address.logic.commands.AddCommand;
+//import seedu.address.logic.commands.Command;
 import seedu.address.logic.commands.RedoCommand;
 import seedu.address.logic.commands.UndoCommand;
 import seedu.address.model.Model;
@@ -57,6 +58,10 @@ public class AddCommandSystemTest extends CatalogueSystemTest {
     @Test
     public void add() throws Exception {
         Model model = getModel();
+
+        //Log in first
+        executeCommand("login admin admin");
+
 
         /* ------------------------ Perform add operations on the shown unfiltered list ----------------------------- */
 
@@ -190,6 +195,8 @@ public class AddCommandSystemTest extends CatalogueSystemTest {
         command = AddCommand.COMMAND_WORD + TITLE_DESC_AMY + AUTHOR_DESC_AMY + ISBN_DESC_AMY + AVAIL_DESC_AMY
                 + INVALID_TAG_DESC;
         assertCommandFailure(command, Tag.MESSAGE_TAG_CONSTRAINTS);
+
+
     }
 
     /**

@@ -19,6 +19,7 @@ import seedu.address.commons.core.Messages;
 import seedu.address.commons.core.index.Index;
 import seedu.address.commons.util.CollectionUtil;
 import seedu.address.logic.commands.exceptions.CommandException;
+import seedu.address.model.Model;
 import seedu.address.model.book.Author;
 import seedu.address.model.book.Avail;
 import seedu.address.model.book.Book;
@@ -52,6 +53,8 @@ public class EditCommand extends UndoableCommand {
     public static final String MESSAGE_EDIT_BOOK_SUCCESS = "Edited Book: %1$s";
     public static final String MESSAGE_NOT_EDITED = "At least one field to edit must be provided.";
     public static final String MESSAGE_DUPLICATE_BOOK = "This book already exists in the catalogue.";
+
+    public static final int PRIVILEGE_LEVEL = Model.PRIVILEGE_LEVEL_LIBRARIAN;
 
     private final Index index;
     private final EditBookDescriptor editBookDescriptor;
@@ -129,6 +132,11 @@ public class EditCommand extends UndoableCommand {
         return index.equals(e.index)
                 && editBookDescriptor.equals(e.editBookDescriptor)
                 && Objects.equals(bookToEdit, e.bookToEdit);
+    }
+
+    @Override
+    public int getPrivilegeLevel() {
+        return PRIVILEGE_LEVEL;
     }
 
     /**
@@ -233,5 +241,7 @@ public class EditCommand extends UndoableCommand {
                     && getAvail().equals(e.getAvail())
                     && getTags().equals(e.getTags());
         }
+
+
     }
 }

@@ -148,6 +148,15 @@ public class Catalogue implements ReadOnlyCatalogue {
         }
     }
 
+    public boolean borrowBook(Book key) throws BookNotFoundException {
+        System.out.println("error found at catalogue\n");
+        if (books.borrow(key)) {
+            return true;
+        } else {
+            throw new BookNotFoundException();
+        }
+    }
+
     //// tag-level operations
 
     public void addTag(Tag t) throws UniqueTagList.DuplicateTagException {

@@ -8,6 +8,7 @@ import seedu.address.commons.core.index.Index;
 import seedu.address.commons.events.ui.JumpToListRequestEvent;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
+import seedu.address.model.account.PrivilegeLevel;
 import seedu.address.model.book.Book;
 
 /**
@@ -24,7 +25,7 @@ public class SelectCommand extends Command {
 
     public static final String MESSAGE_SELECT_BOOK_SUCCESS = "Selected Book: %1$s";
 
-    public static final int PRIVILEGE_LEVEL = Model.PRIVILEGE_LEVEL_GUEST;
+    public static final PrivilegeLevel PRIVILEGE_LEVEL = Model.PRIVILEGE_LEVEL_GUEST;
 
     private final Index targetIndex;
 
@@ -54,7 +55,7 @@ public class SelectCommand extends Command {
     }
 
     @Override
-    public int getPrivilegeLevel() {
+    public PrivilegeLevel getPrivilegeLevel() {
         return PRIVILEGE_LEVEL;
     }
 }

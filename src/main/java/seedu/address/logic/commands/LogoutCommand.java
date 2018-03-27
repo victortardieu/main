@@ -1,6 +1,7 @@
 package seedu.address.logic.commands;
 
 import seedu.address.model.Model;
+import seedu.address.model.account.PrivilegeLevel;
 
 /**
  * Logs out as student or librarian.
@@ -14,7 +15,7 @@ public class LogoutCommand extends Command {
 
     public static final String MESSAGE_LOGGED_OUT = "You are logged out.";
 
-    public static final int PRIVILEGE_LEVEL = Model.PRIVILEGE_LEVEL_STUDENT;
+    public static final PrivilegeLevel PRIVILEGE_LEVEL = Model.PRIVILEGE_LEVEL_STUDENT;
 
     @Override
     public CommandResult execute() {
@@ -23,7 +24,7 @@ public class LogoutCommand extends Command {
     }
 
     @Override
-    public int getPrivilegeLevel() {
+    public PrivilegeLevel getPrivilegeLevel() {
         return PRIVILEGE_LEVEL;
     }
 

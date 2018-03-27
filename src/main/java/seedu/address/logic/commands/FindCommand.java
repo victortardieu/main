@@ -1,6 +1,7 @@
 package seedu.address.logic.commands;
 
 import seedu.address.model.Model;
+import seedu.address.model.account.PrivilegeLevel;
 import seedu.address.model.book.TitleContainsKeywordsPredicate;
 
 /**
@@ -16,7 +17,7 @@ public class FindCommand extends Command {
             + "Parameters: KEYWORD [MORE_KEYWORDS]...\n"
             + "Example: " + COMMAND_WORD + " alice bob charlie";
 
-    public static final int PRIVILEGE_LEVEL = Model.PRIVILEGE_LEVEL_GUEST;
+    public static final PrivilegeLevel PRIVILEGE_LEVEL = Model.PRIVILEGE_LEVEL_GUEST;
 
     private final TitleContainsKeywordsPredicate predicate;
 
@@ -38,7 +39,7 @@ public class FindCommand extends Command {
     }
 
     @Override
-    public int getPrivilegeLevel() {
+    public PrivilegeLevel getPrivilegeLevel() {
         return PRIVILEGE_LEVEL;
     }
 }

@@ -61,6 +61,6 @@ public class LogicManager extends ComponentManager implements Logic {
     }
 
     protected boolean isPrivileged(Command command) {
-        return command.getPrivilegeLevel() <= model.getPrivilegeLevel();
+        return command.getPrivilegeLevel().compareTo(model.getPrivilegeLevel()) <= 0;
     }
 }

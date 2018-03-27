@@ -3,6 +3,8 @@ package seedu.address.logic.commands;
 import static java.util.Objects.requireNonNull;
 
 import seedu.address.model.Model;
+import seedu.address.model.account.Credential;
+import seedu.address.model.account.PrivilegeLevel;
 
 
 /**
@@ -19,44 +21,42 @@ public class LoginCommand extends Command {
     public static final String MESSAGE_LOGGED_IN_AS_LIBRARIAN = "You are logged in as librarian";
     public static final String MESSAGE_NOT_LOGGED_IN = "Wrong username/password, try again";
 
-    public static final int PRIVILEGE_LEVEL = Model.PRIVILEGE_LEVEL_GUEST;
+    public static final PrivilegeLevel PRIVILEGE_LEVEL = Model.PRIVILEGE_LEVEL_GUEST;
 
-    private final String username;
-    private final String password;
+
+    private final Credential credential;
 
 
     public LoginCommand(String username, String password) {
         requireNonNull(username);
         requireNonNull(password);
-        this.username = username;
-        this.password = password;
+        this.credential = new Credential(username, password);
     }
 
     @Override
     public boolean equals(Object other) {
         return other == this // short circuit if same object
                 || (other instanceof LoginCommand // instanceof handles nulls
-                && username.equals(((LoginCommand) other).username)
-                && password.equals(((LoginCommand) other).password));
+                && credential.equals(((LoginCommand) other).credential));
     }
 
     @Override
     public CommandResult execute() {
-        int newPrivilegeLevel = model.authenticate(username, password);
-        switch (newPrivilegeLevel) {
-        case Model.PRIVILEGE_LEVEL_GUEST:
-            return new CommandResult(MESSAGE_NOT_LOGGED_IN);
-        case Model.PRIVILEGE_LEVEL_STUDENT:
-            return new CommandResult(MESSAGE_LOGGED_IN_AS_STUTENT);
-        case Model.PRIVILEGE_LEVEL_LIBRARIAN:
-            return new CommandResult(MESSAGE_LOGGED_IN_AS_LIBRARIAN);
-        default:
+        PrivilegeLevel newPrivilegeLevel = model.authenticate(this.credential);
+        if (newPrivilegeLevel.equals(Model.PRIVILEGE_LEVEL_GUEST)) {
             return new CommandResult(MESSAGE_NOT_LOGGED_IN);
         }
+        if (newPrivilegeLevel.equals(Model.PRIVILEGE_LEVEL_STUDENT)) {
+            return new CommandResult(MESSAGE_LOGGED_IN_AS_STUTENT);
+        }
+        if (newPrivilegeLevel.equals(Model.PRIVILEGE_LEVEL_LIBRARIAN)) {
+            return new CommandResult(MESSAGE_LOGGED_IN_AS_LIBRARIAN);
+        }
+        return new CommandResult(MESSAGE_NOT_LOGGED_IN);
     }
 
     @Override
-    public int getPrivilegeLevel() {
+    public PrivilegeLevel getPrivilegeLevel() {
         return PRIVILEGE_LEVEL;
     }
 }

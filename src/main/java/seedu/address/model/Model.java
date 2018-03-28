@@ -3,6 +3,11 @@ package seedu.address.model;
 import java.util.function.Predicate;
 
 import javafx.collections.ObservableList;
+import seedu.address.model.account.Account;
+import seedu.address.model.account.Credential;
+import seedu.address.model.account.PrivilegeLevel;
+import seedu.address.model.account.exceptions.AccountNotFoundException;
+import seedu.address.model.account.exceptions.DuplicateAccountException;
 import seedu.address.model.book.Book;
 import seedu.address.model.book.exceptions.BookNotFoundException;
 import seedu.address.model.book.exceptions.DuplicateBookException;
@@ -15,9 +20,9 @@ public interface Model {
     /** {@code Predicate} that always evaluate to true */
     Predicate<Book> PREDICATE_SHOW_ALL_BOOKS = unused -> true;
 
-    int PRIVILEGE_LEVEL_GUEST = 0;
-    int PRIVILEGE_LEVEL_STUDENT = 1;
-    int PRIVILEGE_LEVEL_LIBRARIAN = 2;
+    PrivilegeLevel PRIVILEGE_LEVEL_GUEST = new PrivilegeLevel(0);
+    PrivilegeLevel PRIVILEGE_LEVEL_STUDENT = new PrivilegeLevel(1);
+    PrivilegeLevel PRIVILEGE_LEVEL_LIBRARIAN = new PrivilegeLevel(2);
 
     /** Clears existing backing model and replaces with the provided new data. */
     void resetData(ReadOnlyCatalogue newData);
@@ -50,10 +55,16 @@ public interface Model {
      */
     void updateFilteredBookList(Predicate<Book> predicate);
 
-    int authenticate(String username, String password);
+    void addAccount(Account account) throws DuplicateAccountException;
+
+    void deleteAccount(Account account) throws AccountNotFoundException;
+
+    void updateAccount(Account account, Account editedAccount) throws DuplicateAccountException, AccountNotFoundException;
+
+    PrivilegeLevel authenticate(Credential credential);
 
     void logout();
 
-    int getPrivilegeLevel();
+    PrivilegeLevel getPrivilegeLevel();
 
 }

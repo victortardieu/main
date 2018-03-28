@@ -52,4 +52,12 @@ public class Credential {
         // use this method for custom fields hashing instead of implementing your own
         return Objects.hash(username, password);
     }
+
+    @Override
+    public String toString() {
+        return "Credential{" +
+                "username=" + username +
+                ", password=" + password +
+                '}';
+    }
 }

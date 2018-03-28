@@ -12,6 +12,12 @@ import javafx.collections.transformation.FilteredList;
 import seedu.address.commons.core.ComponentManager;
 import seedu.address.commons.core.LogsCenter;
 import seedu.address.commons.events.model.CatalogueChangedEvent;
+import seedu.address.model.account.Account;
+import seedu.address.model.account.Credential;
+import seedu.address.model.account.PrivilegeLevel;
+import seedu.address.model.account.UniqueAccountList;
+import seedu.address.model.account.exceptions.AccountNotFoundException;
+import seedu.address.model.account.exceptions.DuplicateAccountException;
 import seedu.address.model.book.Book;
 import seedu.address.model.book.exceptions.BookNotFoundException;
 import seedu.address.model.book.exceptions.DuplicateBookException;
@@ -25,8 +31,9 @@ public class ModelManager extends ComponentManager implements Model {
     private static final Logger logger = LogsCenter.getLogger(ModelManager.class);
 
     private final Catalogue catalogue;
+    private final UniqueAccountList accountList;
     private final FilteredList<Book> filteredBooks;
-    private int privilegeLevel;
+    private Account currentAccount;
 
     /**
      * Initializes a ModelManager with the given catalogue and userPrefs.
@@ -39,11 +46,36 @@ public class ModelManager extends ComponentManager implements Model {
 
         this.catalogue = new Catalogue(catalogue);
         filteredBooks = new FilteredList<>(this.catalogue.getBookList());
-        this.privilegeLevel = PRIVILEGE_LEVEL_GUEST;
+        this.accountList = new UniqueAccountList();
+        this.currentAccount = Account.createGuestAccount();
+        addFirstAccount();
     }
 
     public ModelManager() {
         this(new Catalogue(), new UserPrefs());
+    }
+
+    public void addAccount(Account account) throws DuplicateAccountException {
+        accountList.add(account);
+    }
+
+    public void deleteAccount(Account account) throws AccountNotFoundException {
+        accountList.remove(account);
+    }
+
+    public void updateAccount(Account account, Account editedAccount) throws DuplicateAccountException, AccountNotFoundException {
+        accountList.setAccount(account, account);
+    }
+
+    private void addFirstAccount(){
+        Account admin = Account.createDefaultAdminAccount();
+        if (!this.accountList.contains(admin)) {
+            try {
+                this.accountList.add(admin);
+            } catch (DuplicateAccountException e) {
+                e.printStackTrace();
+            }
+        }
     }
 
     @Override
@@ -102,14 +134,11 @@ public class ModelManager extends ComponentManager implements Model {
     }
 
     @Override
-    public int authenticate(String username, String password) {
-        if (isStudent(username, password)) {
-            setPrivilegeLevel(PRIVILEGE_LEVEL_STUDENT);
-            return PRIVILEGE_LEVEL_STUDENT;
-        }
-        if (isLibrarian(username, password)) {
-            setPrivilegeLevel(PRIVILEGE_LEVEL_LIBRARIAN);
-            return PRIVILEGE_LEVEL_LIBRARIAN;
+    public PrivilegeLevel authenticate(Credential c) {
+        Account matched = accountList.authenticate(c);
+        if (matched != null) {
+            this.currentAccount = matched;
+            return currentAccount.getPrivilegeLevel();
         }
         //if not found
         return PRIVILEGE_LEVEL_GUEST;
@@ -117,40 +146,12 @@ public class ModelManager extends ComponentManager implements Model {
 
     @Override
     public void logout() {
-        setPrivilegeLevel(PRIVILEGE_LEVEL_GUEST);
+        currentAccount = Account.createGuestAccount();
     }
 
     @Override
-    public int getPrivilegeLevel() {
-        return this.privilegeLevel;
-    }
-
-    /**
-     * Returns a boolean indicating whether the username and password correspond to a student
-     */
-    private boolean isStudent(String username, String password) {
-        //This is temporary before we add in account database
-        if (username.equals("student") && password.equals("student")) {
-            return true;
-        } else {
-            return false;
-        }
-    }
-
-    /**
-     * Returns a boolean indicating whether the username and password correspond to a librarian
-     */
-    private boolean isLibrarian(String username, String password) {
-        //This is temporary before we add in account database
-        if (username.equals("admin") && password.equals("admin")) {
-            return true;
-        } else {
-            return false;
-        }
-    }
-
-    private void setPrivilegeLevel(int level) {
-        this.privilegeLevel = level;
+    public PrivilegeLevel getPrivilegeLevel() {
+        return this.currentAccount.getPrivilegeLevel();
     }
 
     @Override

@@ -11,6 +11,13 @@ public class Password {
     private final String password;
 
 
+    @Override
+    public String toString() {
+        return "Password{" +
+                "password='" + password + '\'' +
+                '}';
+    }
+
     /**
      * Construct a password
      * @param password
@@ -39,8 +46,8 @@ public class Password {
     @Override
     public boolean equals(Object other) {
         return other == this
-                || (other instanceof Credential // short circuit if same obj
-                && this.password.equals(((Credential) other).password)); //check password
+                || (other instanceof Password // short circuit if same obj
+                && this.password.equals(((Password) other).password)); //check password
     }
 
     @Override

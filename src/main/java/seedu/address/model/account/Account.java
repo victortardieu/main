@@ -60,6 +60,15 @@ public class Account {
         return admin;
     }
 
+    public static final Account createDefaultStudentAccount() {
+        Name name = new Name("Bob");
+        Credential credential = new Credential("student", "student");
+        MatricNumber matricNumber = new MatricNumber("A0123456X");
+        PrivilegeLevel privilegeLevel = new PrivilegeLevel(1);
+        Account admin = new Account(name, credential, matricNumber, privilegeLevel);
+        return admin;
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;

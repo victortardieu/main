@@ -29,6 +29,8 @@ public class Username {
         return test.matches(USERNAME_VALIDATION_REGEX);
     }
 
+
+
     /**
      * Returns username.
      */
@@ -39,13 +41,20 @@ public class Username {
     @Override
     public boolean equals(Object other) {
         return other == this
-                || (other instanceof Credential // short circuit if same obj
-                && this.username.equals(((Credential) other).username) // check username
+                || (other instanceof Username // short circuit if same obj
+                && this.username.equals(((Username) other).username) // check username
         );
     }
 
     @Override
     public int hashCode() {
         return username.hashCode();
+    }
+
+    @Override
+    public String toString() {
+        return "Username{" +
+                "username='" + username + '\'' +
+                '}';
     }
 }

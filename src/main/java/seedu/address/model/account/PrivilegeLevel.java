@@ -33,7 +33,7 @@ public class PrivilegeLevel implements Comparable<PrivilegeLevel> {
      * Returns true if a given string is a valid PrivilegeLevel
      */
     public boolean isValidPrivilegeLevel(int test){
-        return test > PRIVILEGE_LEVEL_GUEST
+        return test >= PRIVILEGE_LEVEL_GUEST
                 && test <= PRIVILEGE_LEVEL_LIBRARIAN;
     }
 

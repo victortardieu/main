@@ -10,7 +10,7 @@ public class MatricNumber {
     public static final String MESSAGE_MATRIC_NUMBER_CONSTRAINTS =
             "Matriculation number should start with \"A\", followed by 7 digits and end with uppercase letter.";
 
-    public static final String MATRIC_NUMBER_VALIDATION_REGEX = "A[0-9]{7}[A_Z]";
+    public static final String MATRIC_NUMBER_VALIDATION_REGEX = "A[0-9]{7}[A-Z]";
 
 
     private final String matricNumber;

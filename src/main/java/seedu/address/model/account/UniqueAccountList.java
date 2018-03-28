@@ -91,6 +91,7 @@ public class UniqueAccountList implements Iterable<Account> {
     public Account authenticate(Credential c){
         for (Account a : internalList){
             if (a.credentialMatches(c)){
+
                 return a;
             }
         }

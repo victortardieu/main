@@ -148,6 +148,21 @@ public class Catalogue implements ReadOnlyCatalogue {
         }
     }
 
+    /**
+     *
+     * alter {@code key} book status from {@code Catalogue}
+     * @throws BookNotFoundException
+     */
+
+    public boolean returnBook(Book key) throws BookNotFoundException {
+        if(books.returnBook(key)) {
+            return true;
+        }else{
+            throw new BookNotFoundException();
+        }
+
+    }
+
     //// tag-level operations
 
     public void addTag(Tag t) throws UniqueTagList.DuplicateTagException {

@@ -160,8 +160,17 @@ public class Catalogue implements ReadOnlyCatalogue {
         }else{
             throw new BookNotFoundException();
         }
-
-    }
+     /**
+     * Borrows {@code key} from this {@code Catalogue}.
+     * @throws BookNotFoundException if the {@code key} is not in this {@code Catalogue}.
+     */
+    public boolean borrowBook(Book key) throws BookNotFoundException {
+        if (books.borrow(key)) {
+            return true;
+        } else {
+            throw new BookNotFoundException();
+        }
+    } 
 
     //// tag-level operations
 

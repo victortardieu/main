@@ -22,6 +22,7 @@ import seedu.address.model.Catalogue;
 import seedu.address.model.Model;
 import seedu.address.model.ReadOnlyCatalogue;
 import seedu.address.model.book.Book;
+import seedu.address.model.book.exceptions.BookNotFoundException;
 import seedu.address.model.book.exceptions.DuplicateBookException;
 import seedu.address.testutil.BookBuilder;
 
@@ -42,7 +43,6 @@ public class AddCommandTest {
         Book validBook = new BookBuilder().build();
 
         CommandResult commandResult = getAddCommandForBook(validBook, modelStub).execute();
-
         assertEquals(String.format(AddCommand.MESSAGE_SUCCESS, validBook), commandResult.feedbackToUser);
         assertEquals(Arrays.asList(validBook), modelStub.booksAdded);
     }
@@ -97,6 +97,11 @@ public class AddCommandTest {
     private class ModelStub implements Model {
         @Override
         public void addBook(Book book) throws DuplicateBookException {
+            fail("This method should not be called.");
+        }
+
+        @Override
+        public void borrowBook(Book book) throws BookNotFoundException {
             fail("This method should not be called.");
         }
 

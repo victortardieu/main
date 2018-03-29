@@ -102,14 +102,20 @@ public class UniqueBookList implements Iterable<Book> {
 
             case RESERVED:
                 toReturn.getAvail().changeStatus(AVAILABLE);
-                return true;
+        }
+}
+    public boolean borrow(Book toBorrow) throws BookNotFoundException {
+        requireNonNull(toBorrow);
+        final String bookStatus = toBorrow.getAvail().toString();
 
+        switch (bookStatus) {
+            case (AVAILABLE):
+                toBorrow.getAvail().changeStatus(BORROWED);
+                return true;
+            
             default:
                 throw new BookNotFoundException();
-
         }
-
-
     }
 
     public void setBooks(UniqueBookList replacement) {

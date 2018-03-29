@@ -34,6 +34,9 @@ public class Avail {
     public String changeStatus(String newStatus){
         value = newStatus;
         return value;
+
+    public void changeStatus (String status) {
+        this.value = status;
     }
 
     /**

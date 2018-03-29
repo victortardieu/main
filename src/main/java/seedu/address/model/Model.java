@@ -34,6 +34,10 @@ public interface Model {
     /** Returns the given book. */
     void returnBook(Book book) throws BookNotFoundException;
 
+    /** Borrows the given book */
+    void borrowBook (Book book) throws BookNotFoundException;
+
+
     /**
      * Replaces the given book {@code target} with {@code editedBook}.
      *

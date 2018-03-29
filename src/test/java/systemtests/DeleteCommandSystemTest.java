@@ -28,6 +28,9 @@ public class DeleteCommandSystemTest extends CatalogueSystemTest {
 
     @Test
     public void delete() {
+
+        //Log in first
+        executeCommand("login admin admin");
         /* ----------------- Performing delete operation while an unfiltered list is being shown -------------------- */
 
         /* Case: delete the first book in the list, command with leading spaces and trailing spaces -> deleted */

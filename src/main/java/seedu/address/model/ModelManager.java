@@ -26,6 +26,7 @@ public class ModelManager extends ComponentManager implements Model {
 
     private final Catalogue catalogue;
     private final FilteredList<Book> filteredBooks;
+    private int privilegeLevel;
 
     /**
      * Initializes a ModelManager with the given catalogue and userPrefs.
@@ -38,6 +39,7 @@ public class ModelManager extends ComponentManager implements Model {
 
         this.catalogue = new Catalogue(catalogue);
         filteredBooks = new FilteredList<>(this.catalogue.getBookList());
+        this.privilegeLevel = PRIVILEGE_LEVEL_GUEST;
     }
 
     public ModelManager() {
@@ -74,6 +76,12 @@ public class ModelManager extends ComponentManager implements Model {
     }
 
     @Override
+    public synchronized void returnBook(Book choice) throws BookNotFoundException {
+        catalogue.returnBook(choice);
+        indicateCatalogueChanged();
+    }
+
+    @Override
     public void updateBook(Book target, Book editedBook)
             throws DuplicateBookException, BookNotFoundException {
         requireAllNonNull(target, editedBook);
@@ -97,6 +105,58 @@ public class ModelManager extends ComponentManager implements Model {
     public void updateFilteredBookList(Predicate<Book> predicate) {
         requireNonNull(predicate);
         filteredBooks.setPredicate(predicate);
+    }
+
+    @Override
+    public int authenticate(String username, String password) {
+        if (isStudent(username, password)) {
+            setPrivilegeLevel(PRIVILEGE_LEVEL_STUDENT);
+            return PRIVILEGE_LEVEL_STUDENT;
+        }
+        if (isLibrarian(username, password)) {
+            setPrivilegeLevel(PRIVILEGE_LEVEL_LIBRARIAN);
+            return PRIVILEGE_LEVEL_LIBRARIAN;
+        }
+        //if not found
+        return PRIVILEGE_LEVEL_GUEST;
+    }
+
+    @Override
+    public void logout() {
+        setPrivilegeLevel(PRIVILEGE_LEVEL_GUEST);
+    }
+
+    @Override
+    public int getPrivilegeLevel() {
+        return this.privilegeLevel;
+    }
+
+    /**
+     * Returns a boolean indicating whether the username and password correspond to a student
+     */
+    private boolean isStudent(String username, String password) {
+        //This is temporary before we add in account database
+        if (username.equals("student") && password.equals("student")) {
+            return true;
+        } else {
+            return false;
+        }
+    }
+
+    /**
+     * Returns a boolean indicating whether the username and password correspond to a librarian
+     */
+    private boolean isLibrarian(String username, String password) {
+        //This is temporary before we add in account database
+        if (username.equals("admin") && password.equals("admin")) {
+            return true;
+        } else {
+            return false;
+        }
+    }
+
+    private void setPrivilegeLevel(int level) {
+        this.privilegeLevel = level;
     }
 
     @Override

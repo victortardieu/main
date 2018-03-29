@@ -56,14 +56,25 @@ e.g. typing *`help`* and pressing kbd:[Enter] will open the help window.
 * Parameters can be in any order e.g. if the command specifies `n/TITLE p/ISBN`, `p/ISBN n/TITLE` is also acceptable.
 ====
 
+=== Login as Student/Librarian : `Login`
+
+Format: `login [username] [password]` +
+Privilege Level: 0(Guest)
+
+[NOTE]
+Different accounts might have different privilege levels. A command can only be executed when the privilege level of the current user is greater or equal to the command's required level.
+
 === Viewing help : `help`
 
-Format: `help`
+Format: `help` +
+Privilege Level: 0(Guest)
 
 === Adding a book: `add`
 
+
 Adds a book to the catalogue +
 Format: `add n/TITLE p/ISBN e/AVAIL a/AUTHOR [t/TAG]...`
+Privilege Level: 2(Librarian)
 
 [TIP]
 A book can have any number of tags (including 0)
@@ -73,15 +84,40 @@ Examples:
 * `add n/John Doe p/98765432 e/Borrowed and Reserved a/John street, block 123, #01-01`
 * `add n/Betsy Crowe t/friend e/betsycrowe@Borrowed and Reserved a/Newgate Prison p/1234567 t/criminal`
 
+=== Returning a book: `return`
+
+Returns the specified book from the catalogue
+Format: `return INDEX`
+Privilege Level: 2(Librarian)
+
+[NOTE]
+Can only return book that has been borrowed
+
+****
+* Returns the book at the specified `INDEX`.
+* The index refers to the index number shown in the most recent listing.
+* The index must be a positive integer 1, 2, 3 ...
+****
+
+Examples:
+
+* `return 1`
+* `return 6`
+
+
 === Listing all books : `list`
 
+
 Shows a list of all books in the catalogue. +
-Format: `list`
+Format: `list` +
+Privilege Level: 0(Guest)
+
 
 === Editing a book : `edit`
 
 Edits an existing book in the catalogue. +
-Format: `edit INDEX [n/TITLE] [p/ISBN] [e/AVAIL] [a/AUTHOR] [t/TAG]...`
+Format: `edit INDEX [n/TITLE] [p/ISBN] [e/AVAIL] [a/AUTHOR] [t/TAG]...` +
+Privilege Level: 2(Librarian)
 
 ****
 * Edits the book at the specified `INDEX`. The index refers to the index number shown in the last book listing. The index *must be a positive integer* 1, 2, 3, ...
@@ -101,7 +137,9 @@ Edits the title of the 2nd book to be `Betsy Crower` and clears all existing tag
 === Locating books by title: `find`
 
 Finds books whose titles contain any of the given keywords. +
-Format: `find KEYWORD [MORE_KEYWORDS]`
+Format: `find KEYWORD [MORE_KEYWORDS]` +
+ Privilege Level: 0(Guest)
+
 
 ****
 * The search is case insensitive. e.g `hans` will match `Hans`
@@ -121,7 +159,9 @@ Returns any book having titles `Betsy`, `Tim`, or `John`
 === Deleting a book : `delete`
 
 Deletes the specified book from the catalogue. +
-Format: `delete INDEX`
+Format: `delete INDEX` +
+Privilege Level: 2(Librarian)
+
 
 ****
 * Deletes the book at the specified `INDEX`.
@@ -141,7 +181,8 @@ Deletes the 1st book in the results of the `find` command.
 === Selecting a book : `select`
 
 Selects the book identified by the index number used in the last book listing. +
-Format: `select INDEX`
+Format: `select INDEX` +
+Privilege Level: 0(Guest)
 
 ****
 * Selects the book and loads the Google search page the book at the specified `INDEX`.
@@ -161,7 +202,8 @@ Selects the 1st book in the results of the `find` command.
 === Listing entered commands : `history`
 
 Lists all the commands that you have entered in reverse chronological order. +
-Format: `history`
+Format: `history` +
+Privilege Level: 2(Librarian)
 
 [NOTE]
 ====
@@ -172,7 +214,8 @@ Pressing the kbd:[&uarr;] and kbd:[&darr;] arrows will display the previous and 
 === Undoing previous command : `undo`
 
 Restores the catalogue to the state before the previous _undoable_ command was executed. +
-Format: `undo`
+Format: `undo` +
+Privilege Level: 2(Librarian)
 
 [NOTE]
 ====
@@ -198,7 +241,8 @@ The `undo` command fails as there are no undoable commands executed previously.
 === Redoing the previously undone command : `redo`
 
 Reverses the most recent `undo` command. +
-Format: `redo`
+Format: `redo` +
+Privilege Level: 2(Librarian)
 
 Examples:
 
@@ -220,13 +264,17 @@ The `redo` command fails as there are no `undo` commands executed previously.
 
 === Clearing all entries : `clear`
 
+
 Clears all entries from the catalogue. +
-Format: `clear`
+Format: `clear` +
+Privilege Level: 2(Librarian)
+
 
 === Exiting the program : `exit`
 
 Exits the program. +
-Format: `exit`
+Format: `exit` +
+Privilege Level: 2(Librarian)
 
 === Saving the data
 

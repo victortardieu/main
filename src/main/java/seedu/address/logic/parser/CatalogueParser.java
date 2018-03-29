@@ -87,6 +87,9 @@ public class CatalogueParser {
         case RedoCommand.COMMAND_WORD:
             return new RedoCommand();
 
+        case ReturnCommand.COMMAND_WORD:
+            return new ReturnCommandParser().parse(arguments);
+
         case LoginCommand.COMMAND_WORD:
             return new LoginCommandParser().parse(arguments);
 

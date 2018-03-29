@@ -76,6 +76,12 @@ public class ModelManager extends ComponentManager implements Model {
     }
 
     @Override
+    public synchronized void returnBook(Book choice) throws BookNotFoundException {
+        catalogue.returnBook(choice);
+        indicateCatalogueChanged();
+    }
+
+    @Override
     public void updateBook(Book target, Book editedBook)
             throws DuplicateBookException, BookNotFoundException {
         requireAllNonNull(target, editedBook);

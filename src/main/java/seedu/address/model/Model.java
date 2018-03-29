@@ -31,8 +31,12 @@ public interface Model {
     /** Adds the given book */
     void addBook(Book book) throws DuplicateBookException;
 
+    /** Returns the given book. */
+    void returnBook(Book book) throws BookNotFoundException;
+
     /** Borrows the given book */
     void borrowBook (Book book) throws BookNotFoundException;
+
 
     /**
      * Replaces the given book {@code target} with {@code editedBook}.

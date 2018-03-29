@@ -149,6 +149,18 @@ public class Catalogue implements ReadOnlyCatalogue {
     }
 
     /**
+     *
+     * alter {@code key} book status from {@code Catalogue}
+     * @throws BookNotFoundException
+     */
+
+    public boolean returnBook(Book key) throws BookNotFoundException {
+        if(books.returnBook(key)) {
+            return true;
+        }else{
+            throw new BookNotFoundException();
+        }
+     /**
      * Borrows {@code key} from this {@code Catalogue}.
      * @throws BookNotFoundException if the {@code key} is not in this {@code Catalogue}.
      */
@@ -158,7 +170,7 @@ public class Catalogue implements ReadOnlyCatalogue {
         } else {
             throw new BookNotFoundException();
         }
-    }
+    } 
 
     //// tag-level operations
 

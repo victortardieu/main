@@ -148,8 +148,11 @@ public class Catalogue implements ReadOnlyCatalogue {
         }
     }
 
+    /**
+     * Borrows {@code key} from this {@code Catalogue}.
+     * @throws BookNotFoundException if the {@code key} is not in this {@code Catalogue}.
+     */
     public boolean borrowBook(Book key) throws BookNotFoundException {
-        System.out.println("error found at catalogue\n");
         if (books.borrow(key)) {
             return true;
         } else {

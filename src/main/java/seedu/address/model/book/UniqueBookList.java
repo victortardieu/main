@@ -87,7 +87,7 @@ public class UniqueBookList implements Iterable<Book> {
 
         String status = toReturn.getAvail().toString();
 
-        switch(status) {
+        switch (status) {
 
             case AVAILABLE:
                 throw new BookNotFoundException();
@@ -102,8 +102,13 @@ public class UniqueBookList implements Iterable<Book> {
 
             case RESERVED:
                 toReturn.getAvail().changeStatus(AVAILABLE);
+                return true;
+
+            default:
+                return true;
         }
-}
+    }
+
     public boolean borrow(Book toBorrow) throws BookNotFoundException {
         requireNonNull(toBorrow);
         final String bookStatus = toBorrow.getAvail().toString();

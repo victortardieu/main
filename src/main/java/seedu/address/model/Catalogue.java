@@ -1,6 +1,7 @@
 package seedu.address.model;
 
 import static java.util.Objects.requireNonNull;
+import static sun.management.snmp.jvminstr.JvmThreadInstanceEntryImpl.ThreadStateMap.Byte1.other;
 
 import java.util.HashMap;
 import java.util.HashSet;
@@ -155,11 +156,12 @@ public class Catalogue implements ReadOnlyCatalogue {
      */
 
     public boolean returnBook(Book key) throws BookNotFoundException {
-        if(books.returnBook(key)) {
+        if (books.returnBook(key)) {
             return true;
-        }else{
+        } else {
             throw new BookNotFoundException();
         }
+    }
      /**
      * Borrows {@code key} from this {@code Catalogue}.
      * @throws BookNotFoundException if the {@code key} is not in this {@code Catalogue}.

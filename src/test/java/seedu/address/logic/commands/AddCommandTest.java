@@ -117,6 +117,10 @@ public class AddCommandTest {
         }
 
         @Override
+        public void returnBook(Book target) {
+            fail("This method should not be called.");
+        }
+        @Override
         public void updateBook(Book target, Book editedBook) {
             fail("This method should not be called.");
         }

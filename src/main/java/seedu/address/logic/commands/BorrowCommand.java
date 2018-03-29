@@ -14,14 +14,14 @@ import static java.util.Objects.requireNonNull;
 public class BorrowCommand extends UndoableCommand {
 
     public static final String COMMAND_WORD = "borrow";
-    public static final String MESSAGE_SUCCESS = "Book borrowed : %l%s";
+    public static final String MESSAGE_SUCCESS = "New book borrowed: %1$s";
     public static final String MESSAGE_FAILURE = "Book not available for borrowing!";
 
     public static final String MESSAGE_USAGE = COMMAND_WORD
             + ": Borrows the book identified by the index number used in the last book listing.\n"
             + "Parameters: INDEX (must be a positive integer)\n"
             + "Example: " + COMMAND_WORD + " 1";
-    public static final int PRIVILEGE_LEVEL = Model.PRIVILEGE_LEVEL_LIBRARIAN;
+    public static final int PRIVILEGE_LEVEL = Model.PRIVILEGE_LEVEL_STUDENT;
 
     private final Index targetIndex;
 

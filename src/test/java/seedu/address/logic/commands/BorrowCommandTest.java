@@ -34,7 +34,7 @@ public class BorrowCommandTest {
 
         ModelManager expectedModel = new ModelManager(model.getCatalogue(), new UserPrefs());
         expectedModel.borrowBook(bookToBorrow);
-
+        System.out.println(BorrowCommand.MESSAGE_SUCCESS + "\n" + bookToBorrow.getTitle().toString() + "\n");
         assertCommandSuccess (borrowCommand, model, expectedMessage, expectedModel);
     }
 

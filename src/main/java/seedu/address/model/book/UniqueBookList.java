@@ -90,11 +90,9 @@ public class UniqueBookList implements Iterable<Book> {
         switch (bookStatus) {
             case (AVAILABLE):
                 toBorrow.getAvail().changeStatus(BORROWED);
-                System.out.println("case available\n");
                 return true;
 
             default:
-                System.out.println("case default\n");
                 throw new BookNotFoundException();
         }
     }

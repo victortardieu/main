@@ -43,7 +43,6 @@ public class AddCommandTest {
         Book validBook = new BookBuilder().build();
 
         CommandResult commandResult = getAddCommandForBook(validBook, modelStub).execute();
-
         assertEquals(String.format(AddCommand.MESSAGE_SUCCESS, validBook), commandResult.feedbackToUser);
         assertEquals(Arrays.asList(validBook), modelStub.booksAdded);
     }

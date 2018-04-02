@@ -19,7 +19,9 @@ import static seedu.address.logic.commands.CommandTestUtil.prepareRedoCommand;
 import static seedu.address.logic.commands.CommandTestUtil.prepareUndoCommand;
 import static seedu.address.logic.commands.CommandTestUtil.showBookAtIndex;
 import static seedu.address.testutil.TypicalBooks.getTypicalCatalogue;
+import static seedu.address.testutil.TypicalIndexes.INDEX_FIFTH_BOOK;
 import static seedu.address.testutil.TypicalIndexes.INDEX_FIRST_BOOK;
+import static seedu.address.testutil.TypicalIndexes.INDEX_FOURTH_BOOK;
 import static seedu.address.testutil.TypicalIndexes.INDEX_SECOND_BOOK;
 
 public class BorrowCommandTest {
@@ -27,14 +29,12 @@ public class BorrowCommandTest {
 
     @Test
     public void execute_validIndexUnfilteredList_success() throws Exception {
-        Book bookToBorrow = model.getFilteredBookList().get(INDEX_FIRST_BOOK.getZeroBased());
-        BorrowCommand borrowCommand = prepareCommand(INDEX_FIRST_BOOK);
+        Book bookToBorrow = model.getFilteredBookList().get(INDEX_FOURTH_BOOK.getZeroBased());
+        BorrowCommand borrowCommand = prepareCommand(INDEX_FOURTH_BOOK);
 
         String expectedMessage = String.format(BorrowCommand.MESSAGE_SUCCESS, bookToBorrow);
-
         ModelManager expectedModel = new ModelManager(model.getCatalogue(), new UserPrefs());
         expectedModel.borrowBook(bookToBorrow);
-        System.out.println(BorrowCommand.MESSAGE_SUCCESS + "\n" + bookToBorrow.getTitle().toString() + "\n");
         assertCommandSuccess (borrowCommand, model, expectedMessage, expectedModel);
     }
 
@@ -48,19 +48,19 @@ public class BorrowCommandTest {
 
     @Test
     public void execute_validIndexFilteredList_success() throws Exception {
-        showBookAtIndex(model, INDEX_FIRST_BOOK);
+        showBookAtIndex(model, INDEX_FIFTH_BOOK);
 
-        Book bookToBorrow = model.getFilteredBookList().get(INDEX_FIRST_BOOK.getZeroBased());
-        BorrowCommand borrowCommand = prepareCommand(INDEX_FIRST_BOOK);
+        Book bookToBorrow = model.getFilteredBookList().get(INDEX_FIFTH_BOOK.getZeroBased());
+        BorrowCommand borrowCommand = prepareCommand(INDEX_FIFTH_BOOK);
 
         String expectedMessage = String.format(BorrowCommand.MESSAGE_SUCCESS, bookToBorrow);
 
         Model expectedModel = new ModelManager(model.getCatalogue(), new UserPrefs());
         expectedModel.borrowBook(bookToBorrow);
-        showNoBook(expectedModel);
 
         assertCommandSuccess(borrowCommand, model, expectedMessage, expectedModel);
     }
+
     @Test
     public void execute_invalidIndexFilteredList_throwsCommandException() {
         showBookAtIndex(model, INDEX_FIRST_BOOK);
@@ -129,7 +129,7 @@ public class BorrowCommandTest {
         // undo -> reverts catalogue back to previous state and filtered book list to show all books
         assertCommandSuccess(undoCommand, model, UndoCommand.MESSAGE_SUCCESS, expectedModel);
 
-        expectedModel.deleteBook(bookToBorrow);
+        expectedModel.borrowBook(bookToBorrow);
         assertNotEquals(bookToBorrow, model.getFilteredBookList().get(INDEX_FIRST_BOOK.getZeroBased()));
         // redo -> borrows same second book in unfiltered book list
         assertCommandSuccess(redoCommand, model, RedoCommand.MESSAGE_SUCCESS, expectedModel);
@@ -155,15 +155,12 @@ public class BorrowCommandTest {
         assertFalse(borrowFirstCommand.equals(borrowSecondCommand));
     }
 
+    /**
+     * Returns a {@code ReturnCommand} with the parameter {@code index}.
+     */
     private BorrowCommand prepareCommand(Index index) {
         BorrowCommand borrowCommand = new BorrowCommand(index);
         borrowCommand.setData(model, new CommandHistory(), new UndoRedoStack());
         return borrowCommand;
-    }
-
-    private void showNoBook (Model model) {
-        model.updateFilteredBookList(p -> false);
-
-        assertTrue(model.getFilteredBookList().isEmpty());
     }
 }

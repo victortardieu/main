@@ -78,6 +78,7 @@ public class ModelManager extends ComponentManager implements Model {
     @Override
     public synchronized void returnBook(Book choice) throws BookNotFoundException {
         catalogue.returnBook(choice);
+        updateFilteredBookList(PREDICATE_SHOW_ALL_BOOKS);
         indicateCatalogueChanged();
     }
 
@@ -93,6 +94,14 @@ public class ModelManager extends ComponentManager implements Model {
     @Override
     public void borrowBook(Book book) throws BookNotFoundException {
         catalogue.borrowBook(book);
+        updateFilteredBookList(PREDICATE_SHOW_ALL_BOOKS);
+        indicateCatalogueChanged();
+    }
+
+    @Override
+    public void reserveBook(Book book) throws BookNotFoundException {
+        catalogue.reserveBook(book);
+        updateFilteredBookList(PREDICATE_SHOW_ALL_BOOKS);
         indicateCatalogueChanged();
     }
 
@@ -182,5 +191,4 @@ public class ModelManager extends ComponentManager implements Model {
         return catalogue.equals(other.catalogue)
                 && filteredBooks.equals(other.filteredBooks);
     }
-
 }

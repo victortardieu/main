@@ -20,6 +20,7 @@ import seedu.address.logic.commands.ListCommand;
 import seedu.address.logic.commands.LoginCommand;
 import seedu.address.logic.commands.LogoutCommand;
 import seedu.address.logic.commands.RedoCommand;
+import seedu.address.logic.commands.ReserveCommand;
 import seedu.address.logic.commands.ReturnCommand;
 import seedu.address.logic.commands.SelectCommand;
 import seedu.address.logic.commands.UndoCommand;
@@ -99,6 +100,9 @@ public class CatalogueParser {
 
         case BorrowCommand.COMMAND_WORD:
             return new BorrowCommandParser().parse(arguments);
+
+        case ReserveCommand.COMMAND_WORD:
+            return new ReserveCommandParser().parse(arguments);
 
         default:
             throw new ParseException(MESSAGE_UNKNOWN_COMMAND);

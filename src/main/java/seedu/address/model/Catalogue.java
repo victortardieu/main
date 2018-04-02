@@ -174,6 +174,13 @@ public class Catalogue implements ReadOnlyCatalogue {
         }
     } 
 
+    public boolean reserveBook (Book key) throws BookNotFoundException {
+        if (books.reserve(key)) {
+            return true;
+        } else {
+            throw new BookNotFoundException();
+        }
+    }
     //// tag-level operations
 
     public void addTag(Tag t) throws UniqueTagList.DuplicateTagException {

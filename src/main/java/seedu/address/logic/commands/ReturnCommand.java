@@ -34,7 +34,6 @@ import static java.util.Objects.requireNonNull;
 
         private final Index targetIndex;
 
-
         private Book bookToReturn;
 
         public ReturnCommand(Index targetIndex) {

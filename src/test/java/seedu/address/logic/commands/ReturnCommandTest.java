@@ -37,10 +37,8 @@ public class ReturnCommandTest {
         ReturnCommand returnCommand = prepareCommand(INDEX_FIRST_BOOK);
 
         String expectedMessage = String.format(ReturnCommand.MESSAGE_RETURN_BOOK_SUCCESS, bookToReturn);
-
         ModelManager expectedModel = new ModelManager(model.getCatalogue(), new UserPrefs());
-        expectedModel.deleteBook(bookToReturn);
-
+        expectedModel.returnBook(bookToReturn);
         assertCommandSuccess(returnCommand, model, expectedMessage, expectedModel);
     }
 
@@ -63,7 +61,6 @@ public class ReturnCommandTest {
 
         Model expectedModel = new ModelManager(model.getCatalogue(), new UserPrefs());
         expectedModel.returnBook(bookToReturn);
-        showNoBook(expectedModel);
 
         assertCommandSuccess(returnCommand, model, expectedMessage, expectedModel);
     }
@@ -90,15 +87,15 @@ public class ReturnCommandTest {
         ReturnCommand returnCommand = prepareCommand(INDEX_FIRST_BOOK);
         Model expectedModel = new ModelManager(model.getCatalogue(), new UserPrefs());
 
-        // delete -> first book deleted
+        // return -> first book returned
         returnCommand.execute();
         undoRedoStack.push(returnCommand);
 
         // undo -> reverts catalogue back to previous state and filtered book list to show all books
         assertCommandSuccess(undoCommand, model, UndoCommand.MESSAGE_SUCCESS, expectedModel);
 
-        // redo -> same first book deleted again
-        expectedModel.deleteBook(bookToReturn);
+        // redo -> same first book returned again
+        expectedModel.returnBook(bookToReturn);
         assertCommandSuccess(redoCommand, model, RedoCommand.MESSAGE_SUCCESS, expectedModel);
     }
 
@@ -110,7 +107,7 @@ public class ReturnCommandTest {
         Index outOfBoundIndex = Index.fromOneBased(model.getFilteredBookList().size() + 1);
         ReturnCommand returnCommand = prepareCommand(outOfBoundIndex);
 
-        // execution failed -> deleteCommand not pushed into undoRedoStack
+        // execution failed -> returnCommand not pushed into undoRedoStack
         assertCommandFailure(returnCommand, model, Messages.MESSAGE_INVALID_BOOK_DISPLAYED_INDEX);
 
         // no commands in undoRedoStack -> undoCommand and redoCommand fail
@@ -119,14 +116,14 @@ public class ReturnCommandTest {
     }
 
     /**
-     * 1. Deletes a {@code Book} from a filtered list.
+     * 1. Returns a {@code Book} from a filtered list.
      * 2. Undo the deletion.
      * 3. The unfiltered list should be shown now. Verify that the index of the previously deleted book in the
      * unfiltered list is different from the index at the filtered list.
-     * 4. Redo the deletion. This ensures {@code RedoCommand} deletes the book object regardless of indexing.
+     * 4. Redo the deletion. This ensures {@code RedoCommand} returns the book object regardless of indexing.
      */
     @Test
-    public void executeUndoRedo_validIndexFilteredList_sameBookDeleted() throws Exception {
+    public void executeUndoRedo_validIndexFilteredList_sameBookReturned() throws Exception {
         UndoRedoStack undoRedoStack = new UndoRedoStack();
         UndoCommand undoCommand = prepareUndoCommand(model, undoRedoStack);
         RedoCommand redoCommand = prepareRedoCommand(model, undoRedoStack);
@@ -135,16 +132,16 @@ public class ReturnCommandTest {
 
         showBookAtIndex(model, INDEX_SECOND_BOOK);
         Book bookToReturn = model.getFilteredBookList().get(INDEX_FIRST_BOOK.getZeroBased());
-        // delete -> deletes second book in unfiltered book list / first book in filtered book list
+        // return -> returns second book in unfiltered book list / first book in filtered book list
         returnCommand.execute();
         undoRedoStack.push(returnCommand);
 
         // undo -> reverts catalogue back to previous state and filtered book list to show all books
         assertCommandSuccess(undoCommand, model, UndoCommand.MESSAGE_SUCCESS, expectedModel);
 
-        expectedModel.deleteBook(bookToReturn);
+        expectedModel.returnBook(bookToReturn);
         assertNotEquals(bookToReturn, model.getFilteredBookList().get(INDEX_FIRST_BOOK.getZeroBased()));
-        // redo -> deletes same second book in unfiltered book list
+        // redo -> returns same second book in unfiltered book list
         assertCommandSuccess(redoCommand, model, RedoCommand.MESSAGE_SUCCESS, expectedModel);
     }
 
@@ -181,14 +178,5 @@ public class ReturnCommandTest {
         ReturnCommand returnCommand = new ReturnCommand(index);
         returnCommand.setData(model, new CommandHistory(), new UndoRedoStack());
         return returnCommand;
-    }
-
-    /**
-     * Updates {@code model}'s filtered list to show no one.
-     */
-    private void showNoBook(Model model) {
-        model.updateFilteredBookList(p -> false);
-
-        assertTrue(model.getFilteredBookList().isEmpty());
     }
 }

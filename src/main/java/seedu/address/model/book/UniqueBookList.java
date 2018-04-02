@@ -90,7 +90,7 @@ public class UniqueBookList implements Iterable<Book> {
         switch (status) {
 
             case AVAILABLE:
-                throw new BookNotFoundException();
+                return true;
 
             case BORROWED:
                 toReturn.getAvail().changeStatus(AVAILABLE);
@@ -105,19 +105,52 @@ public class UniqueBookList implements Iterable<Book> {
                 return true;
 
             default:
-                return true;
+                throw new BookNotFoundException();
         }
     }
 
     public boolean borrow(Book toBorrow) throws BookNotFoundException {
         requireNonNull(toBorrow);
-        final String bookStatus = toBorrow.getAvail().toString();
+        String bookStatus = toBorrow.getAvail().toString();
 
         switch (bookStatus) {
             case (AVAILABLE):
                 toBorrow.getAvail().changeStatus(BORROWED);
                 return true;
+
+            case (BORROWED):
+                return true;
+
+            case (BORROWED_AND_RESERVED):
+                return true;
+
+            case (RESERVED):
+                return true;
             
+            default:
+                throw new BookNotFoundException();
+        }
+    }
+
+    public boolean reserve(Book toReserve) throws BookNotFoundException {
+        requireNonNull(toReserve);
+        String bookStatus = toReserve.getAvail().toString();
+
+        switch (bookStatus) {
+            case (AVAILABLE):
+                toReserve.getAvail().changeStatus(RESERVED);
+                return true;
+
+            case (BORROWED):
+                toReserve.getAvail().changeStatus(BORROWED_AND_RESERVED);
+                return true;
+
+            case (BORROWED_AND_RESERVED):
+                return true;
+
+            case (RESERVED):
+                return true;
+
             default:
                 throw new BookNotFoundException();
         }

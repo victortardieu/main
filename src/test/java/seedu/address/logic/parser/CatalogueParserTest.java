@@ -59,6 +59,13 @@ public class CatalogueParserTest {
     }
 
     @Test
+    public void parseCommand_borrow() throws Exception {
+        BorrowCommand command = (BorrowCommand) parser.parseCommand
+                (BorrowCommand.COMMAND_WORD + " " + INDEX_FIRST_BOOK.getOneBased());
+        assertEquals(new BorrowCommand(INDEX_FIRST_BOOK), command);
+    }
+
+    @Test
     public void parseCommand_edit() throws Exception {
         Book book = new BookBuilder().build();
         EditBookDescriptor descriptor = new EditBookDescriptorBuilder(book).build();

@@ -8,6 +8,7 @@ import seedu.address.model.book.Book;
 import seedu.address.model.book.exceptions.BookNotFoundException;
 
 import java.util.List;
+import java.util.Objects;
 
 import static java.util.Objects.requireNonNull;
 
@@ -34,7 +35,7 @@ public class BorrowCommand extends UndoableCommand {
         requireNonNull(bookToBorrow);
         try {
             model.borrowBook(bookToBorrow);
-        } catch (BookNotFoundException pnfe) { //Find out what pnfe is from deleteCommand
+        } catch (BookNotFoundException pnfe) {
             throw new CommandException(MESSAGE_FAILURE);
         }
         return new CommandResult(String.format (MESSAGE_SUCCESS, bookToBorrow));
@@ -47,8 +48,21 @@ public class BorrowCommand extends UndoableCommand {
         if (targetIndex.getZeroBased() >= lastShownList.size()) {
             throw new CommandException(Messages.MESSAGE_INVALID_BOOK_DISPLAYED_INDEX);
         }
-
         bookToBorrow = lastShownList.get(targetIndex.getZeroBased());
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        BorrowCommand that = (BorrowCommand) o;
+        return Objects.equals(targetIndex, that.targetIndex) &&
+                Objects.equals(bookToBorrow, that.bookToBorrow);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(targetIndex, bookToBorrow);
     }
 
     @Override

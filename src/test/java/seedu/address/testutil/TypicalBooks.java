@@ -41,15 +41,15 @@ public class TypicalBooks {
     public static final Book DANIEL = new BookBuilder().withTitle("Daniel Meier")
             .withAuthor("Meier Daniel")
             .withIsbn("87652533")
-            .withAvail("Available").build();
-    public static final Book ELLE = new BookBuilder().withTitle("Elle Meyer")
-            .withAuthor("Meyer Elle")
-            .withIsbn("9482224")
-            .withAvail("Available").build();
+            .withAvail("Borrowed").build();
     public static final Book FIONA = new BookBuilder().withTitle("Fiona Kunz")
             .withAuthor("Kunz Fiona")
             .withIsbn("9482427")
-            .withAvail("Available").build();
+            .withAvail("Borrowed and Reserved").build();
+    public static final Book ELLE = new BookBuilder().withTitle("Elle Meyer")
+            .withAuthor("Meyer Elle")
+            .withIsbn("9482224")
+            .withAvail("Reserved").build();
     public static final Book GEORGE = new BookBuilder().withTitle("George Best")
             .withAuthor("Best George")
             .withIsbn("9482442")

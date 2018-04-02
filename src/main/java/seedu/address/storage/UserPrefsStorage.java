@@ -30,5 +30,4 @@ public interface UserPrefsStorage {
      * @throws IOException if there was any problem writing to the file.
      */
     void saveUserPrefs(UserPrefs userPrefs) throws IOException;
-
 }

@@ -43,8 +43,8 @@ public class MatricNumber {
     @Override
     public boolean equals(Object other) {
         return other == this
-                || (other instanceof Credential // short circuit if same obj
-                && this.matricNumber.equals(((MatricNumber) other).matricNumber) //check status
+                || (other instanceof MatricNumber // short circuit if same obj
+                && this.getMatricNumber().equals(((MatricNumber) other).getMatricNumber()) //check status
         );
     }
 

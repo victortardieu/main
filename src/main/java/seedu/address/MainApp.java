@@ -25,9 +25,14 @@ import seedu.address.model.Model;
 import seedu.address.model.ModelManager;
 import seedu.address.model.ReadOnlyCatalogue;
 import seedu.address.model.UserPrefs;
+import seedu.address.model.account.Account;
+import seedu.address.model.account.UniqueAccountList;
+import seedu.address.model.account.exceptions.DuplicateAccountException;
 import seedu.address.model.util.SampleDataUtil;
+import seedu.address.storage.AccountListStorage;
 import seedu.address.storage.CatalogueStorage;
 import seedu.address.storage.JsonUserPrefsStorage;
+import seedu.address.storage.SerialisedAccountListStorage;
 import seedu.address.storage.Storage;
 import seedu.address.storage.StorageManager;
 import seedu.address.storage.UserPrefsStorage;
@@ -62,11 +67,13 @@ public class MainApp extends Application {
         UserPrefsStorage userPrefsStorage = new JsonUserPrefsStorage(config.getUserPrefsFilePath());
         userPrefs = initPrefs(userPrefsStorage);
         CatalogueStorage catalogueStorage = new XmlCatalogueStorage(userPrefs.getCatalogueFilePath());
-        storage = new StorageManager(catalogueStorage, userPrefsStorage);
+        AccountListStorage accountListStorage = new SerialisedAccountListStorage(userPrefs.getAccountListFilePath());
+        storage = new StorageManager(catalogueStorage, userPrefsStorage, accountListStorage);
 
         initLogging(config);
 
         model = initModelManager(storage, userPrefs);
+
 
         logic = new LogicManager(model);
 
@@ -87,7 +94,9 @@ public class MainApp extends Application {
      */
     private Model initModelManager(Storage storage, UserPrefs userPrefs) {
         Optional<ReadOnlyCatalogue> catalogueOptional;
+        Optional<UniqueAccountList> accountListOptional;
         ReadOnlyCatalogue initialData;
+        UniqueAccountList initlaAccountList;
         try {
             catalogueOptional = storage.readCatalogue();
             if (!catalogueOptional.isPresent()) {
@@ -102,7 +111,29 @@ public class MainApp extends Application {
             initialData = new Catalogue();
         }
 
-        return new ModelManager(initialData, userPrefs);
+        try {
+            accountListOptional = storage.readAccountList();
+            if (!accountListOptional.isPresent()) {
+                logger.info("AccountList file not found. Will be starting with an accountList with only admin");
+                initlaAccountList = new UniqueAccountList();
+            } else{
+                initlaAccountList = accountListOptional.get();
+            }
+        } catch (DataConversionException e) {
+            logger.warning("AccountList file not in the correct format. Will be starting with an accountList with only admin");
+            initlaAccountList = new UniqueAccountList();
+        } catch (IOException e) {
+            logger.warning("Problem while reading from the AccountList file. Will be starting with an accountList with only admin");
+            System.out.print(e.getMessage());
+            initlaAccountList = new UniqueAccountList();
+        }
+
+        try {
+            initlaAccountList.add(Account.createDefaultAdminAccount());
+        } catch (DuplicateAccountException e) {
+            e.printStackTrace();
+        }
+        return new ModelManager(initialData, initlaAccountList, userPrefs);
     }
 
     private void initLogging(Config config) {

@@ -12,6 +12,7 @@ public class UserPrefs {
     private GuiSettings guiSettings;
     private String catalogueFilePath = "data/catalogue.xml";
     private String catalogueBookTitle = "MyCatalogue";
+    private String accountListFilePath = "data/accountList.ser";
 
     public UserPrefs() {
         this.setGuiSettings(500, 500, 0, 0);
@@ -43,6 +44,14 @@ public class UserPrefs {
 
     public void setCatalogueBookTitle(String catalogueBookTitle) {
         this.catalogueBookTitle = catalogueBookTitle;
+    }
+
+    public String getAccountListFilePath() {
+        return accountListFilePath;
+    }
+
+    public void setAccountListFilePath(String accountListFilePath) {
+        this.accountListFilePath = accountListFilePath;
     }
 
     @Override

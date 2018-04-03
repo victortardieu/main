@@ -105,6 +105,10 @@ public class UniqueAccountList implements Iterable<Account> {
         return FXCollections.unmodifiableObservableList(internalList);
     }
 
+    public int size(){
+        return internalList.size();
+    }
+
     @Override
     public Iterator<Account> iterator() {
         return internalList.iterator();

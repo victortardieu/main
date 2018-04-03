@@ -3,16 +3,18 @@ package seedu.address.storage;
 import java.io.IOException;
 import java.util.Optional;
 
+import seedu.address.commons.events.model.AccountListChangedEvent;
 import seedu.address.commons.events.model.CatalogueChangedEvent;
 import seedu.address.commons.events.storage.DataSavingExceptionEvent;
 import seedu.address.commons.exceptions.DataConversionException;
 import seedu.address.model.ReadOnlyCatalogue;
 import seedu.address.model.UserPrefs;
+import seedu.address.model.account.UniqueAccountList;
 
 /**
  * API of the Storage component
  */
-public interface Storage extends CatalogueStorage, UserPrefsStorage {
+public interface Storage extends CatalogueStorage, UserPrefsStorage, AccountListStorage {
 
     @Override
     Optional<UserPrefs> readUserPrefs() throws DataConversionException, IOException;
@@ -35,4 +37,12 @@ public interface Storage extends CatalogueStorage, UserPrefsStorage {
      * Raises {@link DataSavingExceptionEvent} if there was an error during saving.
      */
     void handleCatalogueChangedEvent(CatalogueChangedEvent abce);
+
+    String getAccountListFilePath();
+
+    Optional<UniqueAccountList> readAccountList() throws DataConversionException, IOException;
+
+    void saveAccountList(UniqueAccountList accountList) throws IOException;
+
+    void handleAccountListChangedEvent(AccountListChangedEvent event);
 }

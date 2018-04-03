@@ -11,6 +11,7 @@ import javafx.collections.ObservableList;
 import javafx.collections.transformation.FilteredList;
 import seedu.address.commons.core.ComponentManager;
 import seedu.address.commons.core.LogsCenter;
+import seedu.address.commons.events.model.AccountListChangedEvent;
 import seedu.address.commons.events.model.CatalogueChangedEvent;
 import seedu.address.model.account.Account;
 import seedu.address.model.account.Credential;
@@ -49,6 +50,24 @@ public class ModelManager extends ComponentManager implements Model {
         this.accountList = new UniqueAccountList();
         this.currentAccount = Account.createGuestAccount();
         addFirstAccount();
+
+    }
+
+    /**
+     * Initializes a ModelManager with the given catalogue, accountList and userPrefs.
+     */
+    public ModelManager(ReadOnlyCatalogue catalogue, UniqueAccountList accountList, UserPrefs userPrefs) {
+        super();
+        requireAllNonNull(catalogue, accountList,userPrefs);
+
+        logger.fine("Initializing with catalogue: " + catalogue + ", accountList: " + accountList +" and user prefs " + userPrefs);
+
+
+        this.catalogue = new Catalogue(catalogue);
+        filteredBooks = new FilteredList<>(this.catalogue.getBookList());
+        this.accountList = accountList;
+        this.currentAccount = Account.createGuestAccount();
+        indicateAccountListChanged();
     }
 
     public ModelManager() {
@@ -57,14 +76,17 @@ public class ModelManager extends ComponentManager implements Model {
 
     public void addAccount(Account account) throws DuplicateAccountException {
         accountList.add(account);
+        indicateAccountListChanged();
     }
 
     public void deleteAccount(Account account) throws AccountNotFoundException {
         accountList.remove(account);
+        indicateAccountListChanged();
     }
 
     public void updateAccount(Account account, Account editedAccount) throws DuplicateAccountException, AccountNotFoundException {
         accountList.setAccount(account, account);
+        indicateAccountListChanged();
     }
 
     private void addFirstAccount(){
@@ -92,6 +114,11 @@ public class ModelManager extends ComponentManager implements Model {
     /** Raises an event to indicate the model has changed */
     private void indicateCatalogueChanged() {
         raise(new CatalogueChangedEvent(catalogue));
+    }
+
+    /** Raises an event to indicate the model has changed */
+    private void indicateAccountListChanged() {
+        raise(new AccountListChangedEvent(accountList));
     }
 
     @Override

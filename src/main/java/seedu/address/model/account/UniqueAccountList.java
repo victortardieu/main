@@ -2,6 +2,7 @@ package seedu.address.model.account;
 
 import static java.util.Objects.requireNonNull;
 import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
+import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
 import javafx.collections.FXCollections;
@@ -17,7 +18,7 @@ import seedu.address.model.account.exceptions.DuplicateAccountException;
  * @see Account#equals(Object)
  */
 public class UniqueAccountList implements Iterable<Account> {
-    private final ObservableList<Account> internalList = FXCollections.observableArrayList();
+    private final ArrayList<Account> internalList = new ArrayList<Account>();
 
     /**
      * Returns true if the list contains an equivalent account as the given argument.
@@ -75,18 +76,18 @@ public class UniqueAccountList implements Iterable<Account> {
         }
         return accountFoundAndDeleted;
     }
-    public void setAccounts(UniqueAccountList replacement) {
-        this.internalList.setAll(replacement.internalList);
-    }
-
-    public void setAccounts(List<Account> accounts) throws DuplicateAccountException {
-        requireAllNonNull(accounts);
-        final UniqueAccountList replacement = new UniqueAccountList();
-        for (final Account account : accounts) {
-            replacement.add(account);
-        }
-        setAccounts(replacement);
-    }
+//    public void setAccounts(UniqueAccountList replacement) {
+//        this.internalList.setAll(replacement.internalList);
+//    }
+//
+//    public void setAccounts(List<Account> accounts) throws DuplicateAccountException {
+//        requireAllNonNull(accounts);
+//        final UniqueAccountList replacement = new UniqueAccountList();
+//        for (final Account account : accounts) {
+//            replacement.add(account);
+//        }
+//        setAccounts(replacement);
+//    }
 
     public Account authenticate(Credential c){
         for (Account a : internalList){
@@ -101,9 +102,9 @@ public class UniqueAccountList implements Iterable<Account> {
     /**
      * Returns the backing list as an unmodifiable {@code ObservableList}.
      */
-    public ObservableList<Account> asObservableList() {
-        return FXCollections.unmodifiableObservableList(internalList);
-    }
+//    public ObservableList<Account> asObservableList() {
+//        return FXCollections.unmodifiableObservableList(internalList);
+//    }
 
     public int size(){
         return internalList.size();

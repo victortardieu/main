@@ -1,15 +1,14 @@
 package seedu.address.storage;
 
-import java.util.ArrayList;
-import java.util.List;
-import java.util.stream.Collectors;
-
-import javax.xml.bind.annotation.XmlElement;
-import javax.xml.bind.annotation.XmlRootElement;
-
 import seedu.address.commons.exceptions.IllegalValueException;
 import seedu.address.model.Catalogue;
 import seedu.address.model.ReadOnlyCatalogue;
+
+import javax.xml.bind.annotation.XmlElement;
+import javax.xml.bind.annotation.XmlRootElement;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.stream.Collectors;
 
 /**
  * An Immutable Catalogue that is serializable to XML format
@@ -44,7 +43,7 @@ public class XmlSerializableCatalogue {
      * Converts this catalogue into the model's {@code Catalogue} object.
      *
      * @throws IllegalValueException if there were any data constraints violated or duplicates in the
-     * {@code XmlAdaptedBook} or {@code XmlAdaptedTag}.
+     *                               {@code XmlAdaptedBook} or {@code XmlAdaptedTag}.
      */
     public Catalogue toModelType() throws IllegalValueException {
         Catalogue catalogue = new Catalogue();

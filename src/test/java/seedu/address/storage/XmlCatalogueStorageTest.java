@@ -2,18 +2,12 @@ package seedu.address.storage;
 
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertFalse;
-import static seedu.address.testutil.TypicalBooks.ALICE;
-import static seedu.address.testutil.TypicalBooks.HOON;
-import static seedu.address.testutil.TypicalBooks.IDA;
-import static seedu.address.testutil.TypicalBooks.getTypicalCatalogue;
-
+import static seedu.address.testutil.TypicalBooks.*;
 import java.io.IOException;
-
 import org.junit.Rule;
 import org.junit.Test;
 import org.junit.rules.ExpectedException;
 import org.junit.rules.TemporaryFolder;
-
 import seedu.address.commons.exceptions.DataConversionException;
 import seedu.address.commons.util.FileUtil;
 import seedu.address.model.Catalogue;
@@ -40,8 +34,8 @@ public class XmlCatalogueStorageTest {
 
     private String addToTestDataPathIfNotNull(String prefsFileInTestDataFolder) {
         return prefsFileInTestDataFolder != null
-                ? TEST_DATA_FOLDER + prefsFileInTestDataFolder
-                : null;
+            ? TEST_DATA_FOLDER + prefsFileInTestDataFolder
+            : null;
     }
 
     @Test

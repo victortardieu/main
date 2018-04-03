@@ -1,10 +1,8 @@
 package seedu.address.logic.commands;
 
 import static org.junit.Assert.assertEquals;
-
 import org.junit.Before;
 import org.junit.Test;
-
 import seedu.address.logic.CommandHistory;
 import seedu.address.logic.UndoRedoStack;
 import seedu.address.model.Model;
@@ -36,7 +34,7 @@ public class HistoryCommandTest {
         history.add(command3);
 
         String expectedMessage = String.format(HistoryCommand.MESSAGE_SUCCESS,
-                String.join("\n", command3, command2, command1));
+            String.join("\n", command3, command2, command1));
 
         assertCommandResult(historyCommand, expectedMessage);
     }

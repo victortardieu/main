@@ -1,6 +1,7 @@
 package seedu.address.model.account;
 
-import static org.junit.Assert.*;
+import static org.junit.Assert.assertFalse;
+import static org.junit.Assert.assertTrue;
 import org.junit.Test;
 import seedu.address.testutil.Assert;
 
@@ -15,7 +16,7 @@ public class AccountTest {
     }
 
     @Test
-    public void credentialMatchesTest(){
+    public void credentialMatchesTest() {
         Credential studentCredential = new Credential("student", "student");
         Credential adminCredential = new Credential("admin", "admin");
         Account studentAccount = Account.createDefaultStudentAccount();
@@ -27,7 +28,7 @@ public class AccountTest {
     }
 
     @Test
-    public void equalsTest(){
+    public void equalsTest() {
         Account studentAccount = Account.createDefaultStudentAccount();
         Account studentAccountCopy = Account.createDefaultStudentAccount();
         Account adminAccount = Account.createDefaultAdminAccount();

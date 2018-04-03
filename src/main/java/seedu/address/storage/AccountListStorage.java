@@ -1,10 +1,12 @@
 package seedu.address.storage;
 
-import java.io.IOException;
-import java.util.Optional;
-//import java.util.Optional;
 import seedu.address.commons.exceptions.DataConversionException;
 import seedu.address.model.account.UniqueAccountList;
+
+import java.io.IOException;
+import java.util.Optional;
+
+//import java.util.Optional;
 
 
 public interface AccountListStorage {
@@ -15,9 +17,10 @@ public interface AccountListStorage {
 
     /**
      * Returns AccountList data as a {@link UniqueAccountList}.
-     *   Returns {@code Optional.empty()} if storage file is not found.
+     * Returns {@code Optional.empty()} if storage file is not found.
+     *
      * @throws DataConversionException if the data in storage is not in the expected format.
-     * @throws IOException if there was any problem when reading from the storage.
+     * @throws IOException             if there was any problem when reading from the storage.
      */
     Optional<UniqueAccountList> readAccountList() throws DataConversionException, IOException;
 
@@ -28,6 +31,7 @@ public interface AccountListStorage {
 
     /**
      * Saves the given {@link UniqueAccountList} to the storage.
+     *
      * @param accountList cannot be null.
      * @throws IOException if there was any problem writing to the file.
      */

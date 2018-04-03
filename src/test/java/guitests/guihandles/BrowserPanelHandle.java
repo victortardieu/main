@@ -1,7 +1,6 @@
 package guitests.guihandles;
 
 import java.net.URL;
-
 import guitests.GuiRobot;
 import javafx.concurrent.Worker;
 import javafx.scene.Node;

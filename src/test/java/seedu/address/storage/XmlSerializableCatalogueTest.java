@@ -1,13 +1,10 @@
 package seedu.address.storage;
 
 import static org.junit.Assert.assertEquals;
-
 import java.io.File;
-
 import org.junit.Rule;
 import org.junit.Test;
 import org.junit.rules.ExpectedException;
-
 import seedu.address.commons.exceptions.IllegalValueException;
 import seedu.address.commons.util.FileUtil;
 import seedu.address.commons.util.XmlUtil;
@@ -27,7 +24,7 @@ public class XmlSerializableCatalogueTest {
     @Test
     public void toModelType_typicalBooksFile_success() throws Exception {
         XmlSerializableCatalogue dataFromFile = XmlUtil.getDataFromFile(TYPICAL_BOOKS_FILE,
-                XmlSerializableCatalogue.class);
+            XmlSerializableCatalogue.class);
         Catalogue catalogueFromFile = dataFromFile.toModelType();
         Catalogue typicalBooksCatalogue = TypicalBooks.getTypicalCatalogue();
         assertEquals(catalogueFromFile, typicalBooksCatalogue);
@@ -36,7 +33,7 @@ public class XmlSerializableCatalogueTest {
     @Test
     public void toModelType_invalidBookFile_throwsIllegalValueException() throws Exception {
         XmlSerializableCatalogue dataFromFile = XmlUtil.getDataFromFile(INVALID_BOOK_FILE,
-                XmlSerializableCatalogue.class);
+            XmlSerializableCatalogue.class);
         thrown.expect(IllegalValueException.class);
         dataFromFile.toModelType();
     }
@@ -44,7 +41,7 @@ public class XmlSerializableCatalogueTest {
     @Test
     public void toModelType_invalidTagFile_throwsIllegalValueException() throws Exception {
         XmlSerializableCatalogue dataFromFile = XmlUtil.getDataFromFile(INVALID_TAG_FILE,
-                XmlSerializableCatalogue.class);
+            XmlSerializableCatalogue.class);
         thrown.expect(IllegalValueException.class);
         dataFromFile.toModelType();
     }

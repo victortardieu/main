@@ -1,10 +1,11 @@
 package seedu.address.storage;
 
+import seedu.address.commons.exceptions.DataConversionException;
+import seedu.address.model.account.UniqueAccountList;
+
 import java.io.IOException;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
-import seedu.address.commons.exceptions.DataConversionException;
-import seedu.address.model.account.UniqueAccountList;
 
 public class SerialisedFileStorage {
     /**
@@ -23,7 +24,7 @@ public class SerialisedFileStorage {
      */
     public static UniqueAccountList loadDataFromSaveFile(ObjectInputStream in) throws DataConversionException {
         try {
-            return (UniqueAccountList)in.readObject();
+            return (UniqueAccountList) in.readObject();
         } catch (IOException e) {
             throw new DataConversionException(e);
         } catch (ClassNotFoundException e) {

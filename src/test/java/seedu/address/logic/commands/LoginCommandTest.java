@@ -1,13 +1,9 @@
 package seedu.address.logic.commands;
 
-import static org.junit.Assert.assertEquals;
-import static org.junit.Assert.assertFalse;
-import static org.junit.Assert.assertTrue;
-
+import static org.junit.Assert.*;
 import org.junit.Rule;
 import org.junit.Test;
 import org.junit.rules.ExpectedException;
-
 import seedu.address.model.Model;
 import seedu.address.model.ModelManager;
 import seedu.address.model.account.Account;
@@ -65,7 +61,7 @@ public class LoginCommandTest {
     }
 
     @Test
-    public void execute_loginAsLibrarian_loginSuccessful() throws Exception {
+    public void execute_loginAsLibrarian_loginSuccessful() {
         Model model = new ModelManager();
         LoginCommand studentLogin = new LoginCommand("admin", "admin");
         studentLogin.setData(model, null, null);

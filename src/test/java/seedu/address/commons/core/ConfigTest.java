@@ -1,9 +1,6 @@
 package seedu.address.commons.core;
 
-import static org.junit.Assert.assertEquals;
-import static org.junit.Assert.assertNotNull;
-import static org.junit.Assert.assertTrue;
-
+import static org.junit.Assert.*;
 import org.junit.Rule;
 import org.junit.Test;
 import org.junit.rules.ExpectedException;
@@ -15,8 +12,8 @@ public class ConfigTest {
     @Test
     public void toString_defaultObject_stringReturned() {
         String defaultConfigAsString = "App title : Address App\n"
-                + "Current log level : INFO\n"
-                + "Preference file Location : preferences.json";
+            + "Current log level : INFO\n"
+            + "Preference file Location : preferences.json";
 
         assertEquals(defaultConfigAsString, new Config().toString());
     }

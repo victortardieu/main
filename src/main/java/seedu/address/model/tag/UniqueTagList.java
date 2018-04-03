@@ -1,20 +1,20 @@
 package seedu.address.model.tag;
 
-import static java.util.Objects.requireNonNull;
-import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
-
-import java.util.HashSet;
-import java.util.Iterator;
-import java.util.Set;
-
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import seedu.address.commons.exceptions.DuplicateDataException;
 import seedu.address.commons.util.CollectionUtil;
 
+import java.util.HashSet;
+import java.util.Iterator;
+import java.util.Set;
+
+import static java.util.Objects.requireNonNull;
+import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
+
 /**
  * A list of tags that enforces no nulls and uniqueness between its elements.
- *
+ * <p>
  * Supports minimal set of list operations for the app's features.
  *
  * @see Tag#equals(Object)
@@ -26,7 +26,8 @@ public class UniqueTagList implements Iterable<Tag> {
     /**
      * Constructs empty TagList.
      */
-    public UniqueTagList() {}
+    public UniqueTagList() {
+    }
 
     /**
      * Creates a UniqueTagList using given tags.
@@ -63,8 +64,8 @@ public class UniqueTagList implements Iterable<Tag> {
     public void mergeFrom(UniqueTagList from) {
         final Set<Tag> alreadyInside = this.toSet();
         from.internalList.stream()
-                .filter(tag -> !alreadyInside.contains(tag))
-                .forEach(internalList::add);
+            .filter(tag -> !alreadyInside.contains(tag))
+            .forEach(internalList::add);
 
         assert CollectionUtil.elementsAreUnique(internalList);
     }
@@ -110,8 +111,8 @@ public class UniqueTagList implements Iterable<Tag> {
     public boolean equals(Object other) {
         assert CollectionUtil.elementsAreUnique(internalList);
         return other == this // short circuit if same object
-                || (other instanceof UniqueTagList // instanceof handles nulls
-                        && this.internalList.equals(((UniqueTagList) other).internalList));
+            || (other instanceof UniqueTagList // instanceof handles nulls
+            && this.internalList.equals(((UniqueTagList) other).internalList));
     }
 
     /**

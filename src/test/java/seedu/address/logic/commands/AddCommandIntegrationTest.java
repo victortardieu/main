@@ -3,10 +3,8 @@ package seedu.address.logic.commands;
 import static seedu.address.logic.commands.CommandTestUtil.assertCommandFailure;
 import static seedu.address.logic.commands.CommandTestUtil.assertCommandSuccess;
 import static seedu.address.testutil.TypicalBooks.getTypicalCatalogue;
-
 import org.junit.Before;
 import org.junit.Test;
-
 import seedu.address.logic.CommandHistory;
 import seedu.address.logic.UndoRedoStack;
 import seedu.address.model.Model;
@@ -35,7 +33,7 @@ public class AddCommandIntegrationTest {
         expectedModel.addBook(validBook);
 
         assertCommandSuccess(prepareCommand(validBook, model), model,
-                String.format(AddCommand.MESSAGE_SUCCESS, validBook), expectedModel);
+            String.format(AddCommand.MESSAGE_SUCCESS, validBook), expectedModel);
     }
 
     @Test

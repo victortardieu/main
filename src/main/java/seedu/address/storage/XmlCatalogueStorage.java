@@ -1,6 +1,10 @@
 package seedu.address.storage;
 
-import static java.util.Objects.requireNonNull;
+import seedu.address.commons.core.LogsCenter;
+import seedu.address.commons.exceptions.DataConversionException;
+import seedu.address.commons.exceptions.IllegalValueException;
+import seedu.address.commons.util.FileUtil;
+import seedu.address.model.ReadOnlyCatalogue;
 
 import java.io.File;
 import java.io.FileNotFoundException;
@@ -8,11 +12,7 @@ import java.io.IOException;
 import java.util.Optional;
 import java.util.logging.Logger;
 
-import seedu.address.commons.core.LogsCenter;
-import seedu.address.commons.exceptions.DataConversionException;
-import seedu.address.commons.exceptions.IllegalValueException;
-import seedu.address.commons.util.FileUtil;
-import seedu.address.model.ReadOnlyCatalogue;
+import static java.util.Objects.requireNonNull;
 
 /**
  * A class to access Catalogue data stored as an xml file on the hard disk.
@@ -38,17 +38,18 @@ public class XmlCatalogueStorage implements CatalogueStorage {
 
     /**
      * Similar to {@link #readCatalogue()}
+     *
      * @param filePath location of the data. Cannot be null
      * @throws DataConversionException if the file is not in the correct format.
      */
     public Optional<ReadOnlyCatalogue> readCatalogue(String filePath) throws DataConversionException,
-                                                                                 FileNotFoundException {
+        FileNotFoundException {
         requireNonNull(filePath);
 
         File catalogueFile = new File(filePath);
 
         if (!catalogueFile.exists()) {
-            logger.info("Catalogue file "  + catalogueFile + " not found");
+            logger.info("Catalogue file " + catalogueFile + " not found");
             return Optional.empty();
         }
 
@@ -68,6 +69,7 @@ public class XmlCatalogueStorage implements CatalogueStorage {
 
     /**
      * Similar to {@link #saveCatalogue(ReadOnlyCatalogue)}
+     *
      * @param filePath location of the data. Cannot be null
      */
     public void saveCatalogue(ReadOnlyCatalogue catalogue, String filePath) throws IOException {

@@ -13,9 +13,9 @@ public class FindCommand extends Command {
     public static final String COMMAND_WORD = "find";
 
     public static final String MESSAGE_USAGE = COMMAND_WORD + ": Finds all books whose titles contain any of "
-            + "the specified keywords (case-sensitive) and displays them as a list with index numbers.\n"
-            + "Parameters: KEYWORD [MORE_KEYWORDS]...\n"
-            + "Example: " + COMMAND_WORD + " alice bob charlie";
+        + "the specified keywords (case-sensitive) and displays them as a list with index numbers.\n"
+        + "Parameters: KEYWORD [MORE_KEYWORDS]...\n"
+        + "Example: " + COMMAND_WORD + " alice bob charlie";
 
     public static final PrivilegeLevel PRIVILEGE_LEVEL = Model.PRIVILEGE_LEVEL_GUEST;
 
@@ -34,8 +34,8 @@ public class FindCommand extends Command {
     @Override
     public boolean equals(Object other) {
         return other == this // short circuit if same object
-                || (other instanceof FindCommand // instanceof handles nulls
-                && this.predicate.equals(((FindCommand) other).predicate)); // state check
+            || (other instanceof FindCommand // instanceof handles nulls
+            && this.predicate.equals(((FindCommand) other).predicate)); // state check
     }
 
     @Override

@@ -2,16 +2,13 @@ package seedu.address.storage;
 
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertFalse;
-
 import java.io.File;
 import java.io.IOException;
 import java.util.Optional;
-
 import org.junit.Rule;
 import org.junit.Test;
 import org.junit.rules.ExpectedException;
 import org.junit.rules.TemporaryFolder;
-
 import seedu.address.commons.exceptions.DataConversionException;
 import seedu.address.commons.util.FileUtil;
 import seedu.address.model.UserPrefs;
@@ -54,8 +51,8 @@ public class JsonUserPrefsStorageTest {
 
     private String addToTestDataPathIfNotNull(String userPrefsFileInTestDataFolder) {
         return userPrefsFileInTestDataFolder != null
-                ? TEST_DATA_FOLDER + userPrefsFileInTestDataFolder
-                : null;
+            ? TEST_DATA_FOLDER + userPrefsFileInTestDataFolder
+            : null;
     }
 
     @Test
@@ -105,7 +102,7 @@ public class JsonUserPrefsStorageTest {
     private void saveUserPrefs(UserPrefs userPrefs, String prefsFileInTestDataFolder) {
         try {
             new JsonUserPrefsStorage(addToTestDataPathIfNotNull(prefsFileInTestDataFolder))
-                    .saveUserPrefs(userPrefs);
+                .saveUserPrefs(userPrefs);
         } catch (IOException ioe) {
             throw new AssertionError("There should not be an error writing to the file", ioe);
         }

@@ -1,11 +1,5 @@
 package seedu.address.model;
 
-import static java.util.Objects.requireNonNull;
-import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
-
-import java.util.function.Predicate;
-import java.util.logging.Logger;
-
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.collections.transformation.FilteredList;
@@ -22,6 +16,12 @@ import seedu.address.model.account.exceptions.DuplicateAccountException;
 import seedu.address.model.book.Book;
 import seedu.address.model.book.exceptions.BookNotFoundException;
 import seedu.address.model.book.exceptions.DuplicateBookException;
+
+import java.util.function.Predicate;
+import java.util.logging.Logger;
+
+import static java.util.Objects.requireNonNull;
+import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
 
 
 /**
@@ -58,9 +58,9 @@ public class ModelManager extends ComponentManager implements Model {
      */
     public ModelManager(ReadOnlyCatalogue catalogue, UniqueAccountList accountList, UserPrefs userPrefs) {
         super();
-        requireAllNonNull(catalogue, accountList,userPrefs);
+        requireAllNonNull(catalogue, accountList, userPrefs);
 
-        logger.fine("Initializing with catalogue: " + catalogue + ", accountList: " + accountList +" and user prefs " + userPrefs);
+        logger.fine("Initializing with catalogue: " + catalogue + ", accountList: " + accountList + " and user prefs " + userPrefs);
 
 
         this.catalogue = new Catalogue(catalogue);
@@ -88,7 +88,7 @@ public class ModelManager extends ComponentManager implements Model {
         indicateAccountListChanged();
     }
 
-    private void addFirstAccount(){
+    private void addFirstAccount() {
         Account admin = Account.createDefaultAdminAccount();
         if (!this.accountList.contains(admin)) {
             try {
@@ -110,12 +110,16 @@ public class ModelManager extends ComponentManager implements Model {
         return catalogue;
     }
 
-    /** Raises an event to indicate the model has changed */
+    /**
+     * Raises an event to indicate the model has changed
+     */
     private void indicateCatalogueChanged() {
         raise(new CatalogueChangedEvent(catalogue));
     }
 
-    /** Raises an event to indicate the model has changed */
+    /**
+     * Raises an event to indicate the model has changed
+     */
     private void indicateAccountListChanged() {
         raise(new AccountListChangedEvent(accountList));
     }
@@ -135,7 +139,7 @@ public class ModelManager extends ComponentManager implements Model {
 
     @Override
     public void updateBook(Book target, Book editedBook)
-            throws DuplicateBookException, BookNotFoundException {
+        throws DuplicateBookException, BookNotFoundException {
         requireAllNonNull(target, editedBook);
 
         catalogue.updateBook(target, editedBook);
@@ -195,7 +199,7 @@ public class ModelManager extends ComponentManager implements Model {
         // state check
         ModelManager other = (ModelManager) obj;
         return catalogue.equals(other.catalogue)
-                && filteredBooks.equals(other.filteredBooks);
+            && filteredBooks.equals(other.filteredBooks);
     }
 
 }

@@ -1,8 +1,8 @@
 package seedu.address.model;
 
-import java.util.Objects;
-
 import seedu.address.commons.core.GuiSettings;
+
+import java.util.Objects;
 
 /**
  * Represents User's preferences.
@@ -66,8 +66,8 @@ public class UserPrefs {
         UserPrefs o = (UserPrefs) other;
 
         return Objects.equals(guiSettings, o.guiSettings)
-                && Objects.equals(catalogueFilePath, o.catalogueFilePath)
-                && Objects.equals(catalogueBookTitle, o.catalogueBookTitle);
+            && Objects.equals(catalogueFilePath, o.catalogueFilePath)
+            && Objects.equals(catalogueBookTitle, o.catalogueBookTitle);
     }
 
     @Override

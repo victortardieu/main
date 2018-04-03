@@ -2,13 +2,10 @@ package seedu.address.model.book;
 
 import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertTrue;
-
 import java.util.Arrays;
 import java.util.Collections;
 import java.util.List;
-
 import org.junit.Test;
-
 import seedu.address.testutil.BookBuilder;
 
 public class TitleContainsKeywordsPredicateTest {
@@ -72,6 +69,6 @@ public class TitleContainsKeywordsPredicateTest {
         // Keywords match isbn, avail and address, but does not match name
         predicate = new TitleContainsKeywordsPredicate(Arrays.asList("12345", "Borrowed", "Main", "Street"));
         assertFalse(predicate.test(new BookBuilder().withTitle("Alice").withIsbn("12345")
-                .withAvail("Borrowed").withAuthor("Main Street").build()));
+            .withAvail("Borrowed").withAuthor("Main Street").build()));
     }
 }

@@ -1,19 +1,17 @@
 package seedu.address.model.account;
 
-import static java.util.Objects.requireNonNull;
-import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
+import seedu.address.model.account.exceptions.AccountNotFoundException;
+import seedu.address.model.account.exceptions.DuplicateAccountException;
+
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Iterator;
-import java.util.List;
-import javafx.collections.FXCollections;
-import javafx.collections.ObservableList;
-import seedu.address.model.account.exceptions.*;
-import seedu.address.model.account.exceptions.DuplicateAccountException;
+
+import static java.util.Objects.requireNonNull;
 
 /**
  * A list of accounts that enforces uniqueness between its elements and does not allow nulls.
- *
+ * <p>
  * Supports a minimal set of list operations.
  *
  * @see Account#equals(Object)
@@ -46,10 +44,10 @@ public class UniqueAccountList implements Serializable, Iterable<Account> {
      * Replaces the account {@code target} in the list with {@code editedAccount}.
      *
      * @throws DuplicateAccountException if the replacement is equivalent to another existing account in the list.
-     * @throws AccountNotFoundException if {@code target} could not be found in the list.
+     * @throws AccountNotFoundException  if {@code target} could not be found in the list.
      */
     public void setAccount(Account target, Account editedAccount)
-            throws DuplicateAccountException, AccountNotFoundException {
+        throws DuplicateAccountException, AccountNotFoundException {
         requireNonNull(editedAccount);
 
         int index = internalList.indexOf(target);
@@ -78,9 +76,9 @@ public class UniqueAccountList implements Serializable, Iterable<Account> {
         return accountFoundAndDeleted;
     }
 
-    public Account authenticate(Credential c){
-        for (Account a : internalList){
-            if (a.credentialMatches(c)){
+    public Account authenticate(Credential c) {
+        for (Account a : internalList) {
+            if (a.credentialMatches(c)) {
 
                 return a;
             }
@@ -88,7 +86,7 @@ public class UniqueAccountList implements Serializable, Iterable<Account> {
         return null;
     }
 
-    public int size(){
+    public int size() {
         return internalList.size();
     }
 
@@ -100,8 +98,8 @@ public class UniqueAccountList implements Serializable, Iterable<Account> {
     @Override
     public boolean equals(Object other) {
         return other == this // short circuit if same object
-                || (other instanceof UniqueAccountList // instanceof handles nulls
-                && this.internalList.equals(((UniqueAccountList) other).internalList));
+            || (other instanceof UniqueAccountList // instanceof handles nulls
+            && this.internalList.equals(((UniqueAccountList) other).internalList));
     }
 
     @Override

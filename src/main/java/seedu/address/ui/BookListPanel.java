@@ -1,22 +1,19 @@
 package seedu.address.ui;
 
-import java.util.logging.Logger;
-
-import org.fxmisc.easybind.EasyBind;
-
 import com.google.common.eventbus.Subscribe;
-
 import javafx.application.Platform;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.scene.control.ListCell;
 import javafx.scene.control.ListView;
 import javafx.scene.layout.Region;
+import org.fxmisc.easybind.EasyBind;
 import seedu.address.commons.core.LogsCenter;
 import seedu.address.commons.events.ui.BookPanelSelectionChangedEvent;
 import seedu.address.commons.events.ui.JumpToListRequestEvent;
-
 import seedu.address.model.book.Book;
+
+import java.util.logging.Logger;
 
 /**
  * Panel containing the list of books.
@@ -36,7 +33,7 @@ public class BookListPanel extends UiPart<Region> {
 
     private void setConnections(ObservableList<Book> bookList) {
         ObservableList<BookCard> mappedList = EasyBind.map(
-                bookList, (book) -> new BookCard(book, bookList.indexOf(book) + 1));
+            bookList, (book) -> new BookCard(book, bookList.indexOf(book) + 1));
         bookListView.setItems(mappedList);
         bookListView.setCellFactory(listView -> new BookListViewCell());
         setEventHandlerForSelectionChangeEvent();
@@ -44,12 +41,12 @@ public class BookListPanel extends UiPart<Region> {
 
     private void setEventHandlerForSelectionChangeEvent() {
         bookListView.getSelectionModel().selectedItemProperty()
-                .addListener((observable, oldValue, newValue) -> {
-                    if (newValue != null) {
-                        logger.fine("Selection in book list panel changed to : '" + newValue + "'");
-                        raise(new BookPanelSelectionChangedEvent(newValue));
-                    }
-                });
+            .addListener((observable, oldValue, newValue) -> {
+                if (newValue != null) {
+                    logger.fine("Selection in book list panel changed to : '" + newValue + "'");
+                    raise(new BookPanelSelectionChangedEvent(newValue));
+                }
+            });
     }
 
     /**

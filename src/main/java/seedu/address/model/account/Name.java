@@ -1,8 +1,9 @@
 package seedu.address.model.account;
 
+import java.io.Serializable;
+
 import static java.util.Objects.requireNonNull;
 import static seedu.address.commons.util.AppUtil.checkArgument;
-import java.io.Serializable;
 
 /**
  * Represents a Person's name in the address book.
@@ -11,7 +12,7 @@ import java.io.Serializable;
 public class Name implements Serializable {
 
     public static final String MESSAGE_NAME_CONSTRAINTS =
-            "Person names should only contain alphanumeric characters and spaces, and it should not be blank";
+        "Person names should only contain alphanumeric characters and spaces, and it should not be blank";
 
     /*
      * The first character of the address must not be a whitespace,
@@ -48,8 +49,8 @@ public class Name implements Serializable {
     @Override
     public boolean equals(Object other) {
         return other == this // short circuit if same object
-                || (other instanceof Name // instanceof handles nulls
-                && this.fullName.equals(((Name) other).fullName)); // state check
+            || (other instanceof Name // instanceof handles nulls
+            && this.fullName.equals(((Name) other).fullName)); // state check
     }
 
     @Override

@@ -1,14 +1,13 @@
 package seedu.address.commons.util;
 
-import static java.util.Objects.requireNonNull;
-
-import java.io.File;
-import java.io.FileNotFoundException;
-
 import javax.xml.bind.JAXBContext;
 import javax.xml.bind.JAXBException;
 import javax.xml.bind.Marshaller;
 import javax.xml.bind.Unmarshaller;
+import java.io.File;
+import java.io.FileNotFoundException;
+
+import static java.util.Objects.requireNonNull;
 
 /**
  * Helps with reading from and writing to XML files.
@@ -27,7 +26,7 @@ public class XmlUtil {
      */
     @SuppressWarnings("unchecked")
     public static <T> T getDataFromFile(File file, Class<T> classToConvert)
-            throws FileNotFoundException, JAXBException {
+        throws FileNotFoundException, JAXBException {
 
         requireNonNull(file);
         requireNonNull(classToConvert);

@@ -1,20 +1,15 @@
 package seedu.address.logic.parser;
 
-import static org.junit.Assert.assertEquals;
-import static org.junit.Assert.assertTrue;
-import static org.junit.Assert.fail;
+import static org.junit.Assert.*;
 import static seedu.address.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
 import static seedu.address.commons.core.Messages.MESSAGE_UNKNOWN_COMMAND;
 import static seedu.address.testutil.TypicalIndexes.INDEX_FIRST_BOOK;
-
 import java.util.Arrays;
 import java.util.List;
 import java.util.stream.Collectors;
-
 import org.junit.Rule;
 import org.junit.Test;
 import org.junit.rules.ExpectedException;
-
 import seedu.address.logic.commands.AddCommand;
 import seedu.address.logic.commands.ClearCommand;
 import seedu.address.logic.commands.DeleteCommand;
@@ -37,10 +32,9 @@ import seedu.address.testutil.EditBookDescriptorBuilder;
 
 
 public class CatalogueParserTest {
+    private final CatalogueParser parser = new CatalogueParser();
     @Rule
     public ExpectedException thrown = ExpectedException.none();
-
-    private final CatalogueParser parser = new CatalogueParser();
 
     @Test
     public void parseCommand_add() throws Exception {
@@ -58,7 +52,7 @@ public class CatalogueParserTest {
     @Test
     public void parseCommand_delete() throws Exception {
         DeleteCommand command = (DeleteCommand) parser.parseCommand(
-                DeleteCommand.COMMAND_WORD + " " + INDEX_FIRST_BOOK.getOneBased());
+            DeleteCommand.COMMAND_WORD + " " + INDEX_FIRST_BOOK.getOneBased());
         assertEquals(new DeleteCommand(INDEX_FIRST_BOOK), command);
     }
 
@@ -67,7 +61,7 @@ public class CatalogueParserTest {
         Book book = new BookBuilder().build();
         EditBookDescriptor descriptor = new EditBookDescriptorBuilder(book).build();
         EditCommand command = (EditCommand) parser.parseCommand(EditCommand.COMMAND_WORD + " "
-                + INDEX_FIRST_BOOK.getOneBased() + " " + BookUtil.getBookDetails(book));
+            + INDEX_FIRST_BOOK.getOneBased() + " " + BookUtil.getBookDetails(book));
         assertEquals(new EditCommand(INDEX_FIRST_BOOK, descriptor), command);
     }
 
@@ -81,7 +75,7 @@ public class CatalogueParserTest {
     public void parseCommand_find() throws Exception {
         List<String> keywords = Arrays.asList("foo", "bar", "baz");
         FindCommand command = (FindCommand) parser.parseCommand(
-                FindCommand.COMMAND_WORD + " " + keywords.stream().collect(Collectors.joining(" ")));
+            FindCommand.COMMAND_WORD + " " + keywords.stream().collect(Collectors.joining(" ")));
         assertEquals(new FindCommand(new TitleContainsKeywordsPredicate(keywords)), command);
     }
 
@@ -113,7 +107,7 @@ public class CatalogueParserTest {
     @Test
     public void parseCommand_select() throws Exception {
         SelectCommand command = (SelectCommand) parser.parseCommand(
-                SelectCommand.COMMAND_WORD + " " + INDEX_FIRST_BOOK.getOneBased());
+            SelectCommand.COMMAND_WORD + " " + INDEX_FIRST_BOOK.getOneBased());
         assertEquals(new SelectCommand(INDEX_FIRST_BOOK), command);
     }
 

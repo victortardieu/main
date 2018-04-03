@@ -2,7 +2,6 @@ package seedu.address.testutil;
 
 import java.util.HashSet;
 import java.util.Set;
-
 import seedu.address.model.book.Author;
 import seedu.address.model.book.Avail;
 import seedu.address.model.book.Book;
@@ -58,7 +57,7 @@ public class BookBuilder {
     /**
      * Parses the {@code tags} into a {@code Set<Tag>} and set it to the {@code Book} that we are building.
      */
-    public BookBuilder withTags(String ... tags) {
+    public BookBuilder withTags(String... tags) {
         this.tags = SampleDataUtil.getTagSet(tags);
         return this;
     }

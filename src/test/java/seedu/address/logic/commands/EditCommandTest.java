@@ -1,24 +1,11 @@
 package seedu.address.logic.commands;
 
-import static org.junit.Assert.assertFalse;
-import static org.junit.Assert.assertNotEquals;
-import static org.junit.Assert.assertTrue;
-import static seedu.address.logic.commands.CommandTestUtil.DESC_AMY;
-import static seedu.address.logic.commands.CommandTestUtil.DESC_BOB;
-import static seedu.address.logic.commands.CommandTestUtil.VALID_ISBN_BOB;
-import static seedu.address.logic.commands.CommandTestUtil.VALID_TAG_HUSBAND;
-import static seedu.address.logic.commands.CommandTestUtil.VALID_TITLE_BOB;
-import static seedu.address.logic.commands.CommandTestUtil.assertCommandFailure;
-import static seedu.address.logic.commands.CommandTestUtil.assertCommandSuccess;
-import static seedu.address.logic.commands.CommandTestUtil.prepareRedoCommand;
-import static seedu.address.logic.commands.CommandTestUtil.prepareUndoCommand;
-import static seedu.address.logic.commands.CommandTestUtil.showBookAtIndex;
+import static org.junit.Assert.*;
+import static seedu.address.logic.commands.CommandTestUtil.*;
 import static seedu.address.testutil.TypicalBooks.getTypicalCatalogue;
 import static seedu.address.testutil.TypicalIndexes.INDEX_FIRST_BOOK;
 import static seedu.address.testutil.TypicalIndexes.INDEX_SECOND_BOOK;
-
 import org.junit.Test;
-
 import seedu.address.commons.core.Messages;
 import seedu.address.commons.core.index.Index;
 import seedu.address.logic.CommandHistory;
@@ -60,10 +47,10 @@ public class EditCommandTest {
 
         BookBuilder bookInList = new BookBuilder(lastBook);
         Book editedBook = bookInList.withTitle(VALID_TITLE_BOB).withIsbn(VALID_ISBN_BOB)
-                .withTags(VALID_TAG_HUSBAND).build();
+            .withTags(VALID_TAG_HUSBAND).build();
 
         EditBookDescriptor descriptor = new EditBookDescriptorBuilder().withName(VALID_TITLE_BOB)
-                .withIsbn(VALID_ISBN_BOB).withTags(VALID_TAG_HUSBAND).build();
+            .withIsbn(VALID_ISBN_BOB).withTags(VALID_TAG_HUSBAND).build();
         EditCommand editCommand = prepareCommand(indexLastBook, descriptor);
 
         String expectedMessage = String.format(EditCommand.MESSAGE_EDIT_BOOK_SUCCESS, editedBook);
@@ -93,7 +80,7 @@ public class EditCommandTest {
         Book bookInFilteredList = model.getFilteredBookList().get(INDEX_FIRST_BOOK.getZeroBased());
         Book editedBook = new BookBuilder(bookInFilteredList).withTitle(VALID_TITLE_BOB).build();
         EditCommand editCommand = prepareCommand(INDEX_FIRST_BOOK,
-                new EditBookDescriptorBuilder().withName(VALID_TITLE_BOB).build());
+            new EditBookDescriptorBuilder().withName(VALID_TITLE_BOB).build());
 
         String expectedMessage = String.format(EditCommand.MESSAGE_EDIT_BOOK_SUCCESS, editedBook);
 
@@ -119,7 +106,7 @@ public class EditCommandTest {
         // edit book in filtered list into a duplicate in catalogue
         Book bookInList = model.getCatalogue().getBookList().get(INDEX_SECOND_BOOK.getZeroBased());
         EditCommand editCommand = prepareCommand(INDEX_FIRST_BOOK,
-                new EditBookDescriptorBuilder(bookInList).build());
+            new EditBookDescriptorBuilder(bookInList).build());
 
         assertCommandFailure(editCommand, model, EditCommand.MESSAGE_DUPLICATE_BOOK);
     }
@@ -145,7 +132,7 @@ public class EditCommandTest {
         assertTrue(outOfBoundIndex.getZeroBased() < model.getCatalogue().getBookList().size());
 
         EditCommand editCommand = prepareCommand(outOfBoundIndex,
-                new EditBookDescriptorBuilder().withName(VALID_TITLE_BOB).build());
+            new EditBookDescriptorBuilder().withName(VALID_TITLE_BOB).build());
 
         assertCommandFailure(editCommand, model, Messages.MESSAGE_INVALID_BOOK_DISPLAYED_INDEX);
     }

@@ -11,7 +11,7 @@ public class LogoutCommand extends Command {
     public static final String COMMAND_WORD = "logout";
 
     public static final String MESSAGE_USAGE = COMMAND_WORD + ": Logout as student or librarian.\n"
-            + "Example: " + COMMAND_WORD;
+        + "Example: " + COMMAND_WORD;
 
     public static final String MESSAGE_LOGGED_OUT = "You are logged out.";
 
@@ -31,6 +31,6 @@ public class LogoutCommand extends Command {
     @Override
     public boolean equals(Object other) {
         return other == this // short circuit if same object
-                || (other instanceof LogoutCommand);
+            || (other instanceof LogoutCommand);
     }
 }

@@ -6,10 +6,8 @@ import static seedu.address.testutil.TypicalBooks.getTypicalBooks;
 import static seedu.address.testutil.TypicalIndexes.INDEX_SECOND_BOOK;
 import static seedu.address.ui.testutil.GuiTestAssert.assertCardDisplaysBook;
 import static seedu.address.ui.testutil.GuiTestAssert.assertCardEquals;
-
 import org.junit.Before;
 import org.junit.Test;
-
 import guitests.guihandles.BookCardHandle;
 import guitests.guihandles.BookListPanelHandle;
 import javafx.collections.FXCollections;
@@ -19,7 +17,7 @@ import seedu.address.model.book.Book;
 
 public class BookListPanelTest extends GuiUnitTest {
     private static final ObservableList<Book> TYPICAL_BOOKS =
-            FXCollections.observableList(getTypicalBooks());
+        FXCollections.observableList(getTypicalBooks());
 
     private static final JumpToListRequestEvent JUMP_TO_SECOND_EVENT = new JumpToListRequestEvent(INDEX_SECOND_BOOK);
 
@@ -31,7 +29,7 @@ public class BookListPanelTest extends GuiUnitTest {
         uiPartRule.setUiPart(bookListPanel);
 
         bookListPanelHandle = new BookListPanelHandle(getChildNode(bookListPanel.getRoot(),
-                BookListPanelHandle.BOOK_LIST_VIEW_ID));
+            BookListPanelHandle.BOOK_LIST_VIEW_ID));
     }
 
     @Test

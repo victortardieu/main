@@ -1,18 +1,10 @@
 package seedu.address.logic.commands;
 
-import static org.junit.Assert.assertEquals;
-import static org.junit.Assert.assertTrue;
-import static org.junit.Assert.fail;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_AUTHOR;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_AVAIL;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_ISBN;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_TAG;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_TITLE;
-
+import static org.junit.Assert.*;
+import static seedu.address.logic.parser.CliSyntax.*;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
-
 import seedu.address.commons.core.index.Index;
 import seedu.address.logic.CommandHistory;
 import seedu.address.logic.UndoRedoStack;
@@ -65,11 +57,11 @@ public class CommandTestUtil {
 
     static {
         DESC_AMY = new EditBookDescriptorBuilder().withName(VALID_TITLE_AMY).withAuthor(VALID_AUTHOR_AMY)
-                .withIsbn(VALID_ISBN_AMY).withAvail(VALID_AVAIL_AMY)
-                .withTags(VALID_TAG_FRIEND).build();
+            .withIsbn(VALID_ISBN_AMY).withAvail(VALID_AVAIL_AMY)
+            .withTags(VALID_TAG_FRIEND).build();
         DESC_BOB = new EditBookDescriptorBuilder().withName(VALID_TITLE_BOB).withAuthor(VALID_AUTHOR_BOB)
-                .withIsbn(VALID_ISBN_BOB).withAvail(VALID_AVAIL_BOB)
-                .withTags(VALID_TAG_HUSBAND, VALID_TAG_FRIEND).build();
+            .withIsbn(VALID_ISBN_BOB).withAvail(VALID_AVAIL_BOB)
+            .withTags(VALID_TAG_HUSBAND, VALID_TAG_FRIEND).build();
     }
 
     /**
@@ -78,7 +70,7 @@ public class CommandTestUtil {
      * - the {@code actualModel} matches {@code expectedModel}
      */
     public static void assertCommandSuccess(Command command, Model actualModel, String expectedMessage,
-            Model expectedModel) {
+                                            Model expectedModel) {
         try {
             CommandResult result = command.execute();
             assertEquals(expectedMessage, result.feedbackToUser);

@@ -1,19 +1,14 @@
 package seedu.address.logic.commands;
 
 import static seedu.address.logic.UndoRedoStackUtil.prepareStack;
-import static seedu.address.logic.commands.CommandTestUtil.assertCommandFailure;
-import static seedu.address.logic.commands.CommandTestUtil.assertCommandSuccess;
-import static seedu.address.logic.commands.CommandTestUtil.deleteFirstBook;
+import static seedu.address.logic.commands.CommandTestUtil.*;
 import static seedu.address.testutil.TypicalBooks.getTypicalCatalogue;
 import static seedu.address.testutil.TypicalIndexes.INDEX_FIRST_BOOK;
 import static seedu.address.testutil.TypicalIndexes.INDEX_SECOND_BOOK;
-
 import java.util.Arrays;
 import java.util.Collections;
-
 import org.junit.Before;
 import org.junit.Test;
-
 import seedu.address.logic.CommandHistory;
 import seedu.address.logic.UndoRedoStack;
 import seedu.address.model.Model;
@@ -39,7 +34,7 @@ public class RedoCommandTest {
     @Test
     public void execute() {
         UndoRedoStack undoRedoStack = prepareStack(
-                Collections.emptyList(), Arrays.asList(deleteCommandTwo, deleteCommandOne));
+            Collections.emptyList(), Arrays.asList(deleteCommandTwo, deleteCommandOne));
         RedoCommand redoCommand = new RedoCommand();
         redoCommand.setData(model, EMPTY_COMMAND_HISTORY, undoRedoStack);
         Model expectedModel = new ModelManager(getTypicalCatalogue(), new UserPrefs());

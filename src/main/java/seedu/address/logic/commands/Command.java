@@ -12,7 +12,7 @@ import seedu.address.model.account.PrivilegeLevel;
  */
 public abstract class Command {
     public static final String MESSAGE_UNPRIVILEGED = "You are not allowed to execute this command,"
-            + " login and try again";
+        + " login and try again";
 
     protected Model model;
     protected CommandHistory history;

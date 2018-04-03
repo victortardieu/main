@@ -3,13 +3,10 @@ package seedu.address.storage;
 import static org.junit.Assert.assertEquals;
 import static seedu.address.storage.XmlAdaptedBook.MISSING_FIELD_MESSAGE_FORMAT;
 import static seedu.address.testutil.TypicalBooks.BENSON;
-
 import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
-
 import org.junit.Test;
-
 import seedu.address.commons.exceptions.IllegalValueException;
 import seedu.address.model.book.Author;
 import seedu.address.model.book.Avail;
@@ -29,8 +26,8 @@ public class XmlAdaptedBookTest {
     private static final String VALID_ISBN = BENSON.getIsbn().toString();
     private static final String VALID_AVAIL = BENSON.getAvail().toString();
     private static final List<XmlAdaptedTag> VALID_TAGS = BENSON.getTags().stream()
-            .map(XmlAdaptedTag::new)
-            .collect(Collectors.toList());
+        .map(XmlAdaptedTag::new)
+        .collect(Collectors.toList());
 
     @Test
     public void toModelType_validBookDetails_returnsBook() throws Exception {
@@ -41,7 +38,7 @@ public class XmlAdaptedBookTest {
     @Test
     public void toModelType_invalidName_throwsIllegalValueException() {
         XmlAdaptedBook book =
-                new XmlAdaptedBook(INVALID_TITLE, VALID_AUTHOR, VALID_ISBN, VALID_AVAIL, VALID_TAGS);
+            new XmlAdaptedBook(INVALID_TITLE, VALID_AUTHOR, VALID_ISBN, VALID_AVAIL, VALID_TAGS);
         String expectedMessage = Title.MESSAGE_TITLE_CONSTRAINTS;
         Assert.assertThrows(IllegalValueException.class, expectedMessage, book::toModelType);
     }
@@ -56,7 +53,7 @@ public class XmlAdaptedBookTest {
     @Test
     public void toModelType_invalidIsbn_throwsIllegalValueException() {
         XmlAdaptedBook book =
-                new XmlAdaptedBook(VALID_TITLE, VALID_AUTHOR, INVALID_ISBN, VALID_AVAIL, VALID_TAGS);
+            new XmlAdaptedBook(VALID_TITLE, VALID_AUTHOR, INVALID_ISBN, VALID_AVAIL, VALID_TAGS);
         String expectedMessage = Isbn.MESSAGE_ISBN_CONSTRAINTS;
         Assert.assertThrows(IllegalValueException.class, expectedMessage, book::toModelType);
     }
@@ -71,7 +68,7 @@ public class XmlAdaptedBookTest {
     @Test
     public void toModelType_invalidAvail_throwsIllegalValueException() {
         XmlAdaptedBook book =
-                new XmlAdaptedBook(VALID_TITLE, VALID_AUTHOR, VALID_ISBN, INVALID_AVAIL, VALID_TAGS);
+            new XmlAdaptedBook(VALID_TITLE, VALID_AUTHOR, VALID_ISBN, INVALID_AVAIL, VALID_TAGS);
         String expectedMessage = Avail.MESSAGE_AVAIL_CONSTRAINTS;
         Assert.assertThrows(IllegalValueException.class, expectedMessage, book::toModelType);
     }
@@ -86,7 +83,7 @@ public class XmlAdaptedBookTest {
     @Test
     public void toModelType_invalidAuthor_throwsIllegalValueException() {
         XmlAdaptedBook book =
-                new XmlAdaptedBook(VALID_TITLE, INVALID_AUTHOR, VALID_ISBN, VALID_AVAIL, VALID_TAGS);
+            new XmlAdaptedBook(VALID_TITLE, INVALID_AUTHOR, VALID_ISBN, VALID_AVAIL, VALID_TAGS);
         String expectedMessage = Author.MESSAGE_AUTHOR_CONSTRAINTS;
         Assert.assertThrows(IllegalValueException.class, expectedMessage, book::toModelType);
     }
@@ -103,7 +100,7 @@ public class XmlAdaptedBookTest {
         List<XmlAdaptedTag> invalidTags = new ArrayList<>(VALID_TAGS);
         invalidTags.add(new XmlAdaptedTag(INVALID_TAG));
         XmlAdaptedBook book =
-                new XmlAdaptedBook(VALID_TITLE, VALID_AUTHOR, VALID_ISBN, VALID_AVAIL, invalidTags);
+            new XmlAdaptedBook(VALID_TITLE, VALID_AUTHOR, VALID_ISBN, VALID_AVAIL, invalidTags);
         Assert.assertThrows(IllegalValueException.class, book::toModelType);
     }
 

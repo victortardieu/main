@@ -1,7 +1,6 @@
 package guitests.guihandles;
 
 import org.controlsfx.control.StatusBar;
-
 import javafx.scene.Node;
 
 /**

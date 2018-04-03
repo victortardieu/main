@@ -2,10 +2,8 @@ package guitests.guihandles;
 
 import static java.util.Objects.requireNonNull;
 import static org.junit.Assert.assertFalse;
-
 import java.util.Optional;
 import java.util.logging.Logger;
-
 import guitests.GuiRobot;
 import guitests.guihandles.exceptions.NodeNotFoundException;
 import javafx.scene.Node;

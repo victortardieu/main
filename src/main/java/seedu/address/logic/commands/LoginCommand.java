@@ -1,10 +1,10 @@
 package seedu.address.logic.commands;
 
-import static java.util.Objects.requireNonNull;
-
 import seedu.address.model.Model;
 import seedu.address.model.account.Credential;
 import seedu.address.model.account.PrivilegeLevel;
+
+import static java.util.Objects.requireNonNull;
 
 
 /**
@@ -14,8 +14,8 @@ public class LoginCommand extends Command {
     public static final String COMMAND_WORD = "login";
 
     public static final String MESSAGE_USAGE = COMMAND_WORD + ": Login as student or librarian.\n"
-            + "Parameters: USERNAME PASSWORD\n"
-            + "Example: " + COMMAND_WORD + " MyUsername MyPassword";
+        + "Parameters: USERNAME PASSWORD(both username and password should be at least 5 chars long)\n"
+        + "Example: " + COMMAND_WORD + " MyUsername MyPassword";
 
     public static final String MESSAGE_LOGGED_IN_AS_STUTENT = "You are logged in as student";
     public static final String MESSAGE_LOGGED_IN_AS_LIBRARIAN = "You are logged in as librarian";
@@ -36,8 +36,8 @@ public class LoginCommand extends Command {
     @Override
     public boolean equals(Object other) {
         return other == this // short circuit if same object
-                || (other instanceof LoginCommand // instanceof handles nulls
-                && credential.equals(((LoginCommand) other).credential));
+            || (other instanceof LoginCommand // instanceof handles nulls
+            && credential.equals(((LoginCommand) other).credential));
     }
 
     @Override

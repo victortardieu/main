@@ -5,13 +5,10 @@ import static org.junit.Assert.assertTrue;
 import static seedu.address.model.Model.PREDICATE_SHOW_ALL_BOOKS;
 import static seedu.address.testutil.TypicalBooks.ALICE;
 import static seedu.address.testutil.TypicalBooks.BENSON;
-
 import java.util.Arrays;
-
 import org.junit.Rule;
 import org.junit.Test;
 import org.junit.rules.ExpectedException;
-
 import seedu.address.model.book.TitleContainsKeywordsPredicate;
 import seedu.address.testutil.CatalogueBuilder;
 

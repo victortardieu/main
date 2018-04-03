@@ -14,7 +14,6 @@ public class CredentialTest {
     }
 
 
-
     @Test
     public void getPassword_and_getUsername() {
         String passwordString = "password";

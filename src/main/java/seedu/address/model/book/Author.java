@@ -10,7 +10,7 @@ import static seedu.address.commons.util.AppUtil.checkArgument;
 public class Author {
 
     public static final String MESSAGE_AUTHOR_CONSTRAINTS =
-            "Book author should only contain alphanumeric characters and spaces, and it should not be blank";
+        "Book author should only contain alphanumeric characters and spaces, and it should not be blank";
 
     /*
      * The first character of the address must not be a whitespace,
@@ -46,8 +46,8 @@ public class Author {
     @Override
     public boolean equals(Object other) {
         return other == this // short circuit if same object
-                || (other instanceof Author // instanceof handles nulls
-                && this.value.equals(((Author) other).value)); // state check
+            || (other instanceof Author // instanceof handles nulls
+            && this.value.equals(((Author) other).value)); // state check
     }
 
     @Override

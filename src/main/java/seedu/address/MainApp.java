@@ -1,12 +1,6 @@
 package seedu.address;
 
-import java.io.IOException;
-import java.util.Map;
-import java.util.Optional;
-import java.util.logging.Logger;
-
 import com.google.common.eventbus.Subscribe;
-
 import javafx.application.Application;
 import javafx.application.Platform;
 import javafx.stage.Stage;
@@ -20,25 +14,19 @@ import seedu.address.commons.util.ConfigUtil;
 import seedu.address.commons.util.StringUtil;
 import seedu.address.logic.Logic;
 import seedu.address.logic.LogicManager;
-import seedu.address.model.Catalogue;
-import seedu.address.model.Model;
-import seedu.address.model.ModelManager;
-import seedu.address.model.ReadOnlyCatalogue;
-import seedu.address.model.UserPrefs;
+import seedu.address.model.*;
 import seedu.address.model.account.Account;
 import seedu.address.model.account.UniqueAccountList;
 import seedu.address.model.account.exceptions.DuplicateAccountException;
 import seedu.address.model.util.SampleDataUtil;
-import seedu.address.storage.AccountListStorage;
-import seedu.address.storage.CatalogueStorage;
-import seedu.address.storage.JsonUserPrefsStorage;
-import seedu.address.storage.SerialisedAccountListStorage;
-import seedu.address.storage.Storage;
-import seedu.address.storage.StorageManager;
-import seedu.address.storage.UserPrefsStorage;
-import seedu.address.storage.XmlCatalogueStorage;
+import seedu.address.storage.*;
 import seedu.address.ui.Ui;
 import seedu.address.ui.UiManager;
+
+import java.io.IOException;
+import java.util.Map;
+import java.util.Optional;
+import java.util.logging.Logger;
 
 /**
  * The main entry point to the application.
@@ -56,6 +44,9 @@ public class MainApp extends Application {
     protected Config config;
     protected UserPrefs userPrefs;
 
+    public static void main(String[] args) {
+        launch(args);
+    }
 
     @Override
     public void init() throws Exception {
@@ -116,7 +107,7 @@ public class MainApp extends Application {
             if (!accountListOptional.isPresent()) {
                 logger.info("AccountList file not found. Will be starting with an accountList with only admin");
                 initlaAccountList = new UniqueAccountList();
-            } else{
+            } else {
                 initlaAccountList = accountListOptional.get();
             }
         } catch (DataConversionException e) {
@@ -129,7 +120,7 @@ public class MainApp extends Application {
         }
 
         try {
-            if (!initlaAccountList.contains(Account.createDefaultAdminAccount())){
+            if (!initlaAccountList.contains(Account.createDefaultAdminAccount())) {
                 initlaAccountList.add(Account.createDefaultAdminAccount());
             }
         } catch (DuplicateAccountException e) {
@@ -165,7 +156,7 @@ public class MainApp extends Application {
             initializedConfig = configOptional.orElse(new Config());
         } catch (DataConversionException e) {
             logger.warning("Config file at " + configFilePathUsed + " is not in the correct format. "
-                    + "Using default config properties");
+                + "Using default config properties");
             initializedConfig = new Config();
         }
 
@@ -193,7 +184,7 @@ public class MainApp extends Application {
             initializedPrefs = prefsOptional.orElse(new UserPrefs());
         } catch (DataConversionException e) {
             logger.warning("UserPrefs file at " + prefsFilePath + " is not in the correct format. "
-                    + "Using default user prefs");
+                + "Using default user prefs");
             initializedPrefs = new UserPrefs();
         } catch (IOException e) {
             logger.warning("Problem while reading from the file. Will be starting with an empty Catalogue");
@@ -237,9 +228,5 @@ public class MainApp extends Application {
     public void handleExitAppRequestEvent(ExitAppRequestEvent event) {
         logger.info(LogsCenter.getEventHandlingLogMessage(event));
         this.stop();
-    }
-
-    public static void main(String[] args) {
-        launch(args);
     }
 }

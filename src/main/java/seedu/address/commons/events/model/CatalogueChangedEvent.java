@@ -3,7 +3,9 @@ package seedu.address.commons.events.model;
 import seedu.address.commons.events.BaseEvent;
 import seedu.address.model.ReadOnlyCatalogue;
 
-/** Indicates the Catalogue in the model has changed*/
+/**
+ * Indicates the Catalogue in the model has changed
+ */
 public class CatalogueChangedEvent extends BaseEvent {
 
     public final ReadOnlyCatalogue data;

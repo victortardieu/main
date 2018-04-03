@@ -4,10 +4,8 @@ import static org.hamcrest.CoreMatchers.containsString;
 import static org.hamcrest.MatcherAssert.assertThat;
 import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertTrue;
-
 import java.io.FileNotFoundException;
 import java.util.Optional;
-
 import org.junit.Rule;
 import org.junit.Test;
 import org.junit.rules.ExpectedException;
@@ -67,7 +65,7 @@ public class StringUtilTest {
     }
 
     private void assertExceptionThrown(Class<? extends Throwable> exceptionClass, String sentence, String word,
-            Optional<String> errorMessage) {
+                                       Optional<String> errorMessage) {
         thrown.expect(exceptionClass);
         errorMessage.ifPresent(message -> thrown.expectMessage(message));
         StringUtil.containsWordIgnoreCase(sentence, word);
@@ -76,13 +74,13 @@ public class StringUtilTest {
     @Test
     public void containsWordIgnoreCase_emptyWord_throwsIllegalArgumentException() {
         assertExceptionThrown(IllegalArgumentException.class, "typical sentence", "  ",
-                Optional.of("Word parameter cannot be empty"));
+            Optional.of("Word parameter cannot be empty"));
     }
 
     @Test
     public void containsWordIgnoreCase_multipleWords_throwsIllegalArgumentException() {
         assertExceptionThrown(IllegalArgumentException.class, "typical sentence", "aaa BBB",
-                Optional.of("Word parameter should be a single word"));
+            Optional.of("Word parameter should be a single word"));
     }
 
     @Test
@@ -146,7 +144,7 @@ public class StringUtilTest {
     @Test
     public void getDetails_exceptionGiven() {
         assertThat(StringUtil.getDetails(new FileNotFoundException("file not found")),
-                   containsString("java.io.FileNotFoundException: file not found"));
+            containsString("java.io.FileNotFoundException: file not found"));
     }
 
     @Test

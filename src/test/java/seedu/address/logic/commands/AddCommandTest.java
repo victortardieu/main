@@ -1,19 +1,13 @@
 package seedu.address.logic.commands;
 
 import static java.util.Objects.requireNonNull;
-import static org.junit.Assert.assertEquals;
-import static org.junit.Assert.assertFalse;
-import static org.junit.Assert.assertTrue;
-import static org.junit.Assert.fail;
-
+import static org.junit.Assert.*;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.function.Predicate;
-
 import org.junit.Rule;
 import org.junit.Test;
 import org.junit.rules.ExpectedException;
-
 import javafx.collections.ObservableList;
 import seedu.address.logic.CommandHistory;
 import seedu.address.logic.UndoRedoStack;
@@ -24,8 +18,6 @@ import seedu.address.model.ReadOnlyCatalogue;
 import seedu.address.model.account.Account;
 import seedu.address.model.account.Credential;
 import seedu.address.model.account.PrivilegeLevel;
-import seedu.address.model.account.exceptions.AccountNotFoundException;
-import seedu.address.model.account.exceptions.DuplicateAccountException;
 import seedu.address.model.book.Book;
 import seedu.address.model.book.exceptions.DuplicateBookException;
 import seedu.address.testutil.BookBuilder;
@@ -152,15 +144,15 @@ public class AddCommandTest {
             return Model.PRIVILEGE_LEVEL_GUEST;
         }
 
-        public void addAccount(Account account) throws DuplicateAccountException {
+        public void addAccount(Account account) {
 
         }
 
-        public void deleteAccount(Account account) throws AccountNotFoundException {
+        public void deleteAccount(Account account) {
 
         }
 
-        public void updateAccount(Account account, Account editedAccount) throws DuplicateAccountException, AccountNotFoundException {
+        public void updateAccount(Account account, Account editedAccount) {
 
         }
     }

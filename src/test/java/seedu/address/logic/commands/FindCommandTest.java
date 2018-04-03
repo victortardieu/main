@@ -1,20 +1,12 @@
 package seedu.address.logic.commands;
 
-import static org.junit.Assert.assertEquals;
-import static org.junit.Assert.assertFalse;
-import static org.junit.Assert.assertTrue;
+import static org.junit.Assert.*;
 import static seedu.address.commons.core.Messages.MESSAGE_BOOKS_LISTED_OVERVIEW;
-import static seedu.address.testutil.TypicalBooks.CARL;
-import static seedu.address.testutil.TypicalBooks.ELLE;
-import static seedu.address.testutil.TypicalBooks.FIONA;
-import static seedu.address.testutil.TypicalBooks.getTypicalCatalogue;
-
+import static seedu.address.testutil.TypicalBooks.*;
 import java.util.Arrays;
 import java.util.Collections;
 import java.util.List;
-
 import org.junit.Test;
-
 import seedu.address.logic.CommandHistory;
 import seedu.address.logic.UndoRedoStack;
 import seedu.address.model.Catalogue;
@@ -34,9 +26,9 @@ public class FindCommandTest {
     @Test
     public void equals() {
         TitleContainsKeywordsPredicate firstPredicate =
-                new TitleContainsKeywordsPredicate(Collections.singletonList("first"));
+            new TitleContainsKeywordsPredicate(Collections.singletonList("first"));
         TitleContainsKeywordsPredicate secondPredicate =
-                new TitleContainsKeywordsPredicate(Collections.singletonList("second"));
+            new TitleContainsKeywordsPredicate(Collections.singletonList("second"));
 
         FindCommand findFirstCommand = new FindCommand(firstPredicate);
         FindCommand findSecondCommand = new FindCommand(secondPredicate);
@@ -77,16 +69,16 @@ public class FindCommandTest {
      */
     private FindCommand prepareCommand(String userInput) {
         FindCommand command =
-                new FindCommand(new TitleContainsKeywordsPredicate(Arrays.asList(userInput.split("\\s+"))));
+            new FindCommand(new TitleContainsKeywordsPredicate(Arrays.asList(userInput.split("\\s+"))));
         command.setData(model, new CommandHistory(), new UndoRedoStack());
         return command;
     }
 
     /**
      * Asserts that {@code command} is successfully executed, and<br>
-     *     - the command feedback is equal to {@code expectedMessage}<br>
-     *     - the {@code FilteredList<Book>} is equal to {@code expectedList}<br>
-     *     - the {@code Catalogue} in model remains the same after executing the {@code command}
+     * - the command feedback is equal to {@code expectedMessage}<br>
+     * - the {@code FilteredList<Book>} is equal to {@code expectedList}<br>
+     * - the {@code Catalogue} in model remains the same after executing the {@code command}
      */
     private void assertCommandSuccess(FindCommand command, String expectedMessage, List<Book> expectedList) {
         Catalogue expectedCatalogue = new Catalogue(model.getCatalogue());

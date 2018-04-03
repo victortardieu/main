@@ -4,14 +4,11 @@ import static junit.framework.TestCase.assertNotNull;
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertTrue;
 import static seedu.address.testutil.TypicalBooks.getTypicalCatalogue;
-
 import java.io.IOException;
-
 import org.junit.Before;
 import org.junit.Rule;
 import org.junit.Test;
 import org.junit.rules.TemporaryFolder;
-
 import seedu.address.commons.events.model.CatalogueChangedEvent;
 import seedu.address.commons.events.storage.DataSavingExceptionEvent;
 import seedu.address.model.Catalogue;
@@ -22,10 +19,9 @@ import seedu.address.ui.testutil.EventsCollectorRule;
 public class StorageManagerTest {
 
     @Rule
-    public TemporaryFolder testFolder = new TemporaryFolder();
-    @Rule
     public final EventsCollectorRule eventsCollectorRule = new EventsCollectorRule();
-
+    @Rule
+    public TemporaryFolder testFolder = new TemporaryFolder();
     private StorageManager storageManager;
 
     @Before
@@ -78,8 +74,8 @@ public class StorageManagerTest {
     public void handleCatalogueChangedEvent_exceptionThrown_eventRaised() {
         // Create a StorageManager while injecting a stub that  throws an exception when the save method is called
         Storage storage = new StorageManager(new XmlCatalogueStorageExceptionThrowingStub("dummy"),
-                new JsonUserPrefsStorage("dummy"),
-                new SerialisedAccountListStorage("dummy"));
+            new JsonUserPrefsStorage("dummy"),
+            new SerialisedAccountListStorage("dummy"));
         storage.handleCatalogueChangedEvent(new CatalogueChangedEvent(new Catalogue()));
         assertTrue(eventsCollectorRule.eventsCollector.getMostRecent() instanceof DataSavingExceptionEvent);
     }

@@ -1,18 +1,12 @@
 package seedu.address.logic;
 
-import static org.junit.Assert.assertEquals;
-import static org.junit.Assert.assertFalse;
-import static org.junit.Assert.assertTrue;
-import static org.junit.Assert.fail;
+import static org.junit.Assert.*;
 import static seedu.address.logic.UndoRedoStackUtil.prepareStack;
-
 import java.util.Arrays;
 import java.util.Collections;
 import java.util.EmptyStackException;
 import java.util.List;
-
 import org.junit.Test;
-
 import seedu.address.logic.commands.Command;
 import seedu.address.logic.commands.CommandResult;
 import seedu.address.logic.commands.RedoCommand;
@@ -30,7 +24,7 @@ public class UndoRedoStackTest {
     public void push_nonUndoableCommand_redoStackClearedAndCommandNotAdded() {
         // non-empty redoStack
         undoRedoStack = prepareStack(Collections.singletonList(dummyUndoableCommandOne),
-                Arrays.asList(dummyUndoableCommandOne, dummyUndoableCommandTwo));
+            Arrays.asList(dummyUndoableCommandOne, dummyUndoableCommandTwo));
         undoRedoStack.push(dummyCommandOne);
         assertStackStatus(Collections.singletonList(dummyUndoableCommandOne), Collections.emptyList());
 
@@ -43,25 +37,25 @@ public class UndoRedoStackTest {
     public void push_undoableCommand_redoStackClearedAndCommandAdded() {
         // non-empty redoStack
         undoRedoStack = prepareStack(Collections.singletonList(dummyUndoableCommandOne),
-                Arrays.asList(dummyUndoableCommandOne, dummyUndoableCommandTwo));
+            Arrays.asList(dummyUndoableCommandOne, dummyUndoableCommandTwo));
         undoRedoStack.push(dummyUndoableCommandOne);
         assertStackStatus(Arrays.asList(dummyUndoableCommandOne, dummyUndoableCommandOne),
-                Collections.emptyList());
+            Collections.emptyList());
 
         // empty redoStack
         undoRedoStack.push(dummyUndoableCommandOne);
         assertStackStatus(Arrays.asList(dummyUndoableCommandOne, dummyUndoableCommandOne, dummyUndoableCommandOne),
-                Collections.emptyList());
+            Collections.emptyList());
     }
 
     @Test
     public void push_undoCommand_stackRemainsUnchanged() {
         // non-empty redoStack
         undoRedoStack = prepareStack(Collections.singletonList(dummyUndoableCommandOne),
-                Arrays.asList(dummyUndoableCommandOne, dummyUndoableCommandTwo));
+            Arrays.asList(dummyUndoableCommandOne, dummyUndoableCommandTwo));
         undoRedoStack.push(new UndoCommand());
         assertStackStatus(Collections.singletonList(dummyUndoableCommandOne),
-                Arrays.asList(dummyUndoableCommandOne, dummyUndoableCommandTwo));
+            Arrays.asList(dummyUndoableCommandOne, dummyUndoableCommandTwo));
 
         // empty redoStack
         undoRedoStack = prepareStack(Collections.singletonList(dummyUndoableCommandOne), Collections.emptyList());
@@ -73,10 +67,10 @@ public class UndoRedoStackTest {
     public void push_redoCommand_stackRemainsUnchanged() {
         // non-empty redoStack
         undoRedoStack = prepareStack(Collections.singletonList(dummyUndoableCommandOne),
-                Arrays.asList(dummyUndoableCommandOne, dummyUndoableCommandTwo));
+            Arrays.asList(dummyUndoableCommandOne, dummyUndoableCommandTwo));
         undoRedoStack.push(new RedoCommand());
         assertStackStatus(Collections.singletonList(dummyUndoableCommandOne),
-                Arrays.asList(dummyUndoableCommandOne, dummyUndoableCommandTwo));
+            Arrays.asList(dummyUndoableCommandOne, dummyUndoableCommandTwo));
 
         // empty redoStack
         undoRedoStack = prepareStack(Collections.singletonList(dummyUndoableCommandOne), Collections.emptyList());
@@ -107,47 +101,47 @@ public class UndoRedoStackTest {
     @Test
     public void popUndo() {
         undoRedoStack = prepareStack(Arrays.asList(dummyUndoableCommandOne, dummyUndoableCommandTwo),
-                Collections.emptyList());
+            Collections.emptyList());
 
         // multiple commands in undoStack
         assertPopUndoSuccess(dummyUndoableCommandTwo, Collections.singletonList(dummyUndoableCommandOne),
-                Collections.singletonList(dummyUndoableCommandTwo));
+            Collections.singletonList(dummyUndoableCommandTwo));
 
         // single command in undoStack
         assertPopUndoSuccess(dummyUndoableCommandOne, Collections.emptyList(),
-                Arrays.asList(dummyUndoableCommandTwo, dummyUndoableCommandOne));
+            Arrays.asList(dummyUndoableCommandTwo, dummyUndoableCommandOne));
 
         // no command in undoStack
         assertPopUndoFailure(Collections.emptyList(),
-                Arrays.asList(dummyUndoableCommandTwo, dummyUndoableCommandOne));
+            Arrays.asList(dummyUndoableCommandTwo, dummyUndoableCommandOne));
     }
 
     @Test
     public void popRedo() {
         undoRedoStack = prepareStack(Collections.emptyList(),
-                Arrays.asList(dummyUndoableCommandOne, dummyUndoableCommandTwo));
+            Arrays.asList(dummyUndoableCommandOne, dummyUndoableCommandTwo));
 
         // multiple commands in redoStack
         assertPopRedoSuccess(dummyUndoableCommandTwo, Collections.singletonList(dummyUndoableCommandTwo),
-                Collections.singletonList(dummyUndoableCommandOne));
+            Collections.singletonList(dummyUndoableCommandOne));
 
         // single command in redoStack
         assertPopRedoSuccess(dummyUndoableCommandOne,
-                Arrays.asList(dummyUndoableCommandTwo, dummyUndoableCommandOne), Collections.emptyList());
+            Arrays.asList(dummyUndoableCommandTwo, dummyUndoableCommandOne), Collections.emptyList());
 
         // no command in redoStack
         assertPopRedoFailure(Arrays.asList(dummyUndoableCommandTwo, dummyUndoableCommandOne),
-                Collections.emptyList());
+            Collections.emptyList());
     }
 
     @Test
     public void equals() {
         undoRedoStack = prepareStack(Arrays.asList(dummyUndoableCommandTwo, dummyUndoableCommandOne),
-                Arrays.asList(dummyUndoableCommandOne, dummyUndoableCommandTwo));
+            Arrays.asList(dummyUndoableCommandOne, dummyUndoableCommandTwo));
 
         // same values -> returns true
         UndoRedoStack copy = prepareStack(Arrays.asList(dummyUndoableCommandTwo, dummyUndoableCommandOne),
-                Arrays.asList(dummyUndoableCommandOne, dummyUndoableCommandTwo));
+            Arrays.asList(dummyUndoableCommandOne, dummyUndoableCommandTwo));
         assertTrue(undoRedoStack.equals(copy));
 
         // same object -> returns true
@@ -161,12 +155,12 @@ public class UndoRedoStackTest {
 
         // different undoStack -> returns false
         UndoRedoStack differentUndoStack = prepareStack(Collections.singletonList(dummyUndoableCommandTwo),
-                Arrays.asList(dummyUndoableCommandOne, dummyUndoableCommandTwo));
+            Arrays.asList(dummyUndoableCommandOne, dummyUndoableCommandTwo));
         assertFalse(undoRedoStack.equals(differentUndoStack));
 
         // different redoStack -> returns false
         UndoRedoStack differentRedoStack =
-                prepareStack(Arrays.asList(dummyUndoableCommandTwo, dummyUndoableCommandOne),
+            prepareStack(Arrays.asList(dummyUndoableCommandTwo, dummyUndoableCommandOne),
                 Collections.singletonList(dummyUndoableCommandTwo));
         assertFalse(undoRedoStack.equals(differentRedoStack));
     }

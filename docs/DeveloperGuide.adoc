@@ -205,9 +205,10 @@ The `Model`,
 
 * stores a `UserPref` object that represents the user's preferences.
 * stores the Catalogue data.
+* stores the AccountList data
 * exposes an unmodifiable `ObservableList<Book>` that can be 'observed' e.g. the UI can be bound to this list so that the UI automatically updates when the data in the list change.
 * maintains the privilege level
-* handels authentication
+* handles authentication
 * does not depend on any of the other three components.
 
 [[Design-Storage]]
@@ -222,6 +223,7 @@ The `Storage` component,
 
 * can save `UserPref` objects in json format and read it back.
 * can save the Catalogue data in xml format and read it back.
+* can save the AccountList data in binary format and read it back
 
 [[Design-Commons]]
 === Common classes

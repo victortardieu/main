@@ -1,9 +1,16 @@
 package seedu.address;
 
+import java.io.IOException;
+import java.util.Map;
+import java.util.Optional;
+import java.util.logging.Logger;
+
 import com.google.common.eventbus.Subscribe;
+
 import javafx.application.Application;
 import javafx.application.Platform;
 import javafx.stage.Stage;
+
 import seedu.address.commons.core.Config;
 import seedu.address.commons.core.EventsCenter;
 import seedu.address.commons.core.LogsCenter;
@@ -14,19 +21,27 @@ import seedu.address.commons.util.ConfigUtil;
 import seedu.address.commons.util.StringUtil;
 import seedu.address.logic.Logic;
 import seedu.address.logic.LogicManager;
-import seedu.address.model.*;
+import seedu.address.model.Catalogue;
+import seedu.address.model.Model;
+import seedu.address.model.ModelManager;
+import seedu.address.model.ReadOnlyCatalogue;
+import seedu.address.model.UserPrefs;
 import seedu.address.model.account.Account;
 import seedu.address.model.account.UniqueAccountList;
 import seedu.address.model.account.exceptions.DuplicateAccountException;
 import seedu.address.model.util.SampleDataUtil;
-import seedu.address.storage.*;
+import seedu.address.storage.AccountListStorage;
+import seedu.address.storage.CatalogueStorage;
+import seedu.address.storage.JsonUserPrefsStorage;
+import seedu.address.storage.SerialisedAccountListStorage;
+import seedu.address.storage.Storage;
+import seedu.address.storage.StorageManager;
+import seedu.address.storage.UserPrefsStorage;
+import seedu.address.storage.XmlCatalogueStorage;
 import seedu.address.ui.Ui;
 import seedu.address.ui.UiManager;
 
-import java.io.IOException;
-import java.util.Map;
-import java.util.Optional;
-import java.util.logging.Logger;
+
 
 /**
  * The main entry point to the application.
@@ -111,10 +126,12 @@ public class MainApp extends Application {
                 initlaAccountList = accountListOptional.get();
             }
         } catch (DataConversionException e) {
-            logger.warning("AccountList file not in the correct format. Will be starting with an accountList with only admin");
+            logger.warning("AccountList file not in the correct format. "
+                                + "Will be starting with an accountList with only admin");
             initlaAccountList = new UniqueAccountList();
         } catch (IOException e) {
-            logger.warning("Problem while reading from the AccountList file. Will be starting with an accountList with only admin");
+            logger.warning("Problem while reading from the AccountList file. "
+                                + "Will be starting with an accountList with only admin");
             System.out.print(e.getMessage());
             initlaAccountList = new UniqueAccountList();
         }

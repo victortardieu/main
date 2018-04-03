@@ -2,13 +2,14 @@ package seedu.address.model.account;
 
 import static java.util.Objects.requireNonNull;
 import static seedu.address.commons.util.AppUtil.checkArgument;
+import java.io.Serializable;
 import java.util.Objects;
 import com.sun.tools.internal.xjc.reader.xmlschema.bindinfo.BIConversion;
 
 /**
  * Represents a set of username and password
  */
-public class Credential {
+public class Credential implements Serializable {
 
     /**
      * Constructs a {@code Credential}

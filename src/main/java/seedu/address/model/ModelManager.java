@@ -67,7 +67,6 @@ public class ModelManager extends ComponentManager implements Model {
         filteredBooks = new FilteredList<>(this.catalogue.getBookList());
         this.accountList = accountList;
         this.currentAccount = Account.createGuestAccount();
-        indicateAccountListChanged();
     }
 
     public ModelManager() {

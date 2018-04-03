@@ -2,8 +2,9 @@ package seedu.address.model.account;
 
 import static java.util.Objects.requireNonNull;
 import static seedu.address.commons.util.AppUtil.checkArgument;
+import java.io.Serializable;
 
-public class Password {
+public class Password implements Serializable {
     public static final String MESSAGE_PASSWORD_CONSTRAINTS =
             "Password should be at least 5 characters long.";
     public static final String PASSWORD_VALIDATION_REGEX = "\\w{5,}";

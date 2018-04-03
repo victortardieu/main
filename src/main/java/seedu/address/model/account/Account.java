@@ -1,8 +1,10 @@
 package seedu.address.model.account;
 
+import static java.util.Objects.requireNonNull;
+import java.io.Serializable;
 import java.util.Objects;
 
-public class Account {
+public class Account implements Serializable {
     private final Name name;
     private final Credential credential;
     private final MatricNumber matricNumber;
@@ -16,6 +18,10 @@ public class Account {
      * @param privilegeLevel
      */
     public Account(Name name, Credential credential, MatricNumber matricNumber, PrivilegeLevel privilegeLevel) {
+        requireNonNull(name);
+        requireNonNull(credential);
+        requireNonNull(matricNumber);
+        requireNonNull(privilegeLevel);
         this.name = name;
         this.credential = credential;
         this.matricNumber = matricNumber;
@@ -82,7 +88,6 @@ public class Account {
 
     @Override
     public int hashCode() {
-
         return Objects.hash(name, credential, matricNumber, privilegeLevel);
     }
 }

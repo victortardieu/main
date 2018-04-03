@@ -129,7 +129,9 @@ public class MainApp extends Application {
         }
 
         try {
-            initlaAccountList.add(Account.createDefaultAdminAccount());
+            if (!initlaAccountList.contains(Account.createDefaultAdminAccount())){
+                initlaAccountList.add(Account.createDefaultAdminAccount());
+            }
         } catch (DuplicateAccountException e) {
             e.printStackTrace();
         }

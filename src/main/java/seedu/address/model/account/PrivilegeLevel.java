@@ -2,9 +2,10 @@ package seedu.address.model.account;
 
 import static java.util.Objects.requireNonNull;
 import static seedu.address.commons.util.AppUtil.checkArgument;
+import java.io.Serializable;
 import java.util.Objects;
 
-public class PrivilegeLevel implements Comparable<PrivilegeLevel> {
+public class PrivilegeLevel implements Comparable<PrivilegeLevel>, Serializable {
 
     public static final int PRIVILEGE_LEVEL_GUEST = 0;
     public static final int PRIVILEGE_LEVEL_STUDENT = 1;
@@ -32,7 +33,7 @@ public class PrivilegeLevel implements Comparable<PrivilegeLevel> {
     /**
      * Returns true if a given string is a valid PrivilegeLevel
      */
-    public boolean isValidPrivilegeLevel(int test){
+    public static boolean isValidPrivilegeLevel(int test){
         return test >= PRIVILEGE_LEVEL_GUEST
                 && test <= PRIVILEGE_LEVEL_LIBRARIAN;
     }

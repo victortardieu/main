@@ -32,7 +32,9 @@ public class StorageManagerTest {
     public void setUp() {
         XmlCatalogueStorage catalogueStorage = new XmlCatalogueStorage(getTempFilePath("ab"));
         JsonUserPrefsStorage userPrefsStorage = new JsonUserPrefsStorage(getTempFilePath("prefs"));
-        storageManager = new StorageManager(catalogueStorage, userPrefsStorage);
+        AccountListStorage accountListStorage = new SerialisedAccountListStorage((getTempFilePath("accountList.ser")));
+
+        storageManager = new StorageManager(catalogueStorage, userPrefsStorage, accountListStorage);
     }
 
     private String getTempFilePath(String fileName) {
@@ -76,7 +78,8 @@ public class StorageManagerTest {
     public void handleCatalogueChangedEvent_exceptionThrown_eventRaised() {
         // Create a StorageManager while injecting a stub that  throws an exception when the save method is called
         Storage storage = new StorageManager(new XmlCatalogueStorageExceptionThrowingStub("dummy"),
-                                             new JsonUserPrefsStorage("dummy"));
+                new JsonUserPrefsStorage("dummy"),
+                new SerialisedAccountListStorage("dummy"));
         storage.handleCatalogueChangedEvent(new CatalogueChangedEvent(new Catalogue()));
         assertTrue(eventsCollectorRule.eventsCollector.getMostRecent() instanceof DataSavingExceptionEvent);
     }

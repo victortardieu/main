@@ -2,11 +2,12 @@ package seedu.address.model.account;
 
 import static java.util.Objects.requireNonNull;
 import static seedu.address.commons.util.AppUtil.checkArgument;
+import java.io.Serializable;
 
 /**
  * Represents a set of username and password
  */
-public class MatricNumber {
+public class MatricNumber implements Serializable {
     public static final String MESSAGE_MATRIC_NUMBER_CONSTRAINTS =
             "Matriculation number should start with \"A\", followed by 7 digits and end with uppercase letter.";
 

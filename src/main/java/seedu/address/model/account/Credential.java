@@ -60,3 +60,4 @@ public class Credential implements Serializable {
             '}';
     }
 }
+

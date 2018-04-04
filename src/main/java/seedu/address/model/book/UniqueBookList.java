@@ -125,7 +125,7 @@ public class UniqueBookList implements Iterable<Book> {
                 return true;
 
             case (RESERVED):
-                return true;
+                return false;
             
             default:
                 throw new BookNotFoundException();

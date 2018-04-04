@@ -68,8 +68,8 @@ public class Account implements Serializable {
         Credential credential = new Credential("student", "student");
         MatricNumber matricNumber = new MatricNumber("A0123456X");
         PrivilegeLevel privilegeLevel = new PrivilegeLevel(1);
-        Account admin = new Account(name, credential, matricNumber, privilegeLevel);
-        return admin;
+        Account student = new Account(name, credential, matricNumber, privilegeLevel);
+        return student;
     }
 
     /**

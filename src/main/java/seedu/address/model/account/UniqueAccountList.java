@@ -97,7 +97,7 @@ public class UniqueAccountList implements Serializable, Iterable<Account> {
      * @param u
      * @return
      */
-    public boolean containsUsername(Username u){
+    public boolean containsUsername(Username u) {
         for (Account a : internalList) {
             if (a.usernameMatches(u)) {
                 return true;
@@ -112,7 +112,7 @@ public class UniqueAccountList implements Serializable, Iterable<Account> {
      * @param c
      * @return
      */
-    public boolean containsUsername(Credential c){
+    public boolean containsUsername(Credential c) {
         return containsUsername(c.getUsername());
     }
 
@@ -131,7 +131,7 @@ public class UniqueAccountList implements Serializable, Iterable<Account> {
      * @param u
      * @return
      */
-    public Account searchByUsername(Username u){
+    public Account searchByUsername(Username u) {
         for (Account a : internalList) {
             if (a.usernameMatches(u)) {
                 return a;

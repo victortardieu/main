@@ -40,7 +40,7 @@ public class Credential implements Serializable {
      * @param username
      * @return
      */
-    public boolean usernameEquals(Username username){
+    public boolean usernameEquals(Username username) {
         return this.username.equals(username);
     }
 

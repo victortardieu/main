@@ -1,11 +1,10 @@
 package seedu.address.logic.commands;
 
+import static java.util.Objects.requireNonNull;
+
 import seedu.address.model.Model;
 import seedu.address.model.account.Credential;
 import seedu.address.model.account.PrivilegeLevel;
-
-import static java.util.Objects.requireNonNull;
-
 
 /**
  * Logs in as student or librarian.

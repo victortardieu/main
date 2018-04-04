@@ -1,5 +1,7 @@
 package seedu.address.logic.commands;
 
+import java.util.List;
+
 import seedu.address.commons.core.EventsCenter;
 import seedu.address.commons.core.Messages;
 import seedu.address.commons.core.index.Index;
@@ -9,7 +11,7 @@ import seedu.address.model.Model;
 import seedu.address.model.account.PrivilegeLevel;
 import seedu.address.model.book.Book;
 
-import java.util.List;
+
 
 /**
  * Selects a book identified using it's last displayed index from the catalogue.

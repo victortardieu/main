@@ -5,6 +5,9 @@ import static seedu.address.commons.util.AppUtil.checkArgument;
 
 import java.io.Serializable;
 
+/**
+ * Represents the username of an account
+ */
 public class Username implements Serializable {
 
     public static final String MESSAGE_USERNAME_CONSTRAINTS =
@@ -45,7 +48,7 @@ public class Username implements Serializable {
         return other == this
             || (other instanceof Username // short circuit if same obj
             && this.username.equals(((Username) other).username) // check username
-        );
+            );
     }
 
     @Override
@@ -55,8 +58,8 @@ public class Username implements Serializable {
 
     @Override
     public String toString() {
-        return "Username{" +
-            "username='" + username + '\'' +
-            '}';
+        return "Username{"
+            + "username='" + username + '\''
+            + '}';
     }
 }

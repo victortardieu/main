@@ -15,6 +15,9 @@ import seedu.address.commons.core.LogsCenter;
 import seedu.address.commons.exceptions.DataConversionException;
 import seedu.address.model.account.UniqueAccountList;
 
+/**
+ * A class to access AccountList data stored as an .ser file on the hard disk.
+ */
 public class SerialisedAccountListStorage implements AccountListStorage {
     private static final Logger logger = LogsCenter.getLogger(SerialisedAccountListStorage.class);
 
@@ -36,10 +39,8 @@ public class SerialisedAccountListStorage implements AccountListStorage {
     @Override
     public Optional<UniqueAccountList> readAccountList(String filePath) throws DataConversionException, IOException {
         requireNonNull(filePath);
-        FileInputStream file = new FileInputStream
-            (filePath);
-        ObjectInputStream in = new ObjectInputStream
-            (file);
+        FileInputStream file = new FileInputStream(filePath);
+        ObjectInputStream in = new ObjectInputStream(file);
 
         if (!new File(filePath).exists()) {
             logger.info("AccountList file " + filePath + " not found");

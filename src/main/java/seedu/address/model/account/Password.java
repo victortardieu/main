@@ -5,6 +5,9 @@ import static seedu.address.commons.util.AppUtil.checkArgument;
 
 import java.io.Serializable;
 
+/**
+ * Represents a password
+ */
 public class Password implements Serializable {
     public static final String MESSAGE_PASSWORD_CONSTRAINTS =
         "Password should be at least 5 characters long.";
@@ -34,9 +37,9 @@ public class Password implements Serializable {
 
     @Override
     public String toString() {
-        return "Password{" +
-            "password='" + password + '\'' +
-            '}';
+        return "Password{"
+            + "password='" + password + '\''
+            + '}';
     }
 
     /**

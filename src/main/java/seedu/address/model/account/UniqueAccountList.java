@@ -76,10 +76,16 @@ public class UniqueAccountList implements Serializable, Iterable<Account> {
         return accountFoundAndDeleted;
     }
 
+    /**
+     * Returns the account that matches with the provided credential,
+     * returns null if none exists
+     *
+     * @param c
+     * @return
+     */
     public Account authenticate(Credential c) {
         for (Account a : internalList) {
             if (a.credentialMatches(c)) {
-
                 return a;
             }
         }

@@ -60,6 +60,10 @@ public class UiManager extends ComponentManager implements Ui {
         alert.showAndWait();
     }
 
+    void showAlertDialogAndWait(Alert.AlertType type, String title, String headerText, String contentText) {
+        showAlertDialogAndWait(mainWindow.getPrimaryStage(), type, title, headerText, contentText);
+    }
+
     @Override
     public void start(Stage primaryStage) {
         logger.info("Starting UI...");
@@ -92,10 +96,6 @@ public class UiManager extends ComponentManager implements Ui {
 
     private Image getImage(String imagePath) {
         return new Image(MainApp.class.getResourceAsStream(imagePath));
-    }
-
-    void showAlertDialogAndWait(Alert.AlertType type, String title, String headerText, String contentText) {
-        showAlertDialogAndWait(mainWindow.getPrimaryStage(), type, title, headerText, contentText);
     }
 
     /**

@@ -20,7 +20,9 @@ public class LoginCommandParser implements Parser<LoginCommand> {
     public LoginCommand parse(String args) throws ParseException {
         String trimmedArgs = args.trim();
         String[] nameKeywords = trimmedArgs.split("\\s+");
-        if (nameKeywords.length != 2 || !Username.isValidUsername(nameKeywords[0]) || !Password.isValidPassword(nameKeywords[1])) {
+        if (nameKeywords.length != 2
+            || !Username.isValidUsername(nameKeywords[0])
+            || !Password.isValidPassword(nameKeywords[1])) {
             throw new ParseException(
                 String.format(MESSAGE_INVALID_COMMAND_FORMAT, LoginCommand.MESSAGE_USAGE));
         }

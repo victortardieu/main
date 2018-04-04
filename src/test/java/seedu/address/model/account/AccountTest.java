@@ -10,11 +10,16 @@ import seedu.address.testutil.Assert;
 public class AccountTest {
     @Test
     public void constructor_null_throwsNullPointerException() {
-        Assert.assertThrows(NullPointerException.class, () -> new Account(null, null, null, null));
-        Assert.assertThrows(NullPointerException.class, () -> new Account(new Name("dummy"), null, null, null));
-        Assert.assertThrows(NullPointerException.class, () -> new Account(null, new Credential("dummy", "dummy"), null, null));
-        Assert.assertThrows(NullPointerException.class, () -> new Account(null, null, new MatricNumber("A1231231A"), null));
-        Assert.assertThrows(NullPointerException.class, () -> new Account(null, null, null, new PrivilegeLevel(0)));
+        Assert.assertThrows(NullPointerException.class, ()
+            -> new Account(null, null, null, null));
+        Assert.assertThrows(NullPointerException.class, ()
+            -> new Account(new Name("dummy"), null, null, null));
+        Assert.assertThrows(NullPointerException.class, ()
+            -> new Account(null, new Credential("dummy", "dummy"), null, null));
+        Assert.assertThrows(NullPointerException.class, ()
+            -> new Account(null, null, new MatricNumber("A1231231A"), null));
+        Assert.assertThrows(NullPointerException.class, ()
+            -> new Account(null, null, null, new PrivilegeLevel(0)));
     }
 
     @Test

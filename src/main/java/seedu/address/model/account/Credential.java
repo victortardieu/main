@@ -8,16 +8,14 @@ import java.util.Objects;
  */
 public class Credential implements Serializable {
 
+    private Username username;
+    private Password password;
     /**
      * Constructs a {@code Credential}
      *
      * @param username A valid username
      * @param password A valid password
      */
-
-    Username username;
-    Password password;
-
     public Credential(String username, String password) {
         this.username = new Username(username);
         this.password = new Password(password);
@@ -42,8 +40,8 @@ public class Credential implements Serializable {
         return other == this
             || (other instanceof Credential // short circuit if same obj
             && this.username.equals(((Credential) other).username) // check username
-            && this.password.equals(((Credential) other).password)
-        ); //check password
+            && this.password.equals(((Credential) other).password) //check password
+            );
     }
 
     @Override
@@ -54,10 +52,10 @@ public class Credential implements Serializable {
 
     @Override
     public String toString() {
-        return "Credential{" +
-            "username=" + username +
-            ", password=" + password +
-            '}';
+        return "Credential{"
+            + "username=" + username
+            + ", password=" + password
+            + '}';
     }
 }
 

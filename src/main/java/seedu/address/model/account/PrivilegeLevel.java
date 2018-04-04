@@ -6,6 +6,9 @@ import static seedu.address.commons.util.AppUtil.checkArgument;
 import java.io.Serializable;
 import java.util.Objects;
 
+/**
+ * Represents the privilegeLevel of an account/a command
+ */
 public class PrivilegeLevel implements Comparable<PrivilegeLevel>, Serializable {
 
     public static final int PRIVILEGE_LEVEL_GUEST = 0;

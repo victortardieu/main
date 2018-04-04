@@ -47,7 +47,7 @@ public class MatricNumber implements Serializable {
         return other == this
             || (other instanceof MatricNumber // short circuit if same obj
             && this.getMatricNumber().equals(((MatricNumber) other).getMatricNumber()) //check status
-        );
+            );
     }
 
     @Override

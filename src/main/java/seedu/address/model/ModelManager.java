@@ -60,8 +60,9 @@ public class ModelManager extends ComponentManager implements Model {
         super();
         requireAllNonNull(catalogue, accountList, userPrefs);
 
-        logger.fine("Initializing with catalogue: " + catalogue + ", accountList: " + accountList + " and user prefs " + userPrefs);
-
+        logger.fine("Initializing with catalogue: " + catalogue
+                            + ", accountList: " + accountList
+                            + " and user prefs " + userPrefs);
 
         this.catalogue = new Catalogue(catalogue);
         filteredBooks = new FilteredList<>(this.catalogue.getBookList());
@@ -73,21 +74,42 @@ public class ModelManager extends ComponentManager implements Model {
         this(new Catalogue(), new UserPrefs());
     }
 
+    /**
+     * Adds an account to the AccountList
+     * @param account
+     * @throws DuplicateAccountException
+     */
     public void addAccount(Account account) throws DuplicateAccountException {
         accountList.add(account);
         indicateAccountListChanged();
     }
 
+    /**
+     * Deletes an account from the AccountList
+     * @param account
+     * @throws AccountNotFoundException
+     */
     public void deleteAccount(Account account) throws AccountNotFoundException {
         accountList.remove(account);
         indicateAccountListChanged();
     }
 
-    public void updateAccount(Account account, Account editedAccount) throws DuplicateAccountException, AccountNotFoundException {
+    /**
+     * Replaces an account with a new one
+     * @param account
+     * @param editedAccount
+     * @throws DuplicateAccountException
+     * @throws AccountNotFoundException
+     */
+    public void updateAccount(Account account, Account editedAccount)
+        throws DuplicateAccountException, AccountNotFoundException {
         accountList.setAccount(account, account);
         indicateAccountListChanged();
     }
 
+    /**
+     * Adds the initial admin account to the accountList
+     */
     private void addFirstAccount() {
         Account admin = Account.createDefaultAdminAccount();
         if (!this.accountList.contains(admin)) {

@@ -72,7 +72,8 @@ public interface Model {
 
     void deleteAccount(Account account) throws AccountNotFoundException;
 
-    void updateAccount(Account account, Account editedAccount) throws DuplicateAccountException, AccountNotFoundException;
+    void updateAccount(Account account, Account editedAccount)
+        throws DuplicateAccountException, AccountNotFoundException;
 
     PrivilegeLevel authenticate(Credential credential);
 

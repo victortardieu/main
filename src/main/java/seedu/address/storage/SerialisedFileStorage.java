@@ -7,6 +7,9 @@ import java.io.ObjectOutputStream;
 import seedu.address.commons.exceptions.DataConversionException;
 import seedu.address.model.account.UniqueAccountList;
 
+/**
+ * Stores accountList data in a .ser file
+ */
 public class SerialisedFileStorage {
     /**
      * Saves the given catalogue data to the specified file.

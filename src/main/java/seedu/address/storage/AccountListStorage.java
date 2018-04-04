@@ -8,7 +8,9 @@ import seedu.address.model.account.UniqueAccountList;
 
 //import java.util.Optional;
 
-
+/**
+ * Represents a storage for {@link UniqueAccountList}.
+ */
 public interface AccountListStorage {
     /**
      * Returns the file path of the data file.

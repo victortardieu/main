@@ -58,7 +58,7 @@ public class BookBuilder {
     /**
      * Parses the {@code tags} into a {@code Set<Tag>} and set it to the {@code Book} that we are building.
      */
-    public BookBuilder withTags(String ... tags) {
+    public BookBuilder withTags(String... tags) {
         this.tags = SampleDataUtil.getTagSet(tags);
         return this;
     }

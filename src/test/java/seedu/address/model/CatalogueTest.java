@@ -26,6 +26,7 @@ public class CatalogueTest {
 
     private final Catalogue catalogue = new Catalogue();
 
+
     @Test
     public void constructor() {
         assertEquals(Collections.emptyList(), catalogue.getBookList());

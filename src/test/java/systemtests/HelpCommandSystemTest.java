@@ -11,10 +11,11 @@ import org.junit.Test;
 
 import guitests.GuiRobot;
 import guitests.guihandles.HelpWindowHandle;
-//import seedu.address.logic.commands.DeleteCommand;
 import seedu.address.logic.commands.HelpCommand;
 import seedu.address.logic.commands.SelectCommand;
 import seedu.address.ui.BrowserPanel;
+
+//import seedu.address.logic.commands.DeleteCommand;
 //import seedu.address.ui.StatusBarFooter;
 
 /**
@@ -22,9 +23,9 @@ import seedu.address.ui.BrowserPanel;
  */
 public class HelpCommandSystemTest extends CatalogueSystemTest {
     private static final String ERROR_MESSAGE = "ATTENTION!!!! : On some computers, this test may fail when run on "
-            + "non-headless mode as FxRobot#clickOn(Node, MouseButton...) clicks on the wrong location. We suspect "
-            + "that this is a bug with TestFX library that we are using. If this test fails, you have to run your "
-            + "tests on headless mode. See UsingGradle.adoc on how to do so.";
+        + "non-headless mode as FxRobot#clickOn(Node, MouseButton...) clicks on the wrong location. We suspect "
+        + "that this is a bug with TestFX library that we are using. If this test fails, you have to run your "
+        + "tests on headless mode. See UsingGradle.adoc on how to do so.";
 
     private final GuiRobot guiRobot = new GuiRobot();
 

@@ -65,6 +65,6 @@ public class BookCard extends UiPart<Region> {
         // state check
         BookCard card = (BookCard) other;
         return id.getText().equals(card.id.getText())
-                && book.equals(card.book);
+            && book.equals(card.book);
     }
 }

@@ -10,7 +10,7 @@ import static seedu.address.commons.util.AppUtil.checkArgument;
 public class Title {
 
     public static final String MESSAGE_TITLE_CONSTRAINTS =
-            "Book titles should only contain alphanumeric characters and spaces, and it should not be blank";
+        "Book titles should only contain alphanumeric characters and spaces, and it should not be blank";
 
     /*
      * The first character of the address must not be a whitespace,
@@ -46,8 +46,8 @@ public class Title {
     @Override
     public boolean equals(Object other) {
         return other == this // short circuit if same object
-                || (other instanceof Title // instanceof handles nulls
-                && this.fullTitle.equals(((Title) other).fullTitle)); // state check
+            || (other instanceof Title // instanceof handles nulls
+            && this.fullTitle.equals(((Title) other).fullTitle)); // state check
     }
 
     @Override

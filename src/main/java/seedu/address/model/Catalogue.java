@@ -15,7 +15,6 @@ import seedu.address.model.book.Book;
 import seedu.address.model.book.UniqueBookList;
 import seedu.address.model.book.exceptions.BookNotFoundException;
 import seedu.address.model.book.exceptions.DuplicateBookException;
-
 import seedu.address.model.tag.Tag;
 import seedu.address.model.tag.UniqueTagList;
 
@@ -40,7 +39,8 @@ public class Catalogue implements ReadOnlyCatalogue {
         tags = new UniqueTagList();
     }
 
-    public Catalogue() {}
+    public Catalogue() {
+    }
 
     /**
      * Creates an Catalogue using the Books and Tags in the {@code toBeCopied}
@@ -67,8 +67,8 @@ public class Catalogue implements ReadOnlyCatalogue {
         requireNonNull(newData);
         setTags(new HashSet<>(newData.getTagList()));
         List<Book> syncedBookList = newData.getBookList().stream()
-                .map(this::syncWithMasterTagList)
-                .collect(Collectors.toList());
+            .map(this::syncWithMasterTagList)
+            .collect(Collectors.toList());
 
         try {
             setBooks(syncedBookList);
@@ -99,13 +99,12 @@ public class Catalogue implements ReadOnlyCatalogue {
      * {@code Catalogue}'s tag list will be updated with the tags of {@code editedBook}.
      *
      * @throws DuplicateBookException if updating the book's details causes the book to be equivalent to
-     *      another existing book in the list.
-     * @throws BookNotFoundException if {@code target} could not be found in the list.
-     *
+     *                                another existing book in the list.
+     * @throws BookNotFoundException  if {@code target} could not be found in the list.
      * @see #syncWithMasterTagList(Book)
      */
     public void updateBook(Book target, Book editedBook)
-            throws DuplicateBookException, BookNotFoundException {
+        throws DuplicateBookException, BookNotFoundException {
         requireNonNull(editedBook);
 
         Book syncedEditedBook = syncWithMasterTagList(editedBook);
@@ -116,9 +115,10 @@ public class Catalogue implements ReadOnlyCatalogue {
     }
 
     /**
-     *  Updates the master tag list to include tags in {@code book} that are not in the list.
-     *  @return a copy of this {@code book} such that every tag in this book points to a Tag object in the master
-     *  list.
+     * Updates the master tag list to include tags in {@code book} that are not in the list.
+     *
+     * @return a copy of this {@code book} such that every tag in this book points to a Tag object in the master
+     * list.
      */
     private Book syncWithMasterTagList(Book book) {
         final UniqueTagList bookTags = new UniqueTagList(book.getTags());
@@ -133,11 +133,12 @@ public class Catalogue implements ReadOnlyCatalogue {
         final Set<Tag> correctTagReferences = new HashSet<>();
         bookTags.forEach(tag -> correctTagReferences.add(masterTagObjects.get(tag)));
         return new Book(
-                book.getTitle(), book.getAuthor(), book.getIsbn(), book.getAvail(), correctTagReferences);
+            book.getTitle(), book.getAuthor(), book.getIsbn(), book.getAvail(), correctTagReferences);
     }
 
     /**
      * Removes {@code key} from this {@code Catalogue}.
+     *
      * @throws BookNotFoundException if the {@code key} is not in this {@code Catalogue}.
      */
     public boolean removeBook(Book key) throws BookNotFoundException {
@@ -158,7 +159,7 @@ public class Catalogue implements ReadOnlyCatalogue {
 
     @Override
     public String toString() {
-        return books.asObservableList().size() + " books, " + tags.asObservableList().size() +  " tags";
+        return books.asObservableList().size() + " books, " + tags.asObservableList().size() + " tags";
         // TODO: refine later
     }
 
@@ -175,9 +176,9 @@ public class Catalogue implements ReadOnlyCatalogue {
     @Override
     public boolean equals(Object other) {
         return other == this // short circuit if same object
-                || (other instanceof Catalogue // instanceof handles nulls
-                && this.books.equals(((Catalogue) other).books)
-                && this.tags.equalsOrderInsensitive(((Catalogue) other).tags));
+            || (other instanceof Catalogue // instanceof handles nulls
+            && this.books.equals(((Catalogue) other).books)
+            && this.tags.equalsOrderInsensitive(((Catalogue) other).tags));
     }
 
     @Override

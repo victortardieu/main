@@ -44,7 +44,7 @@ public class XmlSerializableCatalogue {
      * Converts this catalogue into the model's {@code Catalogue} object.
      *
      * @throws IllegalValueException if there were any data constraints violated or duplicates in the
-     * {@code XmlAdaptedBook} or {@code XmlAdaptedTag}.
+     *                               {@code XmlAdaptedBook} or {@code XmlAdaptedTag}.
      */
     public Catalogue toModelType() throws IllegalValueException {
         Catalogue catalogue = new Catalogue();

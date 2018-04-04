@@ -59,7 +59,7 @@ public class StatusBarFooterTest extends GuiUnitTest {
         // after catalogue is updated
         postNow(EVENT_STUB);
         assertStatusBarContent(RELATIVE_PATH + STUB_SAVE_LOCATION,
-                String.format(SYNC_STATUS_UPDATED, new Date(injectedClock.millis()).toString()));
+            String.format(SYNC_STATUS_UPDATED, new Date(injectedClock.millis()).toString()));
     }
 
     /**

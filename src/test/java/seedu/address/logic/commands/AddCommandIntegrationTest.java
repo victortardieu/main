@@ -35,7 +35,7 @@ public class AddCommandIntegrationTest {
         expectedModel.addBook(validBook);
 
         assertCommandSuccess(prepareCommand(validBook, model), model,
-                String.format(AddCommand.MESSAGE_SUCCESS, validBook), expectedModel);
+            String.format(AddCommand.MESSAGE_SUCCESS, validBook), expectedModel);
     }
 
     @Test

@@ -21,6 +21,9 @@ import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Catalogue;
 import seedu.address.model.Model;
 import seedu.address.model.ReadOnlyCatalogue;
+import seedu.address.model.account.Account;
+import seedu.address.model.account.Credential;
+import seedu.address.model.account.PrivilegeLevel;
 import seedu.address.model.book.Book;
 import seedu.address.model.book.exceptions.DuplicateBookException;
 import seedu.address.testutil.BookBuilder;
@@ -133,8 +136,8 @@ public class AddCommandTest {
         }
 
         @Override
-        public int authenticate(String username, String password) {
-            return 0;
+        public PrivilegeLevel authenticate(Credential c) {
+            return Model.PRIVILEGE_LEVEL_GUEST;
         }
 
         @Override
@@ -143,8 +146,20 @@ public class AddCommandTest {
         }
 
         @Override
-        public int getPrivilegeLevel() {
-            return 0;
+        public PrivilegeLevel getPrivilegeLevel() {
+            return Model.PRIVILEGE_LEVEL_GUEST;
+        }
+
+        public void addAccount(Account account) {
+
+        }
+
+        public void deleteAccount(Account account) {
+
+        }
+
+        public void updateAccount(Account account, Account editedAccount) {
+
         }
     }
 

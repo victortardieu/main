@@ -14,7 +14,7 @@ import seedu.address.model.book.exceptions.DuplicateBookException;
 
 /**
  * A list of books that enforces uniqueness between its elements and does not allow nulls.
- *
+ * <p>
  * Supports a minimal set of list operations.
  *
  * @see Book#equals(Object)
@@ -49,10 +49,10 @@ public class UniqueBookList implements Iterable<Book> {
      * Replaces the book {@code target} in the list with {@code editedBook}.
      *
      * @throws DuplicateBookException if the replacement is equivalent to another existing book in the list.
-     * @throws BookNotFoundException if {@code target} could not be found in the list.
+     * @throws BookNotFoundException  if {@code target} could not be found in the list.
      */
     public void setBook(Book target, Book editedBook)
-            throws DuplicateBookException, BookNotFoundException {
+        throws DuplicateBookException, BookNotFoundException {
         requireNonNull(editedBook);
 
         int index = internalList.indexOf(target);
@@ -109,8 +109,8 @@ public class UniqueBookList implements Iterable<Book> {
     @Override
     public boolean equals(Object other) {
         return other == this // short circuit if same object
-                || (other instanceof UniqueBookList // instanceof handles nulls
-                        && this.internalList.equals(((UniqueBookList) other).internalList));
+            || (other instanceof UniqueBookList // instanceof handles nulls
+            && this.internalList.equals(((UniqueBookList) other).internalList));
     }
 
     @Override

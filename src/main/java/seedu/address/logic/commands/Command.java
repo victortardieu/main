@@ -5,13 +5,14 @@ import seedu.address.logic.CommandHistory;
 import seedu.address.logic.UndoRedoStack;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
+import seedu.address.model.account.PrivilegeLevel;
 
 /**
  * Represents a command with hidden internal logic and the ability to be executed.
  */
 public abstract class Command {
     public static final String MESSAGE_UNPRIVILEGED = "You are not allowed to execute this command,"
-            + " login and try again";
+        + " login and try again";
 
     protected Model model;
     protected CommandHistory history;
@@ -45,7 +46,7 @@ public abstract class Command {
         this.model = model;
     }
 
-    public int getPrivilegeLevel() {
+    public PrivilegeLevel getPrivilegeLevel() {
         return Model.PRIVILEGE_LEVEL_GUEST;
     }
 }

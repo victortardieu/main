@@ -36,10 +36,10 @@ public class BookCardHandle extends NodeHandle<Node> {
 
         Region tagsContainer = getChildNode(TAGS_FIELD_ID);
         this.tagLabels = tagsContainer
-                .getChildrenUnmodifiable()
-                .stream()
-                .map(Label.class::cast)
-                .collect(Collectors.toList());
+            .getChildrenUnmodifiable()
+            .stream()
+            .map(Label.class::cast)
+            .collect(Collectors.toList());
     }
 
     public String getId() {
@@ -64,8 +64,8 @@ public class BookCardHandle extends NodeHandle<Node> {
 
     public List<String> getTags() {
         return tagLabels
-                .stream()
-                .map(Label::getText)
-                .collect(Collectors.toList());
+            .stream()
+            .map(Label::getText)
+            .collect(Collectors.toList());
     }
 }

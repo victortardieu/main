@@ -11,7 +11,7 @@ public class Isbn {
 
 
     public static final String MESSAGE_ISBN_CONSTRAINTS =
-            "Isbn numbers can only contain numbers, and should be at least 3 digits long";
+        "Isbn numbers can only contain numbers, and should be at least 3 digits long";
     public static final String ISBN_VALIDATION_REGEX = "\\d{3,}";
     public final String value;
 
@@ -41,8 +41,8 @@ public class Isbn {
     @Override
     public boolean equals(Object other) {
         return other == this // short circuit if same object
-                || (other instanceof Isbn // instanceof handles nulls
-                && this.value.equals(((Isbn) other).value)); // state check
+            || (other instanceof Isbn // instanceof handles nulls
+            && this.value.equals(((Isbn) other).value)); // state check
     }
 
     @Override

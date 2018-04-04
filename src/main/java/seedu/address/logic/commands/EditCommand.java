@@ -20,6 +20,7 @@ import seedu.address.commons.core.index.Index;
 import seedu.address.commons.util.CollectionUtil;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
+import seedu.address.model.account.PrivilegeLevel;
 import seedu.address.model.book.Author;
 import seedu.address.model.book.Avail;
 import seedu.address.model.book.Book;
@@ -27,7 +28,6 @@ import seedu.address.model.book.Isbn;
 import seedu.address.model.book.Title;
 import seedu.address.model.book.exceptions.BookNotFoundException;
 import seedu.address.model.book.exceptions.DuplicateBookException;
-
 import seedu.address.model.tag.Tag;
 
 /**
@@ -38,23 +38,23 @@ public class EditCommand extends UndoableCommand {
     public static final String COMMAND_WORD = "edit";
 
     public static final String MESSAGE_USAGE = COMMAND_WORD + ": Edits the details of the book identified "
-            + "by the index number used in the last book listing. "
-            + "Existing values will be overwritten by the input values.\n"
-            + "Parameters: INDEX (must be a positive integer) "
-            + "[" + PREFIX_TITLE + "TITLE] "
-            + "[" + PREFIX_AUTHOR + "AUTHOR] "
-            + "[" + PREFIX_ISBN + "ISBN] "
-            + "[" + PREFIX_AVAIL + "AVAIL] "
-            + "[" + PREFIX_TAG + "TAG]...\n"
-            + "Example: " + COMMAND_WORD + " 1 "
-            + PREFIX_ISBN + "91234567 "
-            + PREFIX_AVAIL + "Borrowed";
+        + "by the index number used in the last book listing. "
+        + "Existing values will be overwritten by the input values.\n"
+        + "Parameters: INDEX (must be a positive integer) "
+        + "[" + PREFIX_TITLE + "TITLE] "
+        + "[" + PREFIX_AUTHOR + "AUTHOR] "
+        + "[" + PREFIX_ISBN + "ISBN] "
+        + "[" + PREFIX_AVAIL + "AVAIL] "
+        + "[" + PREFIX_TAG + "TAG]...\n"
+        + "Example: " + COMMAND_WORD + " 1 "
+        + PREFIX_ISBN + "91234567 "
+        + PREFIX_AVAIL + "Borrowed";
 
     public static final String MESSAGE_EDIT_BOOK_SUCCESS = "Edited Book: %1$s";
     public static final String MESSAGE_NOT_EDITED = "At least one field to edit must be provided.";
     public static final String MESSAGE_DUPLICATE_BOOK = "This book already exists in the catalogue.";
 
-    public static final int PRIVILEGE_LEVEL = Model.PRIVILEGE_LEVEL_LIBRARIAN;
+    public static final PrivilegeLevel PRIVILEGE_LEVEL = Model.PRIVILEGE_LEVEL_LIBRARIAN;
 
     private final Index index;
     private final EditBookDescriptor editBookDescriptor;
@@ -63,7 +63,7 @@ public class EditCommand extends UndoableCommand {
     private Book editedBook;
 
     /**
-     * @param index of the book in the filtered book list to edit
+     * @param index              of the book in the filtered book list to edit
      * @param editBookDescriptor details to edit the book with
      */
     public EditCommand(Index index, EditBookDescriptor editBookDescriptor) {
@@ -72,6 +72,22 @@ public class EditCommand extends UndoableCommand {
 
         this.index = index;
         this.editBookDescriptor = new EditBookDescriptor(editBookDescriptor);
+    }
+
+    /**
+     * Creates and returns a {@code Book} with the details of {@code bookToEdit}
+     * edited with {@code editBookDescriptor}.
+     */
+    private static Book createEditedBook(Book bookToEdit, EditBookDescriptor editBookDescriptor) {
+        assert bookToEdit != null;
+
+        Title updatedTitle = editBookDescriptor.getTitle().orElse(bookToEdit.getTitle());
+        Isbn updatedIsbn = editBookDescriptor.getIsbn().orElse(bookToEdit.getIsbn());
+        Avail updatedAvail = editBookDescriptor.getAvail().orElse(bookToEdit.getAvail());
+        Author updatedAuthor = editBookDescriptor.getAuthor().orElse(bookToEdit.getAuthor());
+        Set<Tag> updatedTags = editBookDescriptor.getTags().orElse(bookToEdit.getTags());
+
+        return new Book(updatedTitle, updatedAuthor, updatedIsbn, updatedAvail, updatedTags);
     }
 
     @Override
@@ -99,22 +115,6 @@ public class EditCommand extends UndoableCommand {
         editedBook = createEditedBook(bookToEdit, editBookDescriptor);
     }
 
-    /**
-     * Creates and returns a {@code Book} with the details of {@code bookToEdit}
-     * edited with {@code editBookDescriptor}.
-     */
-    private static Book createEditedBook(Book bookToEdit, EditBookDescriptor editBookDescriptor) {
-        assert bookToEdit != null;
-
-        Title updatedTitle = editBookDescriptor.getTitle().orElse(bookToEdit.getTitle());
-        Isbn updatedIsbn = editBookDescriptor.getIsbn().orElse(bookToEdit.getIsbn());
-        Avail updatedAvail = editBookDescriptor.getAvail().orElse(bookToEdit.getAvail());
-        Author updatedAuthor = editBookDescriptor.getAuthor().orElse(bookToEdit.getAuthor());
-        Set<Tag> updatedTags = editBookDescriptor.getTags().orElse(bookToEdit.getTags());
-
-        return new Book(updatedTitle, updatedAuthor, updatedIsbn, updatedAvail, updatedTags);
-    }
-
     @Override
     public boolean equals(Object other) {
         // short circuit if same object
@@ -130,12 +130,12 @@ public class EditCommand extends UndoableCommand {
         // state check
         EditCommand e = (EditCommand) other;
         return index.equals(e.index)
-                && editBookDescriptor.equals(e.editBookDescriptor)
-                && Objects.equals(bookToEdit, e.bookToEdit);
+            && editBookDescriptor.equals(e.editBookDescriptor)
+            && Objects.equals(bookToEdit, e.bookToEdit);
     }
 
     @Override
-    public int getPrivilegeLevel() {
+    public PrivilegeLevel getPrivilegeLevel() {
         return PRIVILEGE_LEVEL;
     }
 
@@ -150,7 +150,8 @@ public class EditCommand extends UndoableCommand {
         private Avail avail;
         private Set<Tag> tags;
 
-        public EditBookDescriptor() {}
+        public EditBookDescriptor() {
+        }
 
         /**
          * Copy constructor.
@@ -171,44 +172,36 @@ public class EditCommand extends UndoableCommand {
             return CollectionUtil.isAnyNonNull(this.title, this.author, this.isbn, this.avail, this.tags);
         }
 
-        public void setTitle(Title title) {
-            this.title = title;
-        }
-
         public Optional<Title> getTitle() {
             return Optional.ofNullable(title);
         }
 
-        public void setAuthor(Author author) {
-            this.author = author;
+        public void setTitle(Title title) {
+            this.title = title;
         }
 
         public Optional<Author> getAuthor() {
             return Optional.ofNullable(author);
         }
 
-        public void setIsbn(Isbn isbn) {
-            this.isbn = isbn;
+        public void setAuthor(Author author) {
+            this.author = author;
         }
 
         public Optional<Isbn> getIsbn() {
             return Optional.ofNullable(isbn);
         }
 
-        public void setAvail(Avail avail) {
-            this.avail = avail;
+        public void setIsbn(Isbn isbn) {
+            this.isbn = isbn;
         }
 
         public Optional<Avail> getAvail() {
             return Optional.ofNullable(avail);
         }
 
-        /**
-         * Sets {@code tags} to this object's {@code tags}.
-         * A defensive copy of {@code tags} is used internally.
-         */
-        public void setTags(Set<Tag> tags) {
-            this.tags = (tags != null) ? new HashSet<>(tags) : null;
+        public void setAvail(Avail avail) {
+            this.avail = avail;
         }
 
         /**
@@ -218,6 +211,14 @@ public class EditCommand extends UndoableCommand {
          */
         public Optional<Set<Tag>> getTags() {
             return (tags != null) ? Optional.of(Collections.unmodifiableSet(tags)) : Optional.empty();
+        }
+
+        /**
+         * Sets {@code tags} to this object's {@code tags}.
+         * A defensive copy of {@code tags} is used internally.
+         */
+        public void setTags(Set<Tag> tags) {
+            this.tags = (tags != null) ? new HashSet<>(tags) : null;
         }
 
         @Override
@@ -236,10 +237,10 @@ public class EditCommand extends UndoableCommand {
             EditBookDescriptor e = (EditBookDescriptor) other;
 
             return getTitle().equals(e.getTitle())
-                    && getAuthor().equals(e.getAuthor())
-                    && getIsbn().equals(e.getIsbn())
-                    && getAvail().equals(e.getAvail())
-                    && getTags().equals(e.getTags());
+                && getAuthor().equals(e.getAuthor())
+                && getIsbn().equals(e.getIsbn())
+                && getAvail().equals(e.getAvail())
+                && getTags().equals(e.getTags());
         }
 
 

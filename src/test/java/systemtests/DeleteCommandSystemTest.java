@@ -24,7 +24,7 @@ import seedu.address.model.book.exceptions.BookNotFoundException;
 public class DeleteCommandSystemTest extends CatalogueSystemTest {
 
     private static final String MESSAGE_INVALID_DELETE_COMMAND_FORMAT =
-            String.format(Messages.MESSAGE_INVALID_COMMAND_FORMAT, DeleteCommand.MESSAGE_USAGE);
+        String.format(Messages.MESSAGE_INVALID_COMMAND_FORMAT, DeleteCommand.MESSAGE_USAGE);
 
     @Test
     public void delete() {
@@ -101,7 +101,7 @@ public class DeleteCommandSystemTest extends CatalogueSystemTest {
 
         /* Case: invalid index (size + 1) -> rejected */
         Index outOfBoundsIndex = Index.fromOneBased(
-                getModel().getCatalogue().getBookList().size() + 1);
+            getModel().getCatalogue().getBookList().size() + 1);
         command = DeleteCommand.COMMAND_WORD + " " + outOfBoundsIndex.getOneBased();
         assertCommandFailure(command, MESSAGE_INVALID_BOOK_DISPLAYED_INDEX);
 
@@ -117,6 +117,7 @@ public class DeleteCommandSystemTest extends CatalogueSystemTest {
 
     /**
      * Removes the {@code Book} at the specified {@code index} in {@code model}'s catalogue.
+     *
      * @return the removed book
      */
     private Book removeBook(Model model, Index index) {
@@ -132,6 +133,7 @@ public class DeleteCommandSystemTest extends CatalogueSystemTest {
     /**
      * Deletes the book at {@code toDelete} by creating a default {@code DeleteCommand} using {@code toDelete} and
      * performs the same verification as {@code assertCommandSuccess(String, Model, String)}.
+     *
      * @see DeleteCommandSystemTest#assertCommandSuccess(String, Model, String)
      */
     private void assertCommandSuccess(Index toDelete) {
@@ -140,7 +142,7 @@ public class DeleteCommandSystemTest extends CatalogueSystemTest {
         String expectedResultMessage = String.format(MESSAGE_DELETE_BOOK_SUCCESS, deletedBook);
 
         assertCommandSuccess(
-                DeleteCommand.COMMAND_WORD + " " + toDelete.getOneBased(), expectedModel, expectedResultMessage);
+            DeleteCommand.COMMAND_WORD + " " + toDelete.getOneBased(), expectedModel, expectedResultMessage);
     }
 
     /**
@@ -153,6 +155,7 @@ public class DeleteCommandSystemTest extends CatalogueSystemTest {
      * 6. Asserts that the command box has the default style class.<br>
      * Verifications 1 to 3 are performed by
      * {@code CatalogueSystemTest#assertApplicationDisplaysExpected(String, String, Model)}.
+     *
      * @see CatalogueSystemTest#assertApplicationDisplaysExpected(String, String, Model)
      */
     private void assertCommandSuccess(String command, Model expectedModel, String expectedResultMessage) {
@@ -162,11 +165,12 @@ public class DeleteCommandSystemTest extends CatalogueSystemTest {
     /**
      * Performs the same verification as {@code assertCommandSuccess(String, Model, String)} except that the browser url
      * and selected card are expected to update accordingly depending on the card at {@code expectedSelectedCardIndex}.
+     *
      * @see DeleteCommandSystemTest#assertCommandSuccess(String, Model, String)
      * @see CatalogueSystemTest#assertSelectedCardChanged(Index)
      */
     private void assertCommandSuccess(String command, Model expectedModel, String expectedResultMessage,
-            Index expectedSelectedCardIndex) {
+                                      Index expectedSelectedCardIndex) {
         executeCommand(command);
         assertApplicationDisplaysExpected("", expectedResultMessage, expectedModel);
 
@@ -189,6 +193,7 @@ public class DeleteCommandSystemTest extends CatalogueSystemTest {
      * 5. Asserts that the command box has the error style.<br>
      * Verifications 1 to 3 are performed by
      * {@code CatalogueSystemTest#assertApplicationDisplaysExpected(String, String, Model)}.<br>
+     *
      * @see CatalogueSystemTest#assertApplicationDisplaysExpected(String, String, Model)
      */
     private void assertCommandFailure(String command, String expectedResultMessage) {

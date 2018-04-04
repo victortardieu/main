@@ -1,14 +1,19 @@
 package seedu.address.storage;
 
-import seedu.address.commons.core.LogsCenter;
-import seedu.address.commons.exceptions.DataConversionException;
-import seedu.address.model.account.UniqueAccountList;
+import static java.util.Objects.requireNonNull;
 
-import java.io.*;
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.FileOutputStream;
+import java.io.IOException;
+import java.io.ObjectInputStream;
+import java.io.ObjectOutputStream;
 import java.util.Optional;
 import java.util.logging.Logger;
 
-import static java.util.Objects.requireNonNull;
+import seedu.address.commons.core.LogsCenter;
+import seedu.address.commons.exceptions.DataConversionException;
+import seedu.address.model.account.UniqueAccountList;
 
 public class SerialisedAccountListStorage implements AccountListStorage {
     private static final Logger logger = LogsCenter.getLogger(SerialisedAccountListStorage.class);

@@ -3,10 +3,16 @@ package systemtests;
 import static org.junit.Assert.assertFalse;
 import static seedu.address.commons.core.Messages.MESSAGE_BOOKS_LISTED_OVERVIEW;
 import static seedu.address.commons.core.Messages.MESSAGE_UNKNOWN_COMMAND;
-import static seedu.address.testutil.TypicalBooks.*;
+import static seedu.address.testutil.TypicalBooks.BENSON;
+import static seedu.address.testutil.TypicalBooks.CARL;
+import static seedu.address.testutil.TypicalBooks.DANIEL;
+import static seedu.address.testutil.TypicalBooks.KEYWORD_MATCHING_MEIER;
+
 import java.util.ArrayList;
 import java.util.List;
+
 import org.junit.Test;
+
 import seedu.address.commons.core.index.Index;
 import seedu.address.logic.commands.DeleteCommand;
 import seedu.address.logic.commands.FindCommand;

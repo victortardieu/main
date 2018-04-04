@@ -2,12 +2,36 @@ package systemtests;
 
 import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertTrue;
-import static seedu.address.logic.commands.CommandTestUtil.*;
+import static seedu.address.logic.commands.CommandTestUtil.AUTHOR_DESC_AMY;
+import static seedu.address.logic.commands.CommandTestUtil.AUTHOR_DESC_BOB;
+import static seedu.address.logic.commands.CommandTestUtil.AVAIL_DESC_AMY;
+import static seedu.address.logic.commands.CommandTestUtil.AVAIL_DESC_BOB;
+import static seedu.address.logic.commands.CommandTestUtil.INVALID_AUTHOR_DESC;
+import static seedu.address.logic.commands.CommandTestUtil.INVALID_AVAIL_DESC;
+import static seedu.address.logic.commands.CommandTestUtil.INVALID_ISBN_DESC;
+import static seedu.address.logic.commands.CommandTestUtil.INVALID_TAG_DESC;
+import static seedu.address.logic.commands.CommandTestUtil.INVALID_TITLE_DESC;
+import static seedu.address.logic.commands.CommandTestUtil.ISBN_DESC_AMY;
+import static seedu.address.logic.commands.CommandTestUtil.ISBN_DESC_BOB;
+import static seedu.address.logic.commands.CommandTestUtil.TAG_DESC_FRIEND;
+import static seedu.address.logic.commands.CommandTestUtil.TAG_DESC_HUSBAND;
+import static seedu.address.logic.commands.CommandTestUtil.TITLE_DESC_AMY;
+import static seedu.address.logic.commands.CommandTestUtil.TITLE_DESC_BOB;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_AUTHOR_BOB;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_AVAIL_BOB;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_ISBN_BOB;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_TAG_FRIEND;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_TAG_HUSBAND;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_TITLE_BOB;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_TAG;
 import static seedu.address.model.Model.PREDICATE_SHOW_ALL_BOOKS;
-import static seedu.address.testutil.TypicalBooks.*;
+import static seedu.address.testutil.TypicalBooks.AMY;
+import static seedu.address.testutil.TypicalBooks.BOB;
+import static seedu.address.testutil.TypicalBooks.KEYWORD_MATCHING_MEIER;
 import static seedu.address.testutil.TypicalIndexes.INDEX_FIRST_BOOK;
+
 import org.junit.Test;
+
 import seedu.address.commons.core.Messages;
 import seedu.address.commons.core.index.Index;
 import seedu.address.logic.commands.EditCommand;

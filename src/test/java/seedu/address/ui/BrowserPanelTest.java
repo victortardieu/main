@@ -6,9 +6,12 @@ import static seedu.address.testutil.EventsUtil.postNow;
 import static seedu.address.testutil.TypicalBooks.ALICE;
 import static seedu.address.ui.BrowserPanel.DEFAULT_PAGE;
 import static seedu.address.ui.UiPart.FXML_FILE_FOLDER;
+
 import java.net.URL;
+
 import org.junit.Before;
 import org.junit.Test;
+
 import guitests.guihandles.BrowserPanelHandle;
 import seedu.address.MainApp;
 import seedu.address.commons.events.ui.BookPanelSelectionChangedEvent;

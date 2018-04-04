@@ -1,8 +1,10 @@
 package seedu.address.ui.testutil;
 
 import static org.junit.Assert.assertEquals;
+
 import java.util.List;
 import java.util.stream.Collectors;
+
 import guitests.guihandles.BookCardHandle;
 import guitests.guihandles.BookListPanelHandle;
 import guitests.guihandles.ResultDisplayHandle;

@@ -1,11 +1,20 @@
 package seedu.address.storage;
 
-import seedu.address.commons.exceptions.IllegalValueException;
-import seedu.address.model.book.*;
-import seedu.address.model.tag.Tag;
+import java.util.ArrayList;
+import java.util.HashSet;
+import java.util.List;
+import java.util.Objects;
+import java.util.Set;
 
 import javax.xml.bind.annotation.XmlElement;
-import java.util.*;
+
+import seedu.address.commons.exceptions.IllegalValueException;
+import seedu.address.model.book.Author;
+import seedu.address.model.book.Avail;
+import seedu.address.model.book.Book;
+import seedu.address.model.book.Isbn;
+import seedu.address.model.book.Title;
+import seedu.address.model.tag.Tag;
 
 /**
  * JAXB-friendly version of the Book.

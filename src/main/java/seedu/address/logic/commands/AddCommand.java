@@ -14,7 +14,6 @@ import seedu.address.model.book.Book;
 import seedu.address.model.book.exceptions.DuplicateBookException;
 
 
-
 /**
  * Adds a book to the catalogue.
  */

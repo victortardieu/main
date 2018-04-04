@@ -1,10 +1,13 @@
 package systemtests;
 
 import static seedu.address.ui.testutil.GuiTestAssert.assertListMatching;
+
 import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Paths;
+
 import org.junit.Test;
+
 import seedu.address.model.Catalogue;
 import seedu.address.model.book.Book;
 import seedu.address.model.util.SampleDataUtil;

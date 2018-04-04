@@ -10,7 +10,6 @@ import com.google.common.eventbus.Subscribe;
 import javafx.application.Application;
 import javafx.application.Platform;
 import javafx.stage.Stage;
-
 import seedu.address.commons.core.Config;
 import seedu.address.commons.core.EventsCenter;
 import seedu.address.commons.core.LogsCenter;
@@ -40,7 +39,6 @@ import seedu.address.storage.UserPrefsStorage;
 import seedu.address.storage.XmlCatalogueStorage;
 import seedu.address.ui.Ui;
 import seedu.address.ui.UiManager;
-
 
 
 /**
@@ -127,11 +125,11 @@ public class MainApp extends Application {
             }
         } catch (DataConversionException e) {
             logger.warning("AccountList file not in the correct format. "
-                                + "Will be starting with an accountList with only admin");
+                + "Will be starting with an accountList with only admin");
             initlaAccountList = new UniqueAccountList();
         } catch (IOException e) {
             logger.warning("Problem while reading from the AccountList file. "
-                                + "Will be starting with an accountList with only admin");
+                + "Will be starting with an accountList with only admin");
             System.out.print(e.getMessage());
             initlaAccountList = new UniqueAccountList();
         }

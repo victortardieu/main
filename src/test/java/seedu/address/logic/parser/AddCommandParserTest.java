@@ -1,10 +1,38 @@
 package seedu.address.logic.parser;
 
 import static seedu.address.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
-import static seedu.address.logic.commands.CommandTestUtil.*;
+import static seedu.address.logic.commands.CommandTestUtil.AUTHOR_DESC_AMY;
+import static seedu.address.logic.commands.CommandTestUtil.AUTHOR_DESC_BOB;
+import static seedu.address.logic.commands.CommandTestUtil.AVAIL_DESC_AMY;
+import static seedu.address.logic.commands.CommandTestUtil.AVAIL_DESC_BOB;
+import static seedu.address.logic.commands.CommandTestUtil.INVALID_AUTHOR_DESC;
+import static seedu.address.logic.commands.CommandTestUtil.INVALID_AVAIL_DESC;
+import static seedu.address.logic.commands.CommandTestUtil.INVALID_ISBN_DESC;
+import static seedu.address.logic.commands.CommandTestUtil.INVALID_TAG_DESC;
+import static seedu.address.logic.commands.CommandTestUtil.INVALID_TITLE_DESC;
+import static seedu.address.logic.commands.CommandTestUtil.ISBN_DESC_AMY;
+import static seedu.address.logic.commands.CommandTestUtil.ISBN_DESC_BOB;
+import static seedu.address.logic.commands.CommandTestUtil.PREAMBLE_NON_EMPTY;
+import static seedu.address.logic.commands.CommandTestUtil.PREAMBLE_WHITESPACE;
+import static seedu.address.logic.commands.CommandTestUtil.TAG_DESC_FRIEND;
+import static seedu.address.logic.commands.CommandTestUtil.TAG_DESC_HUSBAND;
+import static seedu.address.logic.commands.CommandTestUtil.TITLE_DESC_AMY;
+import static seedu.address.logic.commands.CommandTestUtil.TITLE_DESC_BOB;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_AUTHOR_AMY;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_AUTHOR_BOB;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_AVAIL_AMY;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_AVAIL_BOB;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_ISBN_AMY;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_ISBN_BOB;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_TAG_FRIEND;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_TAG_HUSBAND;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_TITLE_AMY;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_TITLE_BOB;
 import static seedu.address.logic.parser.CommandParserTestUtil.assertParseFailure;
 import static seedu.address.logic.parser.CommandParserTestUtil.assertParseSuccess;
+
 import org.junit.Test;
+
 import seedu.address.logic.commands.AddCommand;
 import seedu.address.model.book.Author;
 import seedu.address.model.book.Avail;

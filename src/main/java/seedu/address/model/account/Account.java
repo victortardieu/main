@@ -1,9 +1,9 @@
 package seedu.address.model.account;
 
+import static java.util.Objects.requireNonNull;
+
 import java.io.Serializable;
 import java.util.Objects;
-
-import static java.util.Objects.requireNonNull;
 
 public class Account implements Serializable {
     private final Name name;

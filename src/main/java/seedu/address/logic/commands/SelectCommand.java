@@ -12,7 +12,6 @@ import seedu.address.model.account.PrivilegeLevel;
 import seedu.address.model.book.Book;
 
 
-
 /**
  * Selects a book identified using it's last displayed index from the catalogue.
  */

@@ -1,9 +1,9 @@
 package seedu.address.model.account;
 
-import java.io.Serializable;
-
 import static java.util.Objects.requireNonNull;
 import static seedu.address.commons.util.AppUtil.checkArgument;
+
+import java.io.Serializable;
 
 public class Password implements Serializable {
     public static final String MESSAGE_PASSWORD_CONSTRAINTS =

@@ -6,8 +6,10 @@ import static seedu.address.testutil.TypicalBooks.getTypicalBooks;
 import static seedu.address.testutil.TypicalIndexes.INDEX_SECOND_BOOK;
 import static seedu.address.ui.testutil.GuiTestAssert.assertCardDisplaysBook;
 import static seedu.address.ui.testutil.GuiTestAssert.assertCardEquals;
+
 import org.junit.Before;
 import org.junit.Test;
+
 import guitests.guihandles.BookCardHandle;
 import guitests.guihandles.BookListPanelHandle;
 import javafx.collections.FXCollections;

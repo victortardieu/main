@@ -3,6 +3,7 @@ package seedu.address;
 import java.io.File;
 import java.io.IOException;
 import java.util.function.Supplier;
+
 import javafx.stage.Screen;
 import javafx.stage.Stage;
 import seedu.address.commons.core.Config;

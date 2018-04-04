@@ -19,7 +19,7 @@ import seedu.address.model.book.Book;
 
 public class BookListPanelTest extends GuiUnitTest {
     private static final ObservableList<Book> TYPICAL_BOOKS =
-            FXCollections.observableList(getTypicalBooks());
+        FXCollections.observableList(getTypicalBooks());
 
     private static final JumpToListRequestEvent JUMP_TO_SECOND_EVENT = new JumpToListRequestEvent(INDEX_SECOND_BOOK);
 
@@ -31,7 +31,7 @@ public class BookListPanelTest extends GuiUnitTest {
         uiPartRule.setUiPart(bookListPanel);
 
         bookListPanelHandle = new BookListPanelHandle(getChildNode(bookListPanel.getRoot(),
-                BookListPanelHandle.BOOK_LIST_VIEW_ID));
+            BookListPanelHandle.BOOK_LIST_VIEW_ID));
     }
 
     @Test

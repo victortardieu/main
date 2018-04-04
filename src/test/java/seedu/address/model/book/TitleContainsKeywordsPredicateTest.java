@@ -72,6 +72,6 @@ public class TitleContainsKeywordsPredicateTest {
         // Keywords match isbn, avail and address, but does not match name
         predicate = new TitleContainsKeywordsPredicate(Arrays.asList("12345", "Borrowed", "Main", "Street"));
         assertFalse(predicate.test(new BookBuilder().withTitle("Alice").withIsbn("12345")
-                .withAvail("Borrowed").withAuthor("Main Street").build()));
+            .withAvail("Borrowed").withAuthor("Main Street").build()));
     }
 }

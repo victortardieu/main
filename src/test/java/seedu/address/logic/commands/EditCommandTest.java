@@ -60,10 +60,10 @@ public class EditCommandTest {
 
         BookBuilder bookInList = new BookBuilder(lastBook);
         Book editedBook = bookInList.withTitle(VALID_TITLE_BOB).withIsbn(VALID_ISBN_BOB)
-                .withTags(VALID_TAG_HUSBAND).build();
+            .withTags(VALID_TAG_HUSBAND).build();
 
         EditBookDescriptor descriptor = new EditBookDescriptorBuilder().withName(VALID_TITLE_BOB)
-                .withIsbn(VALID_ISBN_BOB).withTags(VALID_TAG_HUSBAND).build();
+            .withIsbn(VALID_ISBN_BOB).withTags(VALID_TAG_HUSBAND).build();
         EditCommand editCommand = prepareCommand(indexLastBook, descriptor);
 
         String expectedMessage = String.format(EditCommand.MESSAGE_EDIT_BOOK_SUCCESS, editedBook);
@@ -93,7 +93,7 @@ public class EditCommandTest {
         Book bookInFilteredList = model.getFilteredBookList().get(INDEX_FIRST_BOOK.getZeroBased());
         Book editedBook = new BookBuilder(bookInFilteredList).withTitle(VALID_TITLE_BOB).build();
         EditCommand editCommand = prepareCommand(INDEX_FIRST_BOOK,
-                new EditBookDescriptorBuilder().withName(VALID_TITLE_BOB).build());
+            new EditBookDescriptorBuilder().withName(VALID_TITLE_BOB).build());
 
         String expectedMessage = String.format(EditCommand.MESSAGE_EDIT_BOOK_SUCCESS, editedBook);
 
@@ -119,7 +119,7 @@ public class EditCommandTest {
         // edit book in filtered list into a duplicate in catalogue
         Book bookInList = model.getCatalogue().getBookList().get(INDEX_SECOND_BOOK.getZeroBased());
         EditCommand editCommand = prepareCommand(INDEX_FIRST_BOOK,
-                new EditBookDescriptorBuilder(bookInList).build());
+            new EditBookDescriptorBuilder(bookInList).build());
 
         assertCommandFailure(editCommand, model, EditCommand.MESSAGE_DUPLICATE_BOOK);
     }
@@ -145,7 +145,7 @@ public class EditCommandTest {
         assertTrue(outOfBoundIndex.getZeroBased() < model.getCatalogue().getBookList().size());
 
         EditCommand editCommand = prepareCommand(outOfBoundIndex,
-                new EditBookDescriptorBuilder().withName(VALID_TITLE_BOB).build());
+            new EditBookDescriptorBuilder().withName(VALID_TITLE_BOB).build());
 
         assertCommandFailure(editCommand, model, Messages.MESSAGE_INVALID_BOOK_DISPLAYED_INDEX);
     }

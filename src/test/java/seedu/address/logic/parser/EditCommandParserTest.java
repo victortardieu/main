@@ -48,7 +48,7 @@ public class EditCommandParserTest {
     private static final String TAG_EMPTY = " " + PREFIX_TAG;
 
     private static final String MESSAGE_INVALID_FORMAT =
-            String.format(MESSAGE_INVALID_COMMAND_FORMAT, EditCommand.MESSAGE_USAGE);
+        String.format(MESSAGE_INVALID_COMMAND_FORMAT, EditCommand.MESSAGE_USAGE);
 
     private EditCommandParser parser = new EditCommandParser();
 
@@ -102,21 +102,21 @@ public class EditCommandParserTest {
 
         // multiple invalid values, but only the first invalid value is captured
         assertParseFailure(parser, "1" + INVALID_TITLE_DESC + VALID_AUTHOR_AMY
-                        + INVALID_AVAIL_DESC + VALID_ISBN_AMY,
-                Title.MESSAGE_TITLE_CONSTRAINTS);
+                + INVALID_AVAIL_DESC + VALID_ISBN_AMY,
+            Title.MESSAGE_TITLE_CONSTRAINTS);
     }
 
     @Test
     public void parse_allFieldsSpecified_success() {
         Index targetIndex = INDEX_SECOND_BOOK;
         String userInput = targetIndex.getOneBased() + TITLE_DESC_AMY + AUTHOR_DESC_AMY
-                + ISBN_DESC_BOB + TAG_DESC_HUSBAND
-                + AVAIL_DESC_AMY + TAG_DESC_FRIEND;
+            + ISBN_DESC_BOB + TAG_DESC_HUSBAND
+            + AVAIL_DESC_AMY + TAG_DESC_FRIEND;
 
         EditBookDescriptor descriptor = new EditBookDescriptorBuilder().withName(VALID_TITLE_AMY)
-                .withAuthor(VALID_AUTHOR_AMY)
-                .withIsbn(VALID_ISBN_BOB).withAvail(VALID_AVAIL_AMY)
-                .withTags(VALID_TAG_HUSBAND, VALID_TAG_FRIEND).build();
+            .withAuthor(VALID_AUTHOR_AMY)
+            .withIsbn(VALID_ISBN_BOB).withAvail(VALID_AVAIL_AMY)
+            .withTags(VALID_TAG_HUSBAND, VALID_TAG_FRIEND).build();
         EditCommand expectedCommand = new EditCommand(targetIndex, descriptor);
 
         assertParseSuccess(parser, userInput, expectedCommand);
@@ -128,7 +128,7 @@ public class EditCommandParserTest {
         String userInput = targetIndex.getOneBased() + ISBN_DESC_BOB + AVAIL_DESC_AMY;
 
         EditBookDescriptor descriptor = new EditBookDescriptorBuilder().withIsbn(VALID_ISBN_BOB)
-                .withAvail(VALID_AVAIL_AMY).build();
+            .withAvail(VALID_AVAIL_AMY).build();
         EditCommand expectedCommand = new EditCommand(targetIndex, descriptor);
 
         assertParseSuccess(parser, userInput, expectedCommand);
@@ -171,15 +171,15 @@ public class EditCommandParserTest {
     @Test
     public void parse_multipleRepeatedFields_acceptsLast() {
         Index targetIndex = INDEX_FIRST_BOOK;
-        String userInput = targetIndex.getOneBased()  + AUTHOR_DESC_AMY + ISBN_DESC_AMY + AVAIL_DESC_AMY
-                + TAG_DESC_FRIEND + AUTHOR_DESC_AMY + ISBN_DESC_AMY
-                + AVAIL_DESC_AMY + TAG_DESC_FRIEND + AUTHOR_DESC_BOB
-                + ISBN_DESC_BOB + AVAIL_DESC_BOB + TAG_DESC_HUSBAND;
+        String userInput = targetIndex.getOneBased() + AUTHOR_DESC_AMY + ISBN_DESC_AMY + AVAIL_DESC_AMY
+            + TAG_DESC_FRIEND + AUTHOR_DESC_AMY + ISBN_DESC_AMY
+            + AVAIL_DESC_AMY + TAG_DESC_FRIEND + AUTHOR_DESC_BOB
+            + ISBN_DESC_BOB + AVAIL_DESC_BOB + TAG_DESC_HUSBAND;
 
         EditBookDescriptor descriptor = new EditBookDescriptorBuilder()
-                .withAuthor(VALID_AUTHOR_BOB).withIsbn(VALID_ISBN_BOB)
-                .withAvail(VALID_AVAIL_BOB).withTags(VALID_TAG_FRIEND, VALID_TAG_HUSBAND)
-                .build();
+            .withAuthor(VALID_AUTHOR_BOB).withIsbn(VALID_ISBN_BOB)
+            .withAvail(VALID_AVAIL_BOB).withTags(VALID_TAG_FRIEND, VALID_TAG_HUSBAND)
+            .build();
         EditCommand expectedCommand = new EditCommand(targetIndex, descriptor);
 
         assertParseSuccess(parser, userInput, expectedCommand);
@@ -196,10 +196,10 @@ public class EditCommandParserTest {
 
         // other valid values specified
         userInput = targetIndex.getOneBased() + AUTHOR_DESC_BOB + AVAIL_DESC_BOB + INVALID_ISBN_DESC
-                + ISBN_DESC_BOB;
+            + ISBN_DESC_BOB;
         descriptor = new EditBookDescriptorBuilder().withAuthor(VALID_AUTHOR_BOB)
-                .withIsbn(VALID_ISBN_BOB).withAvail(VALID_AVAIL_BOB)
-                .build();
+            .withIsbn(VALID_ISBN_BOB).withAvail(VALID_AVAIL_BOB)
+            .build();
         expectedCommand = new EditCommand(targetIndex, descriptor);
         assertParseSuccess(parser, userInput, expectedCommand);
     }

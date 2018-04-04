@@ -18,14 +18,14 @@ public class TitleContainsKeywordsPredicate implements Predicate<Book> {
     @Override
     public boolean test(Book book) {
         return keywords.stream()
-                .anyMatch(keyword -> StringUtil.containsWordIgnoreCase(book.getTitle().fullTitle, keyword));
+            .anyMatch(keyword -> StringUtil.containsWordIgnoreCase(book.getTitle().fullTitle, keyword));
     }
 
     @Override
     public boolean equals(Object other) {
         return other == this // short circuit if same object
-                || (other instanceof TitleContainsKeywordsPredicate // instanceof handles nulls
-                && this.keywords.equals(((TitleContainsKeywordsPredicate) other).keywords)); // state check
+            || (other instanceof TitleContainsKeywordsPredicate // instanceof handles nulls
+            && this.keywords.equals(((TitleContainsKeywordsPredicate) other).keywords)); // state check
     }
 
 }

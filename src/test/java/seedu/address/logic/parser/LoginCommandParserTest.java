@@ -20,7 +20,7 @@ public class LoginCommandParserTest {
     public void parse_validArgs_returnsFindCommand() {
         // no leading and trailing whitespaces
         LoginCommand expectedFindCommand =
-                new LoginCommand("admin", "admin");
+            new LoginCommand("admin", "admin");
         assertParseSuccess(parser, "admin admin", expectedFindCommand);
 
         // multiple whitespaces between keywords

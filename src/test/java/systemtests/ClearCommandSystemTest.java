@@ -30,7 +30,7 @@ public class ClearCommandSystemTest extends CatalogueSystemTest {
         /* Case: undo clearing catalogue -> original catalogue restored */
         String command = UndoCommand.COMMAND_WORD;
         String expectedResultMessage = UndoCommand.MESSAGE_SUCCESS;
-        assertCommandSuccess(command,  expectedResultMessage, defaultModel);
+        assertCommandSuccess(command, expectedResultMessage, defaultModel);
         assertSelectedCardUnchanged();
 
         /* Case: redo clearing catalogue -> cleared */
@@ -65,6 +65,7 @@ public class ClearCommandSystemTest extends CatalogueSystemTest {
      * These verifications are done by
      * {@code CatalogueSystemTest#assertApplicationDisplaysExpected(String, String, Model)}.<br>
      * Also verifies that the command box has the default style class and the status bar's sync status changes.
+     *
      * @see CatalogueSystemTest#assertApplicationDisplaysExpected(String, String, Model)
      */
     private void assertCommandSuccess(String command) {
@@ -74,6 +75,7 @@ public class ClearCommandSystemTest extends CatalogueSystemTest {
     /**
      * Performs the same verification as {@code assertCommandSuccess(String)} except that the result box displays
      * {@code expectedResultMessage} and the model related components equal to {@code expectedModel}.
+     *
      * @see ClearCommandSystemTest#assertCommandSuccess(String)
      */
     private void assertCommandSuccess(String command, String expectedResultMessage, Model expectedModel) {
@@ -90,6 +92,7 @@ public class ClearCommandSystemTest extends CatalogueSystemTest {
      * {@code CatalogueSystemTest#assertApplicationDisplaysExpected(String, String, Model)}.<br>
      * Also verifies that the browser url, selected card and status bar remain unchanged, and the command box has the
      * error style.
+     *
      * @see CatalogueSystemTest#assertApplicationDisplaysExpected(String, String, Model)
      */
     private void assertCommandFailure(String command, String expectedResultMessage) {

@@ -19,7 +19,7 @@ public class ModelHelper {
      */
     public static void setFilteredList(Model model, List<Book> toDisplay) {
         Optional<Predicate<Book>> predicate =
-                toDisplay.stream().map(ModelHelper::getPredicateMatching).reduce(Predicate::or);
+            toDisplay.stream().map(ModelHelper::getPredicateMatching).reduce(Predicate::or);
         model.updateFilteredBookList(predicate.orElse(PREDICATE_MATCHING_NO_BOOKS));
     }
 

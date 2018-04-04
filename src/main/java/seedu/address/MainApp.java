@@ -25,15 +25,21 @@ import seedu.address.model.Model;
 import seedu.address.model.ModelManager;
 import seedu.address.model.ReadOnlyCatalogue;
 import seedu.address.model.UserPrefs;
+import seedu.address.model.account.Account;
+import seedu.address.model.account.UniqueAccountList;
+import seedu.address.model.account.exceptions.DuplicateAccountException;
 import seedu.address.model.util.SampleDataUtil;
+import seedu.address.storage.AccountListStorage;
 import seedu.address.storage.CatalogueStorage;
 import seedu.address.storage.JsonUserPrefsStorage;
+import seedu.address.storage.SerialisedAccountListStorage;
 import seedu.address.storage.Storage;
 import seedu.address.storage.StorageManager;
 import seedu.address.storage.UserPrefsStorage;
 import seedu.address.storage.XmlCatalogueStorage;
 import seedu.address.ui.Ui;
 import seedu.address.ui.UiManager;
+
 
 /**
  * The main entry point to the application.
@@ -51,6 +57,9 @@ public class MainApp extends Application {
     protected Config config;
     protected UserPrefs userPrefs;
 
+    public static void main(String[] args) {
+        launch(args);
+    }
 
     @Override
     public void init() throws Exception {
@@ -62,11 +71,13 @@ public class MainApp extends Application {
         UserPrefsStorage userPrefsStorage = new JsonUserPrefsStorage(config.getUserPrefsFilePath());
         userPrefs = initPrefs(userPrefsStorage);
         CatalogueStorage catalogueStorage = new XmlCatalogueStorage(userPrefs.getCatalogueFilePath());
-        storage = new StorageManager(catalogueStorage, userPrefsStorage);
+        AccountListStorage accountListStorage = new SerialisedAccountListStorage(userPrefs.getAccountListFilePath());
+        storage = new StorageManager(catalogueStorage, userPrefsStorage, accountListStorage);
 
         initLogging(config);
 
         model = initModelManager(storage, userPrefs);
+
 
         logic = new LogicManager(model);
 
@@ -87,7 +98,9 @@ public class MainApp extends Application {
      */
     private Model initModelManager(Storage storage, UserPrefs userPrefs) {
         Optional<ReadOnlyCatalogue> catalogueOptional;
+        Optional<UniqueAccountList> accountListOptional;
         ReadOnlyCatalogue initialData;
+        UniqueAccountList initlaAccountList;
         try {
             catalogueOptional = storage.readCatalogue();
             if (!catalogueOptional.isPresent()) {
@@ -102,7 +115,33 @@ public class MainApp extends Application {
             initialData = new Catalogue();
         }
 
-        return new ModelManager(initialData, userPrefs);
+        try {
+            accountListOptional = storage.readAccountList();
+            if (!accountListOptional.isPresent()) {
+                logger.info("AccountList file not found. Will be starting with an accountList with only admin");
+                initlaAccountList = new UniqueAccountList();
+            } else {
+                initlaAccountList = accountListOptional.get();
+            }
+        } catch (DataConversionException e) {
+            logger.warning("AccountList file not in the correct format. "
+                + "Will be starting with an accountList with only admin");
+            initlaAccountList = new UniqueAccountList();
+        } catch (IOException e) {
+            logger.warning("Problem while reading from the AccountList file. "
+                + "Will be starting with an accountList with only admin");
+            System.out.print(e.getMessage());
+            initlaAccountList = new UniqueAccountList();
+        }
+
+        try {
+            if (!initlaAccountList.contains(Account.createDefaultAdminAccount())) {
+                initlaAccountList.add(Account.createDefaultAdminAccount());
+            }
+        } catch (DuplicateAccountException e) {
+            e.printStackTrace();
+        }
+        return new ModelManager(initialData, initlaAccountList, userPrefs);
     }
 
     private void initLogging(Config config) {
@@ -132,7 +171,7 @@ public class MainApp extends Application {
             initializedConfig = configOptional.orElse(new Config());
         } catch (DataConversionException e) {
             logger.warning("Config file at " + configFilePathUsed + " is not in the correct format. "
-                    + "Using default config properties");
+                + "Using default config properties");
             initializedConfig = new Config();
         }
 
@@ -160,7 +199,7 @@ public class MainApp extends Application {
             initializedPrefs = prefsOptional.orElse(new UserPrefs());
         } catch (DataConversionException e) {
             logger.warning("UserPrefs file at " + prefsFilePath + " is not in the correct format. "
-                    + "Using default user prefs");
+                + "Using default user prefs");
             initializedPrefs = new UserPrefs();
         } catch (IOException e) {
             logger.warning("Problem while reading from the file. Will be starting with an empty Catalogue");
@@ -204,9 +243,5 @@ public class MainApp extends Application {
     public void handleExitAppRequestEvent(ExitAppRequestEvent event) {
         logger.info(LogsCenter.getEventHandlingLogMessage(event));
         this.stop();
-    }
-
-    public static void main(String[] args) {
-        launch(args);
     }
 }

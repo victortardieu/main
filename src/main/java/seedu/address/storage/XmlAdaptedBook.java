@@ -14,7 +14,6 @@ import seedu.address.model.book.Avail;
 import seedu.address.model.book.Book;
 import seedu.address.model.book.Isbn;
 import seedu.address.model.book.Title;
-
 import seedu.address.model.tag.Tag;
 
 /**
@@ -40,7 +39,8 @@ public class XmlAdaptedBook {
      * Constructs an XmlAdaptedBook.
      * This is the no-arg constructor that is required by JAXB.
      */
-    public XmlAdaptedBook() {}
+    public XmlAdaptedBook() {
+    }
 
     /**
      * Constructs an {@code XmlAdaptedBook} with the given book details.
@@ -108,7 +108,7 @@ public class XmlAdaptedBook {
 
         if (this.avail == null) {
             throw new IllegalValueException(
-                    String.format(MISSING_FIELD_MESSAGE_FORMAT, Avail.class.getSimpleName()));
+                String.format(MISSING_FIELD_MESSAGE_FORMAT, Avail.class.getSimpleName()));
         }
         if (!Avail.isValidAvail(this.avail)) {
             throw new IllegalValueException(Avail.MESSAGE_AVAIL_CONSTRAINTS);
@@ -131,9 +131,9 @@ public class XmlAdaptedBook {
 
         XmlAdaptedBook otherBook = (XmlAdaptedBook) other;
         return Objects.equals(title, otherBook.title)
-                && Objects.equals(author, otherBook.author)
-                && Objects.equals(isbn, otherBook.isbn)
-                && Objects.equals(avail, otherBook.avail)
-                && tagged.equals(otherBook.tagged);
+            && Objects.equals(author, otherBook.author)
+            && Objects.equals(isbn, otherBook.isbn)
+            && Objects.equals(avail, otherBook.avail)
+            && tagged.equals(otherBook.tagged);
     }
 }

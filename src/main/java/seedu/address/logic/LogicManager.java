@@ -13,6 +13,7 @@ import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.Model;
 import seedu.address.model.book.Book;
 
+
 /**
  * The main LogicManager of the app.
  */
@@ -61,6 +62,6 @@ public class LogicManager extends ComponentManager implements Logic {
     }
 
     protected boolean isPrivileged(Command command) {
-        return command.getPrivilegeLevel() <= model.getPrivilegeLevel();
+        return command.getPrivilegeLevel().compareTo(model.getPrivilegeLevel()) <= 0;
     }
 }

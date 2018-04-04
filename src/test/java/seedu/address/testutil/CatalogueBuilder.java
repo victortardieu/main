@@ -9,7 +9,7 @@ import seedu.address.model.tag.Tag;
 /**
  * A utility class to help with building Catalogue objects.
  * Example usage: <br>
- *     {@code Catalogue ab = new CatalogueBuilder().withBook("John", "Doe").withTag("Friend").build();}
+ * {@code Catalogue ab = new CatalogueBuilder().withBook("John", "Doe").withTag("Friend").build();}
  */
 public class CatalogueBuilder {
 

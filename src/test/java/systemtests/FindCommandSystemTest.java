@@ -176,11 +176,12 @@ public class FindCommandSystemTest extends CatalogueSystemTest {
      * {@code CatalogueSystemTest#assertApplicationDisplaysExpected(String, String, Model)}.<br>
      * Also verifies that the status bar remains unchanged, and the command box has the default style class, and the
      * selected card updated accordingly, depending on {@code cardStatus}.
+     *
      * @see CatalogueSystemTest#assertApplicationDisplaysExpected(String, String, Model)
      */
     private void assertCommandSuccess(String command, Model expectedModel) {
         String expectedResultMessage = String.format(
-                MESSAGE_BOOKS_LISTED_OVERVIEW, expectedModel.getFilteredBookList().size());
+            MESSAGE_BOOKS_LISTED_OVERVIEW, expectedModel.getFilteredBookList().size());
 
         executeCommand(command);
         assertApplicationDisplaysExpected("", expectedResultMessage, expectedModel);
@@ -195,6 +196,7 @@ public class FindCommandSystemTest extends CatalogueSystemTest {
      * {@code CatalogueSystemTest#assertApplicationDisplaysExpected(String, String, Model)}.<br>
      * Also verifies that the browser url, selected card and status bar remain unchanged, and the command box has the
      * error style.
+     *
      * @see CatalogueSystemTest#assertApplicationDisplaysExpected(String, String, Model)
      */
     private void assertCommandFailure(String command, String expectedResultMessage) {

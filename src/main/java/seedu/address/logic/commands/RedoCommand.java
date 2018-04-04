@@ -6,6 +6,7 @@ import seedu.address.logic.CommandHistory;
 import seedu.address.logic.UndoRedoStack;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
+import seedu.address.model.account.PrivilegeLevel;
 
 /**
  * Redo the previously undone command.
@@ -16,7 +17,7 @@ public class RedoCommand extends Command {
     public static final String MESSAGE_SUCCESS = "Redo success!";
     public static final String MESSAGE_FAILURE = "No more commands to redo!";
 
-    public static final int PRIVILEGE_LEVEL = Model.PRIVILEGE_LEVEL_LIBRARIAN;
+    public static final PrivilegeLevel PRIVILEGE_LEVEL = Model.PRIVILEGE_LEVEL_LIBRARIAN;
 
     @Override
     public CommandResult execute() throws CommandException {
@@ -37,7 +38,7 @@ public class RedoCommand extends Command {
     }
 
     @Override
-    public int getPrivilegeLevel() {
+    public PrivilegeLevel getPrivilegeLevel() {
         return PRIVILEGE_LEVEL;
     }
 }

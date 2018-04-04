@@ -35,6 +35,15 @@ public class Credential implements Serializable {
         return password;
     }
 
+    /**
+     * Returns true if the username provided equals to this.username
+     * @param username
+     * @return
+     */
+    public boolean usernameEquals(Username username){
+        return this.username.equals(username);
+    }
+
     @Override
     public boolean equals(Object other) {
         return other == this

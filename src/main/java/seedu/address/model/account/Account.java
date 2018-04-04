@@ -113,6 +113,33 @@ public class Account implements Serializable {
         return c.equals(this.credential);
     }
 
+    /**
+     * Returns true if this account's username is the same as the username provided
+     * @param username
+     * @return
+     */
+    public boolean usernameMatches(Username username) {
+        return this.credential.usernameEquals(username);
+    }
+
+    /**
+     * Returns true if this account's username is the same as that of the credential provided
+     * @param c
+     * @return
+     */
+    public boolean usernameMatches(Credential c) {
+        return usernameMatches(c.getUsername());
+    }
+
+    /**
+     * Returns true if this account's username is the same as that of the account provided
+     * @param a
+     * @return
+     */
+    public boolean usernameMatches(Account a) {
+        return usernameMatches(a.getCredential());
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) {

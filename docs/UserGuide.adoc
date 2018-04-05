@@ -84,6 +84,27 @@ Examples:
 * `add n/Animal Farm a/George Orwell p/9780736692427 e/Borrowed and Reserved`
 * `add n/Breaking Dawn t/fiction e/Borrowed and Reserved a/Stephenie Meyer p/9780316067928 t/young adults`
 
+=== Returning a book: `return`
+
+Returns the specified book from the catalogue
+Format: `return INDEX`
+Privilege Level: 2(Librarian)
+
+[NOTE]
+Can only return book that has been borrowed
+
+****
+* Returns the book at the specified `INDEX`.
+* The index refers to the index number shown in the most recent listing.
+* The index must be a positive integer 1, 2, 3 ...
+****
+
+Examples:
+
+* `return 1`
+* `return 6`
+
+
 === Listing all books : `list`
 
 

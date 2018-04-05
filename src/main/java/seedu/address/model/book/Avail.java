@@ -2,6 +2,7 @@ package seedu.address.model.book;
 
 import static java.util.Objects.requireNonNull;
 import static seedu.address.commons.util.AppUtil.checkArgument;
+import static sun.management.snmp.jvminstr.JvmThreadInstanceEntryImpl.ThreadStateMap.Byte1.other;
 
 /**
  * Represents a Book's availability in the catalogue.
@@ -18,7 +19,7 @@ public class Avail {
         + "3. " + RESERVED + "\n"
         + "4. " + BORROWED_AND_RESERVED + "\n";
 
-    public final String value;
+    public String value;
 
     /**
      * Constructs an {@code Avail}.
@@ -29,6 +30,10 @@ public class Avail {
         requireNonNull(avail);
         checkArgument(isValidAvail(avail), MESSAGE_AVAIL_CONSTRAINTS);
         this.value = avail;
+    }
+
+    public void changeStatus (String status) {
+        this.value = status;
     }
 
     /**

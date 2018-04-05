@@ -23,7 +23,6 @@ import seedu.address.model.book.exceptions.DuplicateBookException;
  * A utility class containing a list of {@code Book} objects to be used in tests.
  */
 public class TypicalBooks {
-
     public static final Book ANIMAL = new BookBuilder().withTitle("Animal Farm")
         .withAuthor("George Orwell")
         .withAvail("Available")

@@ -2,6 +2,7 @@ package seedu.address.model.book;
 
 import static java.util.Objects.requireNonNull;
 import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
+import static seedu.address.model.book.Avail.*;
 
 import java.util.Iterator;
 import java.util.List;
@@ -79,6 +80,80 @@ public class UniqueBookList implements Iterable<Book> {
             throw new BookNotFoundException();
         }
         return bookFoundAndDeleted;
+    }
+
+    public boolean returnBook(Book toReturn) throws BookNotFoundException {
+        requireAllNonNull(toReturn);
+
+        String status = toReturn.getAvail().toString();
+
+        switch (status) {
+
+            case AVAILABLE:
+                return true;
+
+            case BORROWED:
+                toReturn.getAvail().changeStatus(AVAILABLE);
+                return true;
+
+            case BORROWED_AND_RESERVED:
+                toReturn.getAvail().changeStatus(AVAILABLE);
+                return true;
+
+            case RESERVED:
+                toReturn.getAvail().changeStatus(AVAILABLE);
+                return true;
+
+            default:
+                throw new BookNotFoundException();
+        }
+    }
+
+    public boolean borrow(Book toBorrow) throws BookNotFoundException {
+        requireNonNull(toBorrow);
+        String bookStatus = toBorrow.getAvail().toString();
+
+        switch (bookStatus) {
+            case (AVAILABLE):
+                toBorrow.getAvail().changeStatus(BORROWED);
+                return true;
+
+            case (BORROWED):
+                return true;
+
+            case (BORROWED_AND_RESERVED):
+                return true;
+
+            case (RESERVED):
+                return false;
+            
+            default:
+                throw new BookNotFoundException();
+        }
+    }
+
+    public boolean reserve(Book toReserve) throws BookNotFoundException {
+        requireNonNull(toReserve);
+        String bookStatus = toReserve.getAvail().toString();
+
+        switch (bookStatus) {
+            case (AVAILABLE):
+                toReserve.getAvail().changeStatus(RESERVED);
+                return true;
+
+            case (BORROWED):
+                toReserve.getAvail().changeStatus(BORROWED_AND_RESERVED);
+                return true;
+
+            case (BORROWED_AND_RESERVED):
+                return true;
+
+            case (RESERVED):
+                return true;
+
+            default:
+                throw new BookNotFoundException();
+        }
     }
 
     public void setBooks(UniqueBookList replacement) {

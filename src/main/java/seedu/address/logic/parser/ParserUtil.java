@@ -10,6 +10,7 @@ import java.util.Set;
 import seedu.address.commons.core.index.Index;
 import seedu.address.commons.exceptions.IllegalValueException;
 import seedu.address.commons.util.StringUtil;
+import seedu.address.model.account.Credential;
 import seedu.address.model.account.MatricNumber;
 import seedu.address.model.account.Name;
 import seedu.address.model.account.Password;
@@ -61,7 +62,7 @@ public class ParserUtil {
         requireNonNull(name);
         String trimmedTitle = name.trim();
         if (!Name.isValidName(trimmedTitle)) {
-            throw new IllegalValueException(Name.MESSAGE_NAME_CONSTRAINTS)
+            throw new IllegalValueException(Name.MESSAGE_NAME_CONSTRAINTS);
         }
         return new Name(trimmedTitle);
     }
@@ -76,52 +77,21 @@ public class ParserUtil {
     }
 
     /**
-     * Parses a {@code String username} into a {@code Username}.
+     * Parses a {@code String username and String password} into a {@code Credential}.
      * Leading and trailing whitespaces will be trimmed.
      *
-     * @throws IllegalValueException if the given {@code username} is invalid.
+     * @throws IllegalValueException if the given {@code username or password} is invalid.
      */
-    public static Username parseAccountUsername (String username) throws IllegalValueException {
+    public static Credential parseAccountCredential (String username, String password) throws IllegalValueException {
         requireNonNull(username);
+        requireNonNull(password);
         String trimmedUsername = username.trim();
-        if (!Username.isValidUsername(trimmedUsername)) {
-            throw new IllegalValueException(Username.MESSAGE_TITLE_CONSTRAINTS);
-        }
-        return new Username(trimmedUsername);
-    }
-
-    /**
-     * Parses a {@code Optional<String> username} into an {@code Optional<Username>} if {@code username} is present.
-     * See header comment of this class regarding the use of {@code Optional} parameters.
-     */
-    public static Optional<Username> parseAccountUsername (Optional<String> username) throws IllegalValueException {
-        requireNonNull(username);
-        return username.isPresent() ? Optional.of(parseAccountUsername(username.get())) : Optional.empty();
-    }
-
-
-    /**
-     * Parses a {@code String password} into a {@code Password}.
-     * Leading and trailing whitespaces will be trimmed.
-     *
-     * @throws IllegalValueException if the given {@code password} is invalid.
-     */
-    public static Password parseAccountPassword(String password) throws IllegalValueException {
-        requireNonNull(password);
         String trimmedPassword = password.trim();
-        if (!Password.isValidPassword(trimmedPassword)) {
-            throw new IllegalValueException(Password.MESSAGE_TITLE_CONSTRAINTS);
-        }
-        return new Password(trimmedPassword);
-    }
 
-    /**
-     * Parses a {@code Optional<String> password} into an {@code Optional<Password>} if {@code password} is present.
-     * See header comment of this class regarding the use of {@code Optional} parameters.
-     */
-    public static Optional<Password> parseAccountPassword(Optional<String> password) throws IllegalValueException {
-        requireNonNull(password);
-        return password.isPresent() ? Optional.of(parseAccountPassword(password.get())) : Optional.empty();
+        if(!Username.isValidUsername(trimmedUsername) || !Password.isValidPassword(trimmedPassword)) {
+            throw new IllegalValueException(Username.MESSAGE_USERNAME_CONSTRAINTS + Password.MESSAGE_PASSWORD_CONSTRAINTS);
+        }
+        return new Credential(trimmedUsername, trimmedPassword);
     }
 
     /**
@@ -134,13 +104,13 @@ public class ParserUtil {
         requireNonNull(matricNumber);
         String trimmedMatricNumber = matricNumber.trim();
         if (!MatricNumber.isValidMatricNumber(trimmedMatricNumber)) {
-            throw new IllegalValueException(MatricNumber.MESSAGE_TITLE_CONSTRAINTS);
+            throw new IllegalValueException(MatricNumber.MESSAGE_MATRIC_NUMBER_CONSTRAINTS);
         }
-        return new Password(trimmedMatricNumber;
+        return new MatricNumber(trimmedMatricNumber);
     }
 
     /**
-     * Parses a {@code Optional<String> password} into an {@code Optional<Password>} if {@code password} is present.
+     * Parses a {@code Optional<String> matricNumber} into an {@code Optional<MatricNumber>} if {@code matricNumber} is present.
      * See header comment of this class regarding the use of {@code Optional} parameters.
      */
     public static Optional<MatricNumber> parseAccountMatricNumber (Optional<String> matricNumber) throws IllegalValueException {
@@ -154,23 +124,25 @@ public class ParserUtil {
      *
      * @throws IllegalValueException if the given {@code privilegeLevel} is invalid.
      */
-    public static PrivilegeLevel parseAccountPrivilegeLevel (int privilegeLevel) throws IllegalValueException {
+    public static PrivilegeLevel parseAccountPrivilegeLevel (String privilegeLevel) throws IllegalValueException {
         requireNonNull(privilegeLevel);
-        if (!PrivilegeLevel.isValidPrivilegeLevel(privilegeLevel)) {
-            throw new IllegalValueException(PrivilegeLevel.MESSAGE_TITLE_CONSTRAINTS);
+        int input = Integer.parseInt(privilegeLevel);
+        if (!PrivilegeLevel.isValidPrivilegeLevel(input)) {
+            throw new IllegalValueException(PrivilegeLevel.MESSAGE_PRIVILEGE_LEVEL_CONSTRAINTS);
         }
-        return new PrivilegeLevel(privilegeLevel);
+        return new PrivilegeLevel(input);
     }
 
     /**
      * Parses a {@code Optional<Integer> privilegeLevel} into an {@code Optional<PrivilegeLevel>} if {@code privilegeLevel} is present.
      * See header comment of this class regarding the use of {@code Optional} parameters.
      */
+    /*
     public static Optional<PrivilegeLevel> parseAccountPrivilegeLevel (Optional<Integer> privilegeLevel) throws IllegalValueException {
         requireNonNull(privilegeLevel);
         return privilegeLevel.isPresent() ? Optional.of(parseAccountPrivilegeLevel(privilegeLevel.get())) : Optional.empty();
     }
-
+*/
 //========================= Book List Commands ===================================
     /**
      * Parses a {@code String title} into a {@code Title}.

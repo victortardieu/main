@@ -29,7 +29,7 @@ public class AddAccountCommand extends undoableCommand {
             + PREFIX_USERNAME + "johndoe "
             + PREFIX_PASSWORD + "johndoe123 "
             + PREFIX_MATRICNUMBER + "A0123456B "
-            + PREFIX_PRIVILEGE + "student";
+            + PREFIX_PRIVILEGE + "1";
 
     public static final String MESSAGE_SUCCESS = "New account added: %l$s";
     public static final String MESSAGE_DUPLICATE_ACCOUNT = "This account already exists in the system";
@@ -49,7 +49,7 @@ public class AddAccountCommand extends undoableCommand {
     public CommandResult executeUndoableCommand() throws CommandException {
         requireNonNull(model);
         try {
-            model.addBook(toAdd);
+            model.addAccount(toAdd);
             return new CommandResult(String.format(MESSAGE_SUCCESS, toAdd));
         } catch (DuplicateAccountException e) {
             throw new CommandException(MESSAGE_DUPLICATE_ACCOUNT);

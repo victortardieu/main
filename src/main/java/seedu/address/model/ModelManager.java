@@ -185,6 +185,11 @@ public class ModelManager extends ComponentManager implements Model {
         filteredBooks.setPredicate(predicate);
     }
 
+    public ObservableList<Account> getFilteredAccountList() {
+        //ObservableList<Account> myList = FXCollections.observableArrayList(accountList.getObservableAccountList());
+        return accountList.getObservableAccountList();
+    }
+
     @Override
     public PrivilegeLevel authenticate(Credential c) {
         Account matched = accountList.authenticate(c);
@@ -223,5 +228,6 @@ public class ModelManager extends ComponentManager implements Model {
         return catalogue.equals(other.catalogue)
             && filteredBooks.equals(other.filteredBooks);
     }
+
 
 }

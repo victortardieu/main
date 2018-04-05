@@ -61,6 +61,8 @@ public interface Model {
      */
     ObservableList<Book> getFilteredBookList();
 
+    ObservableList<Account> getFilteredAccountList();
+
     /**
      * Updates the filter of the filtered book list to filter by the given {@code predicate}.
      *

@@ -11,6 +11,7 @@ import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.logic.parser.CatalogueParser;
 import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.Model;
+import seedu.address.model.account.Account;
 import seedu.address.model.book.Book;
 
 
@@ -63,5 +64,10 @@ public class LogicManager extends ComponentManager implements Logic {
 
     protected boolean isPrivileged(Command command) {
         return command.getPrivilegeLevel().compareTo(model.getPrivilegeLevel()) <= 0;
+    }
+
+    @Override
+    public ObservableList<Account> getFilteredAccountList() {
+        return model.getFilteredAccountList();
     }
 }

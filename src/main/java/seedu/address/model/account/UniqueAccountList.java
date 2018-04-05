@@ -1,6 +1,8 @@
 package seedu.address.model.account;
 
 import static java.util.Objects.requireNonNull;
+import javafx.collections.ObservableList;
+import javafx.collections.FXCollections;
 
 import java.io.Serializable;
 import java.util.ArrayList;
@@ -18,6 +20,8 @@ import seedu.address.model.account.exceptions.DuplicateAccountException;
  */
 public class UniqueAccountList implements Serializable, Iterable<Account> {
     private final ArrayList<Account> internalList = new ArrayList<Account>();
+
+    //ObservableList<Account> myList = FXCollections.observableArrayList(internalList);
 
     /**
      * Returns true if the list contains an equivalent account as the given argument.
@@ -162,5 +166,9 @@ public class UniqueAccountList implements Serializable, Iterable<Account> {
         return internalList.hashCode();
     }
 
+    public ObservableList<Account> getObservableAccountList() {
+        ObservableList<Account> myList = FXCollections.observableArrayList(internalList);
+        return FXCollections.unmodifiableObservableList(myList);
+    }
 
 }

@@ -36,6 +36,7 @@ public class MainWindow extends UiPart<Stage> {
     // Independent Ui parts residing in this Ui container
     private BrowserPanel browserPanel;
     private BookListPanel bookListPanel;
+    private AccountListPanel accountListPanel;
     private Config config;
     private UserPrefs prefs;
 
@@ -50,6 +51,9 @@ public class MainWindow extends UiPart<Stage> {
 
     @FXML
     private StackPane bookListPanelPlaceholder;
+
+    @FXML
+    private StackPane accountListPanelPlaceholder;
 
     @FXML
     private StackPane resultDisplayPlaceholder;
@@ -122,6 +126,9 @@ public class MainWindow extends UiPart<Stage> {
 
         bookListPanel = new BookListPanel(logic.getFilteredBookList());
         bookListPanelPlaceholder.getChildren().add(bookListPanel.getRoot());
+
+        accountListPanel = new AccountListPanel(logic.getFilteredAccountList());
+        accountListPanelPlaceholder.getChildren().add(accountListPanel.getRoot());
 
         ResultDisplay resultDisplay = new ResultDisplay();
         resultDisplayPlaceholder.getChildren().add(resultDisplay.getRoot());

@@ -28,7 +28,8 @@ public abstract class UndoableCommand extends Command {
      * This method is called before the execution of {@code UndoableCommand}.
      * {@code UndoableCommand}s that require this preprocessing step should override this method.
      */
-    protected void preprocessUndoableCommand() throws CommandException {}
+    protected void preprocessUndoableCommand() throws CommandException {
+    }
 
     /**
      * Reverts the Catalogue to the state before this command
@@ -51,7 +52,7 @@ public abstract class UndoableCommand extends Command {
             executeUndoableCommand();
         } catch (CommandException ce) {
             throw new AssertionError("The command has been successfully executed previously; "
-                    + "it should not fail now");
+                + "it should not fail now");
         }
         model.updateFilteredBookList(PREDICATE_SHOW_ALL_BOOKS);
     }

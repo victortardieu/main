@@ -15,7 +15,6 @@ import javafx.scene.layout.Region;
 import seedu.address.commons.core.LogsCenter;
 import seedu.address.commons.events.ui.BookPanelSelectionChangedEvent;
 import seedu.address.commons.events.ui.JumpToListRequestEvent;
-
 import seedu.address.model.book.Book;
 
 /**
@@ -36,7 +35,7 @@ public class BookListPanel extends UiPart<Region> {
 
     private void setConnections(ObservableList<Book> bookList) {
         ObservableList<BookCard> mappedList = EasyBind.map(
-                bookList, (book) -> new BookCard(book, bookList.indexOf(book) + 1));
+            bookList, (book) -> new BookCard(book, bookList.indexOf(book) + 1));
         bookListView.setItems(mappedList);
         bookListView.setCellFactory(listView -> new BookListViewCell());
         setEventHandlerForSelectionChangeEvent();
@@ -44,12 +43,12 @@ public class BookListPanel extends UiPart<Region> {
 
     private void setEventHandlerForSelectionChangeEvent() {
         bookListView.getSelectionModel().selectedItemProperty()
-                .addListener((observable, oldValue, newValue) -> {
-                    if (newValue != null) {
-                        logger.fine("Selection in book list panel changed to : '" + newValue + "'");
-                        raise(new BookPanelSelectionChangedEvent(newValue));
-                    }
-                });
+            .addListener((observable, oldValue, newValue) -> {
+                if (newValue != null) {
+                    logger.fine("Selection in book list panel changed to : '" + newValue + "'");
+                    raise(new BookPanelSelectionChangedEvent(newValue));
+                }
+            });
     }
 
     /**

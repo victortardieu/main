@@ -38,17 +38,18 @@ public class XmlCatalogueStorage implements CatalogueStorage {
 
     /**
      * Similar to {@link #readCatalogue()}
+     *
      * @param filePath location of the data. Cannot be null
      * @throws DataConversionException if the file is not in the correct format.
      */
     public Optional<ReadOnlyCatalogue> readCatalogue(String filePath) throws DataConversionException,
-                                                                                 FileNotFoundException {
+        FileNotFoundException {
         requireNonNull(filePath);
 
         File catalogueFile = new File(filePath);
 
         if (!catalogueFile.exists()) {
-            logger.info("Catalogue file "  + catalogueFile + " not found");
+            logger.info("Catalogue file " + catalogueFile + " not found");
             return Optional.empty();
         }
 
@@ -68,6 +69,7 @@ public class XmlCatalogueStorage implements CatalogueStorage {
 
     /**
      * Similar to {@link #saveCatalogue(ReadOnlyCatalogue)}
+     *
      * @param filePath location of the data. Cannot be null
      */
     public void saveCatalogue(ReadOnlyCatalogue catalogue, String filePath) throws IOException {

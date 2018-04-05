@@ -21,6 +21,9 @@ import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Catalogue;
 import seedu.address.model.Model;
 import seedu.address.model.ReadOnlyCatalogue;
+import seedu.address.model.account.Account;
+import seedu.address.model.account.Credential;
+import seedu.address.model.account.PrivilegeLevel;
 import seedu.address.model.book.Book;
 import seedu.address.model.book.exceptions.BookNotFoundException;
 import seedu.address.model.book.exceptions.DuplicateBookException;
@@ -60,26 +63,26 @@ public class AddCommandTest {
 
     @Test
     public void equals() {
-        Book alice = new BookBuilder().withTitle("Alice").build();
+        Book animal = new BookBuilder().withTitle("Animal Farm").build();
         Book bob = new BookBuilder().withTitle("Bob").build();
-        AddCommand addAliceCommand = new AddCommand(alice);
+        AddCommand addAnimalCommand = new AddCommand(animal);
         AddCommand addBobCommand = new AddCommand(bob);
 
         // same object -> returns true
-        assertTrue(addAliceCommand.equals(addAliceCommand));
+        assertTrue(addAnimalCommand.equals(addAnimalCommand));
 
         // same values -> returns true
-        AddCommand addAliceCommandCopy = new AddCommand(alice);
-        assertTrue(addAliceCommand.equals(addAliceCommandCopy));
+        AddCommand addAnimalCommandCopy = new AddCommand(animal);
+        assertTrue(addAnimalCommand.equals(addAnimalCommandCopy));
 
         // different types -> returns false
-        assertFalse(addAliceCommand.equals(1));
+        assertFalse(addAnimalCommand.equals(1));
 
         // null -> returns false
-        assertFalse(addAliceCommand.equals(null));
+        assertFalse(addAnimalCommand.equals(null));
 
         // different book -> returns false
-        assertFalse(addAliceCommand.equals(addBobCommand));
+        assertFalse(addAnimalCommand.equals(addBobCommand));
     }
 
     /**
@@ -146,8 +149,8 @@ public class AddCommandTest {
         }
 
         @Override
-        public int authenticate(String username, String password) {
-            return 0;
+        public PrivilegeLevel authenticate(Credential c) {
+            return Model.PRIVILEGE_LEVEL_GUEST;
         }
 
         @Override
@@ -156,8 +159,20 @@ public class AddCommandTest {
         }
 
         @Override
-        public int getPrivilegeLevel() {
-            return 0;
+        public PrivilegeLevel getPrivilegeLevel() {
+            return Model.PRIVILEGE_LEVEL_GUEST;
+        }
+
+        public void addAccount(Account account) {
+
+        }
+
+        public void deleteAccount(Account account) {
+
+        }
+
+        public void updateAccount(Account account, Account editedAccount) {
+
         }
     }
 

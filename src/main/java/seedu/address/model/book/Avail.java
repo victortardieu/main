@@ -14,10 +14,10 @@ public class Avail {
     public static final String RESERVED = "Reserved";
     public static final String BORROWED_AND_RESERVED = "Borrowed and Reserved";
     public static final String MESSAGE_AVAIL_CONSTRAINTS = "Book availability should be one of the following:\n "
-            + "1. " + AVAILABLE + "\n"
-            + "2. " + BORROWED + "\n"
-            + "3. " + RESERVED + "\n"
-            + "4. " + BORROWED_AND_RESERVED + "\n";
+        + "1. " + AVAILABLE + "\n"
+        + "2. " + BORROWED + "\n"
+        + "3. " + RESERVED + "\n"
+        + "4. " + BORROWED_AND_RESERVED + "\n";
 
     public String value;
 
@@ -41,8 +41,8 @@ public class Avail {
      */
     public static boolean isValidAvail(String test) {
         return test.equals(AVAILABLE)
-                || test.equals(BORROWED)
-                || test.equals(RESERVED) || test.equals(BORROWED_AND_RESERVED);
+            || test.equals(BORROWED)
+            || test.equals(RESERVED) || test.equals(BORROWED_AND_RESERVED);
     }
 
     @Override
@@ -53,8 +53,8 @@ public class Avail {
     @Override
     public boolean equals(Object other) {
         return other == this // short circuit if same object
-                || (other instanceof Avail // instanceof handles nulls
-                && this.value.equals(((Avail) other).value)); // state check
+            || (other instanceof Avail // instanceof handles nulls
+            && this.value.equals(((Avail) other).value)); // state check
     }
 
     @Override

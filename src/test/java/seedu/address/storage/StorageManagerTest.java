@@ -22,17 +22,18 @@ import seedu.address.ui.testutil.EventsCollectorRule;
 public class StorageManagerTest {
 
     @Rule
-    public TemporaryFolder testFolder = new TemporaryFolder();
-    @Rule
     public final EventsCollectorRule eventsCollectorRule = new EventsCollectorRule();
-
+    @Rule
+    public TemporaryFolder testFolder = new TemporaryFolder();
     private StorageManager storageManager;
 
     @Before
     public void setUp() {
         XmlCatalogueStorage catalogueStorage = new XmlCatalogueStorage(getTempFilePath("ab"));
         JsonUserPrefsStorage userPrefsStorage = new JsonUserPrefsStorage(getTempFilePath("prefs"));
-        storageManager = new StorageManager(catalogueStorage, userPrefsStorage);
+        AccountListStorage accountListStorage = new SerialisedAccountListStorage((getTempFilePath("accountList.ser")));
+
+        storageManager = new StorageManager(catalogueStorage, userPrefsStorage, accountListStorage);
     }
 
     private String getTempFilePath(String fileName) {
@@ -76,7 +77,8 @@ public class StorageManagerTest {
     public void handleCatalogueChangedEvent_exceptionThrown_eventRaised() {
         // Create a StorageManager while injecting a stub that  throws an exception when the save method is called
         Storage storage = new StorageManager(new XmlCatalogueStorageExceptionThrowingStub("dummy"),
-                                             new JsonUserPrefsStorage("dummy"));
+            new JsonUserPrefsStorage("dummy"),
+            new SerialisedAccountListStorage("dummy"));
         storage.handleCatalogueChangedEvent(new CatalogueChangedEvent(new Catalogue()));
         assertTrue(eventsCollectorRule.eventsCollector.getMostRecent() instanceof DataSavingExceptionEvent);
     }

@@ -78,27 +78,27 @@ public class XmlUtilTest {
     @Test
     public void xmlAdaptedBookFromFile_fileWithMissingBookField_validResult() throws Exception {
         XmlAdaptedBook actualBook = XmlUtil.getDataFromFile(
-                MISSING_BOOK_FIELD_FILE, XmlAdaptedBookWithRootElement.class);
+            MISSING_BOOK_FIELD_FILE, XmlAdaptedBookWithRootElement.class);
         XmlAdaptedBook expectedBook = new XmlAdaptedBook(
-                null, VALID_AUTHOR, VALID_ISBN, VALID_AVAIL, VALID_TAGS);
+            null, VALID_AUTHOR, VALID_ISBN, VALID_AVAIL, VALID_TAGS);
         assertEquals(expectedBook, actualBook);
     }
 
     @Test
     public void xmlAdaptedBookFromFile_fileWithInvalidBookField_validResult() throws Exception {
         XmlAdaptedBook actualBook = XmlUtil.getDataFromFile(
-                INVALID_BOOK_FIELD_FILE, XmlAdaptedBookWithRootElement.class);
+            INVALID_BOOK_FIELD_FILE, XmlAdaptedBookWithRootElement.class);
         XmlAdaptedBook expectedBook = new XmlAdaptedBook(
-                VALID_NAME, VALID_AUTHOR, INVALID_ISBN, VALID_AVAIL, VALID_TAGS);
+            VALID_NAME, VALID_AUTHOR, INVALID_ISBN, VALID_AVAIL, VALID_TAGS);
         assertEquals(expectedBook, actualBook);
     }
 
     @Test
     public void xmlAdaptedBookFromFile_fileWithValidBook_validResult() throws Exception {
         XmlAdaptedBook actualBook = XmlUtil.getDataFromFile(
-                VALID_BOOK_FILE, XmlAdaptedBookWithRootElement.class);
+            VALID_BOOK_FILE, XmlAdaptedBookWithRootElement.class);
         XmlAdaptedBook expectedBook = new XmlAdaptedBook(
-                VALID_NAME, VALID_AUTHOR, VALID_ISBN, VALID_AVAIL, VALID_TAGS);
+            VALID_NAME, VALID_AUTHOR, VALID_ISBN, VALID_AVAIL, VALID_TAGS);
         assertEquals(expectedBook, actualBook);
     }
 
@@ -130,7 +130,7 @@ public class XmlUtilTest {
 
         CatalogueBuilder builder = new CatalogueBuilder(new Catalogue());
         dataToWrite = new XmlSerializableCatalogue(
-                builder.withBook(new BookBuilder().build()).withTag("Friends").build());
+            builder.withBook(new BookBuilder().build()).withTag("Friends").build());
 
         XmlUtil.saveDataToFile(TEMP_FILE, dataToWrite);
         dataFromFile = XmlUtil.getDataFromFile(TEMP_FILE, XmlSerializableCatalogue.class);
@@ -142,5 +142,6 @@ public class XmlUtilTest {
      * objects.
      */
     @XmlRootElement(name = "book")
-    private static class XmlAdaptedBookWithRootElement extends XmlAdaptedBook {}
+    private static class XmlAdaptedBookWithRootElement extends XmlAdaptedBook {
+    }
 }

@@ -10,6 +10,7 @@ import org.junit.rules.ExpectedException;
 
 import seedu.address.model.Model;
 import seedu.address.model.ModelManager;
+import seedu.address.model.account.Account;
 
 public class LoginCommandTest {
 
@@ -53,6 +54,8 @@ public class LoginCommandTest {
     @Test
     public void execute_loginAsStudent_loginSuccessful() throws Exception {
         Model model = new ModelManager();
+        Account student = Account.createDefaultStudentAccount();
+        model.addAccount(student);
         LoginCommand studentLogin = new LoginCommand("student", "student");
         studentLogin.setData(model, null, null);
         CommandResult commandResult = studentLogin.execute();
@@ -62,7 +65,7 @@ public class LoginCommandTest {
     }
 
     @Test
-    public void execute_loginAsLibrarian_loginSuccessful() throws Exception {
+    public void execute_loginAsLibrarian_loginSuccessful() {
         Model model = new ModelManager();
         LoginCommand studentLogin = new LoginCommand("admin", "admin");
         studentLogin.setData(model, null, null);

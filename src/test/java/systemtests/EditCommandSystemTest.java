@@ -27,7 +27,7 @@ import static seedu.address.logic.parser.CliSyntax.PREFIX_TAG;
 import static seedu.address.model.Model.PREDICATE_SHOW_ALL_BOOKS;
 import static seedu.address.testutil.TypicalBooks.AMY;
 import static seedu.address.testutil.TypicalBooks.BOB;
-import static seedu.address.testutil.TypicalBooks.KEYWORD_MATCHING_MEIER;
+import static seedu.address.testutil.TypicalBooks.KEYWORD_MATCHING_GIRL;
 import static seedu.address.testutil.TypicalIndexes.INDEX_FIRST_BOOK;
 
 import org.junit.Test;
@@ -64,9 +64,9 @@ public class EditCommandSystemTest extends CatalogueSystemTest {
          */
         Index index = INDEX_FIRST_BOOK;
         String command = " " + EditCommand.COMMAND_WORD + "  " + index.getOneBased() + "  " + TITLE_DESC_BOB + "  "
-                + ISBN_DESC_BOB + " " + AVAIL_DESC_BOB + "  " + AUTHOR_DESC_BOB + " " + TAG_DESC_HUSBAND + " ";
+            + ISBN_DESC_BOB + " " + AVAIL_DESC_BOB + "  " + AUTHOR_DESC_BOB + " " + TAG_DESC_HUSBAND + " ";
         Book editedBook = new BookBuilder().withTitle(VALID_TITLE_BOB).withIsbn(VALID_ISBN_BOB)
-                .withAvail(VALID_AVAIL_BOB).withAuthor(VALID_AUTHOR_BOB).withTags(VALID_TAG_HUSBAND).build();
+            .withAvail(VALID_AVAIL_BOB).withAuthor(VALID_AUTHOR_BOB).withTags(VALID_TAG_HUSBAND).build();
         assertCommandSuccess(command, index, editedBook);
 
         /* Case: undo editing the last book in the list -> last book restored */
@@ -78,12 +78,12 @@ public class EditCommandSystemTest extends CatalogueSystemTest {
         command = RedoCommand.COMMAND_WORD;
         expectedResultMessage = RedoCommand.MESSAGE_SUCCESS;
         model.updateBook(
-                getModel().getFilteredBookList().get(INDEX_FIRST_BOOK.getZeroBased()), editedBook);
+            getModel().getFilteredBookList().get(INDEX_FIRST_BOOK.getZeroBased()), editedBook);
         assertCommandSuccess(command, model, expectedResultMessage);
 
         /* Case: edit a book with new values same as existing values -> edited */
         command = EditCommand.COMMAND_WORD + " " + index.getOneBased() + TITLE_DESC_BOB + ISBN_DESC_BOB
-                + AVAIL_DESC_BOB + AUTHOR_DESC_BOB + TAG_DESC_FRIEND + TAG_DESC_HUSBAND;
+            + AVAIL_DESC_BOB + AUTHOR_DESC_BOB + TAG_DESC_FRIEND + TAG_DESC_HUSBAND;
         assertCommandSuccess(command, index, BOB);
 
         /* Case: edit some fields -> edited */
@@ -102,7 +102,7 @@ public class EditCommandSystemTest extends CatalogueSystemTest {
         /* ------------------ Performing edit operation while a filtered list is being shown ------------------------ */
 
         /* Case: filtered book list, edit index within bounds of catalogue and book list -> edited */
-        showBooksWithName(KEYWORD_MATCHING_MEIER);
+        showBooksWithTitle(KEYWORD_MATCHING_GIRL);
         index = INDEX_FIRST_BOOK;
         assertTrue(index.getZeroBased() < getModel().getFilteredBookList().size());
         command = EditCommand.COMMAND_WORD + " " + index.getOneBased() + " " + TITLE_DESC_BOB;
@@ -113,10 +113,10 @@ public class EditCommandSystemTest extends CatalogueSystemTest {
         /* Case: filtered book list, edit index within bounds of catalogue but out of bounds of book list
          * -> rejected
          */
-        showBooksWithName(KEYWORD_MATCHING_MEIER);
+        showBooksWithTitle(KEYWORD_MATCHING_GIRL);
         int invalidIndex = getModel().getCatalogue().getBookList().size();
         assertCommandFailure(EditCommand.COMMAND_WORD + " " + invalidIndex + TITLE_DESC_BOB,
-                Messages.MESSAGE_INVALID_BOOK_DISPLAYED_INDEX);
+            Messages.MESSAGE_INVALID_BOOK_DISPLAYED_INDEX);
 
         /* --------------------- Performing edit operation while a book card is selected -------------------------- */
 
@@ -127,7 +127,7 @@ public class EditCommandSystemTest extends CatalogueSystemTest {
         index = INDEX_FIRST_BOOK;
         selectBook(index);
         command = EditCommand.COMMAND_WORD + " " + index.getOneBased() + TITLE_DESC_AMY + ISBN_DESC_AMY
-                + AVAIL_DESC_AMY + AUTHOR_DESC_AMY + TAG_DESC_FRIEND;
+            + AVAIL_DESC_AMY + AUTHOR_DESC_AMY + TAG_DESC_FRIEND;
         // this can be misleading: card selection actually remains unchanged but the
         // browser's url is updated to reflect the new book's name
         assertCommandSuccess(command, index, AMY, index);
@@ -136,44 +136,44 @@ public class EditCommandSystemTest extends CatalogueSystemTest {
 
         /* Case: invalid index (0) -> rejected */
         assertCommandFailure(EditCommand.COMMAND_WORD + " 0" + TITLE_DESC_BOB,
-                String.format(Messages.MESSAGE_INVALID_COMMAND_FORMAT, EditCommand.MESSAGE_USAGE));
+            String.format(Messages.MESSAGE_INVALID_COMMAND_FORMAT, EditCommand.MESSAGE_USAGE));
 
         /* Case: invalid index (-1) -> rejected */
         assertCommandFailure(EditCommand.COMMAND_WORD + " -1" + TITLE_DESC_BOB,
-                String.format(Messages.MESSAGE_INVALID_COMMAND_FORMAT, EditCommand.MESSAGE_USAGE));
+            String.format(Messages.MESSAGE_INVALID_COMMAND_FORMAT, EditCommand.MESSAGE_USAGE));
 
         /* Case: invalid index (size + 1) -> rejected */
         invalidIndex = getModel().getFilteredBookList().size() + 1;
         assertCommandFailure(EditCommand.COMMAND_WORD + " " + invalidIndex + TITLE_DESC_BOB,
-                Messages.MESSAGE_INVALID_BOOK_DISPLAYED_INDEX);
+            Messages.MESSAGE_INVALID_BOOK_DISPLAYED_INDEX);
 
         /* Case: missing index -> rejected */
         assertCommandFailure(EditCommand.COMMAND_WORD + TITLE_DESC_BOB,
-                String.format(Messages.MESSAGE_INVALID_COMMAND_FORMAT, EditCommand.MESSAGE_USAGE));
+            String.format(Messages.MESSAGE_INVALID_COMMAND_FORMAT, EditCommand.MESSAGE_USAGE));
 
         /* Case: missing all fields -> rejected */
         assertCommandFailure(EditCommand.COMMAND_WORD + " " + INDEX_FIRST_BOOK.getOneBased(),
-                EditCommand.MESSAGE_NOT_EDITED);
+            EditCommand.MESSAGE_NOT_EDITED);
 
         /* Case: invalid name -> rejected */
         assertCommandFailure(EditCommand.COMMAND_WORD + " " + INDEX_FIRST_BOOK.getOneBased() + INVALID_TITLE_DESC,
-                Title.MESSAGE_TITLE_CONSTRAINTS);
+            Title.MESSAGE_TITLE_CONSTRAINTS);
 
         /* Case: invalid isbn -> rejected */
         assertCommandFailure(EditCommand.COMMAND_WORD + " " + INDEX_FIRST_BOOK.getOneBased() + INVALID_ISBN_DESC,
-                Isbn.MESSAGE_ISBN_CONSTRAINTS);
+            Isbn.MESSAGE_ISBN_CONSTRAINTS);
 
         /* Case: invalid avail -> rejected */
         assertCommandFailure(EditCommand.COMMAND_WORD + " " + INDEX_FIRST_BOOK.getOneBased() + INVALID_AVAIL_DESC,
-                Avail.MESSAGE_AVAIL_CONSTRAINTS);
+            Avail.MESSAGE_AVAIL_CONSTRAINTS);
 
         /* Case: invalid address -> rejected */
         assertCommandFailure(EditCommand.COMMAND_WORD + " " + INDEX_FIRST_BOOK.getOneBased() + INVALID_AUTHOR_DESC,
-                Author.MESSAGE_AUTHOR_CONSTRAINTS);
+            Author.MESSAGE_AUTHOR_CONSTRAINTS);
 
         /* Case: invalid tag -> rejected */
         assertCommandFailure(EditCommand.COMMAND_WORD + " " + INDEX_FIRST_BOOK.getOneBased() + INVALID_TAG_DESC,
-                Tag.MESSAGE_TAG_CONSTRAINTS);
+            Tag.MESSAGE_TAG_CONSTRAINTS);
 
         /* Case: edit a book with new values same as another book's values -> rejected */
         executeCommand(BookUtil.getAddCommand(BOB));
@@ -181,18 +181,19 @@ public class EditCommandSystemTest extends CatalogueSystemTest {
         index = INDEX_FIRST_BOOK;
         assertFalse(getModel().getFilteredBookList().get(index.getZeroBased()).equals(BOB));
         command = EditCommand.COMMAND_WORD + " " + index.getOneBased() + TITLE_DESC_BOB + ISBN_DESC_BOB
-                + AVAIL_DESC_BOB + AUTHOR_DESC_BOB + TAG_DESC_FRIEND + TAG_DESC_HUSBAND;
+            + AVAIL_DESC_BOB + AUTHOR_DESC_BOB + TAG_DESC_FRIEND + TAG_DESC_HUSBAND;
         assertCommandFailure(command, EditCommand.MESSAGE_DUPLICATE_BOOK);
 
         /* Case: edit a book with new values same as another book's values but with different tags -> rejected */
         command = EditCommand.COMMAND_WORD + " " + index.getOneBased() + TITLE_DESC_BOB + ISBN_DESC_BOB
-                + AVAIL_DESC_BOB + AUTHOR_DESC_BOB + TAG_DESC_HUSBAND;
+            + AVAIL_DESC_BOB + AUTHOR_DESC_BOB + TAG_DESC_HUSBAND;
         assertCommandFailure(command, EditCommand.MESSAGE_DUPLICATE_BOOK);
     }
 
     /**
      * Performs the same verification as {@code assertCommandSuccess(String, Index, Book, Index)} except that
      * the browser url and selected card remain unchanged.
+     *
      * @param toEdit the index of the current model's filtered list
      * @see EditCommandSystemTest#assertCommandSuccess(String, Index, Book, Index)
      */
@@ -205,28 +206,30 @@ public class EditCommandSystemTest extends CatalogueSystemTest {
      * 1. Asserts that result display box displays the success message of executing {@code EditCommand}.<br>
      * 2. Asserts that the model related components are updated to reflect the book at index {@code toEdit} being
      * updated to values specified {@code editedBook}.<br>
+     *
      * @param toEdit the index of the current model's filtered list.
      * @see EditCommandSystemTest#assertCommandSuccess(String, Model, String, Index)
      */
     private void assertCommandSuccess(String command, Index toEdit, Book editedBook,
-            Index expectedSelectedCardIndex) {
+                                      Index expectedSelectedCardIndex) {
         Model expectedModel = getModel();
         try {
             expectedModel.updateBook(
-                    expectedModel.getFilteredBookList().get(toEdit.getZeroBased()), editedBook);
+                expectedModel.getFilteredBookList().get(toEdit.getZeroBased()), editedBook);
             expectedModel.updateFilteredBookList(PREDICATE_SHOW_ALL_BOOKS);
         } catch (DuplicateBookException | BookNotFoundException e) {
             throw new IllegalArgumentException(
-                    "editedBook is a duplicate in expectedModel, or it isn't found in the model.");
+                "editedBook is a duplicate in expectedModel, or it isn't found in the model.");
         }
 
         assertCommandSuccess(command, expectedModel,
-                String.format(EditCommand.MESSAGE_EDIT_BOOK_SUCCESS, editedBook), expectedSelectedCardIndex);
+            String.format(EditCommand.MESSAGE_EDIT_BOOK_SUCCESS, editedBook), expectedSelectedCardIndex);
     }
 
     /**
      * Performs the same verification as {@code assertCommandSuccess(String, Model, String, Index)} except that the
      * browser url and selected card remain unchanged.
+     *
      * @see EditCommandSystemTest#assertCommandSuccess(String, Model, String, Index)
      */
     private void assertCommandSuccess(String command, Model expectedModel, String expectedResultMessage) {
@@ -244,11 +247,12 @@ public class EditCommandSystemTest extends CatalogueSystemTest {
      * 6. Asserts that the command box has the default style class.<br>
      * Verifications 1 to 3 are performed by
      * {@code CatalogueSystemTest#assertApplicationDisplaysExpected(String, String, Model)}.<br>
+     *
      * @see CatalogueSystemTest#assertApplicationDisplaysExpected(String, String, Model)
      * @see CatalogueSystemTest#assertSelectedCardChanged(Index)
      */
     private void assertCommandSuccess(String command, Model expectedModel, String expectedResultMessage,
-            Index expectedSelectedCardIndex) {
+                                      Index expectedSelectedCardIndex) {
         executeCommand(command);
         expectedModel.updateFilteredBookList(PREDICATE_SHOW_ALL_BOOKS);
         assertApplicationDisplaysExpected("", expectedResultMessage, expectedModel);
@@ -270,6 +274,7 @@ public class EditCommandSystemTest extends CatalogueSystemTest {
      * 5. Asserts that the command box has the error style.<br>
      * Verifications 1 to 3 are performed by
      * {@code CatalogueSystemTest#assertApplicationDisplaysExpected(String, String, Model)}.<br>
+     *
      * @see CatalogueSystemTest#assertApplicationDisplaysExpected(String, String, Model)
      */
     private void assertCommandFailure(String command, String expectedResultMessage) {

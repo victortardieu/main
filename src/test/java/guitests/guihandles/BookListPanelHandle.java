@@ -22,6 +22,7 @@ public class BookListPanelHandle extends NodeHandle<ListView<BookCard>> {
     /**
      * Returns a handle to the selected {@code BookCardHandle}.
      * A maximum of 1 item can be selected at any time.
+     *
      * @throws AssertionError if no card is selected, or more than 1 card is selected.
      */
     public BookCardHandle getHandleToSelectedCard() {
@@ -84,9 +85,9 @@ public class BookListPanelHandle extends NodeHandle<ListView<BookCard>> {
      */
     public BookCardHandle getBookCardHandle(Book book) {
         Optional<BookCardHandle> handle = getRootNode().getItems().stream()
-                .filter(card -> card.book.equals(book))
-                .map(card -> new BookCardHandle(card.getRoot()))
-                .findFirst();
+            .filter(card -> card.book.equals(book))
+            .map(card -> new BookCardHandle(card.getRoot()))
+            .findFirst();
         return handle.orElseThrow(() -> new IllegalArgumentException("Book does not exist."));
     }
 
@@ -121,7 +122,7 @@ public class BookListPanelHandle extends NodeHandle<ListView<BookCard>> {
             return lastRememberedSelectedBookCard.isPresent();
         } else {
             return !lastRememberedSelectedBookCard.isPresent()
-                    || !lastRememberedSelectedBookCard.get().equals(selectedItems.get(0));
+                || !lastRememberedSelectedBookCard.get().equals(selectedItems.get(0));
         }
     }
 

@@ -26,20 +26,19 @@ import static seedu.address.logic.commands.CommandTestUtil.VALID_TAG_FRIEND;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_TITLE_AMY;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_TITLE_BOB;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_TAG;
-import static seedu.address.testutil.TypicalBooks.ALICE;
 import static seedu.address.testutil.TypicalBooks.AMY;
+import static seedu.address.testutil.TypicalBooks.ANIMAL;
 import static seedu.address.testutil.TypicalBooks.BOB;
-import static seedu.address.testutil.TypicalBooks.CARL;
-import static seedu.address.testutil.TypicalBooks.HOON;
-import static seedu.address.testutil.TypicalBooks.IDA;
-import static seedu.address.testutil.TypicalBooks.KEYWORD_MATCHING_MEIER;
+import static seedu.address.testutil.TypicalBooks.CALIFORNIA;
+import static seedu.address.testutil.TypicalBooks.HOLES;
+import static seedu.address.testutil.TypicalBooks.INVISIBLE;
+import static seedu.address.testutil.TypicalBooks.KEYWORD_MATCHING_GIRL;
 
 import org.junit.Test;
 
 import seedu.address.commons.core.Messages;
 import seedu.address.commons.core.index.Index;
 import seedu.address.logic.commands.AddCommand;
-//import seedu.address.logic.commands.Command;
 import seedu.address.logic.commands.RedoCommand;
 import seedu.address.logic.commands.UndoCommand;
 import seedu.address.model.Model;
@@ -52,6 +51,8 @@ import seedu.address.model.book.exceptions.DuplicateBookException;
 import seedu.address.model.tag.Tag;
 import seedu.address.testutil.BookBuilder;
 import seedu.address.testutil.BookUtil;
+
+//import seedu.address.logic.commands.Command;
 
 public class AddCommandSystemTest extends CatalogueSystemTest {
 
@@ -70,8 +71,8 @@ public class AddCommandSystemTest extends CatalogueSystemTest {
          */
         Book toAdd = AMY;
         String command = "   " + AddCommand.COMMAND_WORD + "  " + TITLE_DESC_AMY + "  " + "   " + AUTHOR_DESC_AMY
-                + ISBN_DESC_AMY + " "
-                + AVAIL_DESC_AMY + "   " + TAG_DESC_FRIEND + " ";
+            + ISBN_DESC_AMY + " "
+            + AVAIL_DESC_AMY + "   " + TAG_DESC_FRIEND + " ";
         assertCommandSuccess(command, toAdd);
 
         /* Case: undo adding Amy to the list -> Amy deleted */
@@ -87,72 +88,72 @@ public class AddCommandSystemTest extends CatalogueSystemTest {
 
         /* Case: add a book with all fields same as another book in the catalogue except name -> added */
         toAdd = new BookBuilder().withTitle(VALID_TITLE_BOB).withAuthor(VALID_AUTHOR_AMY)
-                .withIsbn(VALID_ISBN_AMY).withAvail(VALID_AVAIL_AMY)
-                .withTags(VALID_TAG_FRIEND).build();
+            .withIsbn(VALID_ISBN_AMY).withAvail(VALID_AVAIL_AMY)
+            .withTags(VALID_TAG_FRIEND).build();
         command = AddCommand.COMMAND_WORD + TITLE_DESC_BOB + AUTHOR_DESC_AMY + ISBN_DESC_AMY + AVAIL_DESC_AMY
-                + TAG_DESC_FRIEND;
+            + TAG_DESC_FRIEND;
         assertCommandSuccess(command, toAdd);
 
         /* Case: add a book with all fields same as another book in the catalogue except isbn -> added */
         toAdd = new BookBuilder().withTitle(VALID_TITLE_AMY).withAuthor(VALID_AUTHOR_AMY)
-                .withIsbn(VALID_ISBN_BOB).withAvail(VALID_AVAIL_AMY)
-                .withTags(VALID_TAG_FRIEND).build();
+            .withIsbn(VALID_ISBN_BOB).withAvail(VALID_AVAIL_AMY)
+            .withTags(VALID_TAG_FRIEND).build();
         command = AddCommand.COMMAND_WORD + TITLE_DESC_AMY + AUTHOR_DESC_AMY + ISBN_DESC_BOB + AVAIL_DESC_AMY
-                + TAG_DESC_FRIEND;
+            + TAG_DESC_FRIEND;
         assertCommandSuccess(command, toAdd);
 
         /* Case: add a book with all fields same as another book in the catalogue except avail -> added */
         toAdd = new BookBuilder().withTitle(VALID_TITLE_AMY).withAuthor(VALID_AUTHOR_AMY)
-                .withIsbn(VALID_ISBN_AMY).withAvail(VALID_AVAIL_BOB)
-                .withTags(VALID_TAG_FRIEND).build();
+            .withIsbn(VALID_ISBN_AMY).withAvail(VALID_AVAIL_BOB)
+            .withTags(VALID_TAG_FRIEND).build();
         command = AddCommand.COMMAND_WORD + TITLE_DESC_AMY + AUTHOR_DESC_AMY + ISBN_DESC_AMY + AVAIL_DESC_BOB
-                + TAG_DESC_FRIEND;
+            + TAG_DESC_FRIEND;
         assertCommandSuccess(command, toAdd);
 
         /* Case: add a book with all fields same as another book in the catalogue except address -> added */
         toAdd = new BookBuilder().withTitle(VALID_TITLE_AMY).withAuthor(VALID_AUTHOR_BOB)
-                .withIsbn(VALID_ISBN_AMY).withAvail(VALID_AVAIL_AMY)
-                .withTags(VALID_TAG_FRIEND).build();
+            .withIsbn(VALID_ISBN_AMY).withAvail(VALID_AVAIL_AMY)
+            .withTags(VALID_TAG_FRIEND).build();
         command = AddCommand.COMMAND_WORD + TITLE_DESC_AMY + AUTHOR_DESC_BOB + ISBN_DESC_AMY + AVAIL_DESC_AMY
-                + TAG_DESC_FRIEND;
+            + TAG_DESC_FRIEND;
         assertCommandSuccess(command, toAdd);
 
         /* Case: add to empty catalogue -> added */
         deleteAllBooks();
-        assertCommandSuccess(ALICE);
+        assertCommandSuccess(ANIMAL);
 
         /* Case: add a book with tags, command with parameters in random order -> added */
         toAdd = BOB;
         command = AddCommand.COMMAND_WORD + AUTHOR_DESC_BOB + TAG_DESC_FRIEND + ISBN_DESC_BOB + TITLE_DESC_BOB
-                + TAG_DESC_HUSBAND + AVAIL_DESC_BOB;
+            + TAG_DESC_HUSBAND + AVAIL_DESC_BOB;
         assertCommandSuccess(command, toAdd);
 
         /* Case: add a book, missing tags -> added */
-        assertCommandSuccess(HOON);
+        assertCommandSuccess(HOLES);
 
         /* -------------------------- Perform add operation on the shown filtered list ------------------------------ */
 
         /* Case: filters the book list before adding -> added */
-        showBooksWithName(KEYWORD_MATCHING_MEIER);
-        assertCommandSuccess(IDA);
+        showBooksWithTitle(KEYWORD_MATCHING_GIRL);
+        assertCommandSuccess(INVISIBLE);
 
         /* ------------------------ Perform add operation while a book card is selected --------------------------- */
 
         /* Case: selects first card in the book list, add a book -> added, card selection remains unchanged */
         selectBook(Index.fromOneBased(1));
-        assertCommandSuccess(CARL);
+        assertCommandSuccess(CALIFORNIA);
 
         /* ----------------------------------- Perform invalid add operations --------------------------------------- */
 
         /* Case: add a duplicate book -> rejected */
-        command = BookUtil.getAddCommand(HOON);
+        command = BookUtil.getAddCommand(HOLES);
         assertCommandFailure(command, AddCommand.MESSAGE_DUPLICATE_BOOK);
 
         /* Case: add a duplicate book except with different tags -> rejected */
-        // "friends" is an existing tag used in the default model, see TypicalBooks#ALICE
+        // "friends" is an existing tag used in the default model, see TypicalBooks#ANIMAL
         // This test will fail if a new tag that is not in the model is used, see the bug documented in
         // Catalogue#addBook(Book)
-        command = BookUtil.getAddCommand(HOON) + " " + PREFIX_TAG.getPrefix() + "friends";
+        command = BookUtil.getAddCommand(HOLES) + " " + PREFIX_TAG.getPrefix() + "unlabelled";
         assertCommandFailure(command, AddCommand.MESSAGE_DUPLICATE_BOOK);
 
         /* Case: missing name -> rejected */
@@ -193,7 +194,7 @@ public class AddCommandSystemTest extends CatalogueSystemTest {
 
         /* Case: invalid tag -> rejected */
         command = AddCommand.COMMAND_WORD + TITLE_DESC_AMY + AUTHOR_DESC_AMY + ISBN_DESC_AMY + AVAIL_DESC_AMY
-                + INVALID_TAG_DESC;
+            + INVALID_TAG_DESC;
         assertCommandFailure(command, Tag.MESSAGE_TAG_CONSTRAINTS);
 
 
@@ -211,6 +212,7 @@ public class AddCommandSystemTest extends CatalogueSystemTest {
      * 6. Status bar's sync status changes.<br>
      * Verifications 1, 3 and 4 are performed by
      * {@code CatalogueSystemTest#assertApplicationDisplaysExpected(String, String, Model)}.<br>
+     *
      * @see CatalogueSystemTest#assertApplicationDisplaysExpected(String, String, Model)
      */
     private void assertCommandSuccess(Book toAdd) {
@@ -220,6 +222,7 @@ public class AddCommandSystemTest extends CatalogueSystemTest {
     /**
      * Performs the same verification as {@code assertCommandSuccess(Book)}. Executes {@code command}
      * instead.
+     *
      * @see AddCommandSystemTest#assertCommandSuccess(Book)
      */
     private void assertCommandSuccess(String command, Book toAdd) {
@@ -240,6 +243,7 @@ public class AddCommandSystemTest extends CatalogueSystemTest {
      * 1. Result display box displays {@code expectedResultMessage}.<br>
      * 2. {@code Model}, {@code Storage} and {@code BookListPanel} equal to the corresponding components in
      * {@code expectedModel}.<br>
+     *
      * @see AddCommandSystemTest#assertCommandSuccess(String, Book)
      */
     private void assertCommandSuccess(String command, Model expectedModel, String expectedResultMessage) {
@@ -259,6 +263,7 @@ public class AddCommandSystemTest extends CatalogueSystemTest {
      * 5. Browser url, selected card and status bar remain unchanged.<br>
      * Verifications 1, 3 and 4 are performed by
      * {@code CatalogueSystemTest#assertApplicationDisplaysExpected(String, String, Model)}.<br>
+     *
      * @see CatalogueSystemTest#assertApplicationDisplaysExpected(String, String, Model)
      */
     private void assertCommandFailure(String command, String expectedResultMessage) {

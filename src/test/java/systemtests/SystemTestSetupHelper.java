@@ -18,6 +18,18 @@ public class SystemTestSetupHelper {
     private MainWindowHandle mainWindowHandle;
 
     /**
+     * Initializes TestFX.
+     */
+    public static void initialize() {
+        try {
+            FxToolkit.registerPrimaryStage();
+            FxToolkit.hideStage();
+        } catch (TimeoutException e) {
+            throw new AssertionError(e);
+        }
+    }
+
+    /**
      * Sets up a new {@code TestApp} and returns it.
      */
     public TestApp setupApplication(Supplier<ReadOnlyCatalogue> catalogue, String saveFileLocation) {
@@ -29,18 +41,6 @@ public class SystemTestSetupHelper {
         }
 
         return testApp;
-    }
-
-    /**
-     * Initializes TestFX.
-     */
-    public static void initialize() {
-        try {
-            FxToolkit.registerPrimaryStage();
-            FxToolkit.hideStage();
-        } catch (TimeoutException e) {
-            throw new AssertionError(e);
-        }
     }
 
     /**

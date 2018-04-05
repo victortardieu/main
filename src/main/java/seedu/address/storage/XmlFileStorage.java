@@ -16,7 +16,7 @@ public class XmlFileStorage {
      * Saves the given catalogue data to the specified file.
      */
     public static void saveDataToFile(File file, XmlSerializableCatalogue catalogue)
-            throws FileNotFoundException {
+        throws FileNotFoundException {
         try {
             XmlUtil.saveDataToFile(file, catalogue);
         } catch (JAXBException e) {
@@ -28,7 +28,7 @@ public class XmlFileStorage {
      * Returns catalogue in the file or an empty catalogue
      */
     public static XmlSerializableCatalogue loadDataFromSaveFile(File file) throws DataConversionException,
-                                                                            FileNotFoundException {
+        FileNotFoundException {
         try {
             return XmlUtil.getDataFromFile(file, XmlSerializableCatalogue.class);
         } catch (JAXBException e) {

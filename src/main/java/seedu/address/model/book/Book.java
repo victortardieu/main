@@ -52,7 +52,6 @@ public class Book {
     }
 
 
-
     /**
      * Returns an immutable tag set, which throws {@code UnsupportedOperationException}
      * if modification is attempted.
@@ -73,9 +72,9 @@ public class Book {
 
         Book otherBook = (Book) other;
         return otherBook.getTitle().equals(this.getTitle())
-                && otherBook.getAuthor().equals(this.getAuthor())
-                && otherBook.getIsbn().equals(this.getIsbn())
-                && otherBook.getAvail().equals(this.getAvail());
+            && otherBook.getAuthor().equals(this.getAuthor())
+            && otherBook.getIsbn().equals(this.getIsbn())
+            && otherBook.getAvail().equals(this.getAvail());
     }
 
     @Override
@@ -88,13 +87,13 @@ public class Book {
     public String toString() {
         final StringBuilder builder = new StringBuilder();
         builder.append(getTitle())
-                .append(" Author: ")
-                .append(getAuthor())
-                .append(" Isbn: ")
-                .append(getIsbn())
-                .append(" Avail: ")
-                .append(getAvail())
-                .append(" Tags: ");
+            .append(" Author: ")
+            .append(getAuthor())
+            .append(" Isbn: ")
+            .append(getIsbn())
+            .append(" Avail: ")
+            .append(getAvail())
+            .append(" Tags: ");
         getTags().forEach(builder::append);
         return builder.toString();
     }

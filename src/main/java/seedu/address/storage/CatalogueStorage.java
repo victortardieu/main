@@ -19,9 +19,10 @@ public interface CatalogueStorage {
 
     /**
      * Returns Catalogue data as a {@link ReadOnlyCatalogue}.
-     *   Returns {@code Optional.empty()} if storage file is not found.
+     * Returns {@code Optional.empty()} if storage file is not found.
+     *
      * @throws DataConversionException if the data in storage is not in the expected format.
-     * @throws IOException if there was any problem when reading from the storage.
+     * @throws IOException             if there was any problem when reading from the storage.
      */
     Optional<ReadOnlyCatalogue> readCatalogue() throws DataConversionException, IOException;
 
@@ -32,6 +33,7 @@ public interface CatalogueStorage {
 
     /**
      * Saves the given {@link ReadOnlyCatalogue} to the storage.
+     *
      * @param catalogue cannot be null.
      * @throws IOException if there was any problem writing to the file.
      */

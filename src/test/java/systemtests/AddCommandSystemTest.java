@@ -26,13 +26,13 @@ import static seedu.address.logic.commands.CommandTestUtil.VALID_TAG_FRIEND;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_TITLE_AMY;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_TITLE_BOB;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_TAG;
-import static seedu.address.testutil.TypicalBooks.ALICE;
 import static seedu.address.testutil.TypicalBooks.AMY;
+import static seedu.address.testutil.TypicalBooks.ANIMAL;
 import static seedu.address.testutil.TypicalBooks.BOB;
-import static seedu.address.testutil.TypicalBooks.CARL;
-import static seedu.address.testutil.TypicalBooks.HOON;
-import static seedu.address.testutil.TypicalBooks.IDA;
-import static seedu.address.testutil.TypicalBooks.KEYWORD_MATCHING_MEIER;
+import static seedu.address.testutil.TypicalBooks.CALIFORNIA;
+import static seedu.address.testutil.TypicalBooks.HOLES;
+import static seedu.address.testutil.TypicalBooks.INVISIBLE;
+import static seedu.address.testutil.TypicalBooks.KEYWORD_MATCHING_GIRL;
 
 import org.junit.Test;
 
@@ -120,7 +120,7 @@ public class AddCommandSystemTest extends CatalogueSystemTest {
 
         /* Case: add to empty catalogue -> added */
         deleteAllBooks();
-        assertCommandSuccess(ALICE);
+        assertCommandSuccess(ANIMAL);
 
         /* Case: add a book with tags, command with parameters in random order -> added */
         toAdd = BOB;
@@ -129,31 +129,31 @@ public class AddCommandSystemTest extends CatalogueSystemTest {
         assertCommandSuccess(command, toAdd);
 
         /* Case: add a book, missing tags -> added */
-        assertCommandSuccess(HOON);
+        assertCommandSuccess(HOLES);
 
         /* -------------------------- Perform add operation on the shown filtered list ------------------------------ */
 
         /* Case: filters the book list before adding -> added */
-        showBooksWithName(KEYWORD_MATCHING_MEIER);
-        assertCommandSuccess(IDA);
+        showBooksWithTitle(KEYWORD_MATCHING_GIRL);
+        assertCommandSuccess(INVISIBLE);
 
         /* ------------------------ Perform add operation while a book card is selected --------------------------- */
 
         /* Case: selects first card in the book list, add a book -> added, card selection remains unchanged */
         selectBook(Index.fromOneBased(1));
-        assertCommandSuccess(CARL);
+        assertCommandSuccess(CALIFORNIA);
 
         /* ----------------------------------- Perform invalid add operations --------------------------------------- */
 
         /* Case: add a duplicate book -> rejected */
-        command = BookUtil.getAddCommand(HOON);
+        command = BookUtil.getAddCommand(HOLES);
         assertCommandFailure(command, AddCommand.MESSAGE_DUPLICATE_BOOK);
 
         /* Case: add a duplicate book except with different tags -> rejected */
-        // "friends" is an existing tag used in the default model, see TypicalBooks#ALICE
+        // "friends" is an existing tag used in the default model, see TypicalBooks#ANIMAL
         // This test will fail if a new tag that is not in the model is used, see the bug documented in
         // Catalogue#addBook(Book)
-        command = BookUtil.getAddCommand(HOON) + " " + PREFIX_TAG.getPrefix() + "friends";
+        command = BookUtil.getAddCommand(HOLES) + " " + PREFIX_TAG.getPrefix() + "unlabelled";
         assertCommandFailure(command, AddCommand.MESSAGE_DUPLICATE_BOOK);
 
         /* Case: missing name -> rejected */

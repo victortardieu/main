@@ -7,7 +7,7 @@ import static seedu.address.logic.commands.DeleteCommand.MESSAGE_DELETE_BOOK_SUC
 import static seedu.address.testutil.TestUtil.getBook;
 import static seedu.address.testutil.TestUtil.getLastIndex;
 import static seedu.address.testutil.TestUtil.getMidIndex;
-import static seedu.address.testutil.TypicalBooks.KEYWORD_MATCHING_MEIER;
+import static seedu.address.testutil.TypicalBooks.KEYWORD_MATCHING_BREAKING;
 import static seedu.address.testutil.TypicalIndexes.INDEX_FIRST_BOOK;
 
 import org.junit.Test;
@@ -63,15 +63,16 @@ public class DeleteCommandSystemTest extends CatalogueSystemTest {
         /* ------------------ Performing delete operation while a filtered list is being shown ---------------------- */
 
         /* Case: filtered book list, delete index within bounds of catalogue and book list -> deleted */
-        showBooksWithName(KEYWORD_MATCHING_MEIER);
+        showBooksWithTitle(KEYWORD_MATCHING_BREAKING);
         Index index = INDEX_FIRST_BOOK;
         assertTrue(index.getZeroBased() < getModel().getFilteredBookList().size());
         assertCommandSuccess(index);
 
+
         /* Case: filtered book list, delete index within bounds of catalogue but out of bounds of book list
          * -> rejected
          */
-        showBooksWithName(KEYWORD_MATCHING_MEIER);
+        showBooksWithTitle(KEYWORD_MATCHING_BREAKING);
         int invalidIndex = getModel().getCatalogue().getBookList().size();
         command = DeleteCommand.COMMAND_WORD + " " + invalidIndex;
         assertCommandFailure(command, MESSAGE_INVALID_BOOK_DISPLAYED_INDEX);

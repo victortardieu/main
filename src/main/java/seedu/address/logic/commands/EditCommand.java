@@ -47,7 +47,7 @@ public class EditCommand extends UndoableCommand {
         + "[" + PREFIX_AVAIL + "AVAIL] "
         + "[" + PREFIX_TAG + "TAG]...\n"
         + "Example: " + COMMAND_WORD + " 1 "
-        + PREFIX_ISBN + "91234567 "
+        + PREFIX_ISBN + "9780736692426 "
         + PREFIX_AVAIL + "Borrowed";
 
     public static final String MESSAGE_EDIT_BOOK_SUCCESS = "Edited Book: %1$s";

@@ -136,26 +136,6 @@ public class ReserveCommandTest {
         assertCommandSuccess(redoCommand, model, RedoCommand.MESSAGE_SUCCESS, expectedModel);
     }
 
-    @Test
-    public void equals() throws Exception {
-        ReserveCommand reserveFirstCommand = prepareCommand(INDEX_FIRST_BOOK);
-        ReserveCommand reserveSecondCommand = prepareCommand(INDEX_SECOND_BOOK);
-
-        // same values -> returns true
-        ReserveCommand reserveFirstCommandCopy = prepareCommand(INDEX_FIRST_BOOK);
-        assertTrue(reserveFirstCommand.equals(reserveFirstCommandCopy));
-
-        // one command preprocessed when previously equal -> returns false
-        reserveFirstCommandCopy.preprocessUndoableCommand();
-        assertFalse(reserveFirstCommand.equals(reserveFirstCommandCopy));
-
-        // different types -> returns false
-        assertFalse(reserveFirstCommand.equals(1));
-
-        // different book -> returns false
-        assertFalse(reserveFirstCommand.equals(reserveSecondCommand));
-    }
-
     /**
      * Returns a {@code ReturnCommand} with the parameter {@code index}.
      */

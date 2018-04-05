@@ -47,21 +47,6 @@ public class BorrowCommandTest {
     }
 
     @Test
-    public void execute_validIndexFilteredList_success() throws Exception {
-        showBookAtIndex(model, INDEX_FIFTH_BOOK);
-
-        Book bookToBorrow = model.getFilteredBookList().get(INDEX_FIFTH_BOOK.getZeroBased());
-        BorrowCommand borrowCommand = prepareCommand(INDEX_FIFTH_BOOK);
-
-        String expectedMessage = String.format(BorrowCommand.MESSAGE_SUCCESS, bookToBorrow);
-
-        Model expectedModel = new ModelManager(model.getCatalogue(), new UserPrefs());
-        expectedModel.borrowBook(bookToBorrow);
-
-        assertCommandSuccess(borrowCommand, model, expectedMessage, expectedModel);
-    }
-
-    @Test
     public void execute_invalidIndexFilteredList_throwsCommandException() {
         showBookAtIndex(model, INDEX_FIRST_BOOK);
 

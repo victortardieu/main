@@ -77,21 +77,33 @@ public class ParserUtil {
     }
 
     /**
-     * Parses a {@code String username and String password} into a {@code Credential}.
+     * Parses a {@code String username} into a {@code Username}.
      * Leading and trailing whitespaces will be trimmed.
      *
-     * @throws IllegalValueException if the given {@code username or password} is invalid.
+     * @throws IllegalValueException if the given {@code username } is invalid.
      */
-    public static Credential parseAccountCredential (String username, String password) throws IllegalValueException {
+    public static Username parseAccountUsername (String username) throws IllegalValueException {
         requireNonNull(username);
-        requireNonNull(password);
         String trimmedUsername = username.trim();
-        String trimmedPassword = password.trim();
-
-        if(!Username.isValidUsername(trimmedUsername) || !Password.isValidPassword(trimmedPassword)) {
-            throw new IllegalValueException(Username.MESSAGE_USERNAME_CONSTRAINTS + Password.MESSAGE_PASSWORD_CONSTRAINTS);
+        if (!Username.isValidUsername(trimmedUsername)) {
+            throw new IllegalValueException(Username.MESSAGE_USERNAME_CONSTRAINTS);
         }
-        return new Credential(trimmedUsername, trimmedPassword);
+        return new Username(trimmedUsername);
+    }
+
+    /**
+     * Parses a {@code String password} into a {@code Password}.
+     * Leading and trailing whitespaces will be trimmed.
+     *
+     * @throws IllegalValueException if the given {@code password} is invalid.
+     */
+    public static Password parseAccountPassword (String password) throws IllegalValueException {
+        requireNonNull(password);
+        String trimmedPassword = password.trim();
+        if (!Password.isValidPassword(trimmedPassword)) {
+            throw new IllegalValueException(Password.MESSAGE_PASSWORD_CONSTRAINTS);
+        }
+        return new Password(trimmedPassword);
     }
 
     /**

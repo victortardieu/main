@@ -16,6 +16,4 @@ public class CliSyntax {
     public static final Prefix PREFIX_MATRICNUMBER = new Prefix ("matric/");
     public static final Prefix PREFIX_PASSWORD = new Prefix ("password/");
     public static final Prefix PREFIX_PRIVILEGE = new Prefix ("privilege/");
-    public static final Prefix PREFIX_CREDENTIAL = new Prefix("credential/");
-
 }

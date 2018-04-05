@@ -14,7 +14,6 @@ import seedu.address.model.account.Username;
 import java.util.stream.Stream;
 
 import static seedu.address.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_CREDENTIAL;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_MATRICNUMBER;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_PASSWORD;
@@ -30,7 +29,7 @@ public class AddAccountCommandParser implements  Parser<AddAccountCommand> {
      * (@code ArgumentMultimap).
      */
     private static boolean arePrefixesPresent (ArgumentMultimap argumentMultimap, Prefix... prefixes) {
-        return Stream.of(prefixes).allMatch((prefix -> argumentMultimap.getValue(prefix).isPresent())
+        return Stream.of(prefixes).allMatch((prefix -> argumentMultimap.getValue(prefix).isPresent()));
     }
 
     /**
@@ -52,7 +51,9 @@ public class AddAccountCommandParser implements  Parser<AddAccountCommand> {
 
         try {
             Name name = ParserUtil.parseAccountName(argMultimap.getValue(PREFIX_NAME).get());
-            Credential credential = ParserUtil.parseAccountCredential(argMultimap.getAllValues(PREFIX_CREDENTIAL));
+            Username username = ParserUtil.parseAccountUsername(argMultimap.getValue(PREFIX_USERNAME).get());
+            Password password = ParserUtil.parseAccountPassword(argMultimap.getValue(PREFIX_PASSWORD).get());
+            Credential credential = new Credential(username.toString(),password.toString());
             MatricNumber matricNumber = ParserUtil.parseAccountMatricNumber
                     (argMultimap.getValue(PREFIX_MATRICNUMBER).get());
             PrivilegeLevel privilegeLevel = ParserUtil.parseAccountPrivilegeLevel

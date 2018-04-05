@@ -241,10 +241,16 @@ The `redo` command fails as there are no `undo` commands executed previously.
 `redo` (reapplies the `clear` command) +
 // end::undoredo[]
 
-=== Clearing all entries : `clear`
+=== Clearing all books : `clear`
 
 
-Clears all entries from the catalogue. +
+Clears all books from the catalogue. +
+Format: `clear` +
+Privilege Level: 2(Librarian)
+
+=== Clearing all accounts : `cleara`
+
+Clears all accounts from AccountList. +
 Format: `clear` +
 Privilege Level: 2(Librarian)
 

@@ -15,7 +15,7 @@ public class FindCommand extends Command {
     public static final String MESSAGE_USAGE = COMMAND_WORD + ": Finds all books whose titles contain any of "
         + "the specified keywords (case-sensitive) and displays them as a list with index numbers.\n"
         + "Parameters: KEYWORD [MORE_KEYWORDS]...\n"
-        + "Example: " + COMMAND_WORD + " alice bob charlie";
+        + "Example: " + COMMAND_WORD + " animal george";
 
     public static final PrivilegeLevel PRIVILEGE_LEVEL = Model.PRIVILEGE_LEVEL_GUEST;
 

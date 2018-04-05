@@ -53,7 +53,7 @@ public class AddAccountCommandParser implements  Parser<AddAccountCommand> {
             Name name = ParserUtil.parseAccountName(argMultimap.getValue(PREFIX_NAME).get());
             Username username = ParserUtil.parseAccountUsername(argMultimap.getValue(PREFIX_USERNAME).get());
             Password password = ParserUtil.parseAccountPassword(argMultimap.getValue(PREFIX_PASSWORD).get());
-            Credential credential = new Credential(username.toString(),password.toString());
+            Credential credential = new Credential(username.getUsername(),password.getPassword());
             MatricNumber matricNumber = ParserUtil.parseAccountMatricNumber
                     (argMultimap.getValue(PREFIX_MATRICNUMBER).get());
             PrivilegeLevel privilegeLevel = ParserUtil.parseAccountPrivilegeLevel

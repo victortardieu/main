@@ -31,7 +31,7 @@ public class AddAccountCommand extends UndoableCommand{
             + PREFIX_MATRICNUMBER + "A0123456B "
             + PREFIX_PRIVILEGE + "1";
 
-    public static final String MESSAGE_SUCCESS = "New account added: %l$s";
+    public static final String MESSAGE_SUCCESS = "New account added: %1$s";
     public static final String MESSAGE_DUPLICATE_ACCOUNT = "This account already exists in the system";
 
     public static final PrivilegeLevel PRIVILEGE_LEVEL = Model.PRIVILEGE_LEVEL_LIBRARIAN;

@@ -35,7 +35,6 @@ public class Username implements Serializable {
         return test.matches(USERNAME_VALIDATION_REGEX);
     }
 
-
     /**
      * Returns username.
      */

@@ -19,15 +19,15 @@ import seedu.address.model.tag.Tag;
 public class SampleDataUtil {
     public static Book[] getSampleBooks() {
         return new Book[] {
-            new Book(new Title("Animal Farm"), new Author("George Orwell"), new Isbn("9780736692427"), new Avail("Available"),
-                getTagSet("political", "satire")),
-            new Book(new Title("Breaking Dawn"), new Author("Stephenie Meyer"), new Isbn("9780316067928"), new Avail("Available"),
-                getTagSet("fiction")),
+            new Book(new Title("Animal Farm"), new Author("George Orwell"), new Isbn("9780736692427"),
+                new Avail("Available"), getTagSet("political", "satire")),
+            new Book(new Title("Breaking Dawn"), new Author("Stephenie Meyer"), new Isbn("9780316067928"),
+                new Avail("Available"), getTagSet("fiction")),
             new Book(new Title("California Girl"), new Author("Jefferson Parker"), new Isbn("9780060562373"),
                 new Avail("Borrowed"),
                 getTagSet("fiction", "mystery")),
-            new Book(new Title("Delirium"), new Author("Lauren Oliver"), new Isbn("9780061726835"), new Avail("Borrowed"),
-                getTagSet("dystopian", "fiction")),
+            new Book(new Title("Delirium"), new Author("Lauren Oliver"), new Isbn("9780061726835"),
+                new Avail("Borrowed"), getTagSet("dystopian", "fiction")),
             new Book(new Title("Invisible Man"), new Author("Ralph Ellison"), new Isbn("9780140023350"),
                 new Avail("Borrowed"),
                 getTagSet("fiction")),

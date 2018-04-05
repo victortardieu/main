@@ -147,7 +147,7 @@ public abstract class CatalogueSystemTest {
     /**
      * Displays all books with any parts of their names matching {@code keyword} (case-insensitive).
      */
-    protected void showBooksWithName(String keyword) {
+    protected void showBooksWithTitle(String keyword) {
         executeCommand(FindCommand.COMMAND_WORD + " " + keyword);
         assertTrue(getModel().getFilteredBookList().size() < getModel().getCatalogue().getBookList().size());
     }

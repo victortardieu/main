@@ -27,7 +27,7 @@ import static seedu.address.logic.parser.CliSyntax.PREFIX_TAG;
 import static seedu.address.model.Model.PREDICATE_SHOW_ALL_BOOKS;
 import static seedu.address.testutil.TypicalBooks.AMY;
 import static seedu.address.testutil.TypicalBooks.BOB;
-import static seedu.address.testutil.TypicalBooks.KEYWORD_MATCHING_MEIER;
+import static seedu.address.testutil.TypicalBooks.KEYWORD_MATCHING_GIRL;
 import static seedu.address.testutil.TypicalIndexes.INDEX_FIRST_BOOK;
 
 import org.junit.Test;
@@ -102,7 +102,7 @@ public class EditCommandSystemTest extends CatalogueSystemTest {
         /* ------------------ Performing edit operation while a filtered list is being shown ------------------------ */
 
         /* Case: filtered book list, edit index within bounds of catalogue and book list -> edited */
-        showBooksWithName(KEYWORD_MATCHING_MEIER);
+        showBooksWithTitle(KEYWORD_MATCHING_GIRL);
         index = INDEX_FIRST_BOOK;
         assertTrue(index.getZeroBased() < getModel().getFilteredBookList().size());
         command = EditCommand.COMMAND_WORD + " " + index.getOneBased() + " " + TITLE_DESC_BOB;
@@ -113,7 +113,7 @@ public class EditCommandSystemTest extends CatalogueSystemTest {
         /* Case: filtered book list, edit index within bounds of catalogue but out of bounds of book list
          * -> rejected
          */
-        showBooksWithName(KEYWORD_MATCHING_MEIER);
+        showBooksWithTitle(KEYWORD_MATCHING_GIRL);
         int invalidIndex = getModel().getCatalogue().getBookList().size();
         assertCommandFailure(EditCommand.COMMAND_WORD + " " + invalidIndex + TITLE_DESC_BOB,
             Messages.MESSAGE_INVALID_BOOK_DISPLAYED_INDEX);

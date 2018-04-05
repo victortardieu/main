@@ -248,6 +248,23 @@ Clears all entries from the catalogue. +
 Format: `clear` +
 Privilege Level: 2(Librarian)
 
+=== Borrow a book: `borrow`
+
+Borrow the specified book from the catalogue. +
+Format: `borrow INDEX` +
+Privilege Level: 2(Librarian)
+
+****
+* Borrow the book at the specified `INDEX`.
+* The index refers to the index number shown in the most recent listing.
+* The index *must be a positive integer* 1, 2, 3, ...
+****
+
+Examples:
+
+* `list` +
+`borrow 2` +
+Borrow the 2nd book in the catalogue.
 
 === Exiting the program : `exit`
 

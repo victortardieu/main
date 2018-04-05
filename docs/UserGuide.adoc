@@ -248,6 +248,17 @@ Clears all entries from the catalogue. +
 Format: `clear` +
 Privilege Level: 2(Librarian)
 
+=== Return a book : `return`
+
+Return a specified book to the catalogue +
+Format: `return INDEX` +
+Privilege Level: 2(Librarian)
+
+****
+* Return the book at the specified `INDEX`.
+* The index refers to the index number shown in the most recent listing.
+* The index *must be a positive integer* 1, 2, 3, ...
+****
 
 === Exiting the program : `exit`
 
@@ -289,3 +300,7 @@ e.g.`select 2`
 * *History* : `history`
 * *Undo* : `undo`
 * *Redo* : `redo`
+* *Borrow* : `borrow INDEX` +
+e.g. `borrow 1`
+* *Return* : `return INDEX` +
+e.g. `delete 2`

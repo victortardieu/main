@@ -248,7 +248,7 @@ Clears all books from the catalogue. +
 Format: `clear` +
 Privilege Level: 2(Librarian)
 
-=== Borrow a book: `borrow`
+=== Borrow a book: `borrow`[TO BE IMPLEMENTED]
 
 Borrow the specified book from the catalogue. +
 Format: `borrow INDEX` +
@@ -266,13 +266,13 @@ Examples:
 `borrow 2` +
 Borrow the 2nd book in the catalogue.
 
-=== Clearing all accounts : `cleara`
+=== Clearing all accounts : `cleara`[TO BE IMPLEMENTED]
 
 Clears all accounts from AccountList. +
 Format: `clear` +
 Privilege Level: 2(Librarian)
 
-=== Return a book : `return`
+=== Return a book : `return`[TO BE IMPLEMENTED]
 
 Return a specified book to the catalogue +
 Format: `return INDEX` +

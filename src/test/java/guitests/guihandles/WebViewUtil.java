@@ -5,7 +5,7 @@ import java.net.URL;
 
 import javafx.scene.web.WebView;
 
-//import guitests.GuiRobot;
+import guitests.GuiRobot;
 
 /**
  * Helper methods for dealing with {@code WebView}.
@@ -27,6 +27,6 @@ public class WebViewUtil {
      * If the {@code browserPanelHandle}'s {@code WebView} is loading, sleeps the thread till it is successfully loaded.
      */
     public static void waitUntilBrowserLoaded(BrowserPanelHandle browserPanelHandle) {
-        //    new GuiRobot().waitForEvent(browserPanelHandle::isLoaded);
+            new GuiRobot().waitForEvent(browserPanelHandle::isLoaded);
     }
 }

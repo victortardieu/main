@@ -17,7 +17,7 @@ By: `Team CS2103JAN2018-T16-B1`      Since: `Jan 2018`      Licence: `MIT`
 
 == Default Account
 ```
-Username: admin 
+Username: admin
 Password: admin
 ```
 You can login the default account with this command: 'login admin admin'

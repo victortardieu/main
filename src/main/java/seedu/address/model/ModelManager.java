@@ -53,6 +53,7 @@ public class ModelManager extends ComponentManager implements Model {
 
     }
 
+    //@@ author QiuHaohao
     /**
      * Initializes a ModelManager with the given catalogue, accountList and userPrefs.
      */
@@ -69,6 +70,7 @@ public class ModelManager extends ComponentManager implements Model {
         this.accountList = accountList;
         this.currentAccount = Account.createGuestAccount();
     }
+    //@@ author
 
     public ModelManager() {
         this(new Catalogue(), new UserPrefs());

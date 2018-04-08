@@ -37,7 +37,7 @@ public class RedoCommand extends Command {
         this.undoRedoStack = undoRedoStack;
     }
 
-    //@@ author QiuHaohao
+    //@@author QiuHaohao
     @Override
     public PrivilegeLevel getPrivilegeLevel() {
         return PRIVILEGE_LEVEL;

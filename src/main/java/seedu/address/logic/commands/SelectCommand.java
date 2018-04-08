@@ -55,7 +55,7 @@ public class SelectCommand extends Command {
             && this.targetIndex.equals(((SelectCommand) other).targetIndex)); // state check
     }
 
-    //@@ author QiuHaohao
+    //@@author QiuHaohao
     @Override
     public PrivilegeLevel getPrivilegeLevel() {
         return PRIVILEGE_LEVEL;

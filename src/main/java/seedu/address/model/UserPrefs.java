@@ -46,7 +46,7 @@ public class UserPrefs {
         this.catalogueBookTitle = catalogueBookTitle;
     }
 
-    //@@ author QiuHaohao
+    //@@author QiuHaohao
     public String getAccountListFilePath() {
         return accountListFilePath;
     }
@@ -54,7 +54,7 @@ public class UserPrefs {
     public void setAccountListFilePath(String accountListFilePath) {
         this.accountListFilePath = accountListFilePath;
     }
-    //@@ author
+    //@@author
     @Override
     public boolean equals(Object other) {
         if (other == this) {

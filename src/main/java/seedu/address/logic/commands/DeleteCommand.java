@@ -69,7 +69,7 @@ public class DeleteCommand extends UndoableCommand {
             && Objects.equals(this.bookToDelete, ((DeleteCommand) other).bookToDelete));
     }
 
-    //@@ author QiuHaohao
+    //@@author QiuHaohao
     @Override
     public PrivilegeLevel getPrivilegeLevel() {
         return PRIVILEGE_LEVEL;

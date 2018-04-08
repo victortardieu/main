@@ -61,9 +61,9 @@ public class LogicManager extends ComponentManager implements Logic {
         return new ListElementPointer(history.getHistory());
     }
 
-    //@@ author QiuHaohao
+    //@@author QiuHaohao
     protected boolean isPrivileged(Command command) {
         return command.getPrivilegeLevel().compareTo(model.getPrivilegeLevel()) <= 0;
     }
-    //@@ author
+    //@@author
 }

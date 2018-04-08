@@ -22,7 +22,7 @@ public class ClearCommand extends UndoableCommand {
         return new CommandResult(MESSAGE_SUCCESS);
     }
 
-    //@@ author QiuHaohao
+    //@@author QiuHaohao
     @Override
     public PrivilegeLevel getPrivilegeLevel() {
         return PRIVILEGE_LEVEL;

@@ -1,4 +1,4 @@
-//@@ author QiuHaohao
+//@@author QiuHaohao
 package seedu.address.model.account;
 
 import java.io.Serializable;

@@ -134,12 +134,12 @@ public class EditCommand extends UndoableCommand {
             && Objects.equals(bookToEdit, e.bookToEdit);
     }
 
-    //@@ author QiuHaohao
+    //@@author QiuHaohao
     @Override
     public PrivilegeLevel getPrivilegeLevel() {
         return PRIVILEGE_LEVEL;
     }
-    //@@ author
+    //@@author
     /**
      * Stores the details to edit the book with. Each non-empty field value will replace the
      * corresponding field value of the book.

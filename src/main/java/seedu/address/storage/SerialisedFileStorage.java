@@ -1,5 +1,5 @@
 
-//@@ author QiuHaohao
+//@@author QiuHaohao
 package seedu.address.storage;
 
 import java.io.IOException;

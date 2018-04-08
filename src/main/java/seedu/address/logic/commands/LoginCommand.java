@@ -1,4 +1,4 @@
-//@@ author QiuHaohao
+//@@author QiuHaohao
 package seedu.address.logic.commands;
 
 import static java.util.Objects.requireNonNull;

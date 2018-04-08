@@ -70,7 +70,7 @@ public class AddCommand extends UndoableCommand {
             && toAdd.equals(((AddCommand) other).toAdd));
     }
 
-    //@@ author QiuHaohao
+    //@@author QiuHaohao
     @Override
     public PrivilegeLevel getPrivilegeLevel() {
         return PRIVILEGE_LEVEL;

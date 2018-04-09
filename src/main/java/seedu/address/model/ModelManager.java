@@ -83,6 +83,7 @@ public class ModelManager extends ComponentManager implements Model {
      * @throws DuplicateAccountException
      */
     public void addAccount(Account account) throws DuplicateAccountException {
+        catalogue.addAccount(account);
         accountList.add(account);
         indicateAccountListChanged();
     }

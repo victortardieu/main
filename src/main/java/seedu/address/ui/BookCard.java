@@ -6,6 +6,8 @@ import javafx.scene.layout.FlowPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.Region;
 import seedu.address.model.book.Book;
+import java.util.Random;
+import seedu.address.model.tag.Tag;
 
 /**
  * An UI component that displays information of a {@code Book}.
@@ -39,6 +41,9 @@ public class BookCard extends UiPart<Region> {
     @FXML
     private FlowPane tags;
 
+    public static final String[] COLOR_TAGS =
+            {"blue", "brown", "green", "grey", "orange", "pink", "red", "yellow"};
+
     public BookCard(Book book, int displayedIndex) {
         super(FXML);
         this.book = book;
@@ -47,7 +52,8 @@ public class BookCard extends UiPart<Region> {
         author.setText(book.getAuthor().value);
         isbn.setText(book.getIsbn().value);
         avail.setText(book.getAvail().value);
-        book.getTags().forEach(tag -> tags.getChildren().add(new Label(tag.tagName)));
+        //book.getTags().forEach(tag -> tags.getChildren().add(new Label(tag.tagName)));
+        colorTags(book);
     }
 
     @Override
@@ -65,6 +71,38 @@ public class BookCard extends UiPart<Region> {
         // state check
         BookCard card = (BookCard) other;
         return id.getText().equals(card.id.getText())
-            && book.equals(card.book);
+                && book.equals(card.book);
+    }
+
+    private String getTagColor(Tag tag) {
+        Random rand = new Random();
+        int sCase = rand.nextInt(COLOR_TAGS.length);
+        switch (sCase) {
+            case 0:
+                return COLOR_TAGS[0];
+            case 1:
+                return COLOR_TAGS[1];
+            case 2:
+                return COLOR_TAGS[2];
+            case 3:
+                return COLOR_TAGS[3];
+            case 4:
+                return COLOR_TAGS[4];
+            case 5:
+                return COLOR_TAGS[5];
+            case 6:
+                return COLOR_TAGS[6];
+            default:
+                return COLOR_TAGS[6];
+        }
+    }
+
+    private void colorTags(Book book) {
+        book.getTags().forEach(tag -> {
+            Label tagLabel = new Label(tag.tagName);
+            tags.getChildren().add(tagLabel);
+            //tagLabel.getStyleClass().add(getTagColor(tag));
+            tagLabel.getStyleClass().add("green");
+        });
     }
 }

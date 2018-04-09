@@ -68,6 +68,7 @@ public interface Model {
      */
     void updateFilteredBookList(Predicate<Book> predicate);
 
+    //@@author QiuHaohao
     void addAccount(Account account) throws DuplicateAccountException;
 
     void deleteAccount(Account account) throws AccountNotFoundException;
@@ -80,5 +81,5 @@ public interface Model {
     void logout();
 
     PrivilegeLevel getPrivilegeLevel();
-
+    //@@author
 }

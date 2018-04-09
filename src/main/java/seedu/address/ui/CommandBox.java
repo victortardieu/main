@@ -11,9 +11,19 @@ import seedu.address.commons.core.LogsCenter;
 import seedu.address.commons.events.ui.NewResultAvailableEvent;
 import seedu.address.logic.ListElementPointer;
 import seedu.address.logic.Logic;
+import seedu.address.logic.commands.AddCommand;
 import seedu.address.logic.commands.CommandResult;
+import seedu.address.logic.commands.DeleteCommand;
+import seedu.address.logic.commands.EditCommand;
+import seedu.address.logic.commands.FindCommand;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.logic.parser.exceptions.ParseException;
+
+import static seedu.address.logic.parser.CliSyntax.PREFIX_TITLE;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_AUTHOR;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_AVAIL;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_ISBN;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_TAG;
 
 /**
  * The UI component that is responsible for receiving user command inputs.
@@ -26,6 +36,8 @@ public class CommandBox extends UiPart<Region> {
     private final Logger logger = LogsCenter.getLogger(CommandBox.class);
     private final Logic logic;
     private ListElementPointer historySnapshot;
+
+    private boolean isFindNextField = false;
 
     @FXML
     private TextField commandTextField;
@@ -55,7 +67,10 @@ public class CommandBox extends UiPart<Region> {
             keyEvent.consume();
             navigateToNextInput();
             break;
-        default:
+            case TAB:
+                keyEvent.consume();
+                autoComplete();
+                default:
             // let JavaFx handle the keypress
         }
     }
@@ -146,6 +161,41 @@ public class CommandBox extends UiPart<Region> {
         }
 
         styleClass.add(ERROR_STYLE_CLASS);
+    }
+
+    private void autoComplete() {
+
+        String startCommand = commandTextField.getText();
+        int nextCaretPosition = -1;
+        if (startCommand == AddCommand.COMMAND_WORD) {
+            commandTextField.setText(AddCommand.COMMAND_WORD + " " + PREFIX_TITLE + " " + PREFIX_AUTHOR + " " +
+                    PREFIX_ISBN + " " + PREFIX_AVAIL + " " + PREFIX_TAG + " ");
+            isFindNextField = true;
+        } else if (startCommand == DeleteCommand.COMMAND_WORD) {
+            commandTextField.setText("INDEX");
+
+        } else if (startCommand == EditCommand.COMMAND_WORD) {
+            commandTextField.setText(("INDEX" + PREFIX_TITLE + " " + PREFIX_AUTHOR + " " + PREFIX_ISBN + " " +
+                    PREFIX_AVAIL + " " + PREFIX_TAG + " "));
+        } else if (startCommand == FindCommand.COMMAND_WORD) {
+            commandTextField.setText(PREFIX_TITLE + " ");
+        }
+
+        if (isFindNextField) {
+            nextCaretPosition = findNextField();
+            if (nextCaretPosition != -1) {
+                commandTextField.positionCaret(nextCaretPosition);
+            }
+        }
+
+    }
+
+    private int findNextField() {
+        String text = commandTextField.getText();
+        int caretPosition = commandTextField.getCaretPosition();
+        int nextFieldPosition = text.indexOf("/", caretPosition);
+
+        return nextFieldPosition + 1;
     }
 
 }

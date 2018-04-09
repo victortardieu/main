@@ -47,6 +47,7 @@ public abstract class Command {
         this.model = model;
     }
 
+    //@@author QiuHaohao
     public PrivilegeLevel getPrivilegeLevel() {
         return Model.PRIVILEGE_LEVEL_GUEST;
     }

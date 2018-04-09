@@ -15,6 +15,13 @@ endif::[]
 
 By: `Team CS2103JAN2018-T16-B1`      Since: `Jan 2018`      Licence: `MIT`
 
+== Default Account
+```
+Username: admin
+Password: admin
+```
+You can login the default account with this command: 'login admin admin'
+
 == Introduction
 
 Catalogue is for those who *prefer to use a desktop app for managing contacts*. More importantly, AB4 is *optimized for those who prefer to work with a Command Line Interface* (CLI) while still having the benefits of a Graphical User Interface (GUI). If you can type fast, AB4 can get your contact management tasks done faster than traditional GUI apps. Interested? Jump to the <<Quick Start>> to get started. Enjoy!
@@ -62,7 +69,7 @@ Format: `login [username] [password]` +
 Privilege Level: 0(Guest)
 
 [NOTE]
-Different accounts might have different privilege levels. A command can only be executed when the privilege level of the current user is greater or equal to the command's required level.
+Different accounts might have different privilege levels. A command can only be executed when the privilege level of the current user is greater or equal to the command's required level. The default admin account can be logged in with 'login admin admin'
 
 === Viewing help : `help`
 
@@ -248,7 +255,7 @@ Clears all books from the catalogue. +
 Format: `clear` +
 Privilege Level: 2(Librarian)
 
-=== Borrow a book: `borrow`
+=== Borrow a book: `borrow`[TO BE IMPLEMENTED]
 
 Borrow the specified book from the catalogue. +
 Format: `borrow INDEX` +
@@ -266,13 +273,13 @@ Examples:
 `borrow 2` +
 Borrow the 2nd book in the catalogue.
 
-=== Clearing all accounts : `cleara`
+=== Clearing all accounts : `cleara`[TO BE IMPLEMENTED]
 
 Clears all accounts from AccountList. +
 Format: `clear` +
 Privilege Level: 2(Librarian)
 
-=== Return a book : `return`
+=== Return a book : `return`[TO BE IMPLEMENTED]
 
 Return a specified book to the catalogue +
 Format: `return INDEX` +

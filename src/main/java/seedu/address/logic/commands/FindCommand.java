@@ -38,6 +38,7 @@ public class FindCommand extends Command {
             && this.predicate.equals(((FindCommand) other).predicate)); // state check
     }
 
+    //@@author QiuHaohao
     @Override
     public PrivilegeLevel getPrivilegeLevel() {
         return PRIVILEGE_LEVEL;

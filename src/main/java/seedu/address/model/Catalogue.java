@@ -11,6 +11,9 @@ import java.util.Set;
 import java.util.stream.Collectors;
 
 import javafx.collections.ObservableList;
+import seedu.address.model.account.Account;
+import seedu.address.model.account.UniqueAccountList;
+import seedu.address.model.account.exceptions.DuplicateAccountException;
 import seedu.address.model.book.Book;
 import seedu.address.model.book.UniqueBookList;
 import seedu.address.model.book.exceptions.BookNotFoundException;
@@ -26,6 +29,7 @@ public class Catalogue implements ReadOnlyCatalogue {
 
     private final UniqueBookList books;
     private final UniqueTagList tags;
+    private final UniqueAccountList accounts;
 
     /*
      * The 'unusual' code block below is an non-static initialization block, sometimes used to avoid duplication
@@ -37,17 +41,25 @@ public class Catalogue implements ReadOnlyCatalogue {
     {
         books = new UniqueBookList();
         tags = new UniqueTagList();
+        accounts = new UniqueAccountList();
     }
 
     public Catalogue() {
     }
 
     /**
-     * Creates an Catalogue using the Books and Tags in the {@code toBeCopied}
+     * Creates an Catalogue using the Books and Tags and Accounts in the {@code toBeCopied}
      */
     public Catalogue(ReadOnlyCatalogue toBeCopied) {
         this();
         resetData(toBeCopied);
+    }
+
+    /**
+     * Creates an Unique account list using the Books and Tags in the {@code toBeCopied}
+     */
+    public void addAccount (Account p) throws DuplicateAccountException {
+        accounts.add(p);
     }
 
     //// list overwrite operations

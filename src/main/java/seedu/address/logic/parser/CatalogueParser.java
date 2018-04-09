@@ -92,6 +92,9 @@ public class CatalogueParser {
         case LogoutCommand.COMMAND_WORD:
             return new LogoutCommand();
 
+            case addAccountCommand.COMMAND_WORD:
+                return new AddAccountCommandParser().parse(arguments);
+
         default:
             throw new ParseException(MESSAGE_UNKNOWN_COMMAND);
         }

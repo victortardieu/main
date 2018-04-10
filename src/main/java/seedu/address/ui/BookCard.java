@@ -83,7 +83,7 @@ public class BookCard extends UiPart<Region> {
         case 2:
             return "-fx-background-color: red;";
         case 3:
-            return "-fx-background-color: yellow;";
+            return "-fx-background-color: maroon;";
         case 4:
             return "-fx-background-color: orange;";
         case 5:
@@ -91,14 +91,15 @@ public class BookCard extends UiPart<Region> {
         case 6:
             return "-fx-background-color: brown;";
         case 7:
-            return "-fx-background-color: beige;";
+            return "-fx-background-color: khaki;";
         case 8:
-            return "-fx-background-color: cyan;";
+            return "-fx-background-color: olive;";
         case 9:
-            return "-fx-background-color: ivory;";
+            return "-fx-background-color: indigo;";
         default:
             return "-fx-background-color: pink;";
         }
+
     }
 
     /**

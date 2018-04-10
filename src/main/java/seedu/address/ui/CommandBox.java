@@ -62,6 +62,7 @@ public class CommandBox extends UiPart<Region> {
         case TAB:
             keyEvent.consume();
             replaceText(LogicManager.autoComplete(commandTextField.getText()));
+            break;
         default:
         // let JavaFx handle the keypress
         }

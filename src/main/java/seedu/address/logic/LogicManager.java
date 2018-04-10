@@ -71,14 +71,16 @@ public class LogicManager extends ComponentManager implements Logic {
     }
     //@@author
 
+    /**
+     *
+     * @param myString
+     * @return auto, the string that holds the autocomplete string of the chosen command
+     */
     public static String autoComplete(String myString) {
         /**
          *  The auto string will hold the autocomplete string of the chosen command
          */
         String auto = "";
-        /**
-         *  myString holds the COMMAND_WORD
-         */
         switch (myString) {
         case AddCommand.COMMAND_WORD:
             auto = "add t/ a/ i/ av/ tag/ ";

@@ -97,7 +97,7 @@ public class BookCard extends UiPart<Region> {
             case 9:
                 return "-fx-background-color: ivory;";
             default:
-                return "-fx-background-color: black;";
+                return "-fx-background-color: pink;";
         }
     }
 

@@ -18,6 +18,7 @@ import seedu.address.logic.commands.EditCommand;
 import seedu.address.logic.commands.FindCommand;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.logic.parser.exceptions.ParseException;
+import seedu.address.logic.LogicManager;
 
 import static seedu.address.logic.parser.CliSyntax.PREFIX_TITLE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_AUTHOR;
@@ -56,21 +57,21 @@ public class CommandBox extends UiPart<Region> {
     @FXML
     private void handleKeyPress(KeyEvent keyEvent) {
         switch (keyEvent.getCode()) {
-        case UP:
-            // As up and down buttons will alter the position of the caret,
-            // consuming it causes the caret's position to remain unchanged
-            keyEvent.consume();
+            case UP:
+                // As up and down buttons will alter the position of the caret,
+                // consuming it causes the caret's position to remain unchanged
+                keyEvent.consume();
 
-            navigateToPreviousInput();
-            break;
-        case DOWN:
-            keyEvent.consume();
-            navigateToNextInput();
-            break;
+                navigateToPreviousInput();
+                break;
+            case DOWN:
+                keyEvent.consume();
+                navigateToNextInput();
+                break;
             case TAB:
                 keyEvent.consume();
-                autoComplete();
-                default:
+                replaceText(LogicManager.autoComplete(commandTextField.getText()));
+            default:
             // let JavaFx handle the keypress
         }
     }
@@ -163,39 +164,5 @@ public class CommandBox extends UiPart<Region> {
         styleClass.add(ERROR_STYLE_CLASS);
     }
 
-    private void autoComplete() {
-
-        String startCommand = commandTextField.getText();
-        int nextCaretPosition = -1;
-        if (startCommand == AddCommand.COMMAND_WORD) {
-            commandTextField.setText(AddCommand.COMMAND_WORD + " " + PREFIX_TITLE + " " + PREFIX_AUTHOR + " " +
-                    PREFIX_ISBN + " " + PREFIX_AVAIL + " " + PREFIX_TAG + " ");
-            isFindNextField = true;
-        } else if (startCommand == DeleteCommand.COMMAND_WORD) {
-            commandTextField.setText("INDEX");
-
-        } else if (startCommand == EditCommand.COMMAND_WORD) {
-            commandTextField.setText(("INDEX" + PREFIX_TITLE + " " + PREFIX_AUTHOR + " " + PREFIX_ISBN + " " +
-                    PREFIX_AVAIL + " " + PREFIX_TAG + " "));
-        } else if (startCommand == FindCommand.COMMAND_WORD) {
-            commandTextField.setText(PREFIX_TITLE + " ");
-        }
-
-        if (isFindNextField) {
-            nextCaretPosition = findNextField();
-            if (nextCaretPosition != -1) {
-                commandTextField.positionCaret(nextCaretPosition);
-            }
-        }
-
-    }
-
-    private int findNextField() {
-        String text = commandTextField.getText();
-        int caretPosition = commandTextField.getCaretPosition();
-        int nextFieldPosition = text.indexOf("/", caretPosition);
-
-        return nextFieldPosition + 1;
-    }
 
 }

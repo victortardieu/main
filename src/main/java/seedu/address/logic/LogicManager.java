@@ -12,7 +12,11 @@ import seedu.address.logic.parser.CatalogueParser;
 import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.Model;
 import seedu.address.model.book.Book;
-
+import seedu.address.logic.commands.AddCommand;
+import seedu.address.logic.commands.EditCommand;
+import seedu.address.logic.commands.DeleteCommand;
+import seedu.address.logic.commands.FindCommand;
+import seedu.address.logic.commands.SelectCommand;
 
 /**
  * The main LogicManager of the app.
@@ -66,4 +70,23 @@ public class LogicManager extends ComponentManager implements Logic {
         return command.getPrivilegeLevel().compareTo(model.getPrivilegeLevel()) <= 0;
     }
     //@@author
+
+    public static String autoComplete(String myString) {
+        String auto = "";
+        switch (myString) {
+            case AddCommand.COMMAND_WORD:
+                auto = "add t/ a/ i/ av/ tag/ ";
+                break;
+            case EditCommand.COMMAND_WORD:
+                auto = "edit 1 t/ a/ i/ av/ tag/ ";
+                break;
+            case DeleteCommand.COMMAND_WORD:
+                auto = "delete 1";
+                break;
+            case SelectCommand.COMMAND_WORD:
+                auto = "select 1";
+                break;
+        }
+        return auto;
+    }
 }

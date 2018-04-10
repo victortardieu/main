@@ -1,5 +1,6 @@
 package seedu.address.logic.commands;
 
+import seedu.address.commons.core.Messages;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
 import seedu.address.model.account.Account;
@@ -9,14 +10,14 @@ import seedu.address.model.account.UniqueAccountList;
 import seedu.address.model.account.exceptions.DuplicateAccountException;
 
 
-public class ClearAccountCommand extends Command{
+public class ClearAccountCommand extends UndoableCommand{
 
     public static final String COMMAND_WORD = "cleara";
     public static final String MESSAGE_SUCCESS = "AccountList has been cleared!";
     public static final PrivilegeLevel PRIVILEGE_LEVEL = Model.PRIVILEGE_LEVEL_LIBRARIAN;
 
     @Override
-    public CommandResult execute() throws CommandException {
+    public CommandResult executeUndoableCommand() throws CommandException {
         UniqueAccountList blankList = new UniqueAccountList();
         try {
             blankList.add(Account.createDefaultAdminAccount());
@@ -24,7 +25,7 @@ public class ClearAccountCommand extends Command{
             e.printStackTrace();
         }
         model.resetAccount(blankList);
-        return null;
+        return new CommandResult(MESSAGE_SUCCESS);
     }
 
     public PrivilegeLevel getPrivilegeLevel() {

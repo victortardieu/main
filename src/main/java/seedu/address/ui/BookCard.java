@@ -74,7 +74,7 @@ public class BookCard extends UiPart<Region> {
 
     private String getTagColor() {
         Random rand = new Random();
-        int sCase = rand.nextInt(7);
+        int sCase = rand.nextInt(10);
         switch (sCase) {
             case 0:
                 return "-fx-background-color: blue;";

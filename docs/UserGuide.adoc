@@ -43,8 +43,13 @@ This app will not work with earlier versions of Java 8.
 .  Copy the file to the folder you want to use as the home folder for your Catalogue.
 .  Double-click the file to start the app. The GUI should appear in a few seconds.
 +
-image::Ui.png[width="790"]
+image::UI_final.png[width="790"]
 +
+1 - Command box: type the commands in this section
+2 - Result Display: Show the result of what you typed above
+3 - Book List: List of all the books in the Central Library
+4 – Information Section: when you click on a book, the webpage on goodreads will open and display additional information
+
 .  Type the command in the command box and press kbd:[Enter] to execute it. +
 e.g. typing *`help`* and pressing kbd:[Enter] will open the help window.
 .  Some example commands you can try:

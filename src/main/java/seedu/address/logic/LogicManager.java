@@ -10,13 +10,11 @@ import seedu.address.logic.commands.CommandResult;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.logic.parser.CatalogueParser;
 import seedu.address.logic.parser.exceptions.ParseException;
-import seedu.address.model.Model;
-
 import seedu.address.logic.commands.AddCommand;
 import seedu.address.logic.commands.EditCommand;
 import seedu.address.logic.commands.DeleteCommand;
 import seedu.address.logic.commands.SelectCommand;
-
+import seedu.address.model.Model;
 import seedu.address.model.book.Book;
 
 /**
@@ -74,6 +72,9 @@ public class LogicManager extends ComponentManager implements Logic {
 
     public static String autoComplete(String myString) {
         String auto = "";
+        /**
+         *
+         */
         switch (myString) {
         case AddCommand.COMMAND_WORD:
             auto = "add t/ a/ i/ av/ tag/ ";
@@ -87,6 +88,8 @@ public class LogicManager extends ComponentManager implements Logic {
         case SelectCommand.COMMAND_WORD:
             auto = "select 1";
             break;
+        default:
+            auto = null;
         }
         return auto;
     }

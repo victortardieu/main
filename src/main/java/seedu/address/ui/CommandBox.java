@@ -11,20 +11,11 @@ import seedu.address.commons.core.LogsCenter;
 import seedu.address.commons.events.ui.NewResultAvailableEvent;
 import seedu.address.logic.ListElementPointer;
 import seedu.address.logic.Logic;
-import seedu.address.logic.commands.AddCommand;
 import seedu.address.logic.commands.CommandResult;
-import seedu.address.logic.commands.DeleteCommand;
-import seedu.address.logic.commands.EditCommand;
-import seedu.address.logic.commands.FindCommand;
 import seedu.address.logic.commands.exceptions.CommandException;
-import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.logic.LogicManager;
+import seedu.address.logic.parser.exceptions.ParseException;
 
-import static seedu.address.logic.parser.CliSyntax.PREFIX_TITLE;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_AUTHOR;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_AVAIL;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_ISBN;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_TAG;
 
 /**
  * The UI component that is responsible for receiving user command inputs.
@@ -57,22 +48,22 @@ public class CommandBox extends UiPart<Region> {
     @FXML
     private void handleKeyPress(KeyEvent keyEvent) {
         switch (keyEvent.getCode()) {
-            case UP:
-                // As up and down buttons will alter the position of the caret,
-                // consuming it causes the caret's position to remain unchanged
-                keyEvent.consume();
+        case UP:
+            // As up and down buttons will alter the position of the caret,
+            // consuming it causes the caret's position to remain unchanged
+            keyEvent.consume();
 
-                navigateToPreviousInput();
-                break;
-            case DOWN:
-                keyEvent.consume();
-                navigateToNextInput();
-                break;
-            case TAB:
-                keyEvent.consume();
-                replaceText(LogicManager.autoComplete(commandTextField.getText()));
-            default:
-            // let JavaFx handle the keypress
+            navigateToPreviousInput();
+            break;
+        case DOWN:
+            keyEvent.consume();
+            navigateToNextInput();
+            break;
+        case TAB:
+            keyEvent.consume();
+            replaceText(LogicManager.autoComplete(commandTextField.getText()));
+        default:
+        // let JavaFx handle the keypress
         }
     }
 

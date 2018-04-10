@@ -7,8 +7,6 @@ import javafx.scene.layout.HBox;
 import javafx.scene.layout.Region;
 import seedu.address.model.book.Book;
 import java.util.Random;
-import seedu.address.model.tag.Tag;
-import javafx.scene.paint.Color;
 
 /**
  * An UI component that displays information of a {@code Book}.
@@ -76,28 +74,28 @@ public class BookCard extends UiPart<Region> {
         Random rand = new Random();
         int sCase = rand.nextInt(10);
         switch (sCase) {
-            case 0:
-                return "-fx-background-color: blue;";
-            case 1:
-                return "-fx-background-color: green;";
-            case 2:
-                return "-fx-background-color: red;";
-            case 3:
-                return "-fx-background-color: yellow;";
-            case 4:
-                return "-fx-background-color: orange;";
-            case 5:
-                return "-fx-background-color: violet;";
-            case 6:
-                return "-fx-background-color: brown;";
-            case 7:
-                return "-fx-background-color: beige;";
-            case 8:
-                return "-fx-background-color: cyan;";
-            case 9:
-                return "-fx-background-color: ivory;";
-            default:
-                return "-fx-background-color: pink;";
+        case 0:
+            return "-fx-background-color: blue;";
+        case 1:
+            return "-fx-background-color: green;";
+        case 2:
+            return "-fx-background-color: red;";
+        case 3:
+            return "-fx-background-color: yellow;";
+        case 4:
+            return "-fx-background-color: orange;";
+        case 5:
+            return "-fx-background-color: violet;";
+        case 6:
+            return "-fx-background-color: brown;";
+        case 7:
+            return "-fx-background-color: beige;";
+        case 8:
+            return "-fx-background-color: cyan;";
+        case 9:
+            return "-fx-background-color: ivory;";
+        default:
+            return "-fx-background-color: pink;";
         }
     }
 

@@ -25,7 +25,7 @@ public class FindCommandSystemTest extends CatalogueSystemTest {
 
     @Test
     public void find() {
-
+        //@@author QiuHaohao
         executeCommand("login admin admin");
         /* Case: find multiple books in catalogue, command with leading spaces and trailing spaces
          * -> 2 books found
@@ -35,31 +35,31 @@ public class FindCommandSystemTest extends CatalogueSystemTest {
         ModelHelper.setFilteredList(expectedModel, CALIFORNIA, GONE); // Two titles contains "Girl"
         assertCommandSuccess(command, expectedModel);
         assertSelectedCardUnchanged();
-
+        //@@author khiayi
         /* Case: repeat previous find command where book list is displaying the books we are finding
          * -> 2 books found
          */
         command = FindCommand.COMMAND_WORD + " " + KEYWORD_MATCHING_GIRL;
         assertCommandSuccess(command, expectedModel);
         assertSelectedCardUnchanged();
-
+        //@@author khiayi
         /* Case: find book where book list is not displaying the book we are finding -> 1 book found */
         command = FindCommand.COMMAND_WORD + " California";
         ModelHelper.setFilteredList(expectedModel, CALIFORNIA);
         assertCommandSuccess(command, expectedModel);
         assertSelectedCardUnchanged();
-
+        //@@author khiayi
         /* Case: find multiple books in catalogue, 2 keywords -> 2 books found */
         command = FindCommand.COMMAND_WORD + " California Gone";
         ModelHelper.setFilteredList(expectedModel, CALIFORNIA, GONE);
         assertCommandSuccess(command, expectedModel);
         assertSelectedCardUnchanged();
-
+        //@@author khiayi
         /* Case: find multiple books in catalogue, 2 keywords in reversed order -> 2 books found */
         command = FindCommand.COMMAND_WORD + " Gone California";
         assertCommandSuccess(command, expectedModel);
         assertSelectedCardUnchanged();
-
+        //@@author khiayi
         /* Case: find multiple books in catalogue, 2 keywords with 1 repeat -> 2 books found */
         command = FindCommand.COMMAND_WORD + " Gone California Gone";
         assertCommandSuccess(command, expectedModel);

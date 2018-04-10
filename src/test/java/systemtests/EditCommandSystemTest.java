@@ -100,7 +100,7 @@ public class EditCommandSystemTest extends CatalogueSystemTest {
         assertCommandSuccess(command, index, editedBook);
 
         /* ------------------ Performing edit operation while a filtered list is being shown ------------------------ */
-
+        //@@author khiayi
         /* Case: filtered book list, edit index within bounds of catalogue and book list -> edited */
         showBooksWithTitle(KEYWORD_MATCHING_GIRL);
         index = INDEX_FIRST_BOOK;
@@ -109,7 +109,7 @@ public class EditCommandSystemTest extends CatalogueSystemTest {
         bookToEdit = getModel().getFilteredBookList().get(index.getZeroBased());
         editedBook = new BookBuilder(bookToEdit).withTitle(VALID_TITLE_BOB).build();
         assertCommandSuccess(command, index, editedBook);
-
+        //@@author khiayi
         /* Case: filtered book list, edit index within bounds of catalogue but out of bounds of book list
          * -> rejected
          */

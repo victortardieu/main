@@ -8,6 +8,7 @@ import javafx.scene.layout.Region;
 import seedu.address.model.book.Book;
 import java.util.Random;
 import seedu.address.model.tag.Tag;
+import javafx.scene.paint.Color;
 
 /**
  * An UI component that displays information of a {@code Book}.
@@ -41,8 +42,6 @@ public class BookCard extends UiPart<Region> {
     @FXML
     private FlowPane tags;
 
-    public static final String[] COLOR_TAGS =
-            {"blue", "brown", "green", "grey", "orange", "pink", "red", "yellow"};
 
     public BookCard(Book book, int displayedIndex) {
         super(FXML);
@@ -52,7 +51,6 @@ public class BookCard extends UiPart<Region> {
         author.setText(book.getAuthor().value);
         isbn.setText(book.getIsbn().value);
         avail.setText(book.getAvail().value);
-        //book.getTags().forEach(tag -> tags.getChildren().add(new Label(tag.tagName)));
         colorTags(book);
     }
 
@@ -74,26 +72,32 @@ public class BookCard extends UiPart<Region> {
                 && book.equals(card.book);
     }
 
-    private String getTagColor(Tag tag) {
+    private String getTagColor() {
         Random rand = new Random();
-        int sCase = rand.nextInt(COLOR_TAGS.length);
+        int sCase = rand.nextInt(7);
         switch (sCase) {
             case 0:
-                return COLOR_TAGS[0];
+                return "-fx-background-color: blue;";
             case 1:
-                return COLOR_TAGS[1];
+                return "-fx-background-color: green;";
             case 2:
-                return COLOR_TAGS[2];
+                return "-fx-background-color: red;";
             case 3:
-                return COLOR_TAGS[3];
+                return "-fx-background-color: yellow;";
             case 4:
-                return COLOR_TAGS[4];
+                return "-fx-background-color: orange;";
             case 5:
-                return COLOR_TAGS[5];
+                return "-fx-background-color: violet;";
             case 6:
-                return COLOR_TAGS[6];
+                return "-fx-background-color: brown;";
+            case 7:
+                return "-fx-background-color: beige;";
+            case 8:
+                return "-fx-background-color: cyan;";
+            case 9:
+                return "-fx-background-color: ivory;";
             default:
-                return COLOR_TAGS[6];
+                return "-fx-background-color: black;";
         }
     }
 
@@ -101,8 +105,7 @@ public class BookCard extends UiPart<Region> {
         book.getTags().forEach(tag -> {
             Label tagLabel = new Label(tag.tagName);
             tags.getChildren().add(tagLabel);
-            //tagLabel.getStyleClass().add(getTagColor(tag));
-            tagLabel.getStyleClass().add("green");
+            tagLabel.setStyle(getTagColor());
         });
     }
 }

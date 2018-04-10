@@ -1,12 +1,14 @@
 package seedu.address.ui;
 
+import java.util.Random;
+
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
 import javafx.scene.layout.FlowPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.Region;
 import seedu.address.model.book.Book;
-import java.util.Random;
+
 
 /**
  * An UI component that displays information of a {@code Book}.
@@ -98,6 +100,11 @@ public class BookCard extends UiPart<Region> {
             return "-fx-background-color: pink;";
         }
     }
+
+    /**
+     * Assign a new color to each new tag
+     * @param book
+     */
 
     private void colorTags(Book book) {
         book.getTags().forEach(tag -> {

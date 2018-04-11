@@ -25,6 +25,7 @@ import static seedu.address.logic.commands.CommandTestUtil.VALID_ISBN_YOU;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_TAG_DYSTOPIA;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_TITLE_XVI;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_TITLE_YOU;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_ISBN;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_TAG;
 import static seedu.address.testutil.TypicalBooks.ANIMAL;
 import static seedu.address.testutil.TypicalBooks.CALIFORNIA;
@@ -86,13 +87,13 @@ public class AddCommandSystemTest extends CatalogueSystemTest {
         expectedResultMessage = RedoCommand.MESSAGE_SUCCESS;
         assertCommandSuccess(command, model, expectedResultMessage);
 
-        /* Case: add a book with all fields same as another book in the catalogue except name -> added */
+        /* Case: add a book with all fields same as another book in the catalogue except name -> not added */
         toAdd = new BookBuilder().withTitle(VALID_TITLE_YOU).withAuthor(VALID_AUTHOR_XVI)
             .withIsbn(VALID_ISBN_XVI).withAvail(VALID_AVAIL_XVI)
             .withTags(VALID_TAG_DYSTOPIA).build();
         command = AddCommand.COMMAND_WORD + TITLE_DESC_YOU + AUTHOR_DESC_XVI + ISBN_DESC_XVI + AVAIL_DESC_XVI
             + TAG_DESC_DYSTOPIA;
-        assertCommandSuccess(command, toAdd);
+        assertCommandFailure(command, toAdd);
 
         /* Case: add a book with all fields same as another book in the catalogue except isbn -> added */
         toAdd = new BookBuilder().withTitle(VALID_TITLE_XVI).withAuthor(VALID_AUTHOR_XVI)
@@ -102,21 +103,51 @@ public class AddCommandSystemTest extends CatalogueSystemTest {
             + TAG_DESC_DYSTOPIA;
         assertCommandSuccess(command, toAdd);
 
-        /* Case: add a book with all fields same as another book in the catalogue except avail -> added */
+        //@@author khiayi
+        /* Case: add a book with all fields same as another book in the catalogue except name and ISBN -> added */
+        toAdd = new BookBuilder().withTitle(VALID_TITLE_YOU).withAuthor(VALID_AUTHOR_XVI)
+            .withIsbn("1111111111111").withAvail(VALID_AVAIL_XVI)
+            .withTags(VALID_TAG_DYSTOPIA).build();
+        command = AddCommand.COMMAND_WORD + TITLE_DESC_YOU + AUTHOR_DESC_XVI + " " + PREFIX_ISBN + "1111111111111"
+            + AVAIL_DESC_XVI + TAG_DESC_DYSTOPIA;
+        assertCommandSuccess(command, toAdd);
+        //@@author
+
+        /* Case: add a book with all fields same as another book in the catalogue except avail -> not added */
         toAdd = new BookBuilder().withTitle(VALID_TITLE_XVI).withAuthor(VALID_AUTHOR_XVI)
             .withIsbn(VALID_ISBN_XVI).withAvail(VALID_AVAIL_YOU)
             .withTags(VALID_TAG_DYSTOPIA).build();
         command = AddCommand.COMMAND_WORD + TITLE_DESC_XVI + AUTHOR_DESC_XVI + ISBN_DESC_XVI + AVAIL_DESC_YOU
             + TAG_DESC_DYSTOPIA;
-        assertCommandSuccess(command, toAdd);
+        assertCommandFailure(command, toAdd);
 
-        /* Case: add a book with all fields same as another book in the catalogue except address -> added */
+        //@@author khiayi
+        /* Case: add a book with all fields same as another book in the catalogue except avail and ISBN -> added */
+        toAdd = new BookBuilder().withTitle(VALID_TITLE_XVI).withAuthor(VALID_AUTHOR_XVI)
+            .withIsbn("2222222222222").withAvail(VALID_AVAIL_YOU)
+            .withTags(VALID_TAG_DYSTOPIA).build();
+        command = AddCommand.COMMAND_WORD + TITLE_DESC_XVI + AUTHOR_DESC_XVI + " " + PREFIX_ISBN + "2222222222222"
+            + AVAIL_DESC_YOU + TAG_DESC_DYSTOPIA;
+        assertCommandSuccess(command, toAdd);
+        //@@author
+
+        /* Case: add a book with all fields same as another book in the catalogue except author -> added */
         toAdd = new BookBuilder().withTitle(VALID_TITLE_XVI).withAuthor(VALID_AUTHOR_YOU)
             .withIsbn(VALID_ISBN_XVI).withAvail(VALID_AVAIL_XVI)
             .withTags(VALID_TAG_DYSTOPIA).build();
         command = AddCommand.COMMAND_WORD + TITLE_DESC_XVI + AUTHOR_DESC_YOU + ISBN_DESC_XVI + AVAIL_DESC_XVI
             + TAG_DESC_DYSTOPIA;
+        assertCommandFailure(command, toAdd);
+
+        //@@author khiayi
+        /* Case: add a book with all fields same as another book in the catalogue except author and ISBN -> added */
+        toAdd = new BookBuilder().withTitle(VALID_TITLE_XVI).withAuthor(VALID_AUTHOR_YOU)
+            .withIsbn("3333333333333").withAvail(VALID_AVAIL_XVI)
+            .withTags(VALID_TAG_DYSTOPIA).build();
+        command = AddCommand.COMMAND_WORD + TITLE_DESC_XVI + AUTHOR_DESC_YOU + " " + PREFIX_ISBN + "3333333333333"
+            + AVAIL_DESC_XVI + TAG_DESC_DYSTOPIA;
         assertCommandSuccess(command, toAdd);
+        //@@author
 
         /* Case: add to empty catalogue -> added */
         deleteAllBooks();

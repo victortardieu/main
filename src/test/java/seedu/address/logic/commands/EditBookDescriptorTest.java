@@ -36,23 +36,23 @@ public class EditBookDescriptorTest {
         assertFalse(DESC_XVI.equals(DESC_YOU));
 
         // different name -> returns false
-        EditBookDescriptor editedAnimal = new EditBookDescriptorBuilder(DESC_XVI).withName(VALID_TITLE_YOU).build();
-        assertFalse(DESC_XVI.equals(editedAnimal));
+        EditBookDescriptor editedXvi = new EditBookDescriptorBuilder(DESC_XVI).withName(VALID_TITLE_YOU).build();
+        assertFalse(DESC_XVI.equals(editedXvi));
 
         // different isbn -> returns false
-        editedAnimal = new EditBookDescriptorBuilder(DESC_XVI).withIsbn(VALID_ISBN_YOU).build();
-        assertFalse(DESC_XVI.equals(editedAnimal));
+        editedXvi = new EditBookDescriptorBuilder(DESC_XVI).withIsbn(VALID_ISBN_YOU).build();
+        assertFalse(DESC_XVI.equals(editedXvi));
 
         // different availability -> returns false
-        editedAnimal = new EditBookDescriptorBuilder(DESC_XVI).withAvail(VALID_AVAIL_YOU).build();
-        assertFalse(DESC_XVI.equals(editedAnimal));
+        editedXvi = new EditBookDescriptorBuilder(DESC_XVI).withAvail(VALID_AVAIL_YOU).build();
+        assertFalse(DESC_XVI.equals(editedXvi));
 
         // different address -> returns false
-        editedAnimal = new EditBookDescriptorBuilder(DESC_XVI).withAuthor(VALID_AUTHOR_YOU).build();
-        assertFalse(DESC_XVI.equals(editedAnimal));
+        editedXvi = new EditBookDescriptorBuilder(DESC_XVI).withAuthor(VALID_AUTHOR_YOU).build();
+        assertFalse(DESC_XVI.equals(editedXvi));
 
         // different tags -> returns false
-        editedAnimal = new EditBookDescriptorBuilder(DESC_XVI).withTags(VALID_TAG_FICTION).build();
-        assertFalse(DESC_XVI.equals(editedAnimal));
+        editedXvi = new EditBookDescriptorBuilder(DESC_XVI).withTags(VALID_TAG_FICTION).build();
+        assertFalse(DESC_XVI.equals(editedXvi));
     }
 }

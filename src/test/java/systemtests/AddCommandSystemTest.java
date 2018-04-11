@@ -275,4 +275,10 @@ public class AddCommandSystemTest extends CatalogueSystemTest {
         assertCommandBoxShowsErrorStyle();
         assertStatusBarUnchanged();
     }
+
+    private void assertCommandFailure(String command, Book toAdd) {
+        String expectedResultMessage = String.format(AddCommand.MESSAGE_DUPLICATE_BOOK, toAdd);
+
+        assertCommandFailure(command, expectedResultMessage);
+    }
 }

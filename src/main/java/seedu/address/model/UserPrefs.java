@@ -54,6 +54,7 @@ public class UserPrefs {
     public void setAccountListFilePath(String accountListFilePath) {
         this.accountListFilePath = accountListFilePath;
     }
+
     //@@author
     @Override
     public boolean equals(Object other) {

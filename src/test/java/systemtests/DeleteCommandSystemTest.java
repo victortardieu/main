@@ -61,14 +61,14 @@ public class DeleteCommandSystemTest extends CatalogueSystemTest {
         assertCommandSuccess(middleBookIndex);
 
         /* ------------------ Performing delete operation while a filtered list is being shown ---------------------- */
-
+        //@@author khiayi
         /* Case: filtered book list, delete index within bounds of catalogue and book list -> deleted */
         showBooksWithTitle(KEYWORD_MATCHING_BREAKING);
         Index index = INDEX_FIRST_BOOK;
         assertTrue(index.getZeroBased() < getModel().getFilteredBookList().size());
         assertCommandSuccess(index);
 
-
+        //@@author khiayi
         /* Case: filtered book list, delete index within bounds of catalogue but out of bounds of book list
          * -> rejected
          */

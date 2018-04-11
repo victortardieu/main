@@ -11,6 +11,7 @@ public class Credential implements Serializable {
 
     private Username username;
     private Password password;
+
     /**
      * Constructs a {@code Credential}
      *
@@ -38,6 +39,7 @@ public class Credential implements Serializable {
 
     /**
      * Returns true if the username provided equals to this.username
+     *
      * @param username
      * @return
      */
@@ -51,7 +53,7 @@ public class Credential implements Serializable {
             || (other instanceof Credential // short circuit if same obj
             && this.username.equals(((Credential) other).username) // check username
             && this.password.equals(((Credential) other).password) //check password
-            );
+        );
     }
 
     @Override

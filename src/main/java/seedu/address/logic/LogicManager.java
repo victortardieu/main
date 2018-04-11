@@ -95,7 +95,7 @@ public class LogicManager extends ComponentManager implements Logic {
             auto = "select 1";
             break;
         default:
-            auto = null;
+            auto = myString;
         }
         return auto;
     }

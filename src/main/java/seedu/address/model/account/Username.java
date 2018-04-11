@@ -49,7 +49,7 @@ public class Username implements Serializable {
         return other == this
             || (other instanceof Username // short circuit if same obj
             && this.username.equals(((Username) other).username) // check username
-        );
+            );
     }
 
     @Override

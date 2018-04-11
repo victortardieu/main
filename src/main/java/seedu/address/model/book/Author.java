@@ -30,7 +30,7 @@ public class Author {
         checkArgument(isValidAuthor(author), MESSAGE_AUTHOR_CONSTRAINTS);
         this.value = author;
     }
-
+    //@@author
     /**
      * Returns true if a given string is a valid book author.
      */

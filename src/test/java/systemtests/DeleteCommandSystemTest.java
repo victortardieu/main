@@ -68,7 +68,6 @@ public class DeleteCommandSystemTest extends CatalogueSystemTest {
         assertTrue(index.getZeroBased() < getModel().getFilteredBookList().size());
         assertCommandSuccess(index);
 
-        //@@author khiayi
         /* Case: filtered book list, delete index within bounds of catalogue but out of bounds of book list
          * -> rejected
          */
@@ -76,7 +75,7 @@ public class DeleteCommandSystemTest extends CatalogueSystemTest {
         int invalidIndex = getModel().getCatalogue().getBookList().size();
         command = DeleteCommand.COMMAND_WORD + " " + invalidIndex;
         assertCommandFailure(command, MESSAGE_INVALID_BOOK_DISPLAYED_INDEX);
-
+        //@@author
         /* --------------------- Performing delete operation while a book card is selected ------------------------ */
 
         /* Case: delete the selected book -> book list panel selects the book before the deleted book */

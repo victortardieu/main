@@ -39,7 +39,7 @@ public class Avail {
             || test.equals(BORROWED)
             || test.equals(RESERVED) || test.equals(BORROWED_AND_RESERVED);
     }
-
+    //@@author
     @Override
     public String toString() {
         return value;

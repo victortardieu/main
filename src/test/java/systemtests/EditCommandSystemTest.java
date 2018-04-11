@@ -110,7 +110,7 @@ public class EditCommandSystemTest extends CatalogueSystemTest {
         bookToEdit = getModel().getFilteredBookList().get(index.getZeroBased());
         editedBook = new BookBuilder(bookToEdit).withTitle(VALID_TITLE_YOU).build();
         assertCommandSuccess(command, index, editedBook);
-        //@@author khiayi
+
         /* Case: filtered book list, edit index within bounds of catalogue but out of bounds of book list
          * -> rejected
          */
@@ -132,7 +132,7 @@ public class EditCommandSystemTest extends CatalogueSystemTest {
         // this can be misleading: card selection actually remains unchanged but the
         // browser's url is updated to reflect the new book's name
         assertCommandSuccess(command, index, XVI, index);
-
+        //@@author
         /* --------------------------------- Performing invalid edit operation -------------------------------------- */
 
         /* Case: invalid index (0) -> rejected */

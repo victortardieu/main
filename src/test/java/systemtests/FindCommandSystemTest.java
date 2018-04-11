@@ -27,6 +27,7 @@ public class FindCommandSystemTest extends CatalogueSystemTest {
     public void find() {
         //@@author QiuHaohao
         executeCommand("login admin admin");
+        //@@author khiayi
         /* Case: find multiple books in catalogue, command with leading spaces and trailing spaces
          * -> 2 books found
          */
@@ -35,31 +36,31 @@ public class FindCommandSystemTest extends CatalogueSystemTest {
         ModelHelper.setFilteredList(expectedModel, CALIFORNIA, GONE); // Two titles contains "Girl"
         assertCommandSuccess(command, expectedModel);
         assertSelectedCardUnchanged();
-        //@@author khiayi
+
         /* Case: repeat previous find command where book list is displaying the books we are finding
          * -> 2 books found
          */
         command = FindCommand.COMMAND_WORD + " " + KEYWORD_MATCHING_GIRL;
         assertCommandSuccess(command, expectedModel);
         assertSelectedCardUnchanged();
-        //@@author khiayi
+
         /* Case: find book where book list is not displaying the book we are finding -> 1 book found */
         command = FindCommand.COMMAND_WORD + " California";
         ModelHelper.setFilteredList(expectedModel, CALIFORNIA);
         assertCommandSuccess(command, expectedModel);
         assertSelectedCardUnchanged();
-        //@@author khiayi
+
         /* Case: find multiple books in catalogue, 2 keywords -> 2 books found */
         command = FindCommand.COMMAND_WORD + " California Gone";
         ModelHelper.setFilteredList(expectedModel, CALIFORNIA, GONE);
         assertCommandSuccess(command, expectedModel);
         assertSelectedCardUnchanged();
-        //@@author khiayi
+
         /* Case: find multiple books in catalogue, 2 keywords in reversed order -> 2 books found */
         command = FindCommand.COMMAND_WORD + " Gone California";
         assertCommandSuccess(command, expectedModel);
         assertSelectedCardUnchanged();
-        //@@author khiayi
+
         /* Case: find multiple books in catalogue, 2 keywords with 1 repeat -> 2 books found */
         command = FindCommand.COMMAND_WORD + " Gone California Gone";
         assertCommandSuccess(command, expectedModel);
@@ -71,7 +72,7 @@ public class FindCommandSystemTest extends CatalogueSystemTest {
         command = FindCommand.COMMAND_WORD + " Gone California NonMatchingKeyWord";
         assertCommandSuccess(command, expectedModel);
         assertSelectedCardUnchanged();
-
+        //@@author
         /* Case: undo previous find command -> rejected */
         command = UndoCommand.COMMAND_WORD;
         String expectedResultMessage = UndoCommand.MESSAGE_FAILURE;
@@ -81,7 +82,7 @@ public class FindCommandSystemTest extends CatalogueSystemTest {
         command = RedoCommand.COMMAND_WORD;
         expectedResultMessage = RedoCommand.MESSAGE_FAILURE;
         assertCommandFailure(command, expectedResultMessage);
-
+        //@@author khiayi
         /* Case: find same books in catalogue after deleting 1 of them -> 1 book found */
         executeCommand(DeleteCommand.COMMAND_WORD + " 1");
         assertFalse(getModel().getCatalogue().getBookList().contains(CALIFORNIA));
@@ -167,7 +168,7 @@ public class FindCommandSystemTest extends CatalogueSystemTest {
         command = "FiNd Delirium";
         assertCommandFailure(command, MESSAGE_UNKNOWN_COMMAND);
     }
-
+    //@@author
     /**
      * Executes {@code command} and verifies that the command box displays an empty string, the result display
      * box displays {@code Messages#MESSAGE_BOOKS_LISTED_OVERVIEW} with the number of people in the filtered list,

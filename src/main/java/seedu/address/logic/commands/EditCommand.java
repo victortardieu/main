@@ -140,6 +140,7 @@ public class EditCommand extends UndoableCommand {
         return PRIVILEGE_LEVEL;
     }
     //@@author
+
     /**
      * Stores the details to edit the book with. Each non-empty field value will replace the
      * corresponding field value of the book.

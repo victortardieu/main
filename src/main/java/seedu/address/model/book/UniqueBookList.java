@@ -34,10 +34,11 @@ public class UniqueBookList implements Iterable<Book> {
 
     /**
      * Returns true if there is a book with the same isbn provided
+     *
      * @param p
      * @return
      */
-    public boolean containsIsbn (Isbn p) {
+    public boolean containsIsbn(Isbn p) {
         for (Book b : internalList) {
             if (b.isbnMatches(p)) {
                 return true;
@@ -49,6 +50,7 @@ public class UniqueBookList implements Iterable<Book> {
     /**
      * Returns true if there is a book with a isbn that is the
      * same as that of the book provided
+     *
      * @param toCheck
      * @return
      */
@@ -69,6 +71,7 @@ public class UniqueBookList implements Iterable<Book> {
         }
         internalList.add(toAdd);
     }
+
 
     /**
      * Replaces the book {@code target} in the list with {@code editedBook}.

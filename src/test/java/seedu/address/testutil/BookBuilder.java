@@ -18,7 +18,7 @@ public class BookBuilder {
 
     public static final String DEFAULT_TITLE = "Animal Farm";
     public static final String DEFAULT_AUTHOR = "George Orwell";
-    public static final String DEFAULT_ISBN = "9780736692427";
+    public static final String DEFAULT_ISBN = "9780736692428";
     public static final String DEFAULT_AVAIL = "Borrowed";
     public static final String DEFAULT_TAGS = "unlabelled";
 

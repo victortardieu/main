@@ -92,7 +92,7 @@ public class AddCommandSystemTest extends CatalogueSystemTest {
             .withTags(VALID_TAG_FRIEND).build();
         command = AddCommand.COMMAND_WORD + TITLE_DESC_BOB + AUTHOR_DESC_AMY + ISBN_DESC_AMY + AVAIL_DESC_AMY
             + TAG_DESC_FRIEND;
-        assertCommandSuccess(command, toAdd);
+        assertCommandFailure(command, toAdd);
 
         /* Case: add a book with all fields same as another book in the catalogue except isbn -> added */
         toAdd = new BookBuilder().withTitle(VALID_TITLE_AMY).withAuthor(VALID_AUTHOR_AMY)
@@ -108,7 +108,7 @@ public class AddCommandSystemTest extends CatalogueSystemTest {
             .withTags(VALID_TAG_FRIEND).build();
         command = AddCommand.COMMAND_WORD + TITLE_DESC_AMY + AUTHOR_DESC_AMY + ISBN_DESC_AMY + AVAIL_DESC_BOB
             + TAG_DESC_FRIEND;
-        assertCommandSuccess(command, toAdd);
+        assertCommandFailure(command, toAdd);
 
         /* Case: add a book with all fields same as another book in the catalogue except address -> added */
         toAdd = new BookBuilder().withTitle(VALID_TITLE_AMY).withAuthor(VALID_AUTHOR_BOB)
@@ -116,7 +116,7 @@ public class AddCommandSystemTest extends CatalogueSystemTest {
             .withTags(VALID_TAG_FRIEND).build();
         command = AddCommand.COMMAND_WORD + TITLE_DESC_AMY + AUTHOR_DESC_BOB + ISBN_DESC_AMY + AVAIL_DESC_AMY
             + TAG_DESC_FRIEND;
-        assertCommandSuccess(command, toAdd);
+        assertCommandFailure(command, toAdd);
 
         /* Case: add to empty catalogue -> added */
         deleteAllBooks();
@@ -274,5 +274,11 @@ public class AddCommandSystemTest extends CatalogueSystemTest {
         assertSelectedCardUnchanged();
         assertCommandBoxShowsErrorStyle();
         assertStatusBarUnchanged();
+    }
+
+    private void assertCommandFailure(String command, Book toAdd) {
+        String expectedResultMessage = String.format(AddCommand.MESSAGE_DUPLICATE_BOOK, toAdd);
+
+        assertCommandFailure(command, expectedResultMessage);
     }
 }

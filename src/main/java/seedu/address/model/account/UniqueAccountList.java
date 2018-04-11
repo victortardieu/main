@@ -95,6 +95,7 @@ public class UniqueAccountList implements Serializable, Iterable<Account> {
 
     /**
      * Returns true if there is an account with the username provided
+     *
      * @param u
      * @return
      */
@@ -110,6 +111,7 @@ public class UniqueAccountList implements Serializable, Iterable<Account> {
     /**
      * Returns true if there is an account with an username that is the
      * same as that of the credential provided
+     *
      * @param c
      * @return
      */
@@ -120,6 +122,7 @@ public class UniqueAccountList implements Serializable, Iterable<Account> {
     /**
      * Returns true if there is an account with an username that is the
      * same as that of the account provided
+     *
      * @param a
      * @return
      */
@@ -129,6 +132,7 @@ public class UniqueAccountList implements Serializable, Iterable<Account> {
 
     /**
      * Returns the account if there is an account with the username provided
+     *
      * @param u
      * @return
      */

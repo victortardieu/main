@@ -24,7 +24,7 @@ You can login the default account with this command: 'login admin admin'
 
 == Introduction
 
-Catalogue is for *NUS students* who prefer to use a desktop app for finding, borrowing and returning books at the Central Library
+Catalogue is for *NUS students* who prefer to use a desktop app for finding, borrowing and returning english books at the Central Library
 Catalogue is for *NUS librarian* who prefer to use a desktop app for managing books, students accounts and loans at the Central Library.
 More importantly, Catalogue is *optimized for those who prefer to work with a Command Line Interface* (CLI) while still having the benefits of a Graphical User Interface (GUI).
 If you can type fast, Catalogue can get your contact management tasks done faster than traditional GUI apps.

@@ -1,7 +1,16 @@
 package seedu.address.logic.commands;
 
 import static org.junit.Assert.*;
-import static seedu.address.logic.commands.CommandTestUtil.*;
+import static seedu.address.logic.commands.CommandTestUtil.DESC_AMY;
+import static seedu.address.logic.commands.CommandTestUtil.DESC_BOB;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_ISBN_BOB;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_TAG_HUSBAND;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_TITLE_BOB;
+import static seedu.address.logic.commands.CommandTestUtil.assertCommandFailure;
+import static seedu.address.logic.commands.CommandTestUtil.assertCommandSuccess;
+import static seedu.address.logic.commands.CommandTestUtil.prepareRedoCommand;
+import static seedu.address.logic.commands.CommandTestUtil.prepareUndoCommand;
+import static seedu.address.logic.commands.CommandTestUtil.showBookAtIndex;
 import static seedu.address.testutil.TypicalBooks.getTypicalCatalogue;
 import static seedu.address.testutil.TypicalIndexes.INDEX_FIRST_BOOK;
 import static seedu.address.testutil.TypicalIndexes.INDEX_SECOND_BOOK;

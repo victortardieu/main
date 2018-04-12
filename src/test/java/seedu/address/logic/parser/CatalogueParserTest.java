@@ -1,6 +1,8 @@
 package seedu.address.logic.parser;
 
-import static org.junit.Assert.*;
+import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertTrue;
+import static org.junit.Assert.fail;
 import static seedu.address.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
 import static seedu.address.commons.core.Messages.MESSAGE_UNKNOWN_COMMAND;
 import static seedu.address.testutil.TypicalIndexes.INDEX_FIRST_BOOK;
@@ -35,9 +37,10 @@ import seedu.address.testutil.EditBookDescriptorBuilder;
 
 
 public class CatalogueParserTest {
-    private final CatalogueParser parser = new CatalogueParser();
     @Rule
     public ExpectedException thrown = ExpectedException.none();
+
+    private final CatalogueParser parser = new CatalogueParser();
 
     @Test
     public void parseCommand_add() throws Exception {

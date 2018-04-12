@@ -2,7 +2,13 @@ package seedu.address.logic.commands;
 
 import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertTrue;
-import static seedu.address.logic.commands.CommandTestUtil.*;
+import static seedu.address.logic.commands.CommandTestUtil.DESC_AMY;
+import static seedu.address.logic.commands.CommandTestUtil.DESC_BOB;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_AUTHOR_BOB;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_AVAIL_BOB;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_ISBN_BOB;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_TAG_HUSBAND;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_TITLE_BOB;
 
 import org.junit.Test;
 

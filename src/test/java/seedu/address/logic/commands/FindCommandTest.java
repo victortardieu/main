@@ -1,8 +1,13 @@
 package seedu.address.logic.commands;
 
-import static org.junit.Assert.*;
+import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertFalse;
+import static org.junit.Assert.assertTrue;
 import static seedu.address.commons.core.Messages.MESSAGE_BOOKS_LISTED_OVERVIEW;
-import static seedu.address.testutil.TypicalBooks.*;
+import static seedu.address.testutil.TypicalBooks.CALIFORNIA;
+import static seedu.address.testutil.TypicalBooks.EMMA;
+import static seedu.address.testutil.TypicalBooks.FATEFUL;
+import static seedu.address.testutil.TypicalBooks.getTypicalCatalogue;
 
 import java.util.Arrays;
 import java.util.Collections;

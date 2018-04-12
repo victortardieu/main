@@ -1,7 +1,13 @@
 package seedu.address.logic.commands;
 
-import static org.junit.Assert.*;
-import static seedu.address.logic.parser.CliSyntax.*;
+import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertTrue;
+import static org.junit.Assert.fail;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_AUTHOR;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_AVAIL;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_ISBN;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_TAG;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_TITLE;
 
 import java.util.ArrayList;
 import java.util.Arrays;

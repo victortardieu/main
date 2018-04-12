@@ -64,7 +64,7 @@ public class CommandBox extends UiPart<Region> {
             replaceText(LogicManager.autoComplete(commandTextField.getText()));
             break;
         default:
-        // let JavaFx handle the keypress
+            // let JavaFx handle the keypress
         }
     }
 

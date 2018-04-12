@@ -31,6 +31,7 @@ public class Author {
         this.value = author;
     }
     //@@author
+
     /**
      * Returns true if a given string is a valid book author.
      */

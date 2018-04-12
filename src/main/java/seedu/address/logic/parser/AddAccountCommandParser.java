@@ -20,12 +20,15 @@ import seedu.address.model.account.Password;
 import seedu.address.model.account.PrivilegeLevel;
 import seedu.address.model.account.Username;
 
+/**
+ * Parses input arguments and creates a new AddAccountCommand object
+ */
 public class AddAccountCommandParser implements Parser<AddAccountCommand> {
     /**
      * Returns true if none of the prefixes contains empty(@code Optional) value in the given
      * (@code ArgumentMultimap).
      */
-    private static boolean arePrefixesPresent(ArgumentMultimap argumentMultimap, Prefix...prefixes) {
+    private static boolean arePrefixesPresent(ArgumentMultimap argumentMultimap, Prefix... prefixes) {
         return Stream.of(prefixes).allMatch((prefix -> argumentMultimap.getValue(prefix).isPresent()));
     }
 

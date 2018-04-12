@@ -1,12 +1,5 @@
 package seedu.address.logic.commands;
 
-import seedu.address.logic.commands.exceptions.CommandException;
-
-import seedu.address.model.Model;
-import seedu.address.model.account.Account;
-import seedu.address.model.account.PrivilegeLevel;
-import seedu.address.model.account.exceptions.DuplicateAccountException;
-
 import static java.util.Objects.requireNonNull;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_MATRICNUMBER;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
@@ -14,7 +7,16 @@ import static seedu.address.logic.parser.CliSyntax.PREFIX_PASSWORD;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_PRIVILEGE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_USERNAME;
 
-public class AddAccountCommand extends UndoableCommand{
+import seedu.address.logic.commands.exceptions.CommandException;
+import seedu.address.model.Model;
+import seedu.address.model.account.Account;
+import seedu.address.model.account.PrivilegeLevel;
+import seedu.address.model.account.exceptions.DuplicateAccountException;
+
+/**
+ * Adds an account
+ */
+public class AddAccountCommand extends UndoableCommand {
     public static final String COMMAND_WORD = "addAccount";
 
     public static final String MESSAGE_USAGE = COMMAND_WORD + ": Adds an account to the system. "
@@ -37,9 +39,10 @@ public class AddAccountCommand extends UndoableCommand{
     public static final PrivilegeLevel PRIVILEGE_LEVEL = Model.PRIVILEGE_LEVEL_LIBRARIAN;
 
     private final Account toAdd;
+
     /**
      * Creates an AddCommand to add the specified {@code Book}
-     * */
+     */
     public AddAccountCommand(Account account) {
         requireNonNull(account);
         toAdd = account;

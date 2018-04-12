@@ -48,7 +48,8 @@ public class ParserUtil {
         }
         return Index.fromOneBased(Integer.parseInt(trimmedIndex));
     }
-//============================== Account Level Parse Commands ===========================
+    //============================== Account Level Parse Commands ===========================
+
     /**
      * Parses a {@code String name} into a {@code Name}.
      * Leading and trailing whitespaces will be trimmed.
@@ -92,7 +93,8 @@ public class ParserUtil {
      * Parses a {@code Optional<String> title} into an {@code Optional<Title>} if {@code title} is present.
      * See header comment of this class regarding the use of {@code Optional} parameters.
      */
-    public static Optional<MatricNumber> parseAccountMatricNumber (Optional<String> matricNumber) throws IllegalValueException {
+    public static Optional<MatricNumber> parseAccountMatricNumber(Optional<String> matricNumber)
+        throws IllegalValueException {
         requireNonNull(matricNumber);
         return matricNumber.isPresent() ? Optional.of(parseAccountMatricNumber(matricNumber.get())) : Optional.empty();
     }
@@ -161,7 +163,8 @@ public class ParserUtil {
         return new PrivilegeLevel(input);
     }
 
-//============================== Book Level Parse Commands ==============================
+    //============================== Book Level Parse Commands ==============================
+
     /**
      * Parses a {@code String title} into a {@code Title}.
      * Leading and trailing whitespaces will be trimmed.

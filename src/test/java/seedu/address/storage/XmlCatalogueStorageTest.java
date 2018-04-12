@@ -2,7 +2,10 @@ package seedu.address.storage;
 
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertFalse;
-import static seedu.address.testutil.TypicalBooks.*;
+import static seedu.address.testutil.TypicalBooks.ANIMAL;
+import static seedu.address.testutil.TypicalBooks.HOLES;
+import static seedu.address.testutil.TypicalBooks.INVISIBLE;
+import static seedu.address.testutil.TypicalBooks.getTypicalCatalogue;
 
 import java.io.IOException;
 

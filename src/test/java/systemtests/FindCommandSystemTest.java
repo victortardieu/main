@@ -3,7 +3,10 @@ package systemtests;
 import static org.junit.Assert.assertFalse;
 import static seedu.address.commons.core.Messages.MESSAGE_BOOKS_LISTED_OVERVIEW;
 import static seedu.address.commons.core.Messages.MESSAGE_UNKNOWN_COMMAND;
-import static seedu.address.testutil.TypicalBooks.*;
+import static seedu.address.testutil.TypicalBooks.CALIFORNIA;
+import static seedu.address.testutil.TypicalBooks.DELIRIUM;
+import static seedu.address.testutil.TypicalBooks.GONE;
+import static seedu.address.testutil.TypicalBooks.KEYWORD_MATCHING_GIRL;
 
 import java.util.ArrayList;
 import java.util.List;

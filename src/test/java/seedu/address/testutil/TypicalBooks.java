@@ -1,6 +1,15 @@
 package seedu.address.testutil;
 
-import static seedu.address.logic.commands.CommandTestUtil.*;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_AUTHOR_AMY;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_AUTHOR_BOB;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_AVAIL_AMY;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_AVAIL_BOB;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_ISBN_AMY;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_ISBN_BOB;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_TAG_FRIEND;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_TAG_HUSBAND;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_TITLE_AMY;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_TITLE_BOB;
 
 import java.util.ArrayList;
 import java.util.Arrays;

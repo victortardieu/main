@@ -1,7 +1,9 @@
 package systemtests;
 
 import static guitests.guihandles.WebViewUtil.waitUntilBrowserLoaded;
-import static org.junit.Assert.*;
+import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertFalse;
+import static org.junit.Assert.assertTrue;
 import static seedu.address.ui.BrowserPanel.DEFAULT_PAGE;
 import static seedu.address.ui.StatusBarFooter.SYNC_STATUS_INITIAL;
 import static seedu.address.ui.StatusBarFooter.SYNC_STATUS_UPDATED;
@@ -45,11 +47,13 @@ import seedu.address.ui.CommandBox;
  * for test verification.
  */
 public abstract class CatalogueSystemTest {
+    @ClassRule
+    public static ClockRule clockRule = new ClockRule();
+
     private static final List<String> COMMAND_BOX_DEFAULT_STYLE = Arrays.asList("text-input", "text-field");
     private static final List<String> COMMAND_BOX_ERROR_STYLE =
         Arrays.asList("text-input", "text-field", CommandBox.ERROR_STYLE_CLASS);
-    @ClassRule
-    public static ClockRule clockRule = new ClockRule();
+
     private MainWindowHandle mainWindowHandle;
     private TestApp testApp;
     private SystemTestSetupHelper setupHelper;

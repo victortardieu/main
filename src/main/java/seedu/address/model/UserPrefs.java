@@ -1,8 +1,8 @@
 package seedu.address.model;
 
-import java.util.Objects;
-
 import seedu.address.commons.core.GuiSettings;
+
+import java.util.Objects;
 
 /**
  * Represents User's preferences.
@@ -46,6 +46,7 @@ public class UserPrefs {
         this.catalogueBookTitle = catalogueBookTitle;
     }
 
+    //@@author QiuHaohao
     public String getAccountListFilePath() {
         return accountListFilePath;
     }
@@ -54,6 +55,7 @@ public class UserPrefs {
         this.accountListFilePath = accountListFilePath;
     }
 
+    //@@author
     @Override
     public boolean equals(Object other) {
         if (other == this) {

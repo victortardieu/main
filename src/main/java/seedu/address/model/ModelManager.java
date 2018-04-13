@@ -1,11 +1,5 @@
 package seedu.address.model;
 
-import static java.util.Objects.requireNonNull;
-import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
-
-import java.util.function.Predicate;
-import java.util.logging.Logger;
-
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.collections.transformation.FilteredList;
@@ -22,6 +16,12 @@ import seedu.address.model.account.exceptions.DuplicateAccountException;
 import seedu.address.model.book.Book;
 import seedu.address.model.book.exceptions.BookNotFoundException;
 import seedu.address.model.book.exceptions.DuplicateBookException;
+
+import java.util.function.Predicate;
+import java.util.logging.Logger;
+
+import static java.util.Objects.requireNonNull;
+import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
 
 
 /**
@@ -53,6 +53,8 @@ public class ModelManager extends ComponentManager implements Model {
 
     }
 
+    //@@author QiuHaohao
+
     /**
      * Initializes a ModelManager with the given catalogue, accountList and userPrefs.
      */
@@ -61,21 +63,25 @@ public class ModelManager extends ComponentManager implements Model {
         requireAllNonNull(catalogue, accountList, userPrefs);
 
         logger.fine("Initializing with catalogue: " + catalogue
-                            + ", accountList: " + accountList
-                            + " and user prefs " + userPrefs);
+            + ", accountList: " + accountList
+            + " and user prefs " + userPrefs);
 
         this.catalogue = new Catalogue(catalogue);
         filteredBooks = new FilteredList<>(this.catalogue.getBookList());
         this.accountList = accountList;
         this.currentAccount = Account.createGuestAccount();
     }
+    //@@author
 
     public ModelManager() {
         this(new Catalogue(), new UserPrefs());
     }
 
+    //@@author QiuHaohao
+
     /**
      * Adds an account to the AccountList
+     *
      * @param account
      * @throws DuplicateAccountException
      */
@@ -86,6 +92,7 @@ public class ModelManager extends ComponentManager implements Model {
 
     /**
      * Deletes an account from the AccountList
+     *
      * @param account
      * @throws AccountNotFoundException
      */
@@ -96,6 +103,7 @@ public class ModelManager extends ComponentManager implements Model {
 
     /**
      * Replaces an account with a new one
+     *
      * @param account
      * @param editedAccount
      * @throws DuplicateAccountException
@@ -105,6 +113,21 @@ public class ModelManager extends ComponentManager implements Model {
         throws DuplicateAccountException, AccountNotFoundException {
         accountList.setAccount(account, account);
         indicateAccountListChanged();
+    }
+
+    public void returnBook(Book target, Book returnedBook) throws BookNotFoundException {
+        catalogue.returnBook(target, returnedBook);
+        indicateCatalogueChanged();
+    }
+
+    public void borrowBook(Book target, Book borrowedBook) throws BookNotFoundException {
+        catalogue.borrowBook(target, borrowedBook);
+        indicateCatalogueChanged();
+    }
+
+    public void reserveBook(Book target, Book reservedBook) throws BookNotFoundException {
+        catalogue.returnBook(target, reservedBook);
+        indicateCatalogueChanged();
     }
 
     /**
@@ -120,6 +143,7 @@ public class ModelManager extends ComponentManager implements Model {
             }
         }
     }
+    //@@author
 
     @Override
     public void resetData(ReadOnlyCatalogue newData) {
@@ -139,12 +163,15 @@ public class ModelManager extends ComponentManager implements Model {
         raise(new CatalogueChangedEvent(catalogue));
     }
 
+    //@@author QiuHaohao
+
     /**
      * Raises an event to indicate the model has changed
      */
     private void indicateAccountListChanged() {
         raise(new AccountListChangedEvent(accountList));
     }
+    //@@author
 
     @Override
     public synchronized void deleteBook(Book target) throws BookNotFoundException {
@@ -185,6 +212,7 @@ public class ModelManager extends ComponentManager implements Model {
         filteredBooks.setPredicate(predicate);
     }
 
+    //@@author QiuHaohao
     @Override
     public PrivilegeLevel authenticate(Credential c) {
         Account matched = accountList.authenticate(c);
@@ -205,6 +233,7 @@ public class ModelManager extends ComponentManager implements Model {
     public PrivilegeLevel getPrivilegeLevel() {
         return this.currentAccount.getPrivilegeLevel();
     }
+    //@@author
 
     @Override
     public boolean equals(Object obj) {

@@ -1,8 +1,5 @@
 package seedu.address.testutil;
 
-import java.util.HashSet;
-import java.util.Set;
-
 import seedu.address.model.book.Author;
 import seedu.address.model.book.Avail;
 import seedu.address.model.book.Book;
@@ -11,6 +8,9 @@ import seedu.address.model.book.Title;
 import seedu.address.model.tag.Tag;
 import seedu.address.model.util.SampleDataUtil;
 
+import java.util.HashSet;
+import java.util.Set;
+
 /**
  * A utility class to help with building Book objects.
  */
@@ -18,7 +18,7 @@ public class BookBuilder {
 
     public static final String DEFAULT_TITLE = "Animal Farm";
     public static final String DEFAULT_AUTHOR = "George Orwell";
-    public static final String DEFAULT_ISBN = "9780736692427";
+    public static final String DEFAULT_ISBN = "9780736692428";
     public static final String DEFAULT_AVAIL = "Borrowed";
     public static final String DEFAULT_TAGS = "unlabelled";
 

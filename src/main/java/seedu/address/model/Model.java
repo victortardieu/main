@@ -1,7 +1,5 @@
 package seedu.address.model;
 
-import java.util.function.Predicate;
-
 import javafx.collections.ObservableList;
 import seedu.address.model.account.Account;
 import seedu.address.model.account.Credential;
@@ -11,6 +9,8 @@ import seedu.address.model.account.exceptions.DuplicateAccountException;
 import seedu.address.model.book.Book;
 import seedu.address.model.book.exceptions.BookNotFoundException;
 import seedu.address.model.book.exceptions.DuplicateBookException;
+
+import java.util.function.Predicate;
 
 
 /**
@@ -56,6 +56,12 @@ public interface Model {
     void updateBook(Book target, Book editedBook)
         throws DuplicateBookException, BookNotFoundException;
 
+    void returnBook(Book target, Book returnedBook) throws BookNotFoundException;
+
+    void borrowBook(Book target, Book borrowedBook) throws BookNotFoundException;
+
+    void reserveBook(Book target, Book reservedBook) throws BookNotFoundException;
+
     /**
      * Returns an unmodifiable view of the filtered book list
      */
@@ -68,6 +74,7 @@ public interface Model {
      */
     void updateFilteredBookList(Predicate<Book> predicate);
 
+    //@@author QiuHaohao
     void addAccount(Account account) throws DuplicateAccountException;
 
     void deleteAccount(Account account) throws AccountNotFoundException;
@@ -80,5 +87,5 @@ public interface Model {
     void logout();
 
     PrivilegeLevel getPrivilegeLevel();
-
+    //@@author
 }

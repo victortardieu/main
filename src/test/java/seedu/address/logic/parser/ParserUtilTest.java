@@ -1,21 +1,8 @@
 package seedu.address.logic.parser;
 
-import static org.junit.Assert.assertEquals;
-import static org.junit.Assert.assertFalse;
-import static org.junit.Assert.assertTrue;
-import static seedu.address.logic.parser.ParserUtil.MESSAGE_INVALID_INDEX;
-import static seedu.address.testutil.TypicalIndexes.INDEX_FIRST_BOOK;
-
-import java.util.Arrays;
-import java.util.Collections;
-import java.util.HashSet;
-import java.util.Optional;
-import java.util.Set;
-
 import org.junit.Rule;
 import org.junit.Test;
 import org.junit.rules.ExpectedException;
-
 import seedu.address.commons.exceptions.IllegalValueException;
 import seedu.address.model.book.Author;
 import seedu.address.model.book.Avail;
@@ -24,19 +11,31 @@ import seedu.address.model.book.Title;
 import seedu.address.model.tag.Tag;
 import seedu.address.testutil.Assert;
 
+import java.util.Arrays;
+import java.util.Collections;
+import java.util.HashSet;
+import java.util.Optional;
+import java.util.Set;
+
+import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertFalse;
+import static org.junit.Assert.assertTrue;
+import static seedu.address.logic.parser.ParserUtil.MESSAGE_INVALID_INDEX;
+import static seedu.address.testutil.TypicalIndexes.INDEX_FIRST_BOOK;
+
 public class ParserUtilTest {
-    private static final String INVALID_TITLE = "R@chel";
-    private static final String INVALID_ISBN = "+651234";
+    private static final String INVALID_TITLE = "@nimal";
+    private static final String INVALID_ISBN = "+780736692427";
     private static final String INVALID_AUTHOR = " ";
     private static final String INVALID_AVAIL = "NOT SURE";
-    private static final String INVALID_TAG = "#friend";
+    private static final String INVALID_TAG = "#political";
 
-    private static final String VALID_TITLE = "Rachel Walker";
-    private static final String VALID_ISBN = "123456";
-    private static final String VALID_AUTHOR = "Walker Rachel";
+    private static final String VALID_TITLE = "Animal Farm";
+    private static final String VALID_ISBN = "9780736692427";
+    private static final String VALID_AUTHOR = "George Orwell";
     private static final String VALID_AVAIL = "Borrowed";
-    private static final String VALID_TAG_1 = "friend";
-    private static final String VALID_TAG_2 = "neighbour";
+    private static final String VALID_TAG_1 = "political";
+    private static final String VALID_TAG_2 = "satire";
 
     private static final String WHITESPACE = " \t\r\n";
 

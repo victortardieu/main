@@ -1,19 +1,8 @@
 package seedu.address.commons.util;
 
-import static org.junit.Assert.assertEquals;
-
-import java.io.File;
-import java.io.FileNotFoundException;
-import java.util.Collections;
-import java.util.List;
-
-import javax.xml.bind.JAXBException;
-import javax.xml.bind.annotation.XmlRootElement;
-
 import org.junit.Rule;
 import org.junit.Test;
 import org.junit.rules.ExpectedException;
-
 import seedu.address.model.Catalogue;
 import seedu.address.storage.XmlAdaptedBook;
 import seedu.address.storage.XmlAdaptedTag;
@@ -21,6 +10,16 @@ import seedu.address.storage.XmlSerializableCatalogue;
 import seedu.address.testutil.BookBuilder;
 import seedu.address.testutil.CatalogueBuilder;
 import seedu.address.testutil.TestUtil;
+
+import javax.xml.bind.JAXBException;
+import javax.xml.bind.annotation.XmlRootElement;
+
+import java.io.File;
+import java.io.FileNotFoundException;
+import java.util.Collections;
+import java.util.List;
+
+import static org.junit.Assert.assertEquals;
 
 public class XmlUtilTest {
 
@@ -35,11 +34,11 @@ public class XmlUtilTest {
 
     private static final String INVALID_ISBN = "9482asf424";
 
-    private static final String VALID_NAME = "Hans Muster";
-    private static final String VALID_ISBN = "9482424";
+    private static final String VALID_NAME = "Animal Farm";
+    private static final String VALID_ISBN = "9780736692427";
     private static final String VALID_AVAIL = "Borrowed";
-    private static final String VALID_AUTHOR = "Muster Hans";
-    private static final List<XmlAdaptedTag> VALID_TAGS = Collections.singletonList(new XmlAdaptedTag("friends"));
+    private static final String VALID_AUTHOR = "George Orwell";
+    private static final List<XmlAdaptedTag> VALID_TAGS = Collections.singletonList(new XmlAdaptedTag("political"));
 
     @Rule
     public ExpectedException thrown = ExpectedException.none();

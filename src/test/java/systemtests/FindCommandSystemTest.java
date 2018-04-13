@@ -1,18 +1,6 @@
 package systemtests;
 
-import static org.junit.Assert.assertFalse;
-import static seedu.address.commons.core.Messages.MESSAGE_BOOKS_LISTED_OVERVIEW;
-import static seedu.address.commons.core.Messages.MESSAGE_UNKNOWN_COMMAND;
-import static seedu.address.testutil.TypicalBooks.CALIFORNIA;
-import static seedu.address.testutil.TypicalBooks.DELIRIUM;
-import static seedu.address.testutil.TypicalBooks.GONE;
-import static seedu.address.testutil.TypicalBooks.KEYWORD_MATCHING_GIRL;
-
-import java.util.ArrayList;
-import java.util.List;
-
 import org.junit.Test;
-
 import seedu.address.commons.core.index.Index;
 import seedu.address.logic.commands.DeleteCommand;
 import seedu.address.logic.commands.FindCommand;
@@ -21,12 +9,24 @@ import seedu.address.logic.commands.UndoCommand;
 import seedu.address.model.Model;
 import seedu.address.model.tag.Tag;
 
+import java.util.ArrayList;
+import java.util.List;
+
+import static org.junit.Assert.assertFalse;
+import static seedu.address.commons.core.Messages.MESSAGE_BOOKS_LISTED_OVERVIEW;
+import static seedu.address.commons.core.Messages.MESSAGE_UNKNOWN_COMMAND;
+import static seedu.address.testutil.TypicalBooks.CALIFORNIA;
+import static seedu.address.testutil.TypicalBooks.DELIRIUM;
+import static seedu.address.testutil.TypicalBooks.GONE;
+import static seedu.address.testutil.TypicalBooks.KEYWORD_MATCHING_GIRL;
+
 public class FindCommandSystemTest extends CatalogueSystemTest {
 
     @Test
     public void find() {
-
+        //@@author QiuHaohao
         executeCommand("login admin admin");
+        //@@author khiayi
         /* Case: find multiple books in catalogue, command with leading spaces and trailing spaces
          * -> 2 books found
          */
@@ -71,7 +71,7 @@ public class FindCommandSystemTest extends CatalogueSystemTest {
         command = FindCommand.COMMAND_WORD + " Gone California NonMatchingKeyWord";
         assertCommandSuccess(command, expectedModel);
         assertSelectedCardUnchanged();
-
+        //@@author
         /* Case: undo previous find command -> rejected */
         command = UndoCommand.COMMAND_WORD;
         String expectedResultMessage = UndoCommand.MESSAGE_FAILURE;
@@ -81,7 +81,7 @@ public class FindCommandSystemTest extends CatalogueSystemTest {
         command = RedoCommand.COMMAND_WORD;
         expectedResultMessage = RedoCommand.MESSAGE_FAILURE;
         assertCommandFailure(command, expectedResultMessage);
-
+        //@@author khiayi
         /* Case: find same books in catalogue after deleting 1 of them -> 1 book found */
         executeCommand(DeleteCommand.COMMAND_WORD + " 1");
         assertFalse(getModel().getCatalogue().getBookList().contains(CALIFORNIA));
@@ -167,6 +167,7 @@ public class FindCommandSystemTest extends CatalogueSystemTest {
         command = "FiNd Delirium";
         assertCommandFailure(command, MESSAGE_UNKNOWN_COMMAND);
     }
+    //@@author
 
     /**
      * Executes {@code command} and verifies that the command box displays an empty string, the result display

@@ -1,9 +1,9 @@
 package seedu.address.logic.commands;
 
-import static seedu.address.model.Model.PREDICATE_SHOW_ALL_BOOKS;
-
 import seedu.address.model.Model;
 import seedu.address.model.account.PrivilegeLevel;
+
+import static seedu.address.model.Model.PREDICATE_SHOW_ALL_BOOKS;
 
 /**
  * Lists all books in the catalogue to the user.
@@ -23,6 +23,7 @@ public class ListCommand extends Command {
         return new CommandResult(MESSAGE_SUCCESS);
     }
 
+    //@@author QiuHaohao
     @Override
     public PrivilegeLevel getPrivilegeLevel() {
         return PRIVILEGE_LEVEL;

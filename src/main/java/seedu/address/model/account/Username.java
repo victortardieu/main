@@ -1,9 +1,10 @@
+//@@author QiuHaohao
 package seedu.address.model.account;
+
+import java.io.Serializable;
 
 import static java.util.Objects.requireNonNull;
 import static seedu.address.commons.util.AppUtil.checkArgument;
-
-import java.io.Serializable;
 
 /**
  * Represents the username of an account
@@ -48,7 +49,7 @@ public class Username implements Serializable {
         return other == this
             || (other instanceof Username // short circuit if same obj
             && this.username.equals(((Username) other).username) // check username
-            );
+        );
     }
 
     @Override
@@ -58,8 +59,6 @@ public class Username implements Serializable {
 
     @Override
     public String toString() {
-        return "Username{"
-            + "username='" + username + '\''
-            + '}';
+        return username;
     }
 }

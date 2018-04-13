@@ -1,10 +1,10 @@
 package seedu.address.logic.commands;
 
-import static java.util.Objects.requireNonNull;
-
 import seedu.address.model.Catalogue;
 import seedu.address.model.Model;
 import seedu.address.model.account.PrivilegeLevel;
+
+import static java.util.Objects.requireNonNull;
 
 /**
  * Clears the catalogue.
@@ -22,6 +22,7 @@ public class ClearCommand extends UndoableCommand {
         return new CommandResult(MESSAGE_SUCCESS);
     }
 
+    //@@author QiuHaohao
     @Override
     public PrivilegeLevel getPrivilegeLevel() {
         return PRIVILEGE_LEVEL;

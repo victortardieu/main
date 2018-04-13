@@ -1,12 +1,6 @@
 package seedu.address;
 
-import java.io.IOException;
-import java.util.Map;
-import java.util.Optional;
-import java.util.logging.Logger;
-
 import com.google.common.eventbus.Subscribe;
-
 import javafx.application.Application;
 import javafx.application.Platform;
 import javafx.stage.Stage;
@@ -39,6 +33,11 @@ import seedu.address.storage.UserPrefsStorage;
 import seedu.address.storage.XmlCatalogueStorage;
 import seedu.address.ui.Ui;
 import seedu.address.ui.UiManager;
+
+import java.io.IOException;
+import java.util.Map;
+import java.util.Optional;
+import java.util.logging.Logger;
 
 
 /**
@@ -101,6 +100,7 @@ public class MainApp extends Application {
         Optional<UniqueAccountList> accountListOptional;
         ReadOnlyCatalogue initialData;
         UniqueAccountList initlaAccountList;
+        //@@author QiuHaohao
         try {
             catalogueOptional = storage.readCatalogue();
             if (!catalogueOptional.isPresent()) {
@@ -142,6 +142,7 @@ public class MainApp extends Application {
             e.printStackTrace();
         }
         return new ModelManager(initialData, initlaAccountList, userPrefs);
+        //@@author
     }
 
     private void initLogging(Config config) {

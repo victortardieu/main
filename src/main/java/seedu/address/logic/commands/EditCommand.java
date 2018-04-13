@@ -1,20 +1,5 @@
 package seedu.address.logic.commands;
 
-import static java.util.Objects.requireNonNull;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_AUTHOR;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_AVAIL;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_ISBN;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_TAG;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_TITLE;
-import static seedu.address.model.Model.PREDICATE_SHOW_ALL_BOOKS;
-
-import java.util.Collections;
-import java.util.HashSet;
-import java.util.List;
-import java.util.Objects;
-import java.util.Optional;
-import java.util.Set;
-
 import seedu.address.commons.core.Messages;
 import seedu.address.commons.core.index.Index;
 import seedu.address.commons.util.CollectionUtil;
@@ -29,6 +14,21 @@ import seedu.address.model.book.Title;
 import seedu.address.model.book.exceptions.BookNotFoundException;
 import seedu.address.model.book.exceptions.DuplicateBookException;
 import seedu.address.model.tag.Tag;
+
+import java.util.Collections;
+import java.util.HashSet;
+import java.util.List;
+import java.util.Objects;
+import java.util.Optional;
+import java.util.Set;
+
+import static java.util.Objects.requireNonNull;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_AUTHOR;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_AVAIL;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_ISBN;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_TAG;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_TITLE;
+import static seedu.address.model.Model.PREDICATE_SHOW_ALL_BOOKS;
 
 /**
  * Edits the details of an existing book in the catalogue.
@@ -134,10 +134,12 @@ public class EditCommand extends UndoableCommand {
             && Objects.equals(bookToEdit, e.bookToEdit);
     }
 
+    //@@author QiuHaohao
     @Override
     public PrivilegeLevel getPrivilegeLevel() {
         return PRIVILEGE_LEVEL;
     }
+    //@@author
 
     /**
      * Stores the details to edit the book with. Each non-empty field value will replace the
@@ -242,7 +244,5 @@ public class EditCommand extends UndoableCommand {
                 && getAvail().equals(e.getAvail())
                 && getTags().equals(e.getTags());
         }
-
-
     }
 }
